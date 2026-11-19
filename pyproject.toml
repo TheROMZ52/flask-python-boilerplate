@@ -1,8 +1,28 @@
 [project]
-name = "vercel-flask-starter"
-version = "0.1.0"
-requires-python = ">=3.9"
+name = "nexvordev-flask-boilerplate"
+version = "0.2.0"
+description = "A modular Flask API boilerplate designed for Vercel and traditional WSGI hosting."
+readme = "README.md"
+requires-python = ">=3.10"
 dependencies = [
   "flask>=3.1,<4.0",
-  "gunicorn~=23.0.0"
+  "gunicorn>=23.0,<24.0",
 ]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9.0",
+  "ruff>=0.11,<1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
