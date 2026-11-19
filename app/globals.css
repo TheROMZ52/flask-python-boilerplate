@@ -153,3 +153,20 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
   .hero .code-rain{opacity:.68}
   .hero .code-stream{font-size:10px}
 }
+
+
+/* Keep code columns visible when the device requests reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .hero .code-rain{
+    z-index:0;
+    opacity:.42;
+  }
+  .hero .code-stream{
+    animation:none!important;
+    top:7%;
+    transform:none!important;
+    opacity:.42;
+    color:#55ff9a;
+    text-shadow:0 0 5px #35ff88,0 0 13px #20e875aa;
+  }
+}
