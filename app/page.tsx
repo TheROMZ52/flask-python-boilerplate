@@ -33,7 +33,7 @@ const codeSamples = [
   "if (server.ready) return success;",
   "import { GameServer } from 'nexvor';",
   "config.set('online-mode', true);",
-  "function buildProject() { ... }",
+  "const build = await project.compile();",
   "await database.connect();",
   "const players = server.getOnlinePlayers();",
   "console.log('NexvorDEV initialized');",
