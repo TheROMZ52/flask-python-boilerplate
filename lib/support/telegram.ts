@@ -8,16 +8,18 @@ export function escapeTelegramHtml(value: unknown) {
   return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-export async function sendTelegramMessage(chatId: string, text: string) {
+export async function sendTelegramMessage(chatId: string, text: string, options?: Record<string, unknown>) {
   if (!botToken) throw new Error("Telegram bot is not configured");
   const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true }),
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }),
     cache: "no-store",
   });
   if (!response.ok) throw new Error("Telegram message delivery failed");
-  return response.json();
+  const result = await response.json();
+  if (!result.ok) throw new Error("Telegram message delivery failed");
+  return result;
 }
 
 export async function notifyAdminAboutNewTicket(ticketId: string) {
@@ -31,16 +33,24 @@ export async function notifyAdminAboutNewTicket(ticketId: string) {
     `nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&select=body&order=created_at.asc&limit=1`,
   ) as Array<{ body: string }>;
   const text = [
-    "🆕 <b>تیکت جدید NexvorDEV</b>",
+    "🚨 <b>تیکت جدید NexvorDEV</b>",
+    "",
     `<b>شناسه:</b> <code>${escapeTelegramHtml(ticket.id)}</code>`,
-    `<b>نام:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
+    `<b>نام مشتری:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
     `<b>سن:</b> ${escapeTelegramHtml(ticket.age)}`,
     `<b>تلگرام:</b> @${escapeTelegramHtml(ticket.telegram_username)}`,
     `<b>موضوع:</b> ${escapeTelegramHtml(ticket.subject)}`,
     "",
-    `<b>پیام:</b>\n${escapeTelegramHtml(messages?.[0]?.body || "—")}`,
+    `<b>پیام اولیه:</b>\n${escapeTelegramHtml(messages?.[0]?.body || "—").slice(0, 2500)}`,
     "",
-    "برای مدیریت: /tickets",
+    "برای مشاهده و مدیریت، دکمه زیر را بزن.",
   ].join("\n");
-  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text)));
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, {
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "🎫 مشاهده و مدیریت تیکت", callback_data: `ticket:${ticketId}` },
+        { text: "📬 همه تیکت‌ها", callback_data: "tickets:0" },
+      ]],
+    },
+  })));
 }
