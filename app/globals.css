@@ -36,3 +36,54 @@
 @media(max-width:900px){.hero-inner{gap:25px;grid-template-columns:1fr .95fr}.services-grid{grid-template-columns:repeat(2,1fr)}.price-card{padding-inline:17px}.price-range strong{font-size:21px}}
 @media(max-width:650px){.container{width:min(100% - 34px,520px)}.top-strip{font-size:8px;gap:6px}.nav-wrap{height:68px}.desktop-nav{display:none}.mobile-menu{display:block;position:relative}.mobile-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none;color:#c4d6ed;font-size:11px;padding:8px}.mobile-toggle::-webkit-details-marker{display:none}.mobile-menu .nav-links{display:none;position:absolute;top:45px;left:0;width:min(270px,calc(100vw - 34px));padding:18px;background:#0b1627;border:1px solid var(--line);border-radius:10px;flex-direction:column;align-items:stretch;gap:15px;box-shadow:0 20px 45px #000b}.mobile-menu[open] .nav-links{display:flex}.nav-cta{justify-content:center}.hero{min-height:0}.hero-inner{display:flex;flex-direction:column;align-items:stretch;gap:5px}.hero-copy{padding:62px 0 18px}.hero h1{font-size:clamp(43px,12vw,58px);line-height:1.5}.hero-description{font-size:11px}.hero-meta{gap:10px;font-size:9px}.hero-console{min-height:255px;transform:none;margin:10px 0 27px}.console-body{padding:21px 12px;gap:12px;font-size:8px}.console-line{gap:7px}.code-stream{opacity:.5}.hero-bottom{height:48px;font-size:8px}.hero-bottom span:last-child{display:none}.section{padding-block:72px}.section-heading{display:block;margin-bottom:28px}.section-heading>p{margin-top:13px}.section-heading h2{font-size:30px}.platform-grid,.pricing-grid{grid-template-columns:1fr}.platform-card{min-height:260px}.services-grid{grid-template-columns:1fr 1fr;gap:9px}.service-card{min-height:205px;padding:17px 14px}.service-card h3{font-size:12px}.service-card p{font-size:9px}.price-card{padding:22px}.price-range strong{font-size:25px}.steps-grid{grid-template-columns:1fr 1fr;gap:28px 17px}.contact{padding-top:0;padding-bottom:65px}.contact-panel{padding:36px 23px;min-height:300px}.contact h2{font-size:29px;line-height:1.7}.contact-mark{font-size:110px;left:3%;top:72%}.footer-inner{padding-block:20px;flex-wrap:wrap}.footer-links{width:100%;flex-wrap:wrap;gap:12px 17px;order:3}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* NexvorDEV interaction layer */
+:root{--scroll-progress:0%;--glow-x:50%;--glow-y:40%}
+html{scroll-behavior:smooth;scroll-padding-top:105px}
+.scroll-progress{position:fixed;inset:0 auto auto 0;width:var(--scroll-progress);height:3px;z-index:100;background:linear-gradient(90deg,#48c9ff,#477dff,#9c7bff);box-shadow:0 0 16px #39baff88;pointer-events:none;transition:width .08s linear}
+.motion-ready .reveal-item{opacity:0;transform:translateY(26px) scale(.985);transition:opacity .72s cubic-bezier(.2,.75,.25,1),transform .72s cubic-bezier(.2,.75,.25,1);transition-delay:var(--reveal-delay,0ms)}
+.motion-ready .reveal-item.is-visible{opacity:1;transform:translateY(0) scale(1)}
+.hero{--glow-x:72%;--glow-y:42%}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(360px circle at var(--glow-x) var(--glow-y),#168fff16,transparent 72%);opacity:.9;transition:opacity .25s}
+.hero-console{transform-style:preserve-3d;transition:box-shadow .4s,border-color .4s}
+.hero-console:hover{border-color:#65caff70;box-shadow:0 35px 100px #0009,0 0 80px #087bff26,inset 0 1px #b5e1ff16}
+.platform-card,.service-card,.price-card{position:relative;isolation:isolate;transform-style:preserve-3d;will-change:transform;transition:transform .28s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .3s,background .3s}
+.platform-card:before,.service-card:before,.price-card:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;border-radius:inherit;background:radial-gradient(260px circle at var(--pointer-x,50%) var(--pointer-y,50%),#42b8ff18,transparent 72%);transition:opacity .3s}
+.platform-card:hover:before,.service-card:hover:before,.price-card:hover:before{opacity:1}
+.platform-card:hover,.service-card:hover,.price-card:hover{border-color:#55bdff70;box-shadow:0 22px 55px #0005,0 0 35px #168fff12}
+.platform-card h3,.service-card h3,.price-card h3{transition:color .25s}
+.platform-card:hover h3,.service-card:hover h3{color:#8be4ff}
+.platform-card>a,.service-card>a,.price-link,.button,.nav-cta{cursor:pointer}
+.platform-card>a,.service-card>a{transition:transform .25s,background .25s,color .25s}
+.platform-card:hover>a,.service-card:hover>a{transform:translate(-3px,-3px);background:#42b8ff;color:#06101d}
+.button:focus-visible,.nav-links a:focus-visible,.footer a:focus-visible,.mobile-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.nav-links a{position:relative}
+.desktop-nav>a:not(.nav-cta):after{content:"";position:absolute;right:0;bottom:-8px;width:0;height:1px;background:var(--cyan);transition:width .25s}
+.desktop-nav>a:not(.nav-cta):hover:after{width:100%}
+.price-card{overflow:hidden}
+.price-card:after{content:"";position:absolute;top:0;right:18%;width:64%;height:1px;background:linear-gradient(90deg,transparent,#67d9ff,transparent);opacity:.45}
+.price-range strong{font-variant-numeric:tabular-nums}
+.step-number{transition:transform .3s,background .3s,box-shadow .3s}
+.step:hover .step-number{transform:translateY(-4px) scale(1.08);background:#12395a;box-shadow:0 0 25px #168fff35}
+.contact-panel{position:relative;overflow:hidden}
+.contact-panel:after{content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,transparent 25%,#72d9ff0b 48%,transparent 70%);transform:translateX(-100%);transition:transform .9s ease}
+.contact-panel:hover:after{transform:translateX(100%)}
+.contact-mark{transition:transform .5s cubic-bezier(.2,.8,.2,1),text-shadow .5s}
+.contact-panel:hover .contact-mark{transform:translateY(-7px) rotate(-4deg);text-shadow:0 15px 65px #168fff55}
+.brand-mark{transition:transform .3s,box-shadow .3s}
+.brand:hover .brand-mark{transform:rotate(-7deg) scale(1.06);box-shadow:0 0 32px #168fff45}
+.mobile-toggle{cursor:pointer}
+@media(hover:none){.platform-card:hover,.service-card:hover,.price-card:hover{transform:none;box-shadow:none}}
+@media(max-width:700px){
+  .scroll-progress{height:2px}
+  .hero:after{display:none}
+  .hero-inner{gap:30px}
+  .hero-console{animation:none}
+  .motion-ready .reveal-item{transform:translateY(16px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  .motion-ready .reveal-item{opacity:1;transform:none}
+}
