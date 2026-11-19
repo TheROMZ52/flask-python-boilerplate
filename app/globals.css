@@ -170,3 +170,48 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
     text-shadow:0 0 5px #35ff88,0 0 13px #20e875aa;
   }
 }
+
+
+/* Final fix: keep code columns inside the visible hero viewport */
+.hero .code-rain{
+  z-index:1;
+  opacity:.58;
+  overflow:hidden;
+  pointer-events:none;
+}
+.hero .code-stream{
+  top:0;
+  bottom:0;
+  height:100%;
+  color:#62ff9b;
+  opacity:.82;
+  font:11px/2.8 ui-monospace,SFMono-Regular,Menlo,monospace;
+  text-shadow:0 0 5px #39ff88,0 0 12px #20e875,0 0 22px #20e87599;
+  animation:codeFallVisible 14s ease-in-out infinite alternate;
+}
+.hero .stream-1{left:4%;animation-delay:-2s}
+.hero .stream-2{left:17%;animation-delay:-8s}
+.hero .stream-3{left:31%;animation-delay:-4s}
+.hero .stream-4{right:31%;animation-delay:-10s}
+.hero .stream-5{right:17%;animation-delay:-6s}
+.hero .stream-6{right:4%;animation-delay:-12s}
+.hero .hero-inner,.hero .hero-bottom{z-index:2}
+@keyframes codeFallVisible{
+  from{transform:translateY(-8%)}
+  to{transform:translateY(8%)}
+}
+@media(max-width:650px){
+  .hero .code-rain{opacity:.42}
+  .hero .code-stream{font-size:9px;line-height:2.5}
+  .hero .stream-2,.hero .stream-5{opacity:.65}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .code-stream{
+    top:0;
+    bottom:0;
+    height:100%;
+    animation:none!important;
+    transform:none!important;
+    opacity:.72;
+  }
+}
