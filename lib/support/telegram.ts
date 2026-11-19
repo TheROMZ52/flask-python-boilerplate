@@ -2,7 +2,7 @@ import "server-only";
 import { supportDb } from "@/lib/support/server";
 
 const botToken = process.env.TELEGRAM_BOT_TOKEN;
-const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID;
+const adminChatIds = (process.env.TELEGRAM_ADMIN_IDS || "").split(",").map(value => value.trim()).filter(Boolean);
 
 export function escapeTelegramHtml(value: unknown) {
   return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -21,7 +21,7 @@ export async function sendTelegramMessage(chatId: string, text: string) {
 }
 
 export async function notifyAdminAboutNewTicket(ticketId: string) {
-  if (!botToken || !adminChatId) return;
+  if (!botToken || !adminChatIds.length) return;
   const rows = await supportDb(
     `nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,first_name,last_name,age,telegram_username,subject,created_at&limit=1`,
   ) as Array<Record<string, unknown>>;
@@ -42,5 +42,5 @@ export async function notifyAdminAboutNewTicket(ticketId: string) {
     "",
     "برای مدیریت: /tickets",
   ].join("\n");
-  await sendTelegramMessage(adminChatId, text);
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text)));
 }
