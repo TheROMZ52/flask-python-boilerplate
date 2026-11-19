@@ -1,0 +1,46 @@
+import "server-only";
+import { supportDb } from "@/lib/support/server";
+
+const botToken = process.env.TELEGRAM_BOT_TOKEN;
+const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID;
+
+export function escapeTelegramHtml(value: unknown) {
+  return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+export async function sendTelegramMessage(chatId: string, text: string) {
+  if (!botToken) throw new Error("Telegram bot is not configured");
+  const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true }),
+    cache: "no-store",
+  });
+  if (!response.ok) throw new Error("Telegram message delivery failed");
+  return response.json();
+}
+
+export async function notifyAdminAboutNewTicket(ticketId: string) {
+  if (!botToken || !adminChatId) return;
+  const rows = await supportDb(
+    `nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,first_name,last_name,age,telegram_username,subject,created_at&limit=1`,
+  ) as Array<Record<string, unknown>>;
+  const ticket = rows?.[0];
+  if (!ticket) return;
+  const messages = await supportDb(
+    `nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&select=body&order=created_at.asc&limit=1`,
+  ) as Array<{ body: string }>;
+  const text = [
+    "🆕 <b>تیکت جدید NexvorDEV</b>",
+    `<b>شناسه:</b> <code>${escapeTelegramHtml(ticket.id)}</code>`,
+    `<b>نام:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
+    `<b>سن:</b> ${escapeTelegramHtml(ticket.age)}`,
+    `<b>تلگرام:</b> @${escapeTelegramHtml(ticket.telegram_username)}`,
+    `<b>موضوع:</b> ${escapeTelegramHtml(ticket.subject)}`,
+    "",
+    `<b>پیام:</b>\n${escapeTelegramHtml(messages?.[0]?.body || "—")}`,
+    "",
+    "برای مدیریت: /tickets",
+  ].join("\n");
+  await sendTelegramMessage(adminChatId, text);
+}
