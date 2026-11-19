@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
   alternates: { canonical: "/" },
-  icons: { icon: "/nexvordev-logo.jpg", shortcut: "/nexvordev-logo.jpg", apple: "/nexvordev-logo.jpg" },
+  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/nexvordev-logo.jpg" },
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "NexvorDEV | زیرساختی فراتر از بازی",
