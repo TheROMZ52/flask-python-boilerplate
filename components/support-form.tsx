@@ -22,6 +22,10 @@ export default function SupportForm() {
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "ثبت درخواست انجام نشد.");
+      const saved = JSON.parse(localStorage.getItem("nexvor-support-ticket-list") || "[]");
+      const list = Array.isArray(saved) ? saved.filter((item: { id?: string }) => item?.id !== result.ticketId) : [];
+      list.unshift({ id: result.ticketId, token: result.accessToken });
+      localStorage.setItem("nexvor-support-ticket-list", JSON.stringify(list.slice(0, 50)));
       window.location.assign(`/support/ticket/${result.ticketId}?token=${encodeURIComponent(result.accessToken)}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : "ارتباط با سرور برقرار نشد.");
