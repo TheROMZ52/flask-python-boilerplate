@@ -87,3 +87,38 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
   .motion-ready .reveal-item{opacity:1;transform:none}
 }
+
+
+/* NexvorDEV green code-rain background */
+.code-rain{
+  opacity:.48;
+  background:linear-gradient(90deg,transparent 0%,#07130d12 50%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 13%,black 82%,transparent 100%);
+}
+.code-stream{
+  color:#39ff88;
+  text-shadow:0 0 7px #20ff78aa,0 0 18px #20ff7866;
+  font-size:11px;
+  opacity:.72;
+}
+.stream-1,.stream-5{color:#72ff9f}
+.stream-2,.stream-4{color:#20e875}
+.stream-3,.stream-6{color:#a0ffb8}
+.hero-grid{
+  background-image:
+    linear-gradient(#42ff8b0a 1px,transparent 1px),
+    linear-gradient(90deg,#42ff8b0a 1px,transparent 1px);
+}
+.hero-glow-one{background:#16c85a20}
+.hero:after{
+  background:
+    radial-gradient(360px circle at var(--glow-x) var(--glow-y),#24ff7a12,transparent 72%),
+    linear-gradient(180deg,transparent,#07130b18);
+}
+@media(max-width:650px){
+  .code-rain{opacity:.34}
+  .code-stream{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .code-stream{animation:none;opacity:.2}
+}
