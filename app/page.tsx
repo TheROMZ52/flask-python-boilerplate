@@ -1,7 +1,7 @@
 import Image from "next/image";
 import HomeInteractions from "@/components/home-interactions";
 import type { Metadata } from "next";
-import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Braces, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
+import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "توسعه و راه‌اندازی سرورهای بازی",
