@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PricingInteractions from "./pricing-interactions";
 import {
   ArrowLeft, ArrowUpLeft, Blocks, Check, Cpu, Gamepad2, Braces,
@@ -9,7 +10,9 @@ import {
 
 export const metadata: Metadata = {
   title: "تعرفه خدمات",
-  description: "تعرفه شفاف خدمات توسعه، راه‌اندازی و بهینه‌سازی سرورهای ماینکرفت جاوا، بدراک و کانتر استرایک ۱.۶ در NexvorDEV.",
+  description: "تعرفه خدمات توسعه، راه‌اندازی و بهینه‌سازی سرورهای ماینکرفت جاوا، بدراک و کانتر استرایک ۱.۶ در NexvorDEV.",
+  alternates: { canonical: "/pricing" },
+  openGraph: { title: "تعرفه خدمات NexvorDEV", description: "بازه قیمت و جزئیات خدمات توسعه سرورهای بازی.", url: "/pricing", images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }] },
 };
 
 const platforms = [
@@ -39,11 +42,12 @@ const steps = [
 
 export default function PricingPage() {
   return (
-    <main className="pricing-page-shell">\n      <PricingInteractions />
+    <main className="pricing-page-shell">
+      <PricingInteractions />
       <div className="top-strip"><span className="online-dot" /> تعرفه خدمات NexvorDEV <Link href="/#contact">برای ثبت سفارش پیام بده <ArrowUpLeft size={13} /></Link></div>
       <header className="site-header">
         <div className="container nav-wrap">
-          <Link className="brand" href="/" aria-label="NexvorDEV صفحه اصلی"><span className="brand-mark"><Braces size={21} /></span><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></Link>
+          <Link className="brand" href="/" aria-label="NexvorDEV صفحه اصلی"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={48} height={48} priority /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></Link>
           <nav className="nav-links desktop-nav" aria-label="منوی اصلی">
             <Link href="/#services">خدمات</Link><Link href="/#platforms">پلتفرم‌ها</Link><Link href="/pricing" aria-current="page">تعرفه</Link><Link href="/#process">طرز کار ما</Link><Link className="nav-cta" href="/#contact">ارتباط با ما <ArrowUpLeft size={15} /></Link>
           </nav>
@@ -56,6 +60,7 @@ export default function PricingPage() {
       <section className="pricing-hero">
         <div className="container">
           <div className="pricing-hero-copy">
+            <Image className="pricing-hero-logo" src="/nexvordev-logo.jpg" alt="نشان NexvorDEV" width={104} height={104} priority />
             <div className="eyebrow"><span /> PRICING & PROJECT ESTIMATE</div>
             <h1>قیمت روشن؛<br /><span>متناسب با پروژه‌ات.</span></h1>
             <p>از یک تنظیم ساده تا توسعه اختصاصی؛ اول نیاز پروژه رو بررسی می‌کنیم و بعد هزینه نهایی رو شفاف بهت می‌گیم.</p>
@@ -75,6 +80,8 @@ export default function PricingPage() {
         </div>
       </section>
 
+      <nav className="breadcrumbs container" aria-label="مسیر صفحه"><Link href="/">صفحه اصلی</Link><span aria-hidden="true">/</span><span aria-current="page">تعرفه خدمات</span></nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "صفحه اصلی", item: "https://nexvordev-site.vercel.app/" }, { "@type": "ListItem", position: 2, name: "تعرفه خدمات", item: "https://nexvordev-site.vercel.app/pricing" }] }) }} />
       <section className="pricing-platform-section">
         <div className="container">
           <div className="pricing-section-heading"><div><div className="eyebrow"><span /> SUPPORTED PLATFORMS</div><h2>برای کدوم پلتفرم؟</h2></div><p>بازه تعرفه برای هر سه پلتفرم یکسانه؛ نوع سفارش و جزئیات اجرایی، مبلغ نهایی رو تعیین می‌کنه.</p></div>
@@ -124,7 +131,7 @@ export default function PricingPage() {
       </section>
 
       <footer className="footer"><div className="container footer-inner">
-        <Link className="brand footer-brand" href="/"><span className="brand-mark"><Braces size={18} /></span><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></Link>
+        <Link className="brand footer-brand" href="/"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={40} height={40} /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></Link>
         <nav className="footer-links"><Link href="/#services">خدمات</Link><Link href="/pricing">تعرفه</Link><Link href="/#process">طرز کار ما</Link><Link href="/#contact">ارتباط با ما</Link></nav>
         <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
       </div></footer>
