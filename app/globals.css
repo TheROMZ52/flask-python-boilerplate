@@ -523,3 +523,13 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
  .scratch-reveal-background .scratch-reveal-reset{left:10px;bottom:10px}
  .hero-inner,.hero-bottom{position:relative;z-index:2}
 }
+
+
+/* Let pointer events pass through hero copy to the scratch canvas */
+.hero-inner,.hero-bottom{pointer-events:none}
+.hero-copy,.hero-console{pointer-events:none}
+.hero-actions a,.hero-copy a,.hero-copy button,.hero-bottom a{pointer-events:auto}
+.scratch-reveal-background{pointer-events:auto}
+.scratch-reveal-background .scratch-reveal-canvas{pointer-events:auto;z-index:2}
+.scratch-reveal-background .scratch-reveal-hint{pointer-events:none}
+.scratch-reveal-background .scratch-reveal-reset{pointer-events:auto}
