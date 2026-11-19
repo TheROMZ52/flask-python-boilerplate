@@ -233,7 +233,8 @@ function serviceRequestKeyboard(item:ServiceRequest) {
   return {inline_keyboard:[
     [{text:"🔍 بررسی",callback_data:`srstatus:${item.id}:reviewing`},{text:"🛠 شروع کار",callback_data:`srstatus:${item.id}:in_progress`}],
     [{text:"✅ تکمیل",callback_data:`srstatus:${item.id}:completed`},{text:"⛔ رد درخواست",callback_data:`srstatus:${item.id}:rejected`}],
-    [{text:"👤 اختصاص به من",callback_data:`srassign:${item.id}`},{text:"🔄 تازه‌سازی",callback_data:`srview:${item.id}`}],
+    [{text:"👤 اختصاص به من",callback_data:`srassign:${item.id}`},{text:"🧾 تاریخچه",callback_data:`srhistory:${item.id}`}],
+    [{text:"🔄 تازه‌سازی",callback_data:`srview:${item.id}`}],
     [{text:"📋 فهرست درخواست‌ها",callback_data:"requests:0"},{text:"📊 داشبورد",callback_data:"dashboard"}]
   ]};
 }
@@ -360,6 +361,7 @@ function helpText() {
     "",
     "/panel — داشبورد مدیریتی",
     "/requests — فهرست درخواست‌های خدمات",
+    "/searchrequest عبارت — جست‌وجوی درخواست‌ها",
     "/request شناسه — جزئیات درخواست خدمات",
     "/setstatus شناسه وضعیت — تغییر وضعیت درخواست",
     "/assign شناسه — اختصاص درخواست به خود",
@@ -410,6 +412,7 @@ async function handleCommand(message: TelegramMessage) {
     return;
   }
   if (command === "/requests") { await showServiceRequests(String(chatId),0); return; }
+  if (command === "/searchrequest") { if(!argument){await reply(String(chatId),"فرمت: <code>/searchrequest نام یا خدمت یا آیدی تلگرام</code>");return;} const term=argument.replace(/[,%()]/g," ").trim().slice(0,70); const pattern=encodeURIComponent(`*${term}*`); const rows=await supportDb(`nexvor_service_requests?or=(customer_name.ilike.${pattern},telegram_contact.ilike.${pattern},service_type.ilike.${pattern})&select=id,customer_name,service_type,priority,status&order=created_at.desc&limit=10`) as ServiceRequest[]; if(!rows.length){await reply(String(chatId),"🔎 موردی پیدا نشد.");return;} const keyboard=rows.map(item=>[{text:`📦 ${String(item.customer_name).slice(0,18)} · ${String(item.service_type).slice(0,18)}`,callback_data:`srview:${item.id}`}]); await reply(String(chatId),`🔎 <b>نتایج درخواست خدمات</b> برای «${escapeTelegramHtml(term)}»\n\n${rows.map((item,i)=>`${i+1}. ${escapeTelegramHtml(item.customer_name)} · ${serviceStatusLabels[item.status]} · ${priorityLabels[item.priority]}`).join("\n")}`,{inline_keyboard:keyboard}); return; }
   if (command === "/request") { if(!/^[0-9a-f-]{36}$/i.test(argument)) { await reply(String(chatId),"فرمت: <code>/request شناسه</code>"); return; } await showServiceRequest(argument,String(chatId)); return; }
   if (command === "/setstatus") { const match=argument.match(/^([0-9a-f-]{36})\s+(new|reviewing|in_progress|completed|rejected)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/setstatus شناسه new|reviewing|in_progress|completed|rejected</code>");return;} const item=await updateServiceStatus(match[1],match[2],String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
   if (command === "/assign") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/assign شناسه</code>");return;} const item=await assignServiceRequest(argument,String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
