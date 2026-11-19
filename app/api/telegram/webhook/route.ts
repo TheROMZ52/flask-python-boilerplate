@@ -25,8 +25,9 @@ async function handleCommand(message: TelegramMessage) {
   const senderId = message.from?.id;
   const text = (message.text || "").trim();
   if (!chatId || !senderId || message.from?.is_bot || !text.startsWith("/")) return;
-  if (!process.env.TELEGRAM_ADMIN_CHAT_ID || !process.env.TELEGRAM_ADMIN_USER_ID) return;
-  if (String(chatId) !== process.env.TELEGRAM_ADMIN_CHAT_ID || String(senderId) !== process.env.TELEGRAM_ADMIN_USER_ID) {
+  const adminIds = (process.env.TELEGRAM_ADMIN_IDS || "").split(",").map(value => value.trim()).filter(Boolean);
+  if (!adminIds.length) return;
+  if (String(chatId) !== String(senderId) || !adminIds.includes(String(senderId))) {
     await reply(String(chatId), "⛔ این بات فقط برای مدیر NexvorDEV قابل استفاده است.");
     return;
   }
