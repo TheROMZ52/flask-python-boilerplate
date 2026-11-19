@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     "توسعه پلاگین اختصاصی، راه‌اندازی و بهینه‌سازی سرورهای بازی با تمرکز بر ماینکرفت و کانتر استرایک.",
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
+  other: { enamad: "4364933" },
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/nexvordev-logo.jpg" },
   metadataBase: new URL(siteUrl),
