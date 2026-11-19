@@ -115,7 +115,13 @@ export default function Home() {
         <a className="button button-primary" href="https://t.me/TheROMZDEV" target="_blank" rel="noreferrer">ارتباط در تلگرام <MessageCircle size={17} /></a>
       </div><div className="contact-mark">NX<span>.</span></div></div></div></section>
 
-      <footer className="footer"><div className="container footer-inner">
+<section className="brand-showcase" aria-label="NexvorDEV">
+        <div className="container brand-showcase-inner">
+          <Image src="/nexvordev-logo.jpg" alt="نشان رسمی NexvorDEV؛ مرجع تخصصی خدمات دولوپری و پشتیبانی" width={420} height={420} className="brand-showcase-image" />
+        </div>
+      </section>
+
+            <footer className="footer"><div className="container footer-inner">
         <a className="brand footer-brand" href="#"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={40} height={40} /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
         <nav className="footer-links"><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
         <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
