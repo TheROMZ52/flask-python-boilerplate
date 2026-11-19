@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     body: JSON.stringify({
       url: "https://nexvordev-site.vercel.app/api/telegram/webhook",
       secret_token: webhookSecret,
-      allowed_updates: ["message"],
+      allowed_updates: ["message", "callback_query"],
       drop_pending_updates: false,
     }),
     cache: "no-store",
@@ -31,5 +31,5 @@ export async function GET(request: Request) {
   if (!response.ok || !result.ok) {
     return NextResponse.json({ ok: false, error: "Telegram rejected webhook setup" }, { status: 502 });
   }
-  return NextResponse.json({ ok: true, webhook: "configured" });
+  return NextResponse.json({ ok: true, webhook: "configured", updates: ["message", "callback_query"] });
 }
