@@ -31,7 +31,7 @@ button { font: inherit; }
 .nav-links > a:not(.nav-cta):hover { color: var(--accent); }
 .nav-cta { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #b8f36b60; color: var(--accent); padding: 10px 16px; border-radius: 7px; transition: .2s; }
 .nav-cta:hover { background: var(--accent); color: #11170c; }
-.mobile-toggle { display: none; background: transparent; border: 0; color: var(--text); }
+.mobile-menu { display: none; }\n.mobile-toggle { display: none; background: transparent; border: 0; color: var(--text); }
 .hero { position: relative; overflow: hidden; min-height: 610px; background: radial-gradient(ellipse at 74% 44%, #1c2835 0%, #0d121b 34%, #090b10 70%); border-bottom: 1px solid var(--line); }
 .hero-grid { position: absolute; inset: 0; opacity: .2; background-image: linear-gradient(rgba(160,180,210,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(160,180,210,.08) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 90%); }
 .hero-inner { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; min-height: 535px; gap: 50px; }
@@ -126,9 +126,13 @@ button { font: inherit; }
   .container { width: min(100% - 34px, 520px); }
   .announcement { font-size: 9px; gap: 6px; }
   .nav-wrap { height: 68px; }
-  .mobile-toggle { display: block; }
-  .nav-links { display: none; position: absolute; top: 68px; inset-inline: 0; padding: 18px 22px 22px; background: #0d121b; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; gap: 17px; }
-  .nav-links.open { display: flex; }
+  .desktop-nav { display: none; }
+  .mobile-menu { display: block; position: relative; }
+  .mobile-toggle { display: block; cursor: pointer; list-style: none; padding: 8px 0 8px 8px; }
+  .mobile-toggle::-webkit-details-marker { display: none; }
+  .mobile-toggle span { color: #c4ccda; font-size: 12px; }
+  .mobile-menu .nav-links { display: none; position: absolute; top: 48px; left: 0; width: min(280px, calc(100vw - 34px)); padding: 18px 22px 22px; background: #0d121b; border: 1px solid var(--line); border-radius: 10px; flex-direction: column; align-items: stretch; gap: 17px; box-shadow: 0 20px 45px #0009; }
+  .mobile-menu[open] .nav-links { display: flex; }
   .nav-cta { justify-content: center; }
   .hero-inner { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .hero-copy { padding: 65px 0 15px; }

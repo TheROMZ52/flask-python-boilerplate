@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   ArrowUpLeft,
@@ -9,7 +7,6 @@ import {
   Cpu,
   Gamepad2,
   Gauge,
-  Menu,
   MessageCircle,
   MoveUpLeft,
   Network,
@@ -18,9 +15,7 @@ import {
   ShieldCheck,
   Sparkles,
   Terminal,
-  X,
 } from "lucide-react";
-import { useState } from "react";
 
 const services = [
   {
@@ -61,8 +56,6 @@ const steps = [
 ];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <main>
       <div className="announcement">
@@ -77,15 +70,21 @@ export default function Home() {
             <span className="brand-mark"><Terminal size={20} strokeWidth={2.3} /></span>
             <span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER ENGINEERING</small></span>
           </a>
-          <button className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="نمایش منو">
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-          <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-            <a href="#services" onClick={() => setMenuOpen(false)}>خدمات</a>
-            <a href="#process" onClick={() => setMenuOpen(false)}>روند همکاری</a>
-            <a href="#about" onClick={() => setMenuOpen(false)}>درباره ما</a>
-            <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>شروع یک پروژه <ArrowUpLeft size={15} /></a>
+          <nav className="nav-links desktop-nav">
+            <a href="#services">خدمات</a>
+            <a href="#process">روند همکاری</a>
+            <a href="#about">درباره ما</a>
+            <a className="nav-cta" href="#contact">شروع یک پروژه <ArrowUpLeft size={15} /></a>
           </nav>
+          <details className="mobile-menu">
+            <summary className="mobile-toggle" aria-label="نمایش منو"><span>منو</span></summary>
+            <nav className="nav-links">
+              <a href="#services">خدمات</a>
+              <a href="#process">روند همکاری</a>
+              <a href="#about">درباره ما</a>
+              <a className="nav-cta" href="#contact">شروع یک پروژه <ArrowUpLeft size={15} /></a>
+            </nav>
+          </details>
         </div>
       </header>
 
