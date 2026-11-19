@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type KeyboardEvent } from "react";
 import { ArrowLeft, LoaderCircle, MessageCircle, ShieldCheck } from "lucide-react";
 
 export default function SupportForm() {
@@ -11,7 +11,7 @@ export default function SupportForm() {
     setForm(current => ({ ...current, [key]: value }));
   }
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  function handleMessageKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {\n    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {\n      event.preventDefault();\n      event.currentTarget.form?.requestSubmit();\n    }\n  }\n\n  async function submit(event: FormEvent<HTMLFormElement>) {\n    if (busy) return;
     event.preventDefault();
     setBusy(true);
     setError("");
@@ -40,7 +40,7 @@ export default function SupportForm() {
       <label>سن<input required type="number" min={13} max={110} value={form.age} onChange={e => change("age", e.target.value)} placeholder="سن" /></label>
       <label>آیدی تلگرام<input required maxLength={64} value={form.telegram_username} onChange={e => change("telegram_username", e.target.value)} placeholder="@username" dir="ltr" /></label>
       <label className="support-full">موضوع درخواست<input required maxLength={120} value={form.subject} onChange={e => change("subject", e.target.value)} placeholder="مثلاً مشکل در راه‌اندازی سرور" /></label>
-      <label className="support-full">توضیحات<textarea required maxLength={4000} rows={5} value={form.message} onChange={e => change("message", e.target.value)} placeholder="جزئیات درخواستت رو اینجا بنویس..." /></label>
+      <label className="support-full">توضیحات<textarea required maxLength={4000} rows={5} value={form.message} onChange={e => change("message", e.target.value)} onKeyDown={handleMessageKeyDown} placeholder={"جزئیات درخواستت رو اینجا بنویس...\\n\\nEnter برای ارسال · Shift + Enter برای رفتن به خط بعد"} />\n        <span className="support-field-hint"><span>Enter: ارسال · Shift + Enter: خط جدید</span><span>{form.message.length}/4000</span></span></label>
     </div>
     {error && <p className="support-error">{error}</p>}
     <button className="button button-primary support-submit" disabled={busy}>{busy ? <LoaderCircle className="support-spin" size={17} /> : <MessageCircle size={17} />} ثبت درخواست و شروع گفتگو <ArrowLeft size={16} /></button>
