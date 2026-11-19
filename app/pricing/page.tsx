@@ -130,7 +130,13 @@ export default function PricingPage() {
         <div className="container"><div className="pricing-final-panel"><div className="pricing-final-orb" /><div className="pricing-final-copy"><div className="eyebrow"><span /> LET'S BUILD SOMETHING</div><h2>پروژه‌ات رو شروع کنیم؟</h2><p>فقط کافیه بگی چه چیزی لازم داری؛ برای بررسی و اعلام هزینه در تلگرام پیام بده.</p></div><div className="pricing-final-actions"><a className="button button-primary" href="https://t.me/TheROMZDEV" target="_blank" rel="noreferrer">استعلام قیمت در تلگرام <ArrowUpLeft size={17} /></a><Link href="/" className="pricing-back-link">بازگشت به صفحه اصلی <ArrowLeft size={15} /></Link></div></div></div>
       </section>
 
-      <footer className="footer"><div className="container footer-inner">
+<section className="brand-showcase" aria-label="NexvorDEV">
+        <div className="container brand-showcase-inner">
+          <Image src="/nexvordev-logo.jpg" alt="نشان رسمی NexvorDEV؛ مرجع تخصصی خدمات دولوپری و پشتیبانی" width={420} height={420} className="brand-showcase-image" />
+        </div>
+      </section>
+
+            <footer className="footer"><div className="container footer-inner">
         <Link className="brand footer-brand" href="/"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={40} height={40} /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></Link>
         <nav className="footer-links"><Link href="/#services">خدمات</Link><Link href="/pricing">تعرفه</Link><Link href="/#process">طرز کار ما</Link><Link href="/#contact">ارتباط با ما</Link></nav>
         <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
