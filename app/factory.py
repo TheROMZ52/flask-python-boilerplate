@@ -24,7 +24,7 @@ def create_app(test_config: dict | None = None) -> Flask:
     migrate.init_app(app, db)
 
     app.register_blueprint(api_bp)
-    app.register_blueprint(legacy_api_bp)
+    app.register_blueprint(legacy_api_bp, name="legacy_api")
     app.register_blueprint(web_bp)
     register_error_handlers(app)
 
