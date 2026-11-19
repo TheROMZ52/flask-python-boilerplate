@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Braces, Check, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
+import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Braces, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
 
 const platforms = [
   { number: "01", name: "Minecraft Java", title: "ماینکرفت جاوا", description: "توسعه قابلیت‌های اختصاصی، راه‌اندازی و تنظیم سرورهای جاوا.", icon: Blocks, tags: ["Plugin Development", "Setup", "Optimization"] },
