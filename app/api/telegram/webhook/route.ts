@@ -104,13 +104,16 @@ async function ticketDetails(id: string) {
   const ticket = await getTicket(id);
   if (!ticket) return null;
   const messages = await supportDb(
-    `nexvor_support_messages?ticket_id=eq.${encodeURIComponent(id)}&select=sender_role,body,created_at&order=created_at.asc&limit=12`,
+    `nexvor_support_messages?ticket_id=eq.${encodeURIComponent(id)}&select=sender_role,body,created_at&order=created_at.desc&limit=12`,
   ) as Array<{ sender_role: string; body: string; created_at?: string }>;
-  const history = messages.map(item => {
+  messages.reverse();
+  const historyLines = messages.map(item => {
     const role = item.sender_role === "admin" ? "🛠 مدیر" : "👤 مشتری";
     const body = escapeTelegramHtml(item.body).slice(0, 650);
     return `${role}: ${body}`;
-  }).join("\n\n");
+  });
+  while (historyLines.join("\n\n").length > 3000 && historyLines.length > 1) historyLines.shift();
+  const history = historyLines.join("\n\n");
   const text = [
     "🧾 <b>جزئیات تیکت</b>",
     `<code>${escapeTelegramHtml(ticket.id)}</code>`,
