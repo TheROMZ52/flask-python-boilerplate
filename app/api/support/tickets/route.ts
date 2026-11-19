@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cleanText, hashAccessToken, newAccessToken, supportDb } from "@/lib/support/server";
+import { notifyAdminAboutNewTicket } from "@/lib/support/telegram";
 
 export const runtime = "nodejs";
 
@@ -43,6 +44,7 @@ export async function POST(request: Request) {
       throw error;
     }
 
+    notifyAdminAboutNewTicket(ticket.id).catch(() => null);
     return NextResponse.json({ ticketId: ticket.id, accessToken, status: ticket.status });
   } catch {
     return NextResponse.json({ error: "ثبت درخواست با مشکل روبه‌رو شد. کمی بعد دوباره تلاش کن." }, { status: 503 });
