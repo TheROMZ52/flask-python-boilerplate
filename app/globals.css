@@ -562,3 +562,20 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 .brand-showcase-inner{width:100%;min-width:0}
 .brand-showcase-image{width:min(82vw,340px);height:min(82vw,340px);max-width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:0;flex:0 1 auto}
 @media(max-width:650px){.brand-showcase{padding:38px 0 30px}.brand-showcase-image{width:min(82vw,300px);height:min(82vw,300px)}}
+
+
+/* Improve visibility of the hero background artwork */
+.scratch-reveal-background{opacity:.9}
+.scratch-reveal-background .scratch-reveal-underlay{filter:brightness(1) saturate(1.12)}
+.hero:before{
+ background:
+  linear-gradient(90deg,rgba(4,9,15,.76) 0%,rgba(4,9,15,.48) 48%,rgba(4,9,15,.24) 100%),
+  linear-gradient(0deg,rgba(4,9,15,.48),transparent 42%,rgba(4,9,15,.18));
+}
+@media(max-width:650px){
+ .scratch-reveal-background{opacity:.78}
+ .scratch-reveal-background .scratch-reveal-underlay{filter:brightness(.92) saturate(1.08)}
+ .hero:before{
+  background:linear-gradient(180deg,rgba(4,9,15,.62),rgba(4,9,15,.46) 65%,rgba(4,9,15,.66));
+ }
+}
