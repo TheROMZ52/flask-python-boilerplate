@@ -49,6 +49,14 @@ export default function Home() {
 
       <section className="hero">
         <ScratchReveal />
+        <div className="code-rain hero-code-rain" aria-hidden="true">
+          <div className="code-stream stream-1">{Array.from({ length: 8 }, (_, index) => <span key={index}>const server = await nexvor.boot();</span>)}</div>
+          <div className="code-stream stream-2">{Array.from({ length: 8 }, (_, index) => <span key={index}>plugins.register(customPlugin);</span>)}</div>
+          <div className="code-stream stream-3">{Array.from({ length: 8 }, (_, index) => <span key={index}>world.optimize({ performance: true });</span>)}</div>
+          <div className="code-stream stream-4">{Array.from({ length: 8 }, (_, index) => <span key={index}>server.listen(25565);</span>)}</div>
+          <div className="code-stream stream-5">{Array.from({ length: 8 }, (_, index) => <span key={index}>config.set('online-mode', true);</span>)}</div>
+          <div className="code-stream stream-6">{Array.from({ length: 8 }, (_, index) => <span key={index}>return { status: 'READY' };</span>)}</div>
+        </div>
         <div className="hero-glow hero-glow-one" /><div className="hero-glow hero-glow-two" /><div className="hero-grid" />
         <div className="container hero-inner">
           <div className="hero-copy">
