@@ -80,7 +80,7 @@ export default function ScratchReveal() {
   };
 
   return (
-    <div className="scratch-reveal">
+    <div className="scratch-reveal scratch-reveal-background">
       <img className="scratch-reveal-underlay" src={COUNTER_STRIKE_IMAGE} alt="تصویر کانتر استرایک" />
       <canvas
         ref={canvasRef}
