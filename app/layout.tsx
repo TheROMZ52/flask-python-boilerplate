@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
+import SupportLauncher from "@/components/support-launcher";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body className={`${vazirmatn.variable} ${inter.variable}`}>
         {children}
+        <SupportLauncher />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "NexvorDEV", url: siteUrl, logo: `${siteUrl}/nexvordev-logo.jpg`, description: "توسعه پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.", sameAs: ["https://t.me/TheROMZDEV"], contactPoint: { "@type": "ContactPoint", contactType: "sales and support", url: "https://t.me/TheROMZDEV", availableLanguage: ["fa"] } }) }} />
       </body>
     </html>
