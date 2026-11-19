@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, LifeBuoy } from "lucide-react";
 import SupportForm from "@/components/support-form";
+import MySupportTickets from "@/components/my-support-tickets";
 
 export const metadata = { title: "پشتیبانی | NexvorDEV", description: "ثبت درخواست و گفت‌وگو با تیم پشتیبانی NexvorDEV." };
 
@@ -12,6 +13,7 @@ export default function SupportPage() {
       <h1><LifeBuoy size={25} style={{ display: "inline", verticalAlign: "middle", color: "var(--accent)" }} /> پشتیبانی در کنارته.</h1>
       <p className="support-intro">مشخصاتت رو وارد کن و درخواستت رو توضیح بده. بعد از ثبت، یک گفت‌وگوی اختصاصی برای پیگیری همین درخواست باز می‌شه.</p>
       <SupportForm />
+      <MySupportTickets />
     </section>
   </div></main>;
 }
