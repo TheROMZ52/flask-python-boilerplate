@@ -15,7 +15,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexvordev-pearl.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexvordev-site.vercel.app";
 
 export const metadata: Metadata = {
   title: {
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
   description:
     "توسعه پلاگین اختصاصی، راه‌اندازی و بهینه‌سازی سرورهای بازی با تمرکز بر ماینکرفت و کانتر استرایک.",
   applicationName: "NexvorDEV",
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/apple-icon.png" },
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "NexvorDEV | زیرساختی فراتر از بازی",
@@ -32,7 +34,10 @@ export const metadata: Metadata = {
     siteName: "NexvorDEV",
     locale: "fa_IR",
     type: "website",
+    url: siteUrl,
+    images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }],
   },
+  twitter: { card: "summary", title: "NexvorDEV | توسعه سرورهای بازی", description: "توسعه پلاگین، راه‌اندازی و بهینه‌سازی سرورهای بازی.", images: ["/nexvordev-logo.jpg"] },
 };
 
 export default function RootLayout({
@@ -42,7 +47,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirmatn.variable} ${inter.variable}`}>{children}</body>
+      <body className={`${vazirmatn.variable} ${inter.variable}`}>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "NexvorDEV", url: siteUrl, logo: `${siteUrl}/nexvordev-logo.jpg`, description: "توسعه پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.", sameAs: ["https://t.me/TheROMZDEV"], contactPoint: { "@type": "ContactPoint", contactType: "sales and support", url: "https://t.me/TheROMZDEV", availableLanguage: ["fa"] } }) }} />
+      </body>
     </html>
   );
 }
