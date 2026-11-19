@@ -39,10 +39,10 @@ export default function Home() {
         <div className="container nav-wrap">
           <a className="brand" href="#" aria-label="NexvorDEV صفحه اصلی"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={48} height={48} priority /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
           <nav className="nav-links desktop-nav" aria-label="منوی اصلی">
-            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
+            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></a>
           </nav>
           <details className="mobile-menu"><summary className="mobile-toggle">فهرست <span>☰</span></summary><nav className="nav-links" aria-label="منوی موبایل">
-            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
+            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></a>
           </nav></details>
         </div>
       </header>
