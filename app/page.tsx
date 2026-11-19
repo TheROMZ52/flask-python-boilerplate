@@ -1,5 +1,6 @@
 import Image from "next/image";
 import HomeInteractions from "@/components/home-interactions";
+import ScratchReveal from "@/components/scratch-reveal";
 import type { Metadata } from "next";
 import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
 
@@ -26,22 +27,6 @@ const steps = [
   ["03", "اجرا و بررسی", "کار انجام می‌شه و موارد توافق‌شده بررسی می‌شن."],
   ["04", "تحویل سفارش", "خروجی نهایی طبق توافق بهت تحویل داده می‌شه."],
 ];
-const codeSamples = [
-  "const server = await nexvor.boot();",
-  "plugins.register(customPlugin);",
-  "world.optimize({ performance: true });",
-  "if (server.ready) return success;",
-  "import { GameServer } from 'nexvor';",
-  "config.set('online-mode', true);",
-  "const build = await project.compile();",
-  "await database.connect();",
-  "const players = server.getOnlinePlayers();",
-  "console.log('NexvorDEV initialized');",
-  "server.listen(25565);",
-  "return { status: 'READY' };",
-];
-const codeStreams = Array.from({ length: 8 }, (_, index) => index);
-
 export default function Home() {
 
 
@@ -64,7 +49,6 @@ export default function Home() {
 
       <section className="hero">
         <div className="hero-glow hero-glow-one" /><div className="hero-glow hero-glow-two" /><div className="hero-grid" />
-        <div className="code-rain" aria-hidden="true">{codeStreams.map((column) => <div className={"code-stream stream-" + (column + 1)} key={column}>{Array.from({ length: 10 }, (_, line) => <span key={line}>{codeSamples[(column * 2 + line) % codeSamples.length]}</span>)}</div>)}</div>
         <div className="container hero-inner">
           <div className="hero-copy">
             <Image className="hero-logo" src="/nexvordev-logo.jpg" alt="نشان رسمی NexvorDEV" width={120} height={120} priority />
@@ -89,6 +73,8 @@ export default function Home() {
         </div>
         <div className="container hero-bottom"><span>SCROLL TO EXPLORE</span><span className="scroll-line" /><span>ساخت، توسعه، بهینه‌سازی</span></div>
       </section>
+
+      <section className="scratch-showcase section" aria-label="نمایش افکت بازی‌ها"><div className="container"><div className="section-heading"><div><div className="eyebrow"><span /> DISCOVER THE GAME</div><h2>با یک حرکت، <span>دنیای بازی عوض می‌شه.</span></h2></div><p>روی تصویر بکش و لایه ماینکرفت رو مثل پاک‌کن کنار بزن تا کانتر استرایک نمایان بشه.</p></div><ScratchReveal /></div></section>
 
       <section className="section platforms" id="platforms"><div className="container">
         <div className="section-heading"><div><div className="eyebrow"><span /> SUPPORTED PLATFORMS</div><h2>برای دنیای بازی <span>تو.</span></h2></div><p>خدمات NexvorDEV برای سه پلتفرم؛ با یک بازه تعرفه مشخص و خدمات کامل.</p></div>
