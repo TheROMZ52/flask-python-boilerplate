@@ -54,3 +54,28 @@ export async function notifyAdminAboutNewTicket(ticketId: string) {
     },
   })));
 }
+
+export async function notifyAdminAboutNewServiceRequest(requestId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows=await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(requestId)}&select=*&limit=1`) as Array<Record<string,unknown>>;
+  const item=rows?.[0]; if(!item) return;
+  const priority=String(item.priority)==="critical"?"🚨 اضطراری":String(item.priority)==="urgent"?"⚡ فوری":"عادی";
+  const text=[
+    "🆕 <b>درخواست خدمات جدید NexvorDEV</b>",
+    "",
+    `<b>شناسه:</b> <code>${escapeTelegramHtml(item.id)}</code>`,
+    `<b>مشتری:</b> ${escapeTelegramHtml(item.customer_name)}`,
+    `<b>راه ارتباطی:</b> ${escapeTelegramHtml(item.telegram_contact)}`,
+    `<b>خدمت:</b> ${escapeTelegramHtml(item.service_type)}`,
+    `<b>اولویت:</b> ${priority}`,
+    "",
+    "<b>توضیحات:</b>",
+    escapeTelegramHtml(item.details).slice(0,2300)
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId=>sendTelegramMessage(chatId,text,{
+    reply_markup:{inline_keyboard:[[
+      {text:"📦 مشاهده و مدیریت",callback_data:`srview:${requestId}`},
+      {text:"📋 همه درخواست‌ها",callback_data:"requests:0"}
+    ]]}
+  })));
+}

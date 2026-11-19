@@ -167,6 +167,9 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
   const waiting = rows.filter(item => item.status === "waiting").length;
   const answered = rows.filter(item => item.status === "answered").length;
   const closed = rows.filter(item => item.status === "closed").length;
+  const serviceRows = await supportDb("nexvor_service_requests?select=status,priority") as Array<{status:string;priority:string}>;
+  const openRequests=serviceRows.filter(item=>!["completed","rejected"].includes(item.status)).length;
+  const criticalRequests=serviceRows.filter(item=>item.priority==="critical" && !["completed","rejected"].includes(item.status)).length;
   const text = [
     "⚡ <b>NexvorDEV · داشبورد مدیریت</b>",
     "",
@@ -175,10 +178,15 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
     `✅ پاسخ داده‌شده: <b>${answered}</b>`,
     `🔒 بسته‌شده: <b>${closed}</b>`,
     "",
+    `📦 کل درخواست‌های خدمات: <b>${serviceRows.length}</b>`,
+    `🛠 درخواست‌های باز: <b>${openRequests}</b>`,
+    `🚨 درخواست‌های اضطراری باز: <b>${criticalRequests}</b>`,
+    "",
     "از منوی زیر برای مدیریت استفاده کن.",
   ].join("\n");
   const markup = {
     inline_keyboard: [
+      [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0" }],
       [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0" }],
       [{ text: "🔎 جست‌وجوی تیکت", callback_data: "search_help" }, { text: "🔄 بروزرسانی آمار", callback_data: "dashboard" }],
       [{ text: "📖 راهنمای دستورات", callback_data: "help" }],
@@ -199,6 +207,105 @@ async function setTicketStatus(id: string, status: "waiting" | "closed") {
   return getTicket(id);
 }
 
+
+type ServiceRequest = {
+  id: string; customer_name: string; telegram_contact: string; service_type: string;
+  priority: "normal" | "urgent" | "critical"; details: string; status: string;
+  assigned_to?: string | null; quoted_price?: string | null; internal_note?: string | null;
+  created_at: string; updated_at: string;
+};
+const serviceStatusLabels: Record<string,string> = {
+  new:"🆕 جدید", reviewing:"🔍 در حال بررسی", in_progress:"🛠 در حال انجام",
+  completed:"✅ تکمیل‌شده", rejected:"⛔ ردشده"
+};
+const priorityLabels: Record<string,string> = { normal:"عادی", urgent:"فوری", critical:"🚨 اضطراری" };
+
+async function getServiceRequest(id:string) {
+  const rows=await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}&select=*&limit=1`) as ServiceRequest[];
+  return rows[0] || null;
+}
+async function logServiceEvent(id:string, actor:string, type:string, oldValue?:string|null, newValue?:string|null, note?:string) {
+  await supportDb("nexvor_service_request_events",{method:"POST",body:JSON.stringify({
+    request_id:id,actor_telegram_id:actor,event_type:type,old_value:oldValue ?? null,new_value:newValue ?? null,note:note ?? null
+  })});
+}
+function serviceRequestKeyboard(item:ServiceRequest) {
+  return {inline_keyboard:[
+    [{text:"🔍 بررسی",callback_data:`srstatus:${item.id}:reviewing`},{text:"🛠 شروع کار",callback_data:`srstatus:${item.id}:in_progress`}],
+    [{text:"✅ تکمیل",callback_data:`srstatus:${item.id}:completed`},{text:"⛔ رد درخواست",callback_data:`srstatus:${item.id}:rejected`}],
+    [{text:"👤 اختصاص به من",callback_data:`srassign:${item.id}`},{text:"🔄 تازه‌سازی",callback_data:`srview:${item.id}`}],
+    [{text:"📋 فهرست درخواست‌ها",callback_data:"requests:0"},{text:"📊 داشبورد",callback_data:"dashboard"}]
+  ]};
+}
+function serviceRequestText(item:ServiceRequest) {
+  const text=[
+    "📦 <b>جزئیات درخواست خدمات</b>",
+    `<code>${escapeTelegramHtml(item.id)}</code>`,
+    "",
+    `<b>مشتری:</b> ${escapeTelegramHtml(item.customer_name)}`,
+    `<b>راه ارتباطی:</b> ${escapeTelegramHtml(item.telegram_contact)}`,
+    `<b>خدمت:</b> ${escapeTelegramHtml(item.service_type)}`,
+    `<b>اولویت:</b> ${priorityLabels[item.priority] || item.priority}`,
+    `<b>وضعیت:</b> ${serviceStatusLabels[item.status] || item.status}`,
+    `<b>مسئول:</b> ${item.assigned_to ? escapeTelegramHtml(item.assigned_to) : "تعیین نشده"}`,
+    `<b>قیمت اعلامی:</b> ${item.quoted_price ? escapeTelegramHtml(item.quoted_price) : "اعلام نشده"}`,
+    `<b>ثبت:</b> ${new Date(item.created_at).toLocaleString("fa-IR",{timeZone:"Asia/Tehran"})}`,
+    "",
+    "<b>توضیحات مشتری:</b>",
+    escapeTelegramHtml(item.details).slice(0,2300),
+    "",
+    `<b>یادداشت داخلی:</b> ${item.internal_note ? escapeTelegramHtml(item.internal_note).slice(0,500) : "ندارد"}`
+  ];
+  return text.join("\n");
+}
+async function showServiceRequest(id:string,chatId:string,edit?:TelegramCallbackQuery) {
+  const item=await getServiceRequest(id);
+  if(!item) {
+    if(edit) await editCallbackMessage(edit,"درخواست پیدا نشد.");
+    else await reply(chatId,"درخواست پیدا نشد.");
+    return;
+  }
+  const text=serviceRequestText(item);
+  if(edit) await editCallbackMessage(edit,text,serviceRequestKeyboard(item));
+  else await reply(chatId,text,serviceRequestKeyboard(item));
+}
+async function showServiceRequests(chatId:string,page=0,edit?:TelegramCallbackQuery) {
+  const safePage=Math.max(0,Math.min(page,100)), offset=safePage*7;
+  const rows=await supportDb(`nexvor_service_requests?select=id,customer_name,service_type,priority,status,created_at&order=created_at.desc&limit=8&offset=${offset}`) as ServiceRequest[];
+  const more=rows.length>7, visible=rows.slice(0,7);
+  const labels=visible.map((item,i)=>`${offset+i+1}. <b>${escapeTelegramHtml(item.service_type).slice(0,65)}</b>\n${escapeTelegramHtml(item.customer_name)} · ${priorityLabels[item.priority]} · ${serviceStatusLabels[item.status]}`);
+  const keyboard=visible.map(item=>[{text:`${item.priority==="critical"?"🚨":item.priority==="urgent"?"⚡":"📦"} ${String(item.customer_name).slice(0,18)} · ${String(item.service_type).slice(0,18)}`,callback_data:`srview:${item.id}`}]);
+  const nav=[];
+  if(safePage>0) nav.push({text:"⬅️ قبلی",callback_data:`requests:${safePage-1}`});
+  if(more) nav.push({text:"بعدی ➡️",callback_data:`requests:${safePage+1}`});
+  if(nav.length) keyboard.push(nav);
+  keyboard.push([{text:"📊 داشبورد",callback_data:"dashboard"},{text:"🔄 بروزرسانی",callback_data:`requests:${safePage}`}]);
+  const text=visible.length?`<b>📦 درخواست‌های خدمات</b> · صفحه ${safePage+1}\n\n${labels.join("\n\n")}`:"📭 هنوز درخواستی ثبت نشده است.";
+  if(edit) await editCallbackMessage(edit,text,{inline_keyboard:keyboard});
+  else await reply(chatId,text,{inline_keyboard:keyboard});
+}
+async function updateServiceStatus(id:string,status:string,actor:string) {
+  if(!Object.hasOwn(serviceStatusLabels,status)) return null;
+  const item=await getServiceRequest(id); if(!item) return null;
+  const now=new Date().toISOString();
+  await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({
+    status,updated_at:now,completed_at:status==="completed"?now:null
+  })});
+  await logServiceEvent(id,actor,"status",item.status,status);
+  return getServiceRequest(id);
+}
+async function assignServiceRequest(id:string,actor:string) {
+  const item=await getServiceRequest(id); if(!item) return null;
+  await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({assigned_to:actor,updated_at:new Date().toISOString()})});
+  await logServiceEvent(id,actor,"assigned",item.assigned_to,actor);
+  return getServiceRequest(id);
+}
+async function showServiceEvents(id:string,chatId:string) {
+  const rows=await supportDb(`nexvor_service_request_events?request_id=eq.${encodeURIComponent(id)}&select=actor_telegram_id,event_type,old_value,new_value,note,created_at&order=created_at.desc&limit=12`) as Array<Record<string,unknown>>;
+  const text=rows.length?rows.map(row=>`• ${escapeTelegramHtml(row.event_type)}: ${escapeTelegramHtml(row.old_value||"—")} ← ${escapeTelegramHtml(row.new_value||row.note||"—")}\n<code>${escapeTelegramHtml(row.actor_telegram_id)}</code>`).join("\n\n"):"هنوز رویدادی ثبت نشده است.";
+  await reply(chatId,`🧾 <b>تاریخچه درخواست</b>\n<code>${escapeTelegramHtml(id)}</code>\n\n${text}`,{inline_keyboard:[[{text:"⬅️ بازگشت به درخواست",callback_data:`srview:${id}`}]]});
+}
+
 async function handleCallback(callback: TelegramCallbackQuery) {
   const senderId = callback.from?.id;
   const chatId = callback.message?.chat?.id;
@@ -208,7 +315,12 @@ async function handleCallback(callback: TelegramCallbackQuery) {
   }
   const data = callback.data || "";
   try {
-    if (data === "dashboard") {
+    if (data.startsWith("srview:")) { await showServiceRequest(data.slice(7),String(chatId),callback); }
+    else if (data.startsWith("requests:")) { const page=Number(data.split(":")[1]); await showServiceRequests(String(chatId),Number.isFinite(page)?page:0,callback); }
+    else if (data.startsWith("srstatus:")) { const [,id,status]=data.split(":"); const item=await updateServiceStatus(id,status,String(senderId)); if(item) { await editCallbackMessage(callback,serviceRequestText(item),serviceRequestKeyboard(item)); await answerCallback(callback.id,"وضعیت درخواست به‌روزرسانی شد."); return; } }
+    else if (data.startsWith("srassign:")) { const item=await assignServiceRequest(data.slice(9),String(senderId)); if(item) { await editCallbackMessage(callback,serviceRequestText(item),serviceRequestKeyboard(item)); await answerCallback(callback.id,"درخواست به شما اختصاص داده شد."); return; } }
+    else if (data.startsWith("srhistory:")) { await showServiceEvents(data.slice(10),String(chatId)); }
+    else if (data === "dashboard") {
       await showDashboard(String(chatId), callback);
     } else if (data === "help") {
       await editCallbackMessage(callback, helpText(), { inline_keyboard: [[{ text: "⬅️ داشبورد", callback_data: "dashboard" }]] });
@@ -247,6 +359,13 @@ function helpText() {
     "⚡ <b>راهنمای پنل NexvorDEV</b>",
     "",
     "/panel — داشبورد مدیریتی",
+    "/requests — فهرست درخواست‌های خدمات",
+    "/request شناسه — جزئیات درخواست خدمات",
+    "/setstatus شناسه وضعیت — تغییر وضعیت درخواست",
+    "/assign شناسه — اختصاص درخواست به خود",
+    "/quote شناسه مبلغ — ثبت قیمت پیشنهادی",
+    "/note شناسه متن — یادداشت داخلی",
+    "/history شناسه — تاریخچه تغییرات درخواست",
     "/tickets — فهرست تیکت‌ها",
     "/ticket شناسه — جزئیات تیکت",
     "/reply شناسه متن — پاسخ به مشتری",
@@ -290,6 +409,13 @@ async function handleCommand(message: TelegramMessage) {
     await showDashboard(String(chatId));
     return;
   }
+  if (command === "/requests") { await showServiceRequests(String(chatId),0); return; }
+  if (command === "/request") { if(!/^[0-9a-f-]{36}$/i.test(argument)) { await reply(String(chatId),"فرمت: <code>/request شناسه</code>"); return; } await showServiceRequest(argument,String(chatId)); return; }
+  if (command === "/setstatus") { const match=argument.match(/^([0-9a-f-]{36})\s+(new|reviewing|in_progress|completed|rejected)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/setstatus شناسه new|reviewing|in_progress|completed|rejected</code>");return;} const item=await updateServiceStatus(match[1],match[2],String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
+  if (command === "/assign") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/assign شناسه</code>");return;} const item=await assignServiceRequest(argument,String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
+  if (command === "/quote") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/quote شناسه مبلغ</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const price=cleanText(match[2],80); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({quoted_price:price,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"quote",item.quoted_price,price); await reply(String(chatId),`💰 قیمت پیشنهادی ثبت شد: <b>${escapeTelegramHtml(price)}</b>`,{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
+  if (command === "/note") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/note شناسه متن یادداشت</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const note=cleanText(match[2],1000); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({internal_note:note,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"note",null,null,note); await reply(String(chatId),"📝 یادداشت داخلی ذخیره شد.",{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
+  if (command === "/history") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/history شناسه</code>");return;} await showServiceEvents(argument,String(chatId)); return; }
   if (command === "/tickets") {
     await showTickets(String(chatId), 0);
     return;
