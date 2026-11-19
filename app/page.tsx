@@ -48,6 +48,7 @@ export default function Home() {
       </header>
 
       <section className="hero">
+        <ScratchReveal />
         <div className="hero-glow hero-glow-one" /><div className="hero-glow hero-glow-two" /><div className="hero-grid" />
         <div className="container hero-inner">
           <div className="hero-copy">
@@ -73,8 +74,6 @@ export default function Home() {
         </div>
         <div className="container hero-bottom"><span>SCROLL TO EXPLORE</span><span className="scroll-line" /><span>ساخت، توسعه، بهینه‌سازی</span></div>
       </section>
-
-      <section className="scratch-showcase section" aria-label="نمایش افکت بازی‌ها"><div className="container"><div className="section-heading"><div><div className="eyebrow"><span /> DISCOVER THE GAME</div><h2>با یک حرکت، <span>دنیای بازی عوض می‌شه.</span></h2></div><p>روی تصویر بکش و لایه ماینکرفت رو مثل پاک‌کن کنار بزن تا کانتر استرایک نمایان بشه.</p></div><ScratchReveal /></div></section>
 
       <section className="section platforms" id="platforms"><div className="container">
         <div className="section-heading"><div><div className="eyebrow"><span /> SUPPORTED PLATFORMS</div><h2>برای دنیای بازی <span>تو.</span></h2></div><p>خدمات NexvorDEV برای سه پلتفرم؛ با یک بازه تعرفه مشخص و خدمات کامل.</p></div>
