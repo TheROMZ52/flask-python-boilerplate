@@ -20,7 +20,7 @@ const siteUrl = "https://nexvordev-site.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "NexvorDEV | زیرساخت و توسعه سرورهای بازی",
+    default: "۴۳۶۴۹۳۳ | NexvorDEV | زیرساخت و توسعه سرورهای بازی",
     template: "%s | NexvorDEV",
   },
   description:
