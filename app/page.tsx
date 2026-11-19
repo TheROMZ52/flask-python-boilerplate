@@ -34,15 +34,15 @@ export default function Home() {
     <main>
       <HomeInteractions />
       <div className="scroll-progress" aria-hidden="true" />
-      <div className="top-strip"><span className="online-dot" /> توسعه و خدمات سرورهای بازی <a href="/request">ثبت درخواست خدمات <ArrowUpLeft size={13} /></a></div>
+      <div className="top-strip"><span className="online-dot" /> توسعه و خدمات سرورهای بازی <a href="/request">ثبت سفارش <ArrowUpLeft size={13} /></a></div>
       <header className="site-header">
         <div className="container nav-wrap">
           <a className="brand" href="#" aria-label="NexvorDEV صفحه اصلی"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={48} height={48} priority /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
           <nav className="nav-links desktop-nav" aria-label="منوی اصلی">
-            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
+            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
           </nav>
           <details className="mobile-menu"><summary className="mobile-toggle">فهرست <span>☰</span></summary><nav className="nav-links" aria-label="منوی موبایل">
-            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
+            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></a>
           </nav></details>
         </div>
       </header>
@@ -64,7 +64,7 @@ export default function Home() {
             <div className="eyebrow"><span /> NEXVORDEV / GAME SERVER DEVELOPMENT</div>
             <h1>ایده‌ات رو به<br /><span>دنیای بازی</span> بیار.</h1>
             <p className="hero-description">از ساخت پلاگین اختصاصی تا راه‌اندازی، کانفیگ و بهینه‌سازی سرور؛ خدمات فنی سرورهای بازی در یک مسیر ساده و شفاف.</p>
-            <div className="hero-actions"><a className="button button-primary" href="/request">ثبت درخواست خدمات <ArrowLeft size={17} /></a><a className="button button-quiet" href="#services">دیدن خدمات <ArrowDownLeft size={16} /></a></div>
+            <div className="hero-actions"><a className="button button-primary" href="/request">ثبت سفارش <ArrowLeft size={17} /></a><a className="button button-quiet" href="#services">دیدن سفارشات <ArrowDownLeft size={16} /></a></div>
             <div className="hero-meta"><span><ShieldCheck size={16} /> سه پلتفرم تخصصی</span><i /><span><Code2 size={16} /> توسعه تا راه‌اندازی</span></div>
           </div>
           <div className="hero-console" dir="ltr">
@@ -105,7 +105,7 @@ export default function Home() {
 
       <section className="contact section" id="contact"><div className="container"><div className="contact-panel"><div className="contact-glow" /><div className="contact-content">
         <div className="eyebrow"><span /> LET’S BUILD YOUR SERVER</div><h2>آماده‌ای شروع کنیم؟<br /><span>با ما در ارتباط باش.</span></h2><p>پلتفرم و توضیح کوتاهی از چیزی که لازم داری بفرست تا درباره جزئیات سفارش صحبت کنیم.</p>
-        <a className="button button-primary" href="/request">ثبت درخواست خدمات <ArrowLeft size={17} /></a>
+        <a className="button button-primary" href="/request">ثبت سفارش <ArrowLeft size={17} /></a>
       </div><div className="contact-mark">NX<span>.</span></div></div></div></section>
 
 <section className="brand-showcase" aria-label="NexvorDEV">
@@ -116,7 +116,7 @@ export default function Home() {
 
             <footer className="footer"><div className="container footer-inner">
         <a className="brand footer-brand" href="#"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={40} height={40} /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
-        <nav className="footer-links"><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
+        <nav className="footer-links"><a href="#services">سفارشات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
         <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
       </div></footer>
     </main>
