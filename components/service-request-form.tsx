@@ -3,15 +3,90 @@
 import { FormEvent, KeyboardEvent, useState } from "react";
 import { AlertCircle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
 
-const serviceOptions = [
-  "ساخت پلاگین اختصاصی",
-  "نصب و کانفیگ پلاگین",
-  "راه‌اندازی سرور",
-  "تنظیم و مدیریت سرور",
-  "بهینه‌سازی و رفع مشکلات",
-  "طراحی و شخصی‌سازی",
-  "سایر خدمات",
+const serviceGroups = [
+  {
+    label: "خدمات ماینکرفت",
+    options: [
+      "نصب و کانفیگ انواع پلاگین ماینکرفت",
+      "کانفیگ کامل سرور ماینکرفت",
+      "راه‌اندازی سرور اختصاصی ماینکرفت",
+      "راه‌اندازی سرور Survival، SMP، SkyBlock و سایر گیم‌مودها",
+      "نصب و تنظیم پلاگین‌های اقتصادی",
+      "راه‌اندازی سیستم فروشگاه و اقتصاد",
+      "تنظیم سیستم رنک و پرمیشن",
+      "راه‌اندازی سیستم کلیم (Claim)",
+      "کانفیگ سیستم کیت (Kit)",
+      "راه‌اندازی سیستم Auto Mine",
+      "تنظیم سیستم‌های Mining و Regeneration",
+      "کانفیگ TAB، Scoreboard و Chat",
+      "راه‌اندازی سیستم‌های ضدتقلب و امنیتی",
+      "بهینه‌سازی سرور و کاهش لگ",
+      "رفع مشکلات و خطاهای پلاگین‌ها",
+      "سازگاری و هماهنگ‌سازی پلاگین‌ها",
+      "کانفیگ اختصاصی متناسب با نیاز مشتری",
+    ],
+  },
+  {
+    label: "برنامه‌نویسی و توسعه اختصاصی",
+    options: [
+      "ساخت پلاگین اختصاصی ماینکرفت",
+      "توسعه قابلیت‌های جدید برای پلاگین‌ها",
+      "برنامه‌نویسی سیستم‌های اختصاصی",
+      "توسعه بات تلگرام",
+      "ساخت ابزارهای مدیریتی",
+      "اتصال سرویس‌ها به API",
+      "طراحی و پیاده‌سازی سیستم‌های اتوماسیون",
+      "رفع باگ و توسعه پروژه‌های موجود",
+    ],
+  },
+  {
+    label: "طراحی و توسعه وب‌سایت",
+    options: [
+      "طراحی سایت اختصاصی",
+      "طراحی سایت شرکتی و خدماتی",
+      "طراحی سایت فروشگاهی",
+      "طراحی سایت معرفی سرور ماینکرفت",
+      "طراحی سایت پورتفولیو و شخصی",
+      "طراحی پنل مدیریت اختصاصی",
+      "طراحی سیستم ثبت‌نام و ورود",
+      "توسعه سیستم پشتیبانی و تیکت",
+      "اتصال سایت به پایگاه داده",
+      "طراحی رابط کاربری مدرن و واکنش‌گرا",
+      "توسعه فرانت‌اند و بک‌اند",
+      "پیاده‌سازی انیمیشن‌ها و جلوه‌های تعاملی",
+      "استقرار و انتشار سایت روی هاست و سرویس‌های میزبانی",
+      "رفع باگ و پشتیبانی فنی وب‌سایت",
+    ],
+  },
+  {
+    label: "خدمات سرور و زیرساخت",
+    options: [
+      "راه‌اندازی سرور روی VPS",
+      "نصب و تنظیم محیط اجرای سرور",
+      "راه‌اندازی پروکسی Velocity",
+      "اتصال چند سرور به یکدیگر",
+      "تنظیم شبکه سرورها",
+      "مدیریت منابع و بهینه‌سازی عملکرد",
+      "تنظیمات امنیتی و دسترسی‌ها",
+      "بررسی مشکلات زیرساختی",
+    ],
+  },
+  {
+    label: "پشتیبانی و خدمات فنی",
+    options: [
+      "بررسی و عیب‌یابی مشکلات",
+      "رفع خطاهای سرور",
+      "بررسی مشکلات پلاگین‌ها",
+      "به‌روزرسانی و نگهداری پروژه‌ها",
+      "اعمال تغییرات در پروژه‌های قبلی",
+      "مشاوره فنی برای راه‌اندازی مجموعه",
+      "پشتیبانی پس از تحویل طبق توافق پروژه",
+    ],
+  },
+  { label: "سایر", options: ["سایر خدمات"] },
 ];
+
+const serviceOptions = serviceGroups.flatMap(group => group.options);
 
 export default function ServiceRequestForm() {
   const [name, setName] = useState("");
@@ -65,11 +140,16 @@ export default function ServiceRequestForm() {
           آیدی تلگرام یا راه ارتباطی
           <input value={telegram} onChange={event => setTelegram(event.target.value)} placeholder="@username" maxLength={100} required dir="ltr" />
         </label>
-        <label>
+        <label className="service-request-full">
           نوع خدمات
-          <select value={service} onChange={event => setService(event.target.value)}>
-            {serviceOptions.map(option => <option key={option} value={option}>{option}</option>)}
+          <select value={service} onChange={event => setService(event.target.value)} required>
+            {serviceGroups.map(group => (
+              <optgroup key={group.label} label={group.label}>
+                {group.options.map(option => <option key={option} value={option}>{option}</option>)}
+              </optgroup>
+            ))}
           </select>
+          <span className="service-request-hint">خدمت دقیق موردنظرت رو از دسته‌بندی مربوط انتخاب کن.</span>
         </label>
         <fieldset className="service-request-priority">
           <legend>اولویت درخواست</legend>
@@ -85,7 +165,7 @@ export default function ServiceRequestForm() {
             value={details}
             onChange={event => setDetails(event.target.value)}
             onKeyDown={handleDetailsKeyDown}
-            placeholder={"دقیق توضیح بده چه چیزی نیاز داری...\n\nنسخه سرور، پلاگین‌های فعلی، امکانات موردنظر و هر جزئیات مهم دیگه رو بنویس.\n\nEnter برای ارسال · Shift + Enter برای رفتن به خط بعد"}
+            placeholder={"دقیق توضیح بده چه چیزی نیاز داری...\n\nنسخه سرور، پلاگین‌های فعلی، امکانات موردنظر، بودجه و زمان‌بندی مدنظرت رو بنویس.\n\nEnter برای ارسال · Shift + Enter برای رفتن به خط بعد"}
             rows={7}
             maxLength={3000}
             required
