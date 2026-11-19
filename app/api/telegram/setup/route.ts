@@ -31,5 +31,30 @@ export async function GET(request: Request) {
   if (!response.ok || !result.ok) {
     return NextResponse.json({ ok: false, error: "Telegram rejected webhook setup" }, { status: 502 });
   }
-  return NextResponse.json({ ok: true, webhook: "configured", updates: ["message", "callback_query"] });
+  const commandsResponse = await fetch(`https://api.telegram.org/bot${token}/setMyCommands`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      commands: [
+        { command: "panel", description: "داشبورد مدیریت پشتیبانی" },
+        { command: "tickets", description: "فهرست تیکت‌ها" },
+        { command: "ticket", description: "جزئیات یک تیکت" },
+        { command: "reply", description: "پاسخ به مشتری" },
+        { command: "search", description: "جست‌وجوی تیکت‌ها" },
+        { command: "stats", description: "آمار پشتیبانی" },
+        { command: "close", description: "بستن تیکت" },
+        { command: "open", description: "بازکردن تیکت" },
+        { command: "whoami", description: "نمایش شناسه مدیر" },
+        { command: "help", description: "راهنمای دستورات" }
+      ]
+    }),
+    cache: "no-store",
+  });
+  const commandsResult = await commandsResponse.json();
+  return NextResponse.json({
+    ok: true,
+    webhook: "configured",
+    updates: ["message", "callback_query"],
+    commands: Boolean(commandsResponse.ok && commandsResult.ok),
+  });
 }
