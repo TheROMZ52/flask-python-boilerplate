@@ -15,7 +15,7 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nexvordev-site.vercel.app";
+const siteUrl = "https://nexvordev-site.vercel.app";
 
 export const metadata: Metadata = {
   title: {
