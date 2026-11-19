@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Braces, Check, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
 
 const platforms = [
@@ -20,12 +20,28 @@ const steps = [
   ["03", "اجرا و بررسی", "کار انجام می‌شه و موارد توافق‌شده بررسی می‌شن."],
   ["04", "تحویل سفارش", "خروجی نهایی طبق توافق بهت تحویل داده می‌شه."],
 ];
-const codeStreams = [
-  ["stream-1", "server.start()"], ["stream-2", "plugins.load()"], ["stream-3", "world.optimize()"],
-  ["stream-4", "config.apply()"], ["stream-5", "build(project)"], ["stream-6", "return success"],
+const codeSamples = [
+  "const server = await nexvor.boot();",
+  "plugins.register(customPlugin);",
+  "world.optimize({ performance: true });",
+  "if (server.ready) return success;",
+  "import { GameServer } from 'nexvor';",
+  "config.set('online-mode', true);",
+  "function buildProject() { ... }",
+  "await database.connect();",
+  "const players = server.getOnlinePlayers();",
+  "console.log('NexvorDEV initialized');",
+  "server.listen(25565);",
+  "return { status: 'READY' };",
 ];
+const codeStreams = Array.from({ length: 8 }, (_, index) => index);
 
 export default function Home() {
+  const [codeFrame, setCodeFrame] = useState(0);
+  useEffect(() => {
+    const timer = window.setInterval(() => setCodeFrame((frame) => (frame + 1) % codeSamples.length), 1250);
+    return () => window.clearInterval(timer);
+  }, []);
   useEffect(() => {
     const root = document.documentElement;
     const updateProgress = () => {
@@ -101,17 +117,17 @@ export default function Home() {
         <div className="container nav-wrap">
           <a className="brand" href="#" aria-label="NexvorDEV صفحه اصلی"><span className="brand-mark"><Braces size={21} /></span><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
           <nav className="nav-links desktop-nav" aria-label="منوی اصلی">
-            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="#pricing">تعرفه‌ها</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="#contact">ارتباط با ما <ArrowUpLeft size={15} /></a>
+            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="#contact">ارتباط با ما <ArrowUpLeft size={15} /></a>
           </nav>
           <details className="mobile-menu"><summary className="mobile-toggle">فهرست <span>☰</span></summary><nav className="nav-links" aria-label="منوی موبایل">
-            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="#pricing">تعرفه‌ها</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="#contact">ارتباط با ما <ArrowUpLeft size={15} /></a>
+            <a href="#services">خدمات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a className="nav-cta" href="#contact">ارتباط با ما <ArrowUpLeft size={15} /></a>
           </nav></details>
         </div>
       </header>
 
       <section className="hero">
         <div className="hero-glow hero-glow-one" /><div className="hero-glow hero-glow-two" /><div className="hero-grid" />
-        <div className="code-rain" aria-hidden="true">{codeStreams.map(([className, line]) => <span className={"code-stream " + className} key={className}>{line}<br />{"{ }"}<br />01 0 1<br />{line}</span>)}</div>
+        <div className="code-rain" aria-hidden="true">{codeStreams.map((column) => <div className={"code-stream stream-" + (column + 1)} key={column}>{Array.from({ length: 10 }, (_, line) => <span key={line}>{codeSamples[(codeFrame + column * 2 + line) % codeSamples.length]}</span>)}</div>)}</div>
         <div className="container hero-inner">
           <div className="hero-copy">
             <div className="eyebrow"><span /> NEXVORDEV / GAME SERVER DEVELOPMENT</div>
@@ -151,17 +167,6 @@ export default function Home() {
         </article>; })}</div>
       </div></section>
 
-      <section className="section pricing" id="pricing"><div className="container">
-        <div className="section-heading"><div><div className="eyebrow"><span /> SIMPLE PRICING</div><h2>تعرفه‌ها، <span>شفاف و مشخص.</span></h2></div><p>بازه قیمت برای تمام خدمات و هر سه پلتفرم یکسان است؛ مبلغ نهایی به جزئیات سفارش بستگی دارد.</p></div>
-        <div className="pricing-grid">{platforms.map((platform) => { const Icon = platform.icon; return <article className="price-card" key={platform.number}>
-          <div className="price-platform"><Icon size={20} /><span>{platform.title}</span></div><div className="price-label">بازه تعرفه خدمات</div>
-          <div className="price-range"><strong>۶۵,۰۰۰</strong><span>تا</span><strong>۲,۰۰۰,۰۰۰</strong></div><div className="price-currency">تومان</div><div className="price-divider" />
-          <ul><li><Check size={15} /> ساخت پلاگین و توسعه اختصاصی</li><li><Check size={15} /> نصب، راه‌اندازی و کانفیگ</li><li><Check size={15} /> بهینه‌سازی و تنظیمات سرور</li></ul>
-          <a href="#contact" className="price-link">استعلام و ثبت سفارش <ArrowUpLeft size={16} /></a>
-        </article>; })}</div>
-        <p className="pricing-note"><span>*</span> قیمت نهایی پس از بررسی جزئیات و محدوده سفارش اعلام می‌شود.</p>
-      </div></section>
-
       <section className="section process" id="process"><div className="container">
         <div className="section-heading"><div><div className="eyebrow"><span /> HOW WE WORK</div><h2>طرز کار ما، <span>قدم‌به‌قدم.</span></h2></div><p>از پیام اول تا تحویل نهایی، مسیر سفارش روشن و قابل پیگیریه.</p></div>
         <div className="steps-grid">{steps.map(([number, title, description]) => <article className="step" key={number}><span className="step-number">{number}</span><div className="step-line" /><h3>{title}</h3><p>{description}</p></article>)}</div>
@@ -174,7 +179,7 @@ export default function Home() {
 
       <footer className="footer"><div className="container footer-inner">
         <a className="brand footer-brand" href="#"><span className="brand-mark"><Braces size={18} /></span><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
-        <nav className="footer-links"><a href="#services">خدمات</a><a href="#pricing">تعرفه‌ها</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
+        <nav className="footer-links"><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
         <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
       </div></footer>
     </main>
