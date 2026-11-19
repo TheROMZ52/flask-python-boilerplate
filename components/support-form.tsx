@@ -1,0 +1,45 @@
+"use client";
+import { useState, type FormEvent } from "react";
+import { ArrowLeft, LoaderCircle, MessageCircle, ShieldCheck } from "lucide-react";
+
+export default function SupportForm() {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({ first_name: "", last_name: "", age: "", telegram_username: "", subject: "", message: "" });
+
+  function change(key: keyof typeof form, value: string) {
+    setForm(current => ({ ...current, [key]: value }));
+  }
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setError("");
+    try {
+      const response = await fetch("/api/support/tickets", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, age: Number(form.age) }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "ثبت درخواست انجام نشد.");
+      window.location.assign(`/support/ticket/${result.ticketId}?token=${encodeURIComponent(result.accessToken)}`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "ارتباط با سرور برقرار نشد.");
+      setBusy(false);
+    }
+  }
+
+  return <form className="support-form" onSubmit={submit}>
+    <div className="support-form-grid">
+      <label>نام<input required maxLength={80} value={form.first_name} onChange={e => change("first_name", e.target.value)} placeholder="نام شما" /></label>
+      <label>نام خانوادگی<input required maxLength={80} value={form.last_name} onChange={e => change("last_name", e.target.value)} placeholder="نام خانوادگی" /></label>
+      <label>سن<input required type="number" min={13} max={110} value={form.age} onChange={e => change("age", e.target.value)} placeholder="سن" /></label>
+      <label>آیدی تلگرام<input required maxLength={64} value={form.telegram_username} onChange={e => change("telegram_username", e.target.value)} placeholder="@username" dir="ltr" /></label>
+      <label className="support-full">موضوع درخواست<input required maxLength={120} value={form.subject} onChange={e => change("subject", e.target.value)} placeholder="مثلاً مشکل در راه‌اندازی سرور" /></label>
+      <label className="support-full">توضیحات<textarea required maxLength={4000} rows={5} value={form.message} onChange={e => change("message", e.target.value)} placeholder="جزئیات درخواستت رو اینجا بنویس..." /></label>
+    </div>
+    {error && <p className="support-error">{error}</p>}
+    <button className="button button-primary support-submit" disabled={busy}>{busy ? <LoaderCircle className="support-spin" size={17} /> : <MessageCircle size={17} />} ثبت درخواست و شروع گفتگو <ArrowLeft size={16} /></button>
+    <p className="support-privacy"><ShieldCheck size={14} /> لینک اختصاصی گفتگو فقط در اختیار شماست؛ آن را با دیگران به اشتراک نگذارید.</p>
+  </form>;
+}
