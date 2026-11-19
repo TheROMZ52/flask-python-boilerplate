@@ -215,3 +215,68 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
     opacity:.72;
   }
 }
+
+
+/* NexvorDEV: green animated code environment */
+.hero{
+  background:
+    radial-gradient(ellipse at 76% 42%,#103a25 0%,#0a2118 36%,#070e0b 76%);
+}
+.hero-grid{
+  background-image:
+    linear-gradient(#42ff8b12 1px,transparent 1px),
+    linear-gradient(90deg,#42ff8b12 1px,transparent 1px);
+}
+.hero-glow-one{background:#12d66a20}
+.hero-glow-two{background:#18a85a16}
+.hero .code-rain{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+  overflow:hidden;
+  opacity:.3;
+  background:linear-gradient(90deg,transparent,#06201222,transparent);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 88%,transparent 100%);
+}
+.hero .code-stream{
+  position:absolute;
+  top:-82%;
+  bottom:auto;
+  display:flex;
+  flex-direction:column;
+  gap:19px;
+  width:14%;
+  height:185%;
+  overflow:hidden;
+  white-space:normal;
+  writing-mode:horizontal-tb;
+  color:#55ff91;
+  font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:-.3px;
+  opacity:.78;
+  text-shadow:0 0 5px #2cff7a99,0 0 13px #18db68aa;
+  animation:greenCodeRain 25s linear infinite;
+}
+.hero .code-stream span{display:block;min-height:16px}
+.hero .stream-1{left:2%;animation-duration:23s;animation-delay:-7s}
+.hero .stream-2{left:15%;animation-duration:29s;animation-delay:-19s}
+.hero .stream-3{left:28%;animation-duration:26s;animation-delay:-11s}
+.hero .stream-4{right:28%;animation-duration:31s;animation-delay:-23s}
+.hero .stream-5{right:15%;animation-duration:24s;animation-delay:-13s}
+.hero .stream-6{right:2%;animation-duration:28s;animation-delay:-3s}
+.hero .stream-7{left:41%;animation-duration:32s;animation-delay:-17s}
+.hero .stream-8{right:41%;animation-duration:27s;animation-delay:-9s}
+.hero .hero-inner,.hero .hero-bottom{position:relative;z-index:2}
+@keyframes greenCodeRain{
+  from{transform:translateY(0)}
+  to{transform:translateY(100%)}
+}
+@media(max-width:650px){
+  .hero .code-rain{opacity:.22}
+  .hero .code-stream{font-size:8px;gap:14px;width:16%}
+  .hero .stream-2,.hero .stream-4,.hero .stream-7{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .code-stream{animation:none!important;top:0;height:100%;opacity:.5}
+}
