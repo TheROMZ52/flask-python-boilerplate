@@ -1,7 +1,7 @@
 [project]
 name = "nexvordev-flask-boilerplate"
-version = "0.3.0"
-description = "A modular Flask API boilerplate with SQLAlchemy, PostgreSQL, and Vercel support."
+version = "0.4.0"
+description = "An API-first Flask application foundation with SQLAlchemy, PostgreSQL, and serverless support."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
