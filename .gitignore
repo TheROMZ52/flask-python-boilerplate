@@ -1,13 +1,11 @@
+node_modules
+.next
+out
+build
+dist
+.env
+.env.*
+!.env.example
 .vercel
 *.log
-*.pyc
-__pycache__
-
-# Environments 
-.env 
-.venv 
-env/ 
-venv/ 
-ENV/ 
-env.bak/ 
-venv.bak/ 
+.DS_Store
