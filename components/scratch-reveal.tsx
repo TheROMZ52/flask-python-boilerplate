@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 
 const MINECRAFT_IMAGE = "/images/minecraft-scratch.jpg";
 const COUNTER_STRIKE_IMAGE = "/images/counter-strike-scratch.jpg";
@@ -45,7 +46,7 @@ export default function ScratchReveal() {
     };
   }, [paintCover]);
 
-  const eraseAt = (event: React.PointerEvent<HTMLCanvasElement>) => {
+  const eraseAt = (event: ReactPointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
