@@ -20,14 +20,14 @@ const siteUrl = "https://nexvordev-site.vercel.app";
 
 export const metadata: Metadata = {
   title: {
-    default: "۴۳۶۴۹۳۳ | NexvorDEV | زیرساخت و توسعه سرورهای بازی",
+    default: "۴۴۵۹۷۷۶ | NexvorDEV | زیرساخت و توسعه سرورهای بازی",
     template: "%s | NexvorDEV",
   },
   description:
     "توسعه پلاگین اختصاصی، راه‌اندازی و بهینه‌سازی سرورهای بازی با تمرکز بر ماینکرفت و کانتر استرایک.",
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
-  other: { enamad: ["4364933", "۴۳۶۴۹۳۳"] },
+  other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/nexvordev-logo.jpg" },
   metadataBase: new URL(siteUrl),
