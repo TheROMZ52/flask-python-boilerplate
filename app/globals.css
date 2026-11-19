@@ -555,3 +555,10 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
     cursor: crosshair;
   }
 }
+
+
+/* Fix the full-size brand image on narrow screens without cropping its source */
+.brand-showcase{overflow:visible}
+.brand-showcase-inner{width:100%;min-width:0}
+.brand-showcase-image{width:min(82vw,340px);height:min(82vw,340px);max-width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:0;flex:0 1 auto}
+@media(max-width:650px){.brand-showcase{padding:38px 0 30px}.brand-showcase-image{width:min(82vw,300px);height:min(82vw,300px)}}
