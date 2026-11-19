@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PricingInteractions from "./pricing-interactions";
 import {
   ArrowLeft, ArrowUpLeft, Blocks, Check, Cpu, Gamepad2, Braces,
   MessageCircle, Puzzle, Server, SlidersHorizontal, Gauge, ClipboardCheck,
@@ -38,7 +39,7 @@ const steps = [
 
 export default function PricingPage() {
   return (
-    <main className="pricing-page-shell">
+    <main className="pricing-page-shell">\n      <PricingInteractions />
       <div className="top-strip"><span className="online-dot" /> تعرفه خدمات NexvorDEV <Link href="/#contact">برای ثبت سفارش پیام بده <ArrowUpLeft size={13} /></Link></div>
       <header className="site-header">
         <div className="container nav-wrap">
@@ -65,7 +66,7 @@ export default function PricingPage() {
           </div>
           <div className="pricing-range-panel">
             <div className="range-panel-top"><span>بازه تعرفه خدمات</span><span className="range-status"><i /> قابل استعلام</span></div>
-            <div className="range-numbers" dir="rtl"><div><strong>۶۵,۰۰۰</strong><span>حداقل شروع</span></div><div className="range-dash">تا</div><div><strong>۲,۰۰۰,۰۰۰</strong><span>حد بالای بازه</span></div></div>
+            <div className="range-numbers" dir="rtl"><div><strong data-count="65000">۶۵,۰۰۰</strong><span>حداقل شروع</span></div><div className="range-dash">تا</div><div><strong data-count="2000000">۲,۰۰۰,۰۰۰</strong><span>حد بالای بازه</span></div></div>
             <div className="range-track"><span /></div>
             <div className="range-panel-bottom"><span>تومان</span><span>برای هر سه پلتفرم</span></div>
             <p>مبلغ دقیق با توجه به جزئیات، حجم کار و امکانات درخواستی مشخص می‌شه.</p>
