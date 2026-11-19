@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "توسعه پلاگین اختصاصی، راه‌اندازی و بهینه‌سازی سرورهای بازی با تمرکز بر ماینکرفت و کانتر استرایک.",
   applicationName: "NexvorDEV",
   alternates: { canonical: "/" },
-  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/apple-icon.png" },
+  icons: { icon: "/nexvordev-logo.jpg", shortcut: "/nexvordev-logo.jpg", apple: "/nexvordev-logo.jpg" },
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "NexvorDEV | زیرساختی فراتر از بازی",
