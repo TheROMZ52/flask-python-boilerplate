@@ -16,8 +16,6 @@ def create_app(test_config: dict | None = None) -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from app import models
-
     app.register_blueprint(web_bp)
     app.register_blueprint(api_bp)
     register_error_handlers(app)

@@ -21,7 +21,14 @@ def utc_timestamp() -> str:
 
 
 def validation_error(message: str, status: int = 400):
-    return jsonify({"error": {"code": status, "name": "Validation Error", "message": message}}), status
+    error = {
+        "error": {
+            "code": status,
+            "name": "Validation Error",
+            "message": message,
+        }
+    }
+    return jsonify(error), status
 
 
 @api_bp.get("/api/health")
