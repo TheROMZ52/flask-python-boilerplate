@@ -1,50 +1,73 @@
 # NexvorDEV Flask Boilerplate
 
-A modular Flask API starter designed for Vercel Functions and traditional WSGI hosting.
+A modular Flask API starter for Vercel Functions and traditional WSGI hosting, with PostgreSQL support.
 
 ## Features
 
-- Flask application factory for clean configuration and testing
-- Modular API and web blueprints
-- JSON error responses for HTTP and unexpected errors
-- UTC timestamps and a health-check endpoint
-- Pytest test suite and Ruff linting
-- GitHub Actions quality checks
-- Vercel-compatible WSGI entry point (`main:app`)
+- Flask application factory and modular blueprints
+- SQLAlchemy models and Flask-Migrate (Alembic)
+- PostgreSQL through psycopg 3
+- SQLite fallback for local development
+- JSON error responses and health endpoints
+- CRUD API for database-backed items
+- Pytest, Ruff, and GitHub Actions CI
 
 ## Requirements
 
 - Python 3.10+
-- [uv](https://docs.astral.sh/uv/) (recommended) or pip
+- [uv](https://docs.astral.sh/uv/) (recommended)
+- PostgreSQL for persistent production data
 
-## Local development
+## Local setup
 
 ```bash
+cp .env.example .env
 uv sync --group dev
 uv run flask --app main run --debug
 ```
 
-Or run with Gunicorn:
+Set `DATABASE_URL` in your environment or `.env`. Without it, the app uses a local SQLite database at `instance/app.db`. SQLite is intended for local development only; use managed PostgreSQL for deployed environments. Never commit real credentials.
+
+## Database migrations
+
+Initialize migrations once:
 
 ```bash
-uv run gunicorn main:app
+uv run flask --app main db init
+uv run flask --app main db migrate -m "create initial tables"
+uv run flask --app main db upgrade
 ```
 
-The application is available at `http://127.0.0.1:5000` when using Flask's development server.
+After changing models, generate and review a migration, then apply it:
+
+```bash
+uv run flask --app main db migrate -m "describe schema change"
+uv run flask --app main db upgrade
+```
+
+Generated migration files must be committed to Git. Review each generated migration before applying it to production.
 
 ## API endpoints
 
 | Method | Path | Description |
 | --- | --- | --- |
-| GET | `/api/health` | Application health and current UTC timestamp |
-| GET | `/api/data` | Sample collection |
-| GET | `/api/items/<id>` | Fetch a sample item by ID |
+| GET | `/api/health` | Application health |
+| GET | `/api/db/health` | Database connectivity |
+| GET | `/api/data` | Original sample collection |
+| GET | `/api/items/<id>` | Original sample item |
+| GET | `/api/v1/items` | List database items |
+| POST | `/api/v1/items` | Create an item |
+| GET | `/api/v1/items/<id>` | Fetch a database item |
+| PATCH | `/api/v1/items/<id>` | Update an item |
+| DELETE | `/api/v1/items/<id>` | Delete an item |
 
-Unknown routes and HTTP errors are returned as JSON.
+Create an item:
 
-## Configuration
-
-Copy `.env.example` to `.env` and set a strong `SECRET_KEY` before adding session-based features. Never commit real secrets. Environment variables are read by the application runtime; load `.env` locally with your preferred environment manager if needed.
+```bash
+curl -X POST http://127.0.0.1:5000/api/v1/items \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Example","value":100}'
+```
 
 ## Tests and linting
 
@@ -53,31 +76,30 @@ uv run pytest
 uv run ruff check .
 ```
 
+Tests use an isolated in-memory SQLite database. They do not require a running PostgreSQL server.
+
 ## Deploying to Vercel
 
-The repository exports a top-level Flask instance from `main.py`, which Vercel can detect as the WSGI application. Connect the repository to Vercel and deploy with the default Python/Flask detection. No custom build command is required for this starter.
-
-For local Vercel parity, install the Vercel CLI and run:
-
-```bash
-vercel dev
-```
+The WSGI entry point remains `main:app`. Configure `DATABASE_URL` and `SECRET_KEY` as Vercel environment variables, using a managed PostgreSQL provider. Apply reviewed migrations as a deployment/release step; do not run schema creation automatically at application startup.
 
 ## Project structure
 
 ```text
 app/
-  __init__.py       # Application factory
-  config.py         # Runtime configuration
-  errors.py         # JSON error handlers
-  web.py            # Web routes
-  templates/
-endpoints/
   __init__.py
-  routes.py          # API routes
-public/              # Static assets served by Vercel
+  config.py
+  extensions.py
+  models/
+    __init__.py
+    item.py
+  errors.py
+  web.py
+endpoints/
+  routes.py
 tests/
-.github/workflows/   # CI checks
-main.py              # WSGI entry point
-pyproject.toml       # Project and tool configuration
+  conftest.py
+  test_api.py
+  test_database.py
+main.py
+pyproject.toml
 ```

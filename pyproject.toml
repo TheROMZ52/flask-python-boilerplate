@@ -1,11 +1,15 @@
 [project]
 name = "nexvordev-flask-boilerplate"
-version = "0.2.0"
-description = "A modular Flask API boilerplate designed for Vercel and traditional WSGI hosting."
+version = "0.3.0"
+description = "A modular Flask API boilerplate with SQLAlchemy, PostgreSQL, and Vercel support."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
   "flask>=3.1,<4.0",
+  "flask-sqlalchemy>=3.1,<4.0",
+  "flask-migrate>=4.1,<5.0",
+  "psycopg[binary]>=3.2,<4.0",
+  "python-dotenv>=1.0,<2.0",
   "gunicorn>=23.0,<24.0",
 ]
 
