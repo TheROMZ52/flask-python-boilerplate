@@ -450,3 +450,18 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
  .pricing-page-shell *,.pricing-page-shell *:before,.pricing-page-shell *:after{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
  .pricing-page-shell .pricing-hero-copy,.pricing-page-shell .pricing-range-panel,.pricing-page-shell .pricing-hero-foot,.pricing-page-shell .pricing-section-heading,.pricing-page-shell .pricing-platform-card,.pricing-page-shell .pricing-service-card,.pricing-page-shell .pricing-factors-intro,.pricing-page-shell .pricing-factor,.pricing-page-shell .pricing-step,.pricing-page-shell .pricing-final-panel{opacity:1!important;transform:none!important}
 }
+
+/* Brand identity and SEO presentation */
+.brand-logo{display:block;width:48px;height:48px;object-fit:contain;border-radius:50%;border:1px solid #58e99566;box-shadow:0 0 22px #25d87824}
+.footer-brand .brand-logo{width:40px;height:40px}
+.hero-logo,.pricing-hero-logo{display:block;width:104px;height:104px;object-fit:contain;border-radius:50%;border:1px solid #58e99566;box-shadow:0 0 38px #25d87830;margin-bottom:18px}
+.pricing-hero-logo{width:88px;height:88px;margin-bottom:16px}
+.breadcrumbs{display:flex;align-items:center;gap:10px;padding-top:18px;color:#89a996;font-size:11px}
+.breadcrumbs a{color:#66e99b}
+.breadcrumbs span[aria-current="page"]{color:#d7e9dc}
+.not-found-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;background:radial-gradient(ellipse at 50% 35%,#123c28 0%,#080e12 65%)}
+.not-found-code{font:900 clamp(100px,24vw,190px)/1 var(--font-inter),sans-serif;letter-spacing:-10px;color:#5de891;text-shadow:0 0 55px #28d76a45}
+.not-found-page h1{font-size:clamp(27px,5vw,42px);margin:10px 0}
+.not-found-description{color:#91a99a;margin:0 0 25px}
+.not-found-page .button{display:inline-flex;align-items:center;gap:9px}
+@media(max-width:650px){.brand-logo{width:40px;height:40px}.hero-logo{width:82px;height:82px}.pricing-hero-logo{width:76px;height:76px}}
