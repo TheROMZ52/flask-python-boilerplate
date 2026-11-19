@@ -9,7 +9,6 @@ const COUNTER_STRIKE_IMAGE = "/images/counter-strike-scratch.jpg";
 export default function ScratchReveal() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const drawingRef = useRef(false);
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
 
   const paintCover = useCallback(() => {
@@ -86,22 +85,8 @@ export default function ScratchReveal() {
         ref={canvasRef}
         className="scratch-reveal-canvas"
         aria-label="برای نمایان شدن تصویر کانتر استرایک، تصویر ماینکرفت را با موس یا لمس پاک کن"
-        onPointerDown={(event) => {
-          drawingRef.current = true;
-          lastPointRef.current = null;
-          event.currentTarget.setPointerCapture(event.pointerId);
-          eraseAt(event);
-        }}
         onPointerMove={(event) => {
-          if (drawingRef.current) eraseAt(event);
-        }}
-        onPointerUp={() => {
-          drawingRef.current = false;
-          lastPointRef.current = null;
-        }}
-        onPointerCancel={() => {
-          drawingRef.current = false;
-          lastPointRef.current = null;
+          if (event.pointerType === "mouse") eraseAt(event);
         }}
       />
       <div className="scratch-reveal-hint" aria-hidden="true"><span className="scratch-hint-dot" /> با موس بکش یا با انگشت لمس کن</div>
