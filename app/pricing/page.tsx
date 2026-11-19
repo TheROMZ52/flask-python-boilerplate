@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PricingInteractions from "./pricing-interactions";
 import {
-  ArrowLeft, ArrowUpLeft, Blocks, Check, Cpu, Gamepad2, Braces,
+  ArrowLeft, ArrowUpLeft, Blocks, Check, Cpu, Gamepad2,
   MessageCircle, Puzzle, Server, SlidersHorizontal, Gauge, ClipboardCheck,
   Layers3, Clock3, Sparkles
 } from "lucide-react";
