@@ -15,6 +15,22 @@ export const metadata: Metadata = {
   openGraph: { title: "تعرفه خدمات NexvorDEV", description: "بازه قیمت و جزئیات خدمات توسعه سرورهای بازی.", url: "/pricing", images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }] },
 };
 
+const codeSamples = [
+  "const server = await nexvor.boot();",
+  "plugins.register(customPlugin);",
+  "world.optimize({ performance: true });",
+  "if (server.ready) return success;",
+  "import { GameServer } from 'nexvor';",
+  "config.set('online-mode', true);",
+  "const build = await project.compile();",
+  "await database.connect();",
+  "const players = server.getOnlinePlayers();",
+  "console.log('NexvorDEV initialized');",
+  "server.listen(25565);",
+  "return { status: 'READY' };",
+];
+const codeStreams = Array.from({ length: 6 }, (_, index) => index);
+
 const platforms = [
   { title: "ماینکرفت جاوا", english: "MINECRAFT JAVA", icon: Blocks, detail: "توسعه و راه‌اندازی سرورهای جاوا" },
   { title: "ماینکرفت بدراک", english: "MINECRAFT BEDROCK", icon: Gamepad2, detail: "راه‌اندازی و شخصی‌سازی تجربه بدراک" },
@@ -58,6 +74,7 @@ export default function PricingPage() {
       </header>
 
       <section className="pricing-hero">
+        <div className="code-rain pricing-code-rain" aria-hidden="true">{codeStreams.map((column) => <div className={"code-stream stream-" + (column + 1)} key={column}>{Array.from({ length: 10 }, (_, line) => <span key={line}>{codeSamples[(column * 2 + line) % codeSamples.length]}</span>)}</div>)}</div>
         <div className="container">
           <div className="pricing-hero-copy">
             <Image className="pricing-hero-logo" src="/nexvordev-logo.jpg" alt="نشان NexvorDEV" width={104} height={104} priority />
