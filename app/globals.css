@@ -749,3 +749,6 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 .service-request-footnote,.service-request-note{margin:14px 0 0;color:#7893b2;text-align:center;font-size:10px;line-height:2}
 @media(max-width:650px){.service-request-page{padding:38px 0 70px}.service-request-fields{grid-template-columns:minmax(0,1fr);gap:16px}.service-request-full{grid-column:auto}.service-request-card{padding:22px 17px}.service-request-hint{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.service-request-submit,.service-request-fields input,.service-request-fields select,.service-request-fields textarea{transition:none}}
+
+
+.support-field-hint{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#7890ad;font-size:11px;font-weight:500;line-height:1.8}.support-reply-field{flex:1;min-width:0;display:grid;gap:7px}.support-reply-field textarea{display:block}
