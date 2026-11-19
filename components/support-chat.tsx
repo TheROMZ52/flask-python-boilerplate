@@ -39,7 +39,14 @@ export default function SupportChat({ ticketId }: { ticketId: string }) {
     return () => window.clearInterval(timer);
   }, [ticketId, refresh]);
 
-  function handleReplyKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {\n    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {\n      event.preventDefault();\n      event.currentTarget.form?.requestSubmit();\n    }\n  }\n\n  async function send(event: FormEvent<HTMLFormElement>) {
+  function handleReplyKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault();
+      event.currentTarget.form?.requestSubmit();
+    }
+  }
+
+  async function send(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!body.trim() || !token || busy) return;
     setBusy(true);
@@ -72,7 +79,7 @@ export default function SupportChat({ ticketId }: { ticketId: string }) {
       {messages.length === 0 && <p className="support-empty">هنوز پیامی ثبت نشده است.</p>}
     </div>
     {error && <p className="support-error">{error}</p>}
-    {ticket?.status === "closed" ? <div className="support-closed">این درخواست بسته شده است و امکان ارسال پیام جدید وجود ندارد.</div> : <form className="support-reply-form" onSubmit={send}><div className="support-reply-field"><textarea value={body} onChange={e => setBody(e.target.value)} onKeyDown={handleReplyKeyDown} rows={3} maxLength={4000} placeholder={"پیامت رو بنویس...\\n\\nEnter برای ارسال · Shift + Enter برای خط جدید"} /><span className="support-field-hint"><span>Enter: ارسال · Shift + Enter: خط جدید</span><span>{body.length}/4000</span></span></div><button className="button button-primary" disabled={busy || !body.trim()}>{busy ? <LoaderCircle className="support-spin" size={17} /> : <Send size={17} />} ارسال</button></form>}
+    {ticket?.status === "closed" ? <div className="support-closed">این درخواست بسته شده است و امکان ارسال پیام جدید وجود ندارد.</div> : <form className="support-reply-form" onSubmit={send}><div className="support-reply-field"><textarea value={body} onChange={e => setBody(e.target.value)} onKeyDown={handleReplyKeyDown} rows={3} maxLength={4000} placeholder={"پیامت رو بنویس...\n\nEnter برای ارسال · Shift + Enter برای خط جدید"} /><span className="support-field-hint"><span>Enter: ارسال · Shift + Enter: خط جدید</span><span>{body.length}/4000</span></span></div><button className="button button-primary" disabled={busy || !body.trim()}>{busy ? <LoaderCircle className="support-spin" size={17} /> : <Send size={17} />} ارسال</button></form>}
     <div className="support-chat-foot"><ShieldCheck size={14} /> پیام‌ها به‌صورت خودکار به‌روزرسانی می‌شوند؛ نیازی به رفرش نیست.</div>
   </section>;
 }
