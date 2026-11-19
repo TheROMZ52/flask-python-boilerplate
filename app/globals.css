@@ -280,3 +280,29 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 @media(prefers-reduced-motion:reduce){
   .hero .code-stream{animation:none!important;top:0;height:100%;opacity:.5}
 }
+
+
+/* Dedicated pricing page */
+.pricing-page{min-height:calc(100vh - 210px);padding-top:78px;background:radial-gradient(ellipse at 50% 0%,#102a1b,#0a1217 58%,#080e12)}
+.pricing-page-intro{max-width:700px;margin:0 auto 45px;text-align:center}
+.pricing-page-intro h1{font-size:clamp(31px,5vw,48px);line-height:1.6;margin:13px 0 8px}
+.pricing-page-intro h1 span{color:#58d98a}
+.pricing-page-intro>p{color:var(--muted);font-size:13px;line-height:2.3;margin:0 auto;max-width:570px}
+.pricing-page .pricing-grid{align-items:stretch}
+.pricing-page .price-card{background:linear-gradient(155deg,#112a20,#0c1916);border-color:#47d9822b}
+.pricing-page .price-card:hover{border-color:#55e99388;box-shadow:0 18px 45px #0005,0 0 35px #20d66b16}
+.pricing-page .price-platform{color:#69ed9b}
+.pricing-page .price-link{color:#69ed9b}
+.pricing-page .price-card li svg{color:#69ed9b}
+.pricing-page-cta{margin-top:55px;padding:25px 28px;border:1px solid #55d98935;border-radius:12px;background:linear-gradient(110deg,#10291e,#111d1b);display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.pricing-page-cta>div{margin-left:auto}
+.pricing-page-cta h2{font-size:18px;margin:0 0 3px}
+.pricing-page-cta p{color:var(--muted);font-size:11px;margin:0}
+.pricing-telegram{display:inline-flex;align-items:center;gap:7px;color:#7ceaa7;font-size:12px}
+@media(max-width:650px){
+  .pricing-page{padding-top:55px}
+  .pricing-page-intro{margin-bottom:30px}
+  .pricing-page-cta{padding:22px;align-items:flex-start}
+  .pricing-page-cta>div{width:100%}
+  .pricing-page-cta .button{flex:1;justify-content:center}
+}
