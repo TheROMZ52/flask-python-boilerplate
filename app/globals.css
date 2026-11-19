@@ -533,3 +533,25 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 .scratch-reveal-background .scratch-reveal-canvas{pointer-events:auto;z-index:2}
 .scratch-reveal-background .scratch-reveal-hint{pointer-events:none}
 .scratch-reveal-background .scratch-reveal-reset{pointer-events:auto}
+
+
+/* Scratch-to-reveal interaction is desktop-only */
+@media (hover: none), (pointer: coarse), (max-width: 767px) {
+  .scratch-reveal-background .scratch-reveal-canvas {
+    pointer-events: none !important;
+    cursor: default;
+  }
+  .scratch-reveal-background .scratch-reveal-hint,
+  .scratch-reveal-background .scratch-reveal-reset {
+    display: none !important;
+  }
+  .scratch-reveal-background {
+    opacity: .58;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .scratch-reveal-background .scratch-reveal-canvas {
+    pointer-events: auto;
+    cursor: crosshair;
+  }
+}
