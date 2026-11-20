@@ -17,15 +17,14 @@ const inter = Inter({
 });
 
 const siteUrl = "https://nexvordev-site.vercel.app";
-const socialImage = "/og-image.svg";
+const socialImage = "/opengraph-image?v=2";
 
 export const metadata: Metadata = {
   title: {
     default: "NexvorDEV | Development • Web • Minecraft",
     template: "%s | NexvorDEV",
   },
-  description:
-    "NexvorDEV؛ توسعه، وب و ماینکرفت — از ایده تا اجرا.",
+  description: "NexvorDEV؛ توسعه، وب و ماینکرفت — از ایده تا اجرا.",
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
   other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
