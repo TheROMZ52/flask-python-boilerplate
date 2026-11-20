@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="#17102f"/><stop offset=".55" stop-color="#080713"/><stop offset="1" stop-color="#03030a"/></radialGradient>
+  <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e040ff"/><stop offset="1" stop-color="#7000ff"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g fill="#9b27ff" opacity=".18">
+ <path d="M0 0h180l-65 100 65 58-95 100L0 210z"/><path d="M1200 0h-180l65 100-65 58 95 100 85-48z"/>
+ <path d="M0 630h170l-70-75 50-65-95-70L0 470z"/><path d="M1200 630h-170l70-75-50-65 95-70 55 80z"/>
+</g>
+<g fill="#a020ff" opacity=".55">
+ <circle cx="115" cy="120" r="3"/><circle cx="245" cy="70" r="2"/><circle cx="970" cy="85" r="3"/><circle cx="1080" cy="190" r="2"/><circle cx="150" cy="510" r="2"/><circle cx="1040" cy="520" r="3"/><circle cx="330" cy="170" r="2"/><circle cx="870" cy="470" r="2"/>
+ <rect x="210" y="210" width="10" height="10"/><rect x="980" y="300" width="12" height="12"/><rect x="80" y="380" width="8" height="8"/><rect x="1110" y="390" width="9" height="9"/>
+</g>
+<g transform="translate(520 92)" filter="url(#glow)">
+ <path d="M0 0 95 55v56L0 56z" fill="url(#purple)"/>
+ <path d="M105 55 160 23v112l-55-32z" fill="#8700ff"/>
+ <path d="M0 68 55 100v85L0 153z" fill="#fff"/>
+ <path d="M70 111 160 163v-32L70 79z" fill="#fff"/>
+</g>
+<g font-family="Arial,Helvetica,sans-serif" font-weight="800" text-anchor="middle">
+ <text x="600" y="390" font-size="112" letter-spacing="-5" fill="#fff">Nexvor<tspan fill="#9700ff">DEV</tspan></text>
+</g>
+<g stroke="#a000ff" stroke-width="4" stroke-linecap="round" filter="url(#glow)"><path d="M90 440h190"/><path d="M920 440h190"/></g>
+<text x="600" y="493" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="38" font-weight="500" letter-spacing="1.5" fill="#f4efff">Development <tspan fill="#a000ff">•</tspan> Web <tspan fill="#a000ff">•</tspan> Minecraft</text>
+<path d="M0 585H1200" stroke="#6f22ad" stroke-opacity=".22"/>
+</svg>
