@@ -62,6 +62,7 @@ const serviceOptions = [
   "مشاوره فنی برای راه‌اندازی مجموعه",
   "پشتیبانی پس از تحویل طبق توافق پروژه",
   "سایر خدمات",
+  "درخواست خرید ساب‌دامنه",
 ];
 function clean(value: unknown, max: number) { return typeof value === "string" ? value.trim().slice(0,max) : ""; }
 
