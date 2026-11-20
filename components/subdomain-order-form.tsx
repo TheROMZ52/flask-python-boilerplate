@@ -20,7 +20,8 @@ export default function SubdomainOrderForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const selected = useMemo(() => plans.find(item => item.id === plan) ?? plans[1], [plan]);
-  const normalized = label.trim().toLowerCase();\n  const validName = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/.test(normalized);
+  const normalized = label.trim().toLowerCase();
+  const validName = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/.test(normalized);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
