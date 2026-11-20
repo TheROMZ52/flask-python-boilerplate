@@ -55,7 +55,7 @@ export default function Home() {
         <div className="hx-bar">
           <a className="hx-brand" href="#top" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} priority /><span>NexvorDEV</span></a>
           <nav className="hx-nav" aria-label="منوی اصلی">
-            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a>
+            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a><a href="/support/admin">پنل مدیریت</a>
           </nav>
           <a className="hx-cta hx-cta-sm" href="/request" data-magnetic>ثبت سفارش <ArrowUpLeft size={15} /></a>
           <button className="hx-burger" type="button" data-menu-toggle aria-label="منو"><i /><i /></button>
