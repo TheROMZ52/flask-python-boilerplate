@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 const siteUrl = "https://nexvordev-site.vercel.app";
-const socialImage = "/og-image.jpg?v=3";
+const socialImage = "/og-image.jpg?v=4";
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: socialImage,
-        width: 900,
-        height: 317,
+        width: 700,
+        height: 247,
         alt: "NexvorDEV — Development • Web • Minecraft",
       },
     ],
