@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Globe2, ShieldCheck, Zap } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, Globe2, ShieldCheck, Zap } from "lucide-react";
 import SubdomainOrderForm from "@/components/subdomain-order-form";
 import styles from "./subdomains.module.css";
 import "./subdomain-form.css";
@@ -31,7 +32,7 @@ export default function SubdomainsPage() {
           <div className={styles.cardHead}><span>SUBDOMAIN ORDER</span><h2>درخواست خرید ساب‌دامنه</h2><p>مدت اشتراک و نام موردنظرت رو انتخاب کن.</p></div>
           <SubdomainOrderForm />
         </section>
-        <p className={styles.foot}>NexvorDEV · Subdomain service</p>
+        <footer className={styles.foot}><Link href="/">NexvorDEV</Link><span>© {new Date().getFullYear()} · همه حقوق محفوظ است.</span><Link href="/terms">شرایط استفاده</Link></footer>
       </div>
     </main>
   );
