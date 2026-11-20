@@ -1,9 +1,13 @@
 import Image from "next/image";
-import HomeInteractions from "@/components/home-interactions";
+import type { CSSProperties } from "react";
+import type { Metadata } from "next";
+import { ArrowLeft, ArrowUpLeft, Blocks, Cpu, Gamepad2, Gauge, Puzzle, Server, Settings2 } from "lucide-react";
+import HomeFx from "@/components/home-fx";
+import HeroCanvas from "@/components/hero-canvas";
+import HeroTerminal from "@/components/hero-terminal";
 import ScratchReveal from "@/components/scratch-reveal";
 import HelpedBar from "@/components/helped-bar";
-import type { Metadata } from "next";
-import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Blocks, Code2, Cpu, Gauge, Gamepad2, MessageCircle, Puzzle, Server, Settings2, ShieldCheck } from "lucide-react";
+import "./home.css";
 
 export const metadata: Metadata = {
   title: "توسعه و راه‌اندازی سرورهای بازی",
@@ -12,115 +16,176 @@ export const metadata: Metadata = {
 };
 
 const platforms = [
-  { number: "01", name: "Minecraft Java", title: "ماینکرفت جاوا", description: "توسعه قابلیت‌های اختصاصی، راه‌اندازی و تنظیم سرورهای جاوا.", icon: Blocks, tags: ["Plugin Development", "Setup", "Optimization"] },
-  { number: "02", name: "Minecraft Bedrock", title: "ماینکرفت بدراک", description: "پیاده‌سازی قابلیت‌ها و آماده‌سازی سرور بدراک متناسب با نیاز پروژه.", icon: Gamepad2, tags: ["Add-ons", "Configuration", "Server Setup"] },
-  { number: "03", name: "Counter-Strike 1.6", title: "کانتر استرایک ۱.۶", description: "ساخت و تنظیم سرور کانتر، توسعه پلاگین و بهینه‌سازی تجربه بازی.", icon: Cpu, tags: ["AMX Mod X", "Plugins", "Server Setup"] },
+  { mark: "JAVA", name: "Minecraft Java", title: "ماینکرفت جاوا", description: "توسعه قابلیت‌های اختصاصی، راه‌اندازی و تنظیم سرورهای جاوا؛ از پلاگین سفارشی تا بهینه‌سازی کامل.", icon: Blocks, tags: ["Plugin Development", "Setup", "Optimization"] },
+  { mark: "BEDROCK", name: "Minecraft Bedrock", title: "ماینکرفت بدراک", description: "پیاده‌سازی قابلیت‌ها و آماده‌سازی سرور بدراک متناسب با نیاز پروژه.", icon: Gamepad2, tags: ["Add-ons", "Configuration", "Server Setup"] },
+  { mark: "CS 1.6", name: "Counter-Strike 1.6", title: "کانتر استرایک ۱.۶", description: "ساخت و تنظیم سرور کانتر، توسعه پلاگین و بهینه‌سازی تجربه بازی.", icon: Cpu, tags: ["AMX Mod X", "Plugins", "Server Setup"] },
 ];
 const services = [
-  { icon: Puzzle, title: "ساخت پلاگین اختصاصی", description: "تبدیل ایده‌ها و نیازهای سرور به قابلیت‌های اختصاصی." },
-  { icon: Server, title: "راه‌اندازی سرور", description: "نصب، آماده‌سازی و پیکربندی سرور بازی." },
-  { icon: Settings2, title: "نصب و کانفیگ", description: "تنظیم پلاگین‌ها، مودها و اجزای موردنیاز سرور." },
+  { icon: Puzzle, title: "ساخت پلاگین اختصاصی", description: "ایده و نیاز سرورت رو به یک قابلیت واقعی و اختصاصی تبدیل می‌کنیم." },
+  { icon: Server, title: "راه‌اندازی سرور", description: "نصب، آماده‌سازی و پیکربندی کامل سرور بازی، آماده‌ی ورود بازیکن‌ها." },
+  { icon: Settings2, title: "نصب و کانفیگ", description: "تنظیم پلاگین‌ها، مودها و همه‌ی اجزای موردنیاز سرور." },
   { icon: Gauge, title: "بهینه‌سازی", description: "بررسی تنظیمات و بهبود عملکرد و پایداری سرور." },
 ];
 const steps = [
-  ["01", "ثبت درخواست", "پلتفرم و چیزی که لازم داری رو از طریق تلگرام توضیح می‌دی."],
-  ["02", "بررسی و اعلام هزینه", "جزئیات سفارش بررسی می‌شه و هزینه و محدوده کار مشخص می‌شه."],
-  ["03", "اجرا و بررسی", "کار انجام می‌شه و موارد توافق‌شده بررسی می‌شن."],
-  ["04", "تحویل سفارش", "خروجی نهایی طبق توافق بهت تحویل داده می‌شه."],
+  ["ثبت درخواست", "پلتفرم و چیزی که لازم داری رو از طریق تلگرام توضیح می‌دی."],
+  ["بررسی و اعلام هزینه", "جزئیات سفارش بررسی می‌شه و هزینه و محدوده کار مشخص می‌شه."],
+  ["اجرا و بررسی", "کار انجام می‌شه و موارد توافق‌شده بررسی می‌شن."],
+  ["تحویل سفارش", "خروجی نهایی طبق توافق بهت تحویل داده می‌شه."],
 ];
+const marquee = ["Minecraft Java", "Minecraft Bedrock", "Counter-Strike 1.6", "Plugin Development", "AMX Mod X", "Server Setup", "Optimization", "Configuration", "Paper", "Velocity"];
+
+type Cube = { x: number; y: number; z: number; s: number; tone?: string; d: number };
+const cubes: Cube[] = [];
+[-1, 0, 1].forEach(i => [-1, 0, 1].forEach(j => cubes.push({ x: i * 98, y: j * 98, z: 0, s: 92, d: (i + j + 2) * 0.35 })));
+[[0, 0], [1, 0], [0, 1]].forEach(([i, j]) => cubes.push({ x: i * 98, y: j * 98, z: 92, s: 92, d: 1.2 + i * 0.3 + j * 0.2 }));
+cubes.push({ x: 0, y: 0, z: 184, s: 92, tone: "core", d: 2 });
+cubes.push({ x: -170, y: 130, z: 60, s: 34, tone: "ember", d: 0.6 }, { x: 160, y: -150, z: 120, s: 28, d: 1.4 }, { x: 190, y: 120, z: 30, s: 22, tone: "violet", d: 2.2 }, { x: -150, y: -140, z: 150, s: 24, tone: "violet", d: 1.1 });
+
+function Words({ text }: { text: string }) {
+  return <>{text.split(" ").map((word, index) => <span className="hx-w" key={index}><span style={{ "--i": index } as CSSProperties}>{word}</span>{" "}</span>)}</>;
+}
+
 export default function Home() {
-
-
   return (
-    <main>
-      <HomeInteractions />
-      <div className="scroll-progress" aria-hidden="true" />
-      <div className="top-strip"><span className="online-dot" /> توسعه و خدمات سرورهای بازی <a href="/request">ثبت سفارش <ArrowUpLeft size={13} /></a></div>
-      <header className="site-header">
-        <div className="container nav-wrap">
-          <a className="brand" href="#" aria-label="NexvorDEV صفحه اصلی"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={48} height={48} priority /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
-          <nav className="nav-links desktop-nav" aria-label="منوی اصلی">
-            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="/account">حساب کاربری</a><a className="nav-cta" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></a>
+    <main className="hx">
+      <HomeFx />
+      <div className="hx-progress" aria-hidden="true" />
+
+      <header className="hx-header">
+        <div className="hx-bar">
+          <a className="hx-brand" href="#top" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} priority /><span>NexvorDEV</span></a>
+          <nav className="hx-nav" aria-label="منوی اصلی">
+            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a>
           </nav>
-          <details className="mobile-menu"><summary className="mobile-toggle">فهرست <span>☰</span></summary><nav className="nav-links" aria-label="منوی موبایل">
-            <a href="#services">سفارشات</a><a href="#platforms">پلتفرم‌ها</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="/account">حساب کاربری</a><a className="nav-cta" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></a>
-          </nav></details>
+          <a className="hx-cta hx-cta-sm" href="/request" data-magnetic>ثبت سفارش <ArrowUpLeft size={15} /></a>
+          <button className="hx-burger" type="button" data-menu-toggle aria-label="منو"><i /><i /></button>
         </div>
       </header>
 
-      <section className="hero">
+      <section className="hx-hero" id="top">
         <ScratchReveal />
-        <div className="code-rain hero-code-rain" aria-hidden="true">
-          <div className="code-stream stream-1">{Array.from({ length: 8 }, (_, index) => <span key={index}>const server = await nexvor.boot();</span>)}</div>
-          <div className="code-stream stream-2">{Array.from({ length: 8 }, (_, index) => <span key={index}>plugins.register(customPlugin);</span>)}</div>
-          <div className="code-stream stream-3">{Array.from({ length: 8 }, (_, index) => <span key={index}>world.optimize(true);</span>)}</div>
-          <div className="code-stream stream-4">{Array.from({ length: 8 }, (_, index) => <span key={index}>server.listen(25565);</span>)}</div>
-          <div className="code-stream stream-5">{Array.from({ length: 8 }, (_, index) => <span key={index}>config.set('online-mode', true);</span>)}</div>
-          <div className="code-stream stream-6">{Array.from({ length: 8 }, (_, index) => <span key={index}>return READY;</span>)}</div>
-        </div>
-        <div className="hero-glow hero-glow-one" /><div className="hero-glow hero-glow-two" /><div className="hero-grid" />
-        <div className="container hero-inner">
-          <div className="hero-copy">
-            <Image className="hero-logo" src="/nexvordev-logo.jpg" alt="نشان رسمی NexvorDEV" width={120} height={120} priority />
-            <div className="eyebrow"><span /> NEXVORDEV / GAME SERVER DEVELOPMENT</div>
-            <h1>ایده‌ات رو به<br /><span>دنیای بازی</span> بیار.</h1>
-            <p className="hero-description">از ساخت پلاگین اختصاصی تا راه‌اندازی، کانفیگ و بهینه‌سازی سرور؛ خدمات فنی سرورهای بازی در یک مسیر ساده و شفاف.</p>
-            <div className="hero-actions"><a className="button button-primary" href="/request">ثبت سفارش <ArrowLeft size={17} /></a><a className="button button-quiet" href="#services">دیدن سفارشات <ArrowDownLeft size={16} /></a></div>
-            <div className="hero-meta"><span><ShieldCheck size={16} /> سه پلتفرم تخصصی</span><i /><span><Code2 size={16} /> توسعه تا راه‌اندازی</span></div>
-          </div>
-          <div className="hero-console" dir="ltr">
-            <div className="console-top"><div className="window-dots"><i /><i /><i /></div><span>NEXVOR_TERMINAL</span><span className="console-live">● READY</span></div>
-            <div className="console-body">
-              <div className="console-line"><span className="line-no">01</span><span className="syntax-muted">$</span> nexvor init --project game-server</div>
-              <div className="console-line"><span className="line-no">02</span><span className="syntax-blue">›</span> Loading development tools...</div>
-              <div className="console-line"><span className="line-no">03</span><span className="syntax-blue">›</span> Platform: <span className="syntax-white">Java / Bedrock / CS 1.6</span></div>
-              <div className="console-line"><span className="line-no">04</span><span className="syntax-blue">›</span> Services: <span className="syntax-white">plugins, setup, config</span></div>
-              <div className="console-line"><span className="line-no">05</span><span className="syntax-green">✓</span> Ready for your idea<span className="cursor-blink">_</span></div>
+        <div className="hx-aurora" aria-hidden="true"><i /><i /><i /></div>
+        <HeroCanvas />
+        <div className="hx-floor" aria-hidden="true" />
+        <div className="hx-veil" aria-hidden="true" />
+        <div className="hx-wrap hx-hero-in">
+          <div className="hx-hero-copy">
+            <div className="hx-badge"><span className="hx-live" /> استودیوی توسعه و سرورهای بازی</div>
+            <h1>
+              <span className="hx-line"><Words text="ایده‌ات رو به" /></span>
+              <span className="hx-line hx-grad">دنیای بازی بیار.</span>
+            </h1>
+            <p className="hx-lead">از ساخت پلاگین اختصاصی تا راه‌اندازی، کانفیگ و بهینه‌سازی سرور؛ خدمات فنی سرورهای بازی در یک مسیر ساده و شفاف.</p>
+            <div className="hx-actions">
+              <a className="hx-cta" href="/request" data-magnetic>ثبت سفارش <ArrowLeft size={18} /></a>
+              <a className="hx-ghost" href="#platforms" data-magnetic>دیدن پلتفرم‌ها</a>
             </div>
-            <div className="console-footer"><span><span className="pulse-dot" /> SYSTEM READY</span><span>BUILD / 2026</span></div>
-            <div className="console-orbit orbit-a" /><div className="console-orbit orbit-b" />
+            <dl className="hx-stats" data-reveal>
+              <div><dt>پلتفرم تخصصی</dt><dd data-count="3">۳</dd></div>
+              <div><dt>خدمت اصلی</dt><dd data-count="4">۴</dd></div>
+              <div><dt>مرحله تا تحویل</dt><dd data-count="4">۴</dd></div>
+            </dl>
+          </div>
+          <div className="hx-stage" aria-hidden="true">
+            <div className="hx-world"><div className="hx-spin">
+              {cubes.map((cube, index) => (
+                <div className={`vx ${cube.tone ?? ""}`} key={index} style={{ "--x": cube.x, "--y": cube.y, "--z": cube.z, "--s": `${cube.s}px`, "--d": `${cube.d}s` } as CSSProperties}>
+                  <i className="f-t" /><i className="f-b" /><i className="f-1" /><i className="f-2" /><i className="f-3" /><i className="f-4" />
+                </div>
+              ))}
+            </div></div>
+            <div className="hx-ground" />
+            <div className="hx-float-term"><HeroTerminal /></div>
           </div>
         </div>
-        <div className="container hero-bottom"><span>SCROLL TO EXPLORE</span><span className="scroll-line" /><span>ساخت، توسعه، بهینه‌سازی</span></div>
       </section>
 
-      <section className="section platforms" id="platforms"><div className="container">
-        <div className="section-heading"><div><div className="eyebrow"><span /> SUPPORTED PLATFORMS</div><h2>برای دنیای بازی <span>تو.</span></h2></div><p>خدمات NexvorDEV برای سه پلتفرم؛ با یک بازه تعرفه مشخص و خدمات کامل.</p></div>
-        <div className="platform-grid">{platforms.map((platform) => { const Icon = platform.icon; return <article className="platform-card" key={platform.number}>
-          <div className="platform-card-top"><span>{platform.number} / PLATFORM</span><Icon size={25} /></div><h3>{platform.title}</h3><div className="platform-en">{platform.name}</div><p>{platform.description}</p>
-          <div className="tag-list">{platform.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><a href="#contact" aria-label={"سفارش برای " + platform.title}><ArrowUpLeft size={18} /></a>
-        </article>; })}</div>
-      </div></section>
+      <div className="hx-marquee" aria-hidden="true">
+        {[false, true].map(reverse => (
+          <div className={`hx-track ${reverse ? "rev" : ""}`} key={String(reverse)}>
+            {[...marquee, ...marquee].map((item, index) => <span key={index}>{item}<svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 0l5 5-5 5-5-5z" fill="currentColor" /></svg></span>)}
+          </div>
+        ))}
+      </div>
 
-      <section className="section services" id="services"><div className="container">
-        <div className="section-heading"><div><div className="eyebrow"><span /> WHAT WE DO</div><h2>از کدنویسی تا <span>اجرای سرور.</span></h2></div><p>هر چیزی که برای آماده‌سازی و توسعه سرور بازی لازم داری، از همین‌جا شروع می‌شه.</p></div>
-        <div className="services-grid">{services.map((service, index) => { const Icon = service.icon; return <article className="service-card" key={service.title}>
-          <div className="service-top"><span>0{index + 1}</span><Icon size={23} /></div><h3>{service.title}</h3><p>{service.description}</p><a href="#contact" aria-label={"درخواست " + service.title}><ArrowUpLeft size={17} /></a>
-        </article>; })}</div>
-      </div></section>
+      <section className="hx-section" id="platforms">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal>
+            <h2><Words text="برای دنیای بازی تو." /></h2>
+            <p>خدمات NexvorDEV برای سه پلتفرم؛ با یک بازه تعرفه مشخص و خدمات کامل.</p>
+          </div>
+          <div className="hx-bento">
+            {platforms.map((platform, index) => { const Icon = platform.icon; return (
+              <article className={`hx-card ${index === 0 ? "big" : ""}`} key={platform.mark} data-tilt data-reveal data-delay={index * 110}>
+                <span className="hx-mark" aria-hidden="true">{platform.mark}</span>
+                <div className="hx-icon"><Icon size={index === 0 ? 30 : 24} /></div>
+                <h3>{platform.title}</h3>
+                <div className="hx-latin">{platform.name}</div>
+                <p>{platform.description}</p>
+                <div className="hx-tags">{platform.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                <a className="hx-go" href="/request" aria-label={"سفارش برای " + platform.title}><ArrowUpLeft size={18} /></a>
+              </article>
+            ); })}
+          </div>
+        </div>
+      </section>
 
-      <section className="section process" id="process"><div className="container">
-        <div className="section-heading"><div><div className="eyebrow"><span /> HOW WE WORK</div><h2>طرز کار ما، <span>قدم‌به‌قدم.</span></h2></div><p>از پیام اول تا تحویل نهایی، مسیر سفارش روشن و قابل پیگیریه.</p></div>
-        <div className="steps-grid">{steps.map(([number, title, description]) => <article className="step" key={number}><span className="step-number">{number}</span><div className="step-line" /><h3>{title}</h3><p>{description}</p></article>)}</div>
-      </div></section>
+      <section className="hx-section hx-services" id="services">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal>
+            <h2><Words text="از کدنویسی تا اجرای سرور." /></h2>
+            <p>هر چیزی که برای آماده‌سازی و توسعه سرور بازی لازم داری، از همین‌جا شروع می‌شه.</p>
+          </div>
+          <div className="hx-rows">
+            {services.map((service, index) => { const Icon = service.icon; return (
+              <a className="hx-row" href="/request" key={service.title} data-tilt="flat" data-reveal data-delay={index * 90}>
+                <span className="hx-row-icon"><Icon size={26} /></span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <span className="hx-row-go"><ArrowUpLeft size={20} /></span>
+              </a>
+            ); })}
+          </div>
+        </div>
+      </section>
+
+      <section className="hx-section hx-process" id="process">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal>
+            <h2><Words text="طرز کار ما، قدم‌به‌قدم." /></h2>
+            <p>از پیام اول تا تحویل نهایی، مسیر سفارش روشن و قابل پیگیریه.</p>
+          </div>
+          <div className="hx-timeline">
+            {steps.map(([title, description], index) => (
+              <article className="hx-step" key={title} data-reveal>
+                <span className="hx-node" />
+                <div className="hx-step-card"><span className="hx-step-no">{(index + 1).toLocaleString("fa-IR")}</span><h3>{title}</h3><p>{description}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <HelpedBar />
-      <section className="contact section" id="contact"><div className="container"><div className="contact-panel"><div className="contact-glow" /><div className="contact-content">
-        <div className="eyebrow"><span /> LET’S BUILD YOUR SERVER</div><h2>آماده‌ای شروع کنیم؟<br /><span>با ما در ارتباط باش.</span></h2><p>پلتفرم و توضیح کوتاهی از چیزی که لازم داری بفرست تا درباره جزئیات سفارش صحبت کنیم.</p>
-        <a className="button button-primary" href="/request">ثبت سفارش <ArrowLeft size={17} /></a>
-      </div><div className="contact-mark">NX<span>.</span></div></div></div></section>
 
-<section className="brand-showcase" aria-label="NexvorDEV">
-        <div className="container brand-showcase-inner">
-          <Image src="/nexvordev-logo.jpg" alt="نشان رسمی NexvorDEV؛ مرجع تخصصی خدمات دولوپری و پشتیبانی" width={420} height={420} className="brand-showcase-image" />
+      <section className="hx-section hx-contact" id="contact">
+        <div className="hx-wrap">
+          <div className="hx-panel" data-reveal>
+            <span className="hx-watermark" aria-hidden="true" data-depth="0.08">NX</span>
+            <h2>آماده‌ای شروع کنیم؟<br /><span className="hx-grad">با ما در ارتباط باش.</span></h2>
+            <p>پلتفرم و توضیح کوتاهی از چیزی که لازم داری بفرست تا درباره جزئیات سفارش صحبت کنیم.</p>
+            <a className="hx-cta hx-cta-lg" href="/request" data-magnetic>ثبت سفارش <ArrowLeft size={19} /></a>
+          </div>
         </div>
       </section>
 
-            <footer className="footer"><div className="container footer-inner">
-        <a className="brand footer-brand" href="#"><Image className="brand-logo" src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={40} height={40} /><span>NEXVOR<span className="brand-accent">DEV</span><small>GAME SERVER SOLUTIONS</small></span></a>
-        <nav className="footer-links"><a href="#services">سفارشات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار ما</a><a href="#contact">ارتباط با ما</a></nav>
-        <span className="copyright">© {new Date().getFullYear()} NEXVORDEV</span>
-      </div></footer>
+      <footer className="hx-footer">
+        <div className="hx-wrap hx-foot">
+          <a className="hx-brand" href="#top"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={36} height={36} /><span>NexvorDEV</span></a>
+          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a></nav>
+          <span className="hx-copy">© {new Date().getFullYear()} NexvorDEV</span>
+        </div>
+      </footer>
     </main>
   );
 }
