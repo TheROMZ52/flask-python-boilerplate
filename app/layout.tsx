@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 const siteUrl = "https://nexvordev-site.vercel.app";
-const socialImage = "/og-banner.jpg?v=1";
+const socialImage = "/nexvordev-social-card.jpg";
 
 export const metadata: Metadata = {
   title: {
