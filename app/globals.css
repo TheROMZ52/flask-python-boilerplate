@@ -790,3 +790,8 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 .helped-avatars li:first-child{margin-left:0}.helped-avatars li:hover{transform:translateY(-6px) scale(1.08);z-index:99!important}
 .helped-avatars img{width:100%;height:100%;object-fit:cover}.helped-avatars li span{font:800 14px Arial,sans-serif;color:#e6f6ff;letter-spacing:.5px}
 @media(prefers-reduced-motion:reduce){.account-ring{animation:none}}
+.account-social{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:2px 0 4px}
+.account-social button{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:46px;border-radius:999px;border:1px solid #78baff26;background:#040810;color:var(--text);font:700 12px var(--font-vazirmatn),sans-serif;cursor:pointer;transition:.2s}
+.account-social button:hover{border-color:#42e0ff77;transform:translateY(-2px)}
+.account-or{width:100%;display:flex;align-items:center;gap:12px;color:#6a8199;font-size:11px;margin:6px 0 10px}.account-or:before,.account-or:after{content:"";flex:1;height:1px;background:#78baff1a}
+.account-notice{margin:0;color:#7bf5e6;font-size:11px;background:#2ee6d612;border:1px solid #2ee6d630;border-radius:12px;padding:8px 12px}
