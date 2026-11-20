@@ -214,3 +214,17 @@
 .hx-w>span,.hx-hero h1 .hx-grad{transform:none!important;opacity:1!important;filter:none!important}
 .hx-aura{display:none}
 }
+
+
+/* High-contrast label for the light CTA pills on the homepage */
+.hx .hx-cta,
+.hx .hx-cta:visited,
+.hx .hx-cta:hover,
+.hx .hx-cta:focus-visible {
+  color: #07111f !important;
+  -webkit-text-fill-color: #07111f !important;
+}
+.hx .hx-cta svg {
+  color: #07111f !important;
+  stroke: #07111f !important;
+}
