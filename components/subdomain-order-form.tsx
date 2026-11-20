@@ -25,7 +25,7 @@ export default function SubdomainOrderForm() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "sending") return;
-    if (!/^[a-z0-9](?:[a-z0-9-]{0,39}*[a-z0-9])?$/.test(normalized)) {
+    if (!/^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/.test(normalized)) {
       setError("نام ساب‌دامنه فقط می‌تواند شامل حروف انگلیسی، عدد و خط تیره باشد.");
       setStatus("error");
       return;
@@ -38,7 +38,7 @@ export default function SubdomainOrderForm() {
       `مدت: ${selected.label}`,
       `قیمت اعلام‌شده: ${money(selected.price)} تومان`,
       `توضیحات: ${details.trim() || "ندارد"}`,
-    ].join("\\n");
+    ].join("\n");
     try {
       const response = await fetch("/api/service-requests", {
         method: "POST",
@@ -82,7 +82,7 @@ export default function SubdomainOrderForm() {
       <label className="subdomain-field">
         نام دلخواه ساب‌دامنه
         <div className="subdomain-address">
-          <input value={label} onChange={event => setLabel(event.target.value.replace(/[^a-zA-Z0-9-]/g, "").slice(0,  forty))} placeholder="مثلاً myserver" dir="ltr" required minLength={2} maxLength={40} />
+          <input value={label} onChange={event => setLabel(event.target.value.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 40))} placeholder="مثلاً myserver" dir="ltr" required minLength={2} maxLength={40} />
           <span dir="ltr">.nexvordev.ir</span>
         </div>
         <small>فقط حروف انگلیسی، عدد و خط تیره؛ آزادبودن نام پس از ثبت درخواست بررسی می‌شه.</small>
