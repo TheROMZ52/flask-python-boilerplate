@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Globe2, ShieldCheck, Zap } from "lucide-react";
 import SubdomainOrderForm from "@/components/subdomain-order-form";
 import styles from "./subdomains.module.css";
+import "./subdomain-form.css";
 
 export const metadata: Metadata = {
   title: "خرید ساب‌دامنه",
