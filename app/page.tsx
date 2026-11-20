@@ -55,7 +55,7 @@ export default function Home() {
         <div className="hx-bar">
           <a className="hx-brand" href="#top" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} priority /><span>NexvorDEV</span></a>
           <nav className="hx-nav" aria-label="منوی اصلی">
-            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a>
+            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a>
           </nav>
           <a className="hx-cta hx-cta-sm" href="/request" data-magnetic>ثبت سفارش <ArrowUpLeft size={15} /></a>
           <button className="hx-burger" type="button" data-menu-toggle aria-label="منو"><i /><i /></button>
@@ -182,7 +182,7 @@ export default function Home() {
       <footer className="hx-footer">
         <div className="hx-wrap hx-foot">
           <a className="hx-brand" href="#top"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={36} height={36} /><span>NexvorDEV</span></a>
-          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a><a href="/privacy">حریم خصوصی</a><a href="/terms">شرایط استفاده</a></nav>
+          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a><a href="/privacy">حریم خصوصی</a><a href="/terms">شرایط استفاده</a></nav>
           <span className="hx-copy">© {new Date().getFullYear()} NexvorDEV</span>
         </div>
       </footer>
