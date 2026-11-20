@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 const siteUrl = "https://nexvordev-site.vercel.app";
-const socialImage = "/nexvordev-social-card.jpg";
+const socialImage = `${siteUrl}/nexvordev-social-card.jpg?v=6`;
 
 export const metadata: Metadata = {
   title: {
@@ -47,6 +47,7 @@ export const metadata: Metadata = {
         url: socialImage,
         width: 700,
         height: 247,
+        type: "image/jpeg",
         alt: "NexvorDEV — Development • Web • Minecraft",
       },
     ],
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NexvorDEV | Development • Web • Minecraft",
     description: "توسعه، وب و ماینکرفت — از ایده تا اجرا.",
-    images: [socialImage],
+    images: [{ url: socialImage, width: 700, height: 247 }],
   },
 };
 
