@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Scale } from "lucide-react";
 import type { ReactNode } from "react";
-import "./legal.css";
+import "../app/legal.css";
 
 type Section = { title: string; body: ReactNode };
 
