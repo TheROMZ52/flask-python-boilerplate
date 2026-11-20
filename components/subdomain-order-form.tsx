@@ -85,7 +85,7 @@ export default function SubdomainOrderForm() {
           <input value={label} onChange={event => { setLabel(event.target.value.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 40)); if (status !== "idle") setStatus("idle"); }} placeholder="مثلاً myserver" dir="ltr" required minLength={2} maxLength={40} aria-invalid={label.length > 0 && !validName} />
           <span dir="ltr">.nexvordev.ir</span>
         </div>
-        <div className="subdomain-hint"><small>فقط حروف انگلیسی، عدد و خط تیره؛ نام‌های رزروشده یا تکراری قابل ثبت نیستند.</small><strong className={label.length === 0 ? "" : validName ? "valid" : "invalid"} dir="ltr">{normalized ? (validName ? "✓ نام از نظر ساختار معتبر است" : "نام نامعتبر است") : "نام را وارد کن"}</strong></div>
+        <div className="subdomain-hint"><small>فقط حروف انگلیسی، عدد و خط تیره؛ نام‌های رزروشده یا تکراری قابل ثبت نیستند.</small><strong className={label.length === 0 ? "" : validName ? "valid" : "invalid"} dir="ltr">{normalized ? (validName ? "✓ نام از نظر ساختار معتبر است" : "نام نامعتبر است") : "نام را وارد کن"}</strong></div><div className="subdomain-live-preview" aria-live="polite"><span>پیش‌نمایش آدرس</span><strong dir="ltr">{normalized || "yourname"}.nexvordev.ir</strong></div>
       </label>
 
       <label className="subdomain-field">
