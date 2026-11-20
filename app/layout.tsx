@@ -17,30 +17,47 @@ const inter = Inter({
 });
 
 const siteUrl = "https://nexvordev-site.vercel.app";
+const socialImage = "/og-image.svg";
 
 export const metadata: Metadata = {
   title: {
-    default: "NexvorDEV | زیرساخت و توسعه سرورهای بازی",
+    default: "NexvorDEV | Development • Web • Minecraft",
     template: "%s | NexvorDEV",
   },
   description:
-    "توسعه پلاگین اختصاصی، راه‌اندازی و بهینه‌سازی سرورهای بازی با تمرکز بر ماینکرفت و کانتر استرایک.",
+    "NexvorDEV؛ توسعه، وب و ماینکرفت — از ایده تا اجرا.",
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
   other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
   alternates: { canonical: "/" },
-  icons: { icon: "/favicon.ico", shortcut: "/favicon.ico", apple: "/nexvordev-logo.jpg" },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/nexvordev-logo.jpg",
+  },
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "NexvorDEV | زیرساختی فراتر از بازی",
-    description: "از ایده تا اجرای یک سرور بازی حرفه‌ای؛ کنار شما هستیم.",
+    title: "NexvorDEV | Development • Web • Minecraft",
+    description: "توسعه، وب و ماینکرفت — از ایده تا اجرا.",
     siteName: "NexvorDEV",
     locale: "fa_IR",
     type: "website",
     url: siteUrl,
-    images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }],
+    images: [
+      {
+        url: socialImage,
+        width: 1200,
+        height: 630,
+        alt: "NexvorDEV — Development • Web • Minecraft",
+      },
+    ],
   },
-  twitter: { card: "summary", title: "NexvorDEV | توسعه سرورهای بازی", description: "توسعه پلاگین، راه‌اندازی و بهینه‌سازی سرورهای بازی.", images: ["/nexvordev-logo.jpg"] },
+  twitter: {
+    card: "summary_large_image",
+    title: "NexvorDEV | Development • Web • Minecraft",
+    description: "توسعه، وب و ماینکرفت — از ایده تا اجرا.",
+    images: [socialImage],
+  },
 };
 
 export default function RootLayout({
@@ -53,7 +70,27 @@ export default function RootLayout({
       <body className={`${vazirmatn.variable} ${inter.variable}`}>
         {children}
         <SupportLauncher />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "NexvorDEV", url: siteUrl, logo: `${siteUrl}/nexvordev-logo.jpg`, description: "توسعه پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.", sameAs: ["https://t.me/TheROMZDEV"], contactPoint: { "@type": "ContactPoint", contactType: "sales and support", url: "https://t.me/TheROMZDEV", availableLanguage: ["fa"] } }) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "NexvorDEV",
+              url: siteUrl,
+              logo: `${siteUrl}/nexvordev-logo.jpg`,
+              description:
+                "توسعه پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.",
+              sameAs: ["https://t.me/TheROMZDEV"],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales and support",
+                url: "https://t.me/TheROMZDEV",
+                availableLanguage: ["fa"],
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );
