@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { AlertCircle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
+import { AlertCircle, CheckCircle2, LoaderCircle, Send, Check } from "lucide-react";
 
 const plans = [
   { id: "1m", label: "یک‌ماهه", days: "۳۰ روز", price: 25000 },
@@ -20,7 +20,7 @@ export default function SubdomainOrderForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const selected = useMemo(() => plans.find(item => item.id === plan) ?? plans[1], [plan]);
-  const normalized = label.trim().toLowerCase();
+  const normalized = label.trim().toLowerCase();\n  const validName = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/.test(normalized);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,7 +73,7 @@ export default function SubdomainOrderForm() {
               <input type="radio" name="duration" value={item.id} checked={plan === item.id} onChange={() => setPlan(item.id)} />
               <strong>{item.label}</strong>
               <span>{money(item.price)} تومان</span>
-              <small>{item.days}</small>
+              <small>{item.days}</small>{plan === item.id && <Check className="subdomain-plan-check" size={15} aria-hidden="true" />}
             </label>
           ))}
         </div>
@@ -82,10 +82,10 @@ export default function SubdomainOrderForm() {
       <label className="subdomain-field">
         نام دلخواه ساب‌دامنه
         <div className="subdomain-address">
-          <input value={label} onChange={event => setLabel(event.target.value.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 40))} placeholder="مثلاً myserver" dir="ltr" required minLength={2} maxLength={40} />
+          <input value={label} onChange={event => { setLabel(event.target.value.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 40)); if (status !== "idle") setStatus("idle"); }} placeholder="مثلاً myserver" dir="ltr" required minLength={2} maxLength={40} aria-invalid={label.length > 0 && !validName} />
           <span dir="ltr">.nexvordev.ir</span>
         </div>
-        <small>فقط حروف انگلیسی، عدد و خط تیره؛ آزادبودن نام پس از ثبت درخواست بررسی می‌شه.</small>
+        <div className="subdomain-hint"><small>فقط حروف انگلیسی، عدد و خط تیره؛ نام‌های رزروشده یا تکراری قابل ثبت نیستند.</small><strong className={label.length === 0 ? "" : validName ? "valid" : "invalid"} dir="ltr">{normalized ? (validName ? "✓ نام از نظر ساختار معتبر است" : "نام نامعتبر است") : "نام را وارد کن"}</strong></div>
       </label>
 
       <label className="subdomain-field">
@@ -98,7 +98,7 @@ export default function SubdomainOrderForm() {
         <textarea value={details} onChange={event => setDetails(event.target.value)} placeholder="اگر توضیح یا درخواست خاصی داری بنویس..." rows={4} maxLength={1000} />
       </label>
 
-      <div className="subdomain-total"><span>مبلغ پلن انتخابی</span><strong>{money(selected.price)} تومان</strong></div>
+      <div className="subdomain-total"><span>مبلغ پلن انتخابی <small>{selected.label}</small></span><strong>{money(selected.price)} <small>تومان</small></strong></div>
       {status === "success" && <div className="subdomain-feedback success"><CheckCircle2 size={18} /> درخواستت ثبت شد؛ برای بررسی نام و ادامه هماهنگی باهات تماس می‌گیریم.</div>}
       {status === "error" && <div className="subdomain-feedback error"><AlertCircle size={18} /> {error}</div>}
       <button className="subdomain-submit" type="submit" disabled={status === "sending"}>
