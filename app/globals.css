@@ -795,3 +795,26 @@ html{scroll-behavior:smooth;scroll-padding-top:105px}
 .account-social button:hover{border-color:#42e0ff77;transform:translateY(-2px)}
 .account-or{width:100%;display:flex;align-items:center;gap:12px;color:#6a8199;font-size:11px;margin:6px 0 10px}.account-or:before,.account-or:after{content:"";flex:1;height:1px;background:#78baff1a}
 .account-notice{margin:0;color:#7bf5e6;font-size:11px;background:#2ee6d612;border:1px solid #2ee6d630;border-radius:12px;padding:8px 12px}
+
+
+/* Keep text readable on every light-gradient primary action across the site */
+.button-primary,
+.nav-cta[style*="gradient"],
+.subdomain-submit,
+.service-request-submit,
+.account-submit,
+.support-launcher,
+.pricing-page-shell .button-primary {
+  color: #07111f !important;
+  -webkit-text-fill-color: #07111f;
+}
+.button-primary *,
+.nav-cta[style*="gradient"] *,
+.subdomain-submit *,
+.service-request-submit *,
+.account-submit *,
+.support-launcher *,
+.pricing-page-shell .button-primary * {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
