@@ -56,7 +56,7 @@ export default function AccountForm() {
     setBusy(false);
   }
 
-  async function social(provider: "google" | "github") {
+  async function social(provider: "google" | "github" | "discord") {
     setError("");
     const { error: failure } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo: `${window.location.origin}/auth/callback` } });
     if (failure) setError("ورود با این روش در دسترس نیست.");
@@ -81,6 +81,7 @@ export default function AccountForm() {
             <div className="account-social">
               <button type="button" onClick={() => social("google")}><GoogleIcon /> گوگل</button>
               <button type="button" onClick={() => social("github")}><GithubIcon /> گیت‌هاب</button>
+              <button type="button" onClick={() => social("discord")}><DiscordIcon /> دیسکورد</button>
             </div>
             <div className="account-or"><span>یا</span></div>
             <form onSubmit={submit} className="account-fields">
