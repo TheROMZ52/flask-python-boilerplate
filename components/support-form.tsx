@@ -18,7 +18,8 @@ export default function SupportForm() {
     }
   }
 
-  async function submit(event: FormEvent<HTMLFormElement>) {\n    if (busy) return;
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    if (busy) return;
     event.preventDefault();
     setBusy(true);
     setError("");
