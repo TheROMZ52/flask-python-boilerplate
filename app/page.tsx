@@ -182,7 +182,7 @@ export default function Home() {
       <footer className="hx-footer">
         <div className="hx-wrap hx-foot">
           <a className="hx-brand" href="#top"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={36} height={36} /><span>NexvorDEV</span></a>
-          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a></nav>
+          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a><a href="/privacy">حریم خصوصی</a><a href="/terms">شرایط استفاده</a></nav>
           <span className="hx-copy">© {new Date().getFullYear()} NexvorDEV</span>
         </div>
       </footer>
