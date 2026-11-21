@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   description: "NexvorDEV؛ توسعه، وب و ماینکرفت — از ایده تا اجرا.",
   applicationName: "NexvorDEV",
-  verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
+  verification: { google: "LVRc98jd-dbb5DyF77arcvzGDLlp46q1fneg0IX3ZFc" },
   other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
   icons: {
     icon: "/favicon.ico",
