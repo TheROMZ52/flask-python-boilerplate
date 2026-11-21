@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   description: "NexvorDEV؛ ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرور ماینکرفت جاوا و بدراک و کانتر استرایک ۱.۶.",
   applicationName: "NexvorDEV",
   verification: { google: "LVRc98jd-dbb5DyF77arcvzGDLlp46q1fneg0IX3ZFc" },
-  other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -68,6 +67,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
+      <head>
+        <meta name="enamad" content="24132924" />
+      </head>
       <body className={`${vazirmatn.variable} ${inter.variable}`}>
         {children}
         <SupportLauncher />
