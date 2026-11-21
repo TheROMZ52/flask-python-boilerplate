@@ -18,11 +18,11 @@ export default function HeroCanvas() {
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
       width = rect.width; height = rect.height;
       canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = Math.round(clampValue((width * height) / 15000, 24, 80));
+      const count = Math.round(clampValue((width * height) / 20000, 20, 52));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width, y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,

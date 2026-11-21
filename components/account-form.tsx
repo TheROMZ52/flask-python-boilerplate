@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Eye, EyeOff, Lock, LogOut, Mail, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, ShieldCheck } from "lucide-react";
 import { supabaseBrowser } from "@/lib/supabase/client";
+import AccountDashboard from "@/components/account-dashboard";
 
 type Mode = "signup" | "login";
 
@@ -66,19 +67,15 @@ export default function AccountForm() {
     if (failure) setError("ورود با این روش در دسترس نیست.");
   }
 
+  if (ready && email) return <AccountDashboard />;
+
   return (
     <div className="account-orb">
       <div className="account-ring" aria-hidden />
       <div className="account-card">
         <span className="account-kicker">NEXVORDEV</span>
-        {!ready ? null : email ? (
-          <>
-            <h1>خوش آمدی</h1>
-            <p className="account-sub" dir="ltr">{email}</p>
-            <a className="account-submit" href="/support">پشتیبانی و تیکت‌ها</a>
-            <button className="account-link" type="button" onClick={() => supabase.auth.signOut()}><LogOut size={13} /> خروج از حساب</button>
-          </>
-        ) : (
+        {!ready ? null : (
+
           <>
             <h1>{mode === "signup" ? "ساخت حساب کاربری" : "ورود به حساب"}</h1>
             <p className="account-sub">{mode === "signup" ? "در چند ثانیه حساب خودتان را بسازید" : "به حساب کاربری خود وارد شوید"}</p>

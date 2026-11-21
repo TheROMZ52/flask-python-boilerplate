@@ -106,38 +106,40 @@ export default function HomeFx() {
 
       const hero = document.querySelector<HTMLElement>(".hx-hero");
       if (hero) {
-        let frame = 0;
+        let frame = 0, running = false;
         let px = 0, py = 0, tx = 0, ty = 0;
         const loop = () => {
-          px += (tx - px) * 0.08; py += (ty - py) * 0.08;
+          px += (tx - px) * 0.1; py += (ty - py) * 0.1;
           hero.style.setProperty("--px", px.toFixed(3));
           hero.style.setProperty("--py", py.toFixed(3));
+          if (Math.abs(tx - px) < 0.002 && Math.abs(ty - py) < 0.002) { running = false; return; }
           frame = requestAnimationFrame(loop);
         };
+        const kick = () => { if (!running) { running = true; frame = requestAnimationFrame(loop); } };
         const move = (event: PointerEvent) => {
           const rect = hero.getBoundingClientRect();
           tx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
           ty = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+          kick();
         };
-        const leave = () => { tx = 0; ty = 0; };
-        hero.addEventListener("pointermove", move);
+        const leave = () => { tx = 0; ty = 0; kick(); };
+        hero.addEventListener("pointermove", move, { passive: true });
         hero.addEventListener("pointerleave", leave);
-        frame = requestAnimationFrame(loop);
         cleanups.push(() => { cancelAnimationFrame(frame); hero.removeEventListener("pointermove", move); hero.removeEventListener("pointerleave", leave); });
       }
 
       const aura = document.createElement("div");
       aura.className = "hx-aura";
       body.appendChild(aura);
-      let ax = window.innerWidth / 2, ay = window.innerHeight / 2, bx = ax, by = ay, auraFrame = 0;
-      const follow = (event: PointerEvent) => { bx = event.clientX; by = event.clientY; };
+      let ax = window.innerWidth / 2, ay = window.innerHeight / 2, bx = ax, by = ay, auraFrame = 0, auraRunning = false;
       const run = () => {
-        ax += (bx - ax) * 0.12; ay += (by - ay) * 0.12;
+        ax += (bx - ax) * 0.14; ay += (by - ay) * 0.14;
         aura.style.transform = `translate3d(${ax.toFixed(1)}px,${ay.toFixed(1)}px,0)`;
+        if (Math.abs(bx - ax) < 0.5 && Math.abs(by - ay) < 0.5) { auraRunning = false; return; }
         auraFrame = requestAnimationFrame(run);
       };
+      const follow = (event: PointerEvent) => { bx = event.clientX; by = event.clientY; if (!auraRunning) { auraRunning = true; auraFrame = requestAnimationFrame(run); } };
       window.addEventListener("pointermove", follow, { passive: true });
-      auraFrame = requestAnimationFrame(run);
       cleanups.push(() => { cancelAnimationFrame(auraFrame); window.removeEventListener("pointermove", follow); aura.remove(); });
     }
 

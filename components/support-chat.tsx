@@ -31,10 +31,6 @@ export default function SupportChat({ ticketId }: { ticketId: string }) {
       window.history.replaceState({}, "", window.location.pathname);
     }
     setToken(storedToken);
-    if (!storedToken) {
-      setError("لینک اختصاصی گفتگو را نداریم. از همان دستگاهی که درخواست را ثبت کردی وارد شو یا لینک کامل گفتگو را باز کن.");
-      return;
-    }
     refresh(storedToken).catch(e => setError(e instanceof Error ? e.message : "خطا در دریافت گفتگو"));
     const timer = window.setInterval(() => refresh(storedToken).catch(() => undefined), 5000);
     return () => window.clearInterval(timer);
@@ -49,7 +45,7 @@ export default function SupportChat({ ticketId }: { ticketId: string }) {
 
   async function send(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!body.trim() || !token || busy) return;
+    if (!body.trim() || busy) return;
     setBusy(true);
     setError("");
     try {

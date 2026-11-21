@@ -76,7 +76,7 @@ export default function Home() {
           <div className="hx-stage" aria-hidden="true">
             <div className="hx-world"><div className="hx-spin">
               {cubes.map((cube, index) => (
-                <div className={`vx ${cube.tone ?? ""}`} key={index} style={{ "--x": cube.x, "--y": cube.y, "--z": cube.z, "--s": `${cube.s}px`, "--d": `${cube.d}s` } as CSSProperties}>
+                <div className={`vx ${cube.tone ?? ""} ${cube.s < 40 ? "fl" : ""}`} key={index} style={{ "--x": cube.x, "--y": cube.y, "--z": cube.z, "--s": `${cube.s}px`, "--d": `${cube.d}s` } as CSSProperties}>
                   <i className="f-t" /><i className="f-b" /><i className="f-1" /><i className="f-2" /><i className="f-3" /><i className="f-4" />
                 </div>
               ))}

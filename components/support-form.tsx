@@ -1,5 +1,6 @@
 "use client";
-import { useState, type FormEvent, type KeyboardEvent } from "react";
+import { useEffect, useState, type FormEvent, type KeyboardEvent } from "react";
+import { useProfile } from "@/lib/use-profile";
 import { ArrowLeft, LoaderCircle, MessageCircle, ShieldCheck } from "lucide-react";
 import { readStorage, writeStorage } from "@/lib/safe-storage";
 
@@ -7,6 +8,14 @@ export default function SupportForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({ first_name: "", last_name: "", age: "", telegram_username: "", subject: "", message: "" });
+
+  const profile = useProfile();
+
+  useEffect(() => {
+    if (!profile) return;
+    const [first, ...rest] = profile.name.trim().split(/\s+/);
+    setForm(current => ({ ...current, first_name: current.first_name || first || "", last_name: current.last_name || rest.join(" "), telegram_username: current.telegram_username || profile.telegram }));
+  }, [profile]);
 
   function change(key: keyof typeof form, value: string) {
     setForm(current => ({ ...current, [key]: value }));

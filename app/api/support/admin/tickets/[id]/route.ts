@@ -1,3 +1,4 @@
+import { notifyCustomerAboutReply } from "@/lib/bot/public";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { ADMIN_COOKIE, cleanText, isAdminSessionValid, supportDb } from "@/lib/support/server";
@@ -41,6 +42,7 @@ export async function POST(request: Request, context: Context) {
       method: "PATCH", headers: { Prefer: "return=minimal" },
       body: JSON.stringify({ status: "answered", last_message_at: new Date().toISOString(), updated_at: new Date().toISOString() }),
     });
+    await notifyCustomerAboutReply(id).catch(() => null);
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "ارسال پاسخ انجام نشد." }, { status: 503 });

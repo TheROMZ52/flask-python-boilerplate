@@ -16,7 +16,7 @@ export default function ScratchReveal() {
     const image = imageRef.current;
     if (!canvas || !image?.complete || !image.naturalWidth) return;
     const rect = canvas.getBoundingClientRect();
-    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.max(1, Math.round(rect.width * ratio));
     canvas.height = Math.max(1, Math.round(rect.height * ratio));
     const context = canvas.getContext("2d");

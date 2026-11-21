@@ -1,9 +1,9 @@
 .hx-page{min-height:100svh;display:flex;flex-direction:column}
 .hx-page>.hx-footer{margin-top:auto}
 .hx-page-bg{position:absolute;inset:0 0 auto;height:760px;z-index:0;pointer-events:none;overflow:hidden;-webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent)}
-.hx-page-bg i{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen}
-.hx-page-bg i:nth-child(1){width:520px;height:520px;right:-8%;top:-18%;background:rgba(40,150,255,.3);animation:hxDrift 16s ease-in-out infinite alternate}
-.hx-page-bg i:nth-child(2){width:420px;height:420px;left:-6%;top:12%;background:rgba(130,90,255,.26);animation:hxDrift 20s ease-in-out infinite alternate-reverse}
+.hx-page-bg i{position:absolute;border-radius:50%;will-change:transform}
+.hx-page-bg i:nth-child(1){width:520px;height:520px;right:-8%;top:-18%;background:radial-gradient(closest-side,rgba(40,150,255,.3),transparent);animation:hxDrift 16s ease-in-out infinite alternate}
+.hx-page-bg i:nth-child(2){width:420px;height:420px;left:-6%;top:12%;background:radial-gradient(closest-side,rgba(130,90,255,.26),transparent);animation:hxDrift 20s ease-in-out infinite alternate-reverse}
 .hx-page-bg i:nth-child(3){inset:auto 0 0;height:1px;width:auto;border-radius:0;filter:none;background:linear-gradient(90deg,transparent,rgba(92,214,255,.4),transparent)}
 .hx-page>section{position:relative;z-index:1}
 .hx-phero{padding:150px 0 40px}
@@ -59,7 +59,7 @@
 
 .hx-account{position:relative;z-index:1;min-height:100svh;display:grid;place-items:center;padding:120px 18px 60px}
 .hx-404{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:120px 20px 60px}
-.hx-404-code{font:900 clamp(120px,26vw,300px)/1 var(--font-inter),sans-serif;background:linear-gradient(120deg,#9fe9ff,#5cd6ff,#8f7bff,#ff9a6b);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:hxSheen 6s linear infinite;filter:drop-shadow(0 0 60px rgba(92,214,255,.25))}
+.hx-404-code{font:900 clamp(120px,26vw,300px)/1 var(--font-inter),sans-serif;background:linear-gradient(120deg,#9fe9ff,#5cd6ff,#8f7bff,#ff9a6b);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
 .hx-404 h1{margin:0;font-size:clamp(26px,4vw,40px);font-weight:900}.hx-404 p{margin:0 0 22px;color:var(--mute)}
 
 .hx-legal{display:grid;grid-template-columns:230px minmax(0,1fr);gap:22px;align-items:start}

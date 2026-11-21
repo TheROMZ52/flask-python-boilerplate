@@ -79,3 +79,21 @@ export async function notifyAdminAboutNewServiceRequest(requestId: string) {
     ]]}
   })));
 }
+
+export async function notifyAdminAboutCustomerMessage(ticketId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows = await supportDb(`nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,first_name,last_name,subject&limit=1`) as Array<Record<string, unknown>>;
+  const ticket = rows?.[0];
+  if (!ticket) return;
+  const messages = await supportDb(`nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&sender_role=eq.customer&select=body&order=created_at.desc&limit=1`) as Array<{ body: string }>;
+  const text = [
+    "💬 <b>پیام جدید از مشتری</b>",
+    `<b>مشتری:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
+    `<b>موضوع:</b> ${escapeTelegramHtml(ticket.subject)}`,
+    "",
+    escapeTelegramHtml(messages?.[0]?.body || "").slice(0, 2500),
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, {
+    reply_markup: { inline_keyboard: [[{ text: "🎫 مشاهده و پاسخ", callback_data: `ticket:${ticketId}` }]] },
+  })));
+}

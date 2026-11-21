@@ -1,23 +1,14 @@
 import { NextResponse } from "next/server";
 import { cleanText, supportDb } from "@/lib/support/server";
 import { escapeTelegramHtml, sendTelegramMessage } from "@/lib/support/telegram";
+import { handlePublicCallback, handlePublicMessage, notifyCustomerAboutReply, notifyCustomerAboutRequest, type BotCallback, type BotMessage } from "@/lib/bot/public";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type TelegramMessage = {
-  message_id?: number;
-  text?: string;
-  chat?: { id?: number; type?: string };
-  from?: { id?: number; is_bot?: boolean };
-};
+type TelegramMessage = BotMessage;
 
-type TelegramCallbackQuery = {
-  id: string;
-  data?: string;
-  from?: { id?: number; is_bot?: boolean };
-  message?: TelegramMessage;
-};
+type TelegramCallbackQuery = BotCallback;
 
 type TelegramUpdate = {
   message?: TelegramMessage;
@@ -189,7 +180,7 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
       [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0" }],
       [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0" }],
       [{ text: "🔎 جست‌وجوی تیکت", callback_data: "search_help" }, { text: "🔄 بروزرسانی آمار", callback_data: "dashboard" }],
-      [{ text: "📖 راهنمای دستورات", callback_data: "help" }],
+      [{ text: "📖 راهنمای دستورات", callback_data: "help" }, { text: "👤 منوی مشتری", callback_data: "p:menu" }],
     ],
   };
   if (edit) await editCallbackMessage(edit, text, markup);
@@ -212,7 +203,7 @@ type ServiceRequest = {
   id: string; customer_name: string; telegram_contact: string; service_type: string;
   priority: "normal" | "urgent" | "critical"; details: string; status: string;
   assigned_to?: string | null; quoted_price?: string | null; internal_note?: string | null;
-  created_at: string; updated_at: string;
+  created_at: string; updated_at: string; telegram_chat_id?: string | null;
 };
 const serviceStatusLabels: Record<string,string> = {
   new:"🆕 جدید", reviewing:"🔍 در حال بررسی", in_progress:"🛠 در حال انجام",
@@ -293,7 +284,9 @@ async function updateServiceStatus(id:string,status:string,actor:string) {
     status,updated_at:now,completed_at:status==="completed"?now:null
   })});
   await logServiceEvent(id,actor,"status",item.status,status);
-  return getServiceRequest(id);
+  const updated=await getServiceRequest(id);
+  if(updated) await notifyCustomerAboutRequest(updated,"status").catch(()=>null);
+  return updated;
 }
 async function assignServiceRequest(id:string,actor:string) {
   const item=await getServiceRequest(id); if(!item) return null;
@@ -308,6 +301,7 @@ async function showServiceEvents(id:string,chatId:string) {
 }
 
 async function handleCallback(callback: TelegramCallbackQuery) {
+  if ((callback.data || "").startsWith("p:")) { await handlePublicCallback(callback); return; }
   const senderId = callback.from?.id;
   const chatId = callback.message?.chat?.id;
   if (!senderId || !chatId || String(senderId) !== String(chatId) || !adminIds().includes(String(senderId))) {
@@ -384,10 +378,20 @@ async function handleCommand(message: TelegramMessage) {
   const chatId = message.chat?.id;
   const senderId = message.from?.id;
   const text = (message.text || "").trim();
-  if (!chatId || !senderId || message.from?.is_bot || !text.startsWith("/")) return;
-  if (!adminIds().length) return;
-  if (message.chat?.type !== "private" || String(chatId) !== String(senderId) || !adminIds().includes(String(senderId))) {
-    await reply(String(chatId), "⛔ این بات فقط در گفت‌وگوی خصوصی و برای مدیران مجاز NexvorDEV فعال است.");
+  if (!chatId || !senderId || message.from?.is_bot || !text) return;
+  if (message.chat?.type !== "private" || String(chatId) !== String(senderId)) {
+    if (text.startsWith("/")) await reply(String(chatId), "برای استفاده از بات، در گفت‌وگوی خصوصی استارتش کن 🙂");
+    return;
+  }
+  const admin = adminIds().includes(String(senderId));
+  const first = text.startsWith("/") ? text.split(/\s+/)[0].split("@")[0].toLowerCase() : null;
+  const publicCommands = ["/menu", "/order", "/newticket", "/my", "/prices", "/services", "/cancel"];
+  if (!first || publicCommands.includes(first) || (!admin && (first === "/start" || first === "/help"))) {
+    await handlePublicMessage(message, first, admin);
+    return;
+  }
+  if (!admin) {
+    await handlePublicMessage(message, "/menu", false);
     return;
   }
 
@@ -416,7 +420,7 @@ async function handleCommand(message: TelegramMessage) {
   if (command === "/request") { if(!/^[0-9a-f-]{36}$/i.test(argument)) { await reply(String(chatId),"فرمت: <code>/request شناسه</code>"); return; } await showServiceRequest(argument,String(chatId)); return; }
   if (command === "/setstatus") { const match=argument.match(/^([0-9a-f-]{36})\s+(new|reviewing|in_progress|completed|rejected)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/setstatus شناسه new|reviewing|in_progress|completed|rejected</code>");return;} const item=await updateServiceStatus(match[1],match[2],String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
   if (command === "/assign") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/assign شناسه</code>");return;} const item=await assignServiceRequest(argument,String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
-  if (command === "/quote") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/quote شناسه مبلغ</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const price=cleanText(match[2],80); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({quoted_price:price,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"quote",item.quoted_price,price); await reply(String(chatId),`💰 قیمت پیشنهادی ثبت شد: <b>${escapeTelegramHtml(price)}</b>`,{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
+  if (command === "/quote") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/quote شناسه مبلغ</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const price=cleanText(match[2],80); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({quoted_price:price,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"quote",item.quoted_price,price); await notifyCustomerAboutRequest({...item,quoted_price:price},"quote").catch(()=>null); await reply(String(chatId),`💰 قیمت پیشنهادی ثبت شد: <b>${escapeTelegramHtml(price)}</b>`,{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
   if (command === "/note") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/note شناسه متن یادداشت</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const note=cleanText(match[2],1000); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({internal_note:note,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"note",null,null,note); await reply(String(chatId),"📝 یادداشت داخلی ذخیره شد.",{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
   if (command === "/history") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/history شناسه</code>");return;} await showServiceEvents(argument,String(chatId)); return; }
   if (command === "/tickets") {
@@ -483,6 +487,7 @@ async function handleCommand(message: TelegramMessage) {
       headers: { Prefer: "return=minimal" },
       body: JSON.stringify({ status: "answered", last_message_at: now, updated_at: now }),
     });
+    await notifyCustomerAboutReply(id).catch(() => null);
     await reply(String(chatId), "✅ پاسخ با موفقیت ثبت شد و در چت سایت نمایش داده می‌شود.", { inline_keyboard: [[{ text: "👁 مشاهده تیکت", callback_data: `ticket:${id}` }, { text: "📬 فهرست", callback_data: "tickets:0" }]] });
     return;
   }
