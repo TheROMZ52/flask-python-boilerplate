@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexvorDEV | Development • Web • Minecraft",
-    description: "توسعه، وب و ماینکرفت — از ایده تا اجرا.",
+    title: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
+    description: "ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.",
     images: [{ url: socialImage, width: 700, height: 247 }],
   },
 };
