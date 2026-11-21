@@ -35,7 +35,7 @@ const steps = [
 export default function PricingPage() {
   return (
     <PageShell active="/pricing">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "صفحه اصلی", item: "https://nexvordev-site.vercel.app/" }, { "@type": "ListItem", position: 2, name: "تعرفه خدمات", item: "https://nexvordev-site.vercel.app/pricing" }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "صفحه اصلی", item: "https://nexvordev.ir/" }, { "@type": "ListItem", position: 2, name: "تعرفه خدمات", item: "https://nexvordev.ir/pricing" }] }) }} />
       <PageHero badge={<><span className="hx-live" /> تعرفه خدمات NexvorDEV</>} title="قیمت روشن؛" accent="متناسب با پروژه‌ات." lead="از یک تنظیم ساده تا توسعه اختصاصی؛ اول نیاز پروژه رو بررسی می‌کنیم و بعد هزینه نهایی رو شفاف بهت می‌گیم.">
         <div className="hx-actions">
           <Link className="hx-cta" href="/request" data-magnetic>دریافت برآورد هزینه <ArrowLeft size={18} /></Link>
