@@ -1,6 +1,7 @@
 "use client";
 import { useState, type FormEvent, type KeyboardEvent } from "react";
 import { ArrowLeft, LoaderCircle, MessageCircle, ShieldCheck } from "lucide-react";
+import { readStorage, writeStorage } from "@/lib/safe-storage";
 
 export default function SupportForm() {
   const [busy, setBusy] = useState(false);
@@ -19,8 +20,8 @@ export default function SupportForm() {
   }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
-    if (busy) return;
     event.preventDefault();
+    if (busy) return;
     setBusy(true);
     setError("");
     try {
@@ -30,10 +31,12 @@ export default function SupportForm() {
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "ثبت درخواست انجام نشد.");
-      const saved = JSON.parse(localStorage.getItem("nexvor-support-ticket-list") || "[]");
+      let saved: unknown = [];
+      try { saved = JSON.parse(readStorage("nexvor-support-ticket-list") || "[]"); } catch {}
       const list = Array.isArray(saved) ? saved.filter((item: { id?: string }) => item?.id !== result.ticketId) : [];
       list.unshift({ id: result.ticketId, token: result.accessToken });
-      localStorage.setItem("nexvor-support-ticket-list", JSON.stringify(list.slice(0, 50)));
+      writeStorage("nexvor-support-ticket-list", JSON.stringify(list.slice(0, 50)));
+      writeStorage(`nexvor-support-${result.ticketId}`, result.accessToken);
       window.location.assign(`/support/ticket/${result.ticketId}?token=${encodeURIComponent(result.accessToken)}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : "ارتباط با سرور برقرار نشد.");

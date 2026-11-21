@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clientKey, limited } from "@/lib/rate-limit";
 import { cleanText, hashAccessToken, newAccessToken, supportDb } from "@/lib/support/server";
 import { notifyAdminAboutNewTicket } from "@/lib/support/telegram";
 
@@ -6,6 +7,7 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
+    if (limited(`ticket:${clientKey(request)}`, 6, 10 * 60 * 1000)) return NextResponse.json({ error: "درخواست‌های زیادی ثبت شد؛ کمی بعد دوباره تلاش کن." }, { status: 429 });
     const body = await request.json();
     const first_name = cleanText(body.first_name, 80);
     const last_name = cleanText(body.last_name, 80);

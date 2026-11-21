@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState, type FormEvent, type KeyboardEvent } from "react";
 import { ArrowLeft, LoaderCircle, Send, ShieldCheck } from "lucide-react";
+import { readStorage, writeStorage } from "@/lib/safe-storage";
 
 type Ticket = { id: string; first_name: string; last_name: string; subject: string; status: string; created_at: string };
 type Message = { id: string; sender_role: "customer" | "admin"; body: string; created_at: string };
@@ -24,9 +25,9 @@ export default function SupportChat({ ticketId }: { ticketId: string }) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const queryToken = params.get("token");
-    const storedToken = queryToken || localStorage.getItem(`nexvor-support-${ticketId}`) || "";
+    const storedToken = queryToken || readStorage(`nexvor-support-${ticketId}`) || "";
     if (queryToken) {
-      localStorage.setItem(`nexvor-support-${ticketId}`, queryToken);
+      writeStorage(`nexvor-support-${ticketId}`, queryToken);
       window.history.replaceState({}, "", window.location.pathname);
     }
     setToken(storedToken);

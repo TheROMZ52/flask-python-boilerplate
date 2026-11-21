@@ -1,19 +1,20 @@
-import Link from "next/link";
-import { ArrowRight, LifeBuoy } from "lucide-react";
+import { LifeBuoy } from "lucide-react";
 import SupportForm from "@/components/support-form";
 import MySupportTickets from "@/components/my-support-tickets";
+import { PageHero, PageShell } from "@/components/site-chrome";
 
-export const metadata = { title: "پشتیبانی | NexvorDEV", description: "ثبت درخواست و گفت‌وگو با تیم پشتیبانی NexvorDEV." };
+export const metadata = { title: "پشتیبانی", description: "ثبت درخواست و گفت‌وگو با تیم پشتیبانی NexvorDEV.", alternates: { canonical: "/support" } };
 
 export default function SupportPage() {
-  return <main className="support-page"><div className="support-shell">
-    <Link href="/" className="support-back"><ArrowRight size={16} /> بازگشت به سایت</Link>
-    <section className="support-card">
-      <span className="support-kicker">NEXVORDEV / SUPPORT CENTER</span>
-      <h1><LifeBuoy size={25} style={{ display: "inline", verticalAlign: "middle", color: "var(--accent)" }} /> پشتیبانی در کنارته.</h1>
-      <p className="support-intro">مشخصاتت رو وارد کن و درخواستت رو توضیح بده. بعد از ثبت، یک گفت‌وگوی اختصاصی برای پیگیری همین درخواست باز می‌شه.</p>
-      <SupportForm />
-      <MySupportTickets />
-    </section>
-  </div></main>;
+  return (
+    <PageShell active="/support">
+      <PageHero badge={<><LifeBuoy size={15} /> مرکز پشتیبانی</>} title="پشتیبانی" accent="در کنارته." lead="مشخصاتت رو وارد کن و درخواستت رو توضیح بده. بعد از ثبت، یک گفت‌وگوی اختصاصی برای پیگیری همین درخواست باز می‌شه." />
+      <section className="hx-section hx-tight">
+        <div className="hx-wrap hx-narrow">
+          <div className="hx-glass hx-form-card" data-reveal><SupportForm /></div>
+          <div className="hx-glass hx-form-card" data-reveal data-delay="100"><MySupportTickets /></div>
+        </div>
+      </section>
+    </PageShell>
+  );
 }

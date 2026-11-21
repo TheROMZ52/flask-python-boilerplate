@@ -7,7 +7,7 @@ import HeroCanvas from "@/components/hero-canvas";
 import HeroTerminal from "@/components/hero-terminal";
 import ScratchReveal from "@/components/scratch-reveal";
 import HelpedBar from "@/components/helped-bar";
-import "./home.css";
+import { SiteFooter, SiteHeader, Words } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
   title: "توسعه و راه‌اندازی سرورهای بازی",
@@ -41,26 +41,13 @@ const cubes: Cube[] = [];
 cubes.push({ x: 0, y: 0, z: 184, s: 92, tone: "core", d: 2 });
 cubes.push({ x: -170, y: 130, z: 60, s: 34, tone: "ember", d: 0.6 }, { x: 160, y: -150, z: 120, s: 28, d: 1.4 }, { x: 190, y: 120, z: 30, s: 22, tone: "violet", d: 2.2 }, { x: -150, y: -140, z: 150, s: 24, tone: "violet", d: 1.1 });
 
-function Words({ text }: { text: string }) {
-  return <>{text.split(" ").map((word, index) => <span className="hx-w" key={index}><span style={{ "--i": index } as CSSProperties}>{word}</span>{" "}</span>)}</>;
-}
-
 export default function Home() {
   return (
     <main className="hx">
       <HomeFx />
       <div className="hx-progress" aria-hidden="true" />
 
-      <header className="hx-header">
-        <div className="hx-bar">
-          <a className="hx-brand" href="#top" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} priority /><span>NexvorDEV</span></a>
-          <nav className="hx-nav" aria-label="منوی اصلی">
-            <a href="#platforms">پلتفرم‌ها</a><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="/account">حساب کاربری</a><a href="/support/admin">پنل مدیریت</a>
-          </nav>
-          <a className="hx-cta hx-cta-sm" href="/request" data-magnetic>ثبت سفارش <ArrowUpLeft size={15} /></a>
-          <button className="hx-burger" type="button" data-menu-toggle aria-label="منو"><i /><i /></button>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="hx-hero" id="top">
         <ScratchReveal />
@@ -179,13 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="hx-footer">
-        <div className="hx-wrap hx-foot">
-          <a className="hx-brand" href="#top"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={36} height={36} /><span>NexvorDEV</span></a>
-          <nav><a href="#services">خدمات</a><a href="/pricing">تعرفه</a><a href="/subdomains">ساب‌دامنه</a><a href="#process">طرز کار</a><a href="#contact">ارتباط با ما</a><a href="/privacy">حریم خصوصی</a><a href="/terms">شرایط استفاده</a></nav>
-          <span className="hx-copy">© {new Date().getFullYear()} NexvorDEV</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

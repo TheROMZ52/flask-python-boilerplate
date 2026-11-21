@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import SupportChat from "@/components/support-chat";
+import { PageShell } from "@/components/site-chrome";
 
-export const metadata = { title: "گفت‌وگوی پشتیبانی | NexvorDEV" };
+export const metadata = { title: "گفت‌وگوی پشتیبانی", robots: { index: false, follow: false } };
 type Props = { params: Promise<{ id: string }> };
 
 export default async function SupportTicketPage({ params }: Props) {
   const { id } = await params;
-  return <main className="support-page"><div className="support-shell">
-    <Link href="/" className="support-back"><ArrowRight size={16} /> بازگشت به سایت</Link>
-    <section className="support-card"><SupportChat ticketId={id} /></section>
-  </div></main>;
+  return (
+    <PageShell active="/support">
+      <section className="hx-section hx-chat-section"><div className="hx-wrap hx-narrow"><div className="hx-glass hx-form-card"><SupportChat ticketId={id} /></div></div></section>
+    </PageShell>
+  );
 }

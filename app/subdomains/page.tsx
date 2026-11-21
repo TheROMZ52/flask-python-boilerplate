@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight, Globe2, ShieldCheck, Zap } from "lucide-react";
+import { Globe2, ShieldCheck, Zap } from "lucide-react";
 import SubdomainOrderForm from "@/components/subdomain-order-form";
-import styles from "./subdomains.module.css";
-import "./subdomain-form.css";
+import { PageHero, PageShell } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
   title: "خرید ساب‌دامنه",
@@ -14,26 +11,21 @@ export const metadata: Metadata = {
 
 export default function SubdomainsPage() {
   return (
-    <main className={styles.page}>
-      <div className={styles.shell}>
-        <Link href="/" className={styles.back}><ArrowRight size={16} /> بازگشت به سایت</Link>
-        <header className={styles.hero}>
-          <span className={styles.kicker}><Globe2 size={15} /> NEXVORDEV / SUBDOMAINS</span>
-          <h1>آدرس اختصاصی خودت رو داشته باش.</h1>
-          <p>برای سایت، فروشگاه، سرور بازی یا پروژه‌ات یک نام دلخواه روی دامنه NexvorDEV درخواست کن.</p>
-          <div className={styles.preview} dir="ltr"><span>yourname</span>.nexvordev.ir</div>
-          <div className={styles.features}>
-            <span><Zap size={16} /> ثبت درخواست ساده</span>
-            <span><ShieldCheck size={16} /> بررسی نام پیش از فعال‌سازی</span>
-            <span><Globe2 size={16} /> مناسب سایت و سرور</span>
+    <PageShell active="/subdomains">
+      <PageHero badge={<><Globe2 size={15} /> ساب‌دامنه اختصاصی</>} title="آدرس اختصاصی" accent="خودت رو داشته باش." lead="برای سایت، فروشگاه، سرور بازی یا پروژه‌ات یک نام دلخواه روی دامنه NexvorDEV درخواست کن.">
+        <div className="hx-url" dir="ltr" data-reveal><span>yourname</span>.nexvordev.ir</div>
+        <div className="hx-feats" data-reveal data-delay="100">
+          <span><Zap size={16} /> ثبت درخواست ساده</span><span><ShieldCheck size={16} /> بررسی نام پیش از فعال‌سازی</span><span><Globe2 size={16} /> مناسب سایت و سرور</span>
+        </div>
+      </PageHero>
+      <section className="hx-section hx-tight">
+        <div className="hx-wrap hx-narrow">
+          <div className="hx-glass hx-form-card" data-reveal>
+            <div className="hx-form-head"><h2>درخواست خرید ساب‌دامنه</h2><p>مدت اشتراک و نام موردنظرت رو انتخاب کن.</p></div>
+            <SubdomainOrderForm />
           </div>
-        </header>
-        <section className={styles.card}>
-          <div className={styles.cardHead}><span>SUBDOMAIN ORDER</span><h2>درخواست خرید ساب‌دامنه</h2><p>مدت اشتراک و نام موردنظرت رو انتخاب کن.</p></div>
-          <SubdomainOrderForm />
-        </section>
-        <footer className={styles.foot}><Link href="/">NexvorDEV</Link><span>© {new Date().getFullYear()} · همه حقوق محفوظ است.</span><Link href="/terms">شرایط استفاده</Link></footer>
-      </div>
-    </main>
+        </div>
+      </section>
+    </PageShell>
   );
 }

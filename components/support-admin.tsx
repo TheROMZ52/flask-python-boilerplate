@@ -31,6 +31,10 @@ export default function SupportAdmin() {
   }, []);
 
   useEffect(() => {
+    fetch("/api/support/admin/tickets", { cache: "no-store" }).then(response => { if (response.ok) setLoggedIn(true); }).catch(() => undefined);
+  }, []);
+
+  useEffect(() => {
     if (!loggedIn) return;
     loadTickets().catch(e => setError(e.message));
     const timer = window.setInterval(() => loadTickets().catch(() => undefined), 5000);

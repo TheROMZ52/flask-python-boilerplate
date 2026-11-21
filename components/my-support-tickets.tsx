@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpLeft, Clock3, LoaderCircle, MessageCircle, Ticket } from "lucide-react";
+import { readStorage, writeStorage } from "@/lib/safe-storage";
 
 type SavedTicket = { id: string; token: string };
 type TicketInfo = { id: string; subject: string; status: string; created_at: string; last_message_at: string };
@@ -11,7 +12,7 @@ const STORAGE_KEY = "nexvor-support-ticket-list";
 
 function readSaved(): SavedTicket[] {
   try {
-    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    const value = JSON.parse(readStorage(STORAGE_KEY) || "[]");
     return Array.isArray(value) ? value.filter((x): x is SavedTicket => typeof x?.id === "string" && typeof x?.token === "string") : [];
   } catch { return []; }
 }
@@ -29,16 +30,18 @@ export default function MySupportTickets() {
           const response = await fetch(`/api/support/tickets/${encodeURIComponent(item.id)}`, {
             headers: { "x-ticket-token": item.token }, cache: "no-store"
           });
-          if (!response.ok) return null;
+          if (response.status === 404 || response.status === 401 || response.status === 403) return { gone: true as const, item };
+          if (!response.ok) return { keep: true as const, item };
           const data = await response.json();
-          return { ticket: data.ticket as TicketInfo, token: item.token } as TicketItem;
-        } catch { return null; }
+          return { ok: { ticket: data.ticket as TicketInfo, token: item.token } as TicketItem };
+        } catch { return { keep: true as const, item }; }
       }));
       if (!active) return;
-      const valid = results.filter((x): x is TicketItem => x !== null)
+      const valid = results.flatMap(x => ("ok" in x && x.ok ? [x.ok] : []))
         .sort((a,b) => new Date(b.ticket.last_message_at || b.ticket.created_at).getTime() - new Date(a.ticket.last_message_at || a.ticket.created_at).getTime());
+      const kept = results.flatMap(x => ("keep" in x && x.keep ? [x.item] : []));
       setItems(valid);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(valid.map(x => ({ id: x.ticket.id, token: x.token }))));
+      writeStorage(STORAGE_KEY, JSON.stringify([...valid.map(x => ({ id: x.ticket.id, token: x.token })), ...kept]));
       setLoading(false);
     }
     load();

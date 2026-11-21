@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
+import "./home.css";
+import "./pages.css";
 import SupportLauncher from "@/components/support-launcher";
 
 const vazirmatn = Vazirmatn({
@@ -28,7 +30,6 @@ export const metadata: Metadata = {
   applicationName: "NexvorDEV",
   verification: { google: "UBGnEutATLIfEjjhY1bx48d_CIKWmrfUd_Xz22AvRU8" },
   other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
-  alternates: { canonical: "/" },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

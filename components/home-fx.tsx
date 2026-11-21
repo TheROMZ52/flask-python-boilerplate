@@ -57,6 +57,7 @@ export default function HomeFx() {
       if (!entry.isIntersecting) return;
       const el = entry.target as HTMLElement;
       el.classList.add("in");
+      window.setTimeout(() => el.classList.add("settled"), 1200 + Number(el.dataset.delay || 0));
       el.querySelectorAll<HTMLElement>("[data-count]").forEach(countTo);
       if (el.dataset.count) countTo(el);
       reveal.unobserve(el);

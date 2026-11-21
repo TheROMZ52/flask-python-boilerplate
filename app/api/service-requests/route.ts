@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supportDb } from "@/lib/support/server";
+import { clientKey, limited } from "@/lib/rate-limit";
 import { notifyAdminAboutNewServiceRequest } from "@/lib/support/telegram";
 
 export const runtime = "nodejs";
@@ -68,6 +69,7 @@ function clean(value: unknown, max: number) { return typeof value === "string" ?
 
 export async function POST(request: Request) {
   try {
+    if (limited(`request:${clientKey(request)}`, 6, 10 * 60 * 1000)) return NextResponse.json({ ok: false, error: "درخواست‌های زیادی ثبت شد؛ کمی بعد دوباره تلاش کن." }, { status: 429 });
     const body=await request.json();
     const name=clean(body.name,100), telegram=clean(body.telegram,100), service=clean(body.service,160);
     const priority=clean(body.priority,20), details=clean(body.details,3000);

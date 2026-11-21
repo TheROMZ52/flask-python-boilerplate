@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Scale } from "lucide-react";
+import { PageHero, PageShell } from "@/components/site-chrome";
+import { ArrowUpLeft, ShieldCheck, Scale } from "lucide-react";
 import type { ReactNode } from "react";
-import "../app/legal.css";
 
 type Section = { title: string; body: ReactNode };
 
@@ -48,34 +48,29 @@ export default function LegalPage({ kind }: { kind: "privacy" | "terms" }) {
   const Icon = isPrivacy ? ShieldCheck : Scale;
 
   return (
-    <main className="legal-page">
-      <div className="legal-shell">
-        <Link href="/" className="legal-back"><ArrowRight size={16} /> بازگشت به صفحه اصلی</Link>
-        <header className="legal-hero">
-          <div className="legal-kicker"><Icon size={15} /> NEXVORDEV / {isPrivacy ? "PRIVACY" : "TERMS"}</div>
-          <h1>{title}</h1>
-          <p>{description}</p>
-          <div className="legal-meta"><span>آخرین به‌روزرسانی: ۲۹ آبان ۱۴۰۵</span><span>مطالعه عمومی</span></div>
-        </header>
-        <div className="legal-layout">
-          <aside className="legal-aside">
+    <PageShell>
+      <PageHero badge={<><Icon size={15} /> {isPrivacy ? "حریم خصوصی" : "شرایط استفاده"}</>} title={title} lead={description}>
+        <div className="hx-legal-meta"><span>آخرین به‌روزرسانی: ۲۹ آبان ۱۴۰۵</span><span>مطالعه عمومی</span></div>
+      </PageHero>
+      <section className="hx-section hx-tight">
+        <div className="hx-wrap hx-legal">
+          <aside className="hx-glass hx-legal-aside">
             <strong>دسترسی سریع</strong>
             <a href="#legal-content">مطالعه سند</a>
             <Link href={isPrivacy ? "/terms" : "/privacy"}>{isPrivacy ? "شرایط و قوانین" : "سیاست حریم خصوصی"}</Link>
             <Link href="/support">پشتیبانی و ثبت تیکت</Link>
           </aside>
-          <article className="legal-content" id="legal-content">
-            {sections.map((section, index) => (
-              <section className="legal-section" key={section.title}>
+          <article className="hx-glass hx-legal-body" id="legal-content">
+            {sections.map(section => (
+              <section className="hx-legal-section" key={section.title}>
                 <h2>{section.title}</h2>
                 <div>{section.body}</div>
               </section>
             ))}
-            <div className="legal-contact"><strong>سؤالی درباره این سند دارید؟</strong><p>برای ثبت درخواست یا پیگیری، از بخش پشتیبانی سایت استفاده کنید.</p><Link href="/support">رفتن به پشتیبانی <ArrowRight size={15} /></Link></div>
+            <div className="hx-legal-contact"><strong>سؤالی درباره این سند دارید؟</strong><p>برای ثبت درخواست یا پیگیری، از بخش پشتیبانی سایت استفاده کنید.</p><Link href="/support">رفتن به پشتیبانی <ArrowUpLeft size={15} /></Link></div>
           </article>
         </div>
-        <footer className="legal-footer"><Link href="/">NexvorDEV</Link><span>© {new Date().getFullYear()} کلیه حقوق محفوظ است.</span><Link href={isPrivacy ? "/terms" : "/privacy"}>{isPrivacy ? "شرایط استفاده" : "حریم خصوصی"}</Link></footer>
-      </div>
-    </main>
+      </section>
+    </PageShell>
   );
 }

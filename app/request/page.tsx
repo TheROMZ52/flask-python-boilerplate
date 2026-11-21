@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ClipboardList } from "lucide-react";
+import { Check, ClipboardList } from "lucide-react";
 import ServiceRequestForm from "@/components/service-request-form";
+import { PageHero, PageShell } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
   title: "ثبت درخواست خدمات",
@@ -20,29 +20,19 @@ const advantages = [
 
 export default function ServiceRequestPage() {
   return (
-    <main className="service-request-page">
-      <div className="service-request-shell">
-        <Link href="/" className="service-request-back"><ArrowRight size={16} /> بازگشت به صفحه اصلی</Link>
-        <section className="service-request-card">
-          <div className="service-request-kicker"><ClipboardList size={15} /> NEXVORDEV / SERVICE REQUEST</div>
-          <h1>درخواست خدمات تخصصی</h1>
-          <p className="service-request-intro">Development • Minecraft • Web Solutions</p>
-          <p className="service-request-intro">در NexvorDEV تلاش می‌کنیم ایده‌های شما رو به پروژه‌های واقعی و حرفه‌ای تبدیل کنیم؛ از راه‌اندازی و مدیریت سرورهای ماینکرفت تا برنامه‌نویسی اختصاصی، طراحی سایت و توسعه زیرساخت‌های آنلاین.</p>
-          <ServiceRequestForm />
-        </section>
-
-        <section className="service-request-card service-request-why">
-          <div className="service-request-kicker">WHY NEXVORDEV</div>
-          <h2>چرا NexvorDEV؟</h2>
-          <ul>
-            {advantages.map(item => <li key={item}>{item}</li>)}
-          </ul>
-          <p className="service-request-intro">ایده شما، تخصص ما، نتیجه‌ای فراتر از انتظار.</p>
-          <p className="service-request-intro">برای ثبت سفارش و دریافت مشاوره، درخواستت رو از طریق فرم بالا ارسال کن.</p>
-        </section>
-
-        <p className="service-request-note">با ثبت درخواست، اطلاعات برای بررسی به تیم NexvorDEV ارسال می‌شه.</p>
-      </div>
-    </main>
+    <PageShell>
+      <PageHero badge={<><ClipboardList size={15} /> ثبت درخواست خدمات</>} title="درخواست خدمات" accent="تخصصی" lead="ایده‌هات رو به پروژه‌ی واقعی و حرفه‌ای تبدیل می‌کنیم؛ از راه‌اندازی سرور ماینکرفت تا برنامه‌نویسی اختصاصی، طراحی سایت و زیرساخت آنلاین." />
+      <section className="hx-section hx-tight">
+        <div className="hx-wrap hx-formgrid">
+          <div className="hx-glass hx-form-card" data-reveal><ServiceRequestForm /></div>
+          <aside className="hx-glass hx-why" data-reveal data-delay="120">
+            <h2>چرا NexvorDEV؟</h2>
+            <ul>{advantages.map(item => <li key={item}><Check size={15} />{item}</li>)}</ul>
+            <p>ایده شما، تخصص ما، نتیجه‌ای فراتر از انتظار.</p>
+            <small>با ثبت درخواست، اطلاعات برای بررسی به تیم NexvorDEV ارسال می‌شه.</small>
+          </aside>
+        </div>
+      </section>
+    </PageShell>
   );
 }
