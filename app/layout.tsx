@@ -18,15 +18,15 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://nexvordev-site.vercel.app";
+const siteUrl = "https://nexvordev.ir";
 const socialImage = `${siteUrl}/nexvordev-social-card.jpg?v=6`;
 
 export const metadata: Metadata = {
   title: {
-    default: "NexvorDEV | Development • Web • Minecraft",
+    default: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
     template: "%s | NexvorDEV",
   },
-  description: "NexvorDEV؛ توسعه، وب و ماینکرفت — از ایده تا اجرا.",
+  description: "NexvorDEV؛ ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرور ماینکرفت جاوا و بدراک و کانتر استرایک ۱.۶.",
   applicationName: "NexvorDEV",
   verification: { google: "LVRc98jd-dbb5DyF77arcvzGDLlp46q1fneg0IX3ZFc" },
   other: { enamad: ["4459776", "۴۴۵۹۷۷۶"] },
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "NexvorDEV | Development • Web • Minecraft",
-    description: "توسعه، وب و ماینکرفت — از ایده تا اجرا.",
+    title: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
+    description: "ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.",
     siteName: "NexvorDEV",
     locale: "fa_IR",
     type: "website",
