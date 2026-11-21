@@ -3,7 +3,7 @@ import SupportForm from "@/components/support-form";
 import MySupportTickets from "@/components/my-support-tickets";
 import { PageHero, PageShell } from "@/components/site-chrome";
 
-export const metadata = { title: "پشتیبانی", description: "ثبت درخواست و گفت‌وگو با تیم پشتیبانی NexvorDEV.", alternates: { canonical: "/support" } };
+export const metadata = { title: "پشتیبانی", description: "ثبت درخواست و گفت‌وگو با تیم پشتیبانی NexvorDEV.", alternates: { canonical: "/support" }, robots: { index: false, follow: true } };
 
 export default function SupportPage() {
   return (
