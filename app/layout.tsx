@@ -68,7 +68,6 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <head>
-        <meta name="enamad" content="24132924" />
       </head>
       <body className={`${vazirmatn.variable} ${inter.variable}`}>
         {children}
