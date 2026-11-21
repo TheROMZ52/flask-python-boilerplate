@@ -10,7 +10,7 @@ import HelpedBar from "@/components/helped-bar";
 import { SiteFooter, SiteHeader, Words } from "@/components/site-chrome";
 
 export const metadata: Metadata = {
-  title: "خدمات ماینکرفت و سرور بازی | ساخت پلاگین و راه‌اندازی",
+  title: "24132924",
   description: "خدمات تخصصی سرور بازی در NexvorDEV؛ ساخت پلاگین اختصاصی، راه‌اندازی، نصب و کانفیگ و بهینه‌سازی سرورهای ماینکرفت جاوا، بدراک و کانتر استرایک ۱.۶.",
   alternates: { canonical: "/" },
 };
