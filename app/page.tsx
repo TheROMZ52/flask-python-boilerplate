@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowUpLeft, Blocks, Cpu, Gamepad2, Gauge, Puzzle, Server, Settings2 } from "lucide-react";

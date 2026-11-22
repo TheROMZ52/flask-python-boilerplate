@@ -1,4 +1,3 @@
-@property --hx-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 .hx{--ink:#040815;--navy:#081f45;--blue:#14335e;--cyan:#5cd6ff;--cyan2:#44aed4;--uv:#8f7bff;--ember:#ff8a5c;--text:#eaf2ff;--mute:#93a8c6;--line:rgba(130,200,255,.14);position:relative;background:var(--ink);color:var(--text);overflow-x:clip;isolation:isolate}
 .hx *{box-sizing:border-box}
 .hx a{color:inherit;text-decoration:none}
@@ -123,9 +122,8 @@
 .hx-card{--mx:50%;--my:50%;position:relative;overflow:hidden;isolation:isolate;padding:30px;border-radius:28px;background:linear-gradient(155deg,rgba(18,44,92,.7),rgba(7,16,40,.92));border:1px solid rgba(130,200,255,.14);transition:border-color .4s,box-shadow .4s,transform .25s cubic-bezier(.2,.8,.2,1)}
 .hx-card.big{grid-row:span 2;padding:40px;display:flex;flex-direction:column}
 .hx-card::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(92,214,255,.2),transparent 65%);opacity:0;transition:opacity .35s}
-.hx-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--hx-angle),transparent 0 55%,var(--cyan),var(--uv),transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;animation:hxSpinBorder 4s linear infinite;pointer-events:none}
+.hx-card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from 0deg,transparent 0 55%,var(--cyan),var(--uv),transparent 90%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
 .hx-card:hover::before,.hx-card:hover::after{opacity:1}.hx-card:hover{box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(92,214,255,.1)}
-@keyframes hxSpinBorder{to{--hx-angle:360deg}}
 .hx-mark{position:absolute;inset-inline-start:-14px;bottom:-22px;z-index:-1;font:900 clamp(70px,11vw,150px)/1 var(--font-inter),sans-serif;color:transparent;-webkit-text-stroke:1px rgba(120,190,255,.14);letter-spacing:-2px;transition:-webkit-text-stroke-color .4s,transform .6s}
 .hx-card:hover .hx-mark{-webkit-text-stroke-color:rgba(92,214,255,.35);transform:translateX(10px)}
 .hx-icon{width:60px;height:60px;display:grid;place-items:center;border-radius:20px;color:var(--cyan);background:linear-gradient(145deg,rgba(92,214,255,.2),rgba(143,123,255,.15));border:1px solid rgba(130,210,255,.3);box-shadow:0 0 30px rgba(92,214,255,.15)}
@@ -167,7 +165,7 @@
 
 .hx-contact{padding-top:40px}
 .hx-panel{position:relative;overflow:hidden;isolation:isolate;padding:clamp(40px,7vw,90px) clamp(26px,6vw,80px);border-radius:40px;text-align:center;background:radial-gradient(60% 80% at 50% 0,rgba(60,130,255,.28),transparent 70%),radial-gradient(50% 60% at 100% 100%,rgba(143,123,255,.25),transparent 70%),linear-gradient(160deg,#0c2552,#071230 70%)}
-.hx-panel::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:conic-gradient(from var(--hx-angle),rgba(92,214,255,.1),var(--cyan),var(--uv),var(--ember),rgba(92,214,255,.1));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:hxSpinBorder 6s linear infinite;pointer-events:none}
+.hx-panel::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:conic-gradient(from 0deg,rgba(92,214,255,.1),var(--cyan),var(--uv),var(--ember),rgba(92,214,255,.1));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .hx-watermark{position:absolute;inset-inline:0;top:50%;z-index:-1;translate:0 calc(-50% + var(--dy,0px));font:900 clamp(200px,34vw,460px)/1 var(--font-inter),sans-serif;color:transparent;-webkit-text-stroke:1px rgba(130,200,255,.1);letter-spacing:-18px;pointer-events:none;direction:ltr}
 .hx-panel h2{margin:0;font-weight:900;font-size:clamp(32px,5.4vw,66px);line-height:1.55}
 .hx-panel p{max-width:520px;margin:22px auto 38px;color:#b6c9e4;font-size:15px;line-height:2.2}
@@ -175,7 +173,7 @@
 .hx-footer{border-top:1px solid var(--line);background:#030611;padding:34px 0}
 .hx-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .hx-foot nav{display:flex;gap:24px;color:#8aa2c2;font-size:13px}.hx-foot nav a:hover{color:var(--cyan)}
-.hx-copy{color:#5f7899;font:12px var(--font-inter),sans-serif;direction:ltr}
+.hx-copy{color:#8da4c3;font:12px var(--font-inter),sans-serif;direction:ltr}
 .hx .helped{background:#040815}
 .hx .brand-showcase{background:#040815}
 .hx .brand-showcase-image{animation:hxLogo 8s ease-in-out infinite}

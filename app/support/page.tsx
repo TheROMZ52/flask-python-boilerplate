@@ -1,3 +1,4 @@
+import "../pages.css";
 import { LifeBuoy } from "lucide-react";
 import SupportForm from "@/components/support-form";
 import MySupportTickets from "@/components/my-support-tickets";

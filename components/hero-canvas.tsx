@@ -48,8 +48,12 @@ export default function HeroCanvas() {
           node.x += node.vx; node.y += node.vy;
           if (node.x < -10) node.x = width + 10; else if (node.x > width + 10) node.x = -10;
           if (node.y < -10) node.y = height + 10; else if (node.y > height + 10) node.y = -10;
-          const dx = node.x - mouse.x, dy = node.y - mouse.y, dist = Math.hypot(dx, dy);
-          if (dist < 130 && dist > 0) { node.x += (dx / dist) * 1.1; node.y += (dy / dist) * 1.1; }
+          const dx = node.x - mouse.x, dy = node.y - mouse.y;
+          const distanceSquared = dx * dx + dy * dy;
+          if (distanceSquared < 16900 && distanceSquared > 0) {
+            const distance = Math.sqrt(distanceSquared);
+            node.x += (dx / distance) * 1.1; node.y += (dy / distance) * 1.1;
+          }
         }
       }
       for (let i = 0; i < nodes.length; i++) {
@@ -64,9 +68,11 @@ export default function HeroCanvas() {
             context.beginPath(); context.moveTo(a.x, a.y); context.lineTo(b.x, b.y); context.stroke();
           }
         }
-        const m = Math.hypot(a.x - mouse.x, a.y - mouse.y);
-        if (m < 170) {
-          context.strokeStyle = `hsla(${a.hue},95%,75%,${(1 - m / 170) * 0.5})`;
+        const mouseDx = a.x - mouse.x, mouseDy = a.y - mouse.y;
+        const mouseDistanceSquared = mouseDx * mouseDx + mouseDy * mouseDy;
+        if (mouseDistanceSquared < 28900) {
+          const mouseDistance = Math.sqrt(mouseDistanceSquared);
+          context.strokeStyle = `hsla(${a.hue},95%,75%,${(1 - mouseDistance / 170) * 0.5})`;
           context.beginPath(); context.moveTo(a.x, a.y); context.lineTo(mouse.x, mouse.y); context.stroke();
         }
         context.fillStyle = `hsla(${a.hue},95%,78%,.85)`;

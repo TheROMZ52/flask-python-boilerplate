@@ -23,7 +23,7 @@ export function SiteHeader({ active }: { active?: string }) {
   return (
     <header className="hx-header">
       <div className="hx-bar">
-        <Link className="hx-brand" href="/" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} priority /><span>NexvorDEV</span></Link>
+        <Link className="hx-brand" href="/" aria-label="NexvorDEV صفحه اصلی"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={38} height={38} /><span>NexvorDEV</span></Link>
         <nav className="hx-nav" aria-label="منوی اصلی">
           {links.map(link => <Link key={link.href} href={link.href} aria-current={active === link.href ? "page" : undefined}>{link.label}</Link>)}
         </nav>

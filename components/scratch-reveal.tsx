@@ -5,6 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 
 const MINECRAFT_IMAGE = "/images/minecraft-scratch.jpg";
 const COUNTER_STRIKE_IMAGE = "/images/counter-strike-scratch.jpg";
+const optimizedImage = (src: string) => `/_next/image?url=${encodeURIComponent(src)}&w=1080&q=75`;
 
 export default function ScratchReveal() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,9 +35,11 @@ export default function ScratchReveal() {
     const desktop = window.matchMedia("(min-width: 981px) and (hover: hover) and (pointer: fine)");
     if (!desktop.matches) return;
     const underlay = underlayRef.current;
-    if (underlay) underlay.src = COUNTER_STRIKE_IMAGE;
+    if (underlay) underlay.src = optimizedImage(COUNTER_STRIKE_IMAGE);
     const image = new Image();
-    image.src = MINECRAFT_IMAGE;
+    image.decoding = "async";
+    image.fetchPriority = "low";
+    image.src = optimizedImage(MINECRAFT_IMAGE);
     image.onload = () => {
       imageRef.current = image;
       paintCover();
@@ -86,7 +89,7 @@ export default function ScratchReveal() {
 
   return (
     <div className="scratch-reveal scratch-reveal-background">
-      <img ref={underlayRef} className="scratch-reveal-underlay" alt="تصویر کانتر استرایک" />
+      <img ref={underlayRef} className="scratch-reveal-underlay" alt="تصویر کانتر استرایک" decoding="async" fetchPriority="low" />
       <canvas
         ref={canvasRef}
         className="scratch-reveal-canvas"

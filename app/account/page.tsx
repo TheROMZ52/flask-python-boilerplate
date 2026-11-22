@@ -1,3 +1,4 @@
+import "../pages.css";
 import type { Metadata } from "next";
 import AccountForm from "@/components/account-form";
 import { PageShell } from "@/components/site-chrome";

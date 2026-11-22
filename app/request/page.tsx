@@ -1,3 +1,4 @@
+import "../pages.css";
 import type { Metadata } from "next";
 import { Check, ClipboardList } from "lucide-react";
 import ServiceRequestForm from "@/components/service-request-form";

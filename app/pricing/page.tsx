@@ -1,3 +1,4 @@
+import "../pages.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpLeft, Blocks, Check, ClipboardCheck, Cpu, Gamepad2, Gauge, MessageCircle, Puzzle, Server, SlidersHorizontal, Sparkles } from "lucide-react";

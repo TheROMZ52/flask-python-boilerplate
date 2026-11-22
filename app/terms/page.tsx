@@ -1,3 +1,4 @@
+import "../pages.css";
 import type { Metadata } from "next";
 import LegalPage from "@/components/legal-page";
 

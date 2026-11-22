@@ -1,3 +1,4 @@
+import "../../../pages.css";
 import SupportChat from "@/components/support-chat";
 import { PageShell } from "@/components/site-chrome";
 

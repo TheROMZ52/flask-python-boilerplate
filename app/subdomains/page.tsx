@@ -1,3 +1,4 @@
+import "../pages.css";
 import type { Metadata } from "next";
 import { Globe2, ShieldCheck, Zap } from "lucide-react";
 import SubdomainOrderForm from "@/components/subdomain-order-form";

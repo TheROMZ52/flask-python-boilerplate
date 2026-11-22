@@ -1,3 +1,4 @@
+import "../../pages.css";
 import SupportAdmin from "@/components/support-admin";
 import { PageShell } from "@/components/site-chrome";
 

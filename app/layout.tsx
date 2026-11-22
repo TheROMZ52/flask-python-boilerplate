@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import "./home.css";
-import "./pages.css";
 import SupportLauncher from "@/components/support-launcher";
 
 const vazirmatn = Vazirmatn({
