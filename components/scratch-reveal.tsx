@@ -8,6 +8,7 @@ const COUNTER_STRIKE_IMAGE = "/images/counter-strike-scratch.jpg";
 
 export default function ScratchReveal() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const underlayRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const lastPointRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -30,6 +31,10 @@ export default function ScratchReveal() {
   }, []);
 
   useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 981px) and (hover: hover) and (pointer: fine)");
+    if (!desktop.matches) return;
+    const underlay = underlayRef.current;
+    if (underlay) underlay.src = COUNTER_STRIKE_IMAGE;
     const image = new Image();
     image.src = MINECRAFT_IMAGE;
     image.onload = () => {
@@ -42,6 +47,7 @@ export default function ScratchReveal() {
     return () => {
       observer.disconnect();
       window.removeEventListener("resize", paintCover);
+      image.onload = null;
     };
   }, [paintCover]);
 
@@ -80,7 +86,7 @@ export default function ScratchReveal() {
 
   return (
     <div className="scratch-reveal scratch-reveal-background">
-      <img className="scratch-reveal-underlay" src={COUNTER_STRIKE_IMAGE} alt="تصویر کانتر استرایک" />
+      <img ref={underlayRef} className="scratch-reveal-underlay" alt="تصویر کانتر استرایک" />
       <canvas
         ref={canvasRef}
         className="scratch-reveal-canvas"
