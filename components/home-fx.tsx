@@ -77,70 +77,15 @@ export default function HomeFx() {
     cleanups.push(() => { toggle?.removeEventListener("click", onToggle); menuLinks.forEach(link => link.removeEventListener("click", closeMenu)); });
 
     if (fine && !reduce) {
-      const tilts = Array.from(document.querySelectorAll<HTMLElement>("[data-tilt]"));
-      tilts.forEach(card => {
+      document.querySelectorAll<HTMLElement>("[data-tilt]").forEach(card => {
         const move = (event: PointerEvent) => {
           const rect = card.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width;
-          const y = (event.clientY - rect.top) / rect.height;
-          card.style.setProperty("--mx", `${x * 100}%`);
-          card.style.setProperty("--my", `${y * 100}%`);
-          if (card.dataset.tilt !== "flat") card.style.transform = `perspective(1000px) rotateX(${((0.5 - y) * 7).toFixed(2)}deg) rotateY(${((x - 0.5) * 9).toFixed(2)}deg) translateY(-4px)`;
+          card.style.setProperty("--mx", `${((event.clientX - rect.left) / rect.width) * 100}%`);
+          card.style.setProperty("--my", `${((event.clientY - rect.top) / rect.height) * 100}%`);
         };
-        const leave = () => { card.style.transform = ""; };
-        card.addEventListener("pointermove", move);
-        card.addEventListener("pointerleave", leave);
-        cleanups.push(() => { card.removeEventListener("pointermove", move); card.removeEventListener("pointerleave", leave); });
+        card.addEventListener("pointermove", move, { passive: true });
+        cleanups.push(() => card.removeEventListener("pointermove", move));
       });
-
-      document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach(el => {
-        const move = (event: PointerEvent) => {
-          const rect = el.getBoundingClientRect();
-          el.style.transform = `translate(${((event.clientX - rect.left - rect.width / 2) * 0.28).toFixed(1)}px,${((event.clientY - rect.top - rect.height / 2) * 0.4).toFixed(1)}px)`;
-        };
-        const leave = () => { el.style.transform = ""; };
-        el.addEventListener("pointermove", move);
-        el.addEventListener("pointerleave", leave);
-        cleanups.push(() => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", leave); });
-      });
-
-      const hero = document.querySelector<HTMLElement>(".hx-hero");
-      if (hero) {
-        let frame = 0, running = false;
-        let px = 0, py = 0, tx = 0, ty = 0;
-        const loop = () => {
-          px += (tx - px) * 0.1; py += (ty - py) * 0.1;
-          hero.style.setProperty("--px", px.toFixed(3));
-          hero.style.setProperty("--py", py.toFixed(3));
-          if (Math.abs(tx - px) < 0.002 && Math.abs(ty - py) < 0.002) { running = false; return; }
-          frame = requestAnimationFrame(loop);
-        };
-        const kick = () => { if (!running) { running = true; frame = requestAnimationFrame(loop); } };
-        const move = (event: PointerEvent) => {
-          const rect = hero.getBoundingClientRect();
-          tx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-          ty = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-          kick();
-        };
-        const leave = () => { tx = 0; ty = 0; kick(); };
-        hero.addEventListener("pointermove", move, { passive: true });
-        hero.addEventListener("pointerleave", leave);
-        cleanups.push(() => { cancelAnimationFrame(frame); hero.removeEventListener("pointermove", move); hero.removeEventListener("pointerleave", leave); });
-      }
-
-      const aura = document.createElement("div");
-      aura.className = "hx-aura";
-      body.appendChild(aura);
-      let ax = window.innerWidth / 2, ay = window.innerHeight / 2, bx = ax, by = ay, auraFrame = 0, auraRunning = false;
-      const run = () => {
-        ax += (bx - ax) * 0.14; ay += (by - ay) * 0.14;
-        aura.style.transform = `translate3d(${ax.toFixed(1)}px,${ay.toFixed(1)}px,0)`;
-        if (Math.abs(bx - ax) < 0.5 && Math.abs(by - ay) < 0.5) { auraRunning = false; return; }
-        auraFrame = requestAnimationFrame(run);
-      };
-      const follow = (event: PointerEvent) => { bx = event.clientX; by = event.clientY; if (!auraRunning) { auraRunning = true; auraFrame = requestAnimationFrame(run); } };
-      window.addEventListener("pointermove", follow, { passive: true });
-      cleanups.push(() => { cancelAnimationFrame(auraFrame); window.removeEventListener("pointermove", follow); aura.remove(); });
     }
 
     return () => { cleanups.forEach(fn => fn()); body.classList.remove("hx-ready"); };

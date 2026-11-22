@@ -1,154 +1,150 @@
-import type { CSSProperties } from "react";
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowUpLeft, Blocks, Cpu, Gamepad2, Gauge, Puzzle, Server, Settings2 } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpLeft, Blocks, Check, Code2, Database, Globe, KeyRound, LifeBuoy, ListChecks, Lock, MessagesSquare, Receipt, Server, ShieldCheck, UserCheck } from "lucide-react";
 import HomeFx from "@/components/home-fx";
-import HeroCanvas from "@/components/hero-canvas";
-import HeroTerminal from "@/components/hero-terminal";
 import ScratchReveal from "@/components/scratch-reveal";
 import HelpedBar from "@/components/helped-bar";
 import { SiteFooter, SiteHeader, Words } from "@/components/site-chrome";
+import { serviceGroups } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "خدمات ماینکرفت و سرور بازی | ساخت پلاگین و راه‌اندازی",
-  description: "خدمات تخصصی سرور بازی در NexvorDEV؛ ساخت پلاگین اختصاصی، راه‌اندازی، نصب و کانفیگ و بهینه‌سازی سرورهای ماینکرفت جاوا، بدراک و کانتر استرایک ۱.۶.",
+  title: "توسعه، وب و زیرساخت سرورهای بازی",
+  description: "NexvorDEV؛ راه‌اندازی و کانفیگ سرور ماینکرفت، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت سرور؛ با هزینه‌ی روشن قبل از شروع و پیگیری کامل سفارش.",
   alternates: { canonical: "/" },
 };
 
-const platforms = [
-  { mark: "JAVA", name: "Minecraft Java", title: "ماینکرفت جاوا", description: "توسعه قابلیت‌های اختصاصی، راه‌اندازی و تنظیم سرورهای جاوا؛ از پلاگین سفارشی تا بهینه‌سازی کامل.", icon: Blocks, tags: ["Plugin Development", "Setup", "Optimization"] },
-  { mark: "BEDROCK", name: "Minecraft Bedrock", title: "ماینکرفت بدراک", description: "پیاده‌سازی قابلیت‌ها و آماده‌سازی سرور بدراک متناسب با نیاز پروژه.", icon: Gamepad2, tags: ["Add-ons", "Configuration", "Server Setup"] },
-  { mark: "CS 1.6", name: "Counter-Strike 1.6", title: "کانتر استرایک ۱.۶", description: "ساخت و تنظیم سرور کانتر، توسعه پلاگین و بهینه‌سازی تجربه بازی.", icon: Cpu, tags: ["AMX Mod X", "Plugins", "Server Setup"] },
+const total = serviceGroups.filter(group => group.label !== "سایر").reduce((sum, group) => sum + group.options.length, 0);
+const groupMeta = [
+  { icon: Blocks, text: "نصب، کانفیگ و راه‌اندازی کامل سرور و گیم‌مودها." },
+  { icon: Code2, text: "پلاگین، ربات و ابزارهای اختصاصی متناسب با نیاز پروژه." },
+  { icon: Globe, text: "سایت، فروشگاه و پنل مدیریت؛ از طراحی تا انتشار." },
+  { icon: Server, text: "راه‌اندازی VPS، پروکسی، شبکه‌ی سرورها و تنظیمات امنیتی." },
+  { icon: LifeBuoy, text: "عیب‌یابی، نگهداری و مشاوره‌ی فنی برای پروژه‌های فعال." },
 ];
-const services = [
-  { icon: Puzzle, title: "ساخت پلاگین اختصاصی", description: "ایده و نیاز سرورت رو به یک قابلیت واقعی و اختصاصی تبدیل می‌کنیم." },
-  { icon: Server, title: "راه‌اندازی سرور", description: "نصب، آماده‌سازی و پیکربندی کامل سرور بازی، آماده‌ی ورود بازیکن‌ها." },
-  { icon: Settings2, title: "نصب و کانفیگ", description: "تنظیم پلاگین‌ها، مودها و همه‌ی اجزای موردنیاز سرور." },
-  { icon: Gauge, title: "بهینه‌سازی", description: "بررسی تنظیمات و بهبود عملکرد و پایداری سرور." },
+const commitments = [
+  { icon: Receipt, title: "هزینه قبل از شروع", text: "محدوده‌ی کار و مبلغ، قبل از اجرا اعلام می‌شه." },
+  { icon: ListChecks, title: "پیگیری کامل", text: "وضعیت سفارش در سایت و بات تلگرام قابل مشاهده‌ست." },
+  { icon: MessagesSquare, title: "پشتیبانی با تیکت", text: "هر درخواست یک گفت‌وگوی اختصاصی و قابل پیگیری داره." },
+  { icon: UserCheck, title: "ارتباط مستقیم", text: "با خود تیم فنی صحبت می‌کنی، نه واسطه." },
+];
+const security = [
+  { icon: KeyRound, title: "رمزها و کلیدها سمت سرور", text: "هیچ رمز یا کلیدی داخل کد سمت کاربر قرار ندارد و بررسی دسترسی‌ها فقط روی سرور انجام می‌شود." },
+  { icon: Lock, title: "دسترسی اختصاصی به هر تیکت", text: "لینک هر گفت‌وگو توکن یکتا دارد و توکن‌ها به‌صورت هش‌شده ذخیره می‌شوند." },
+  { icon: Database, title: "پایگاه‌داده بسته به‌صورت پیش‌فرض", text: "جدول‌ها بدون دسترسی عمومی هستند و فقط سرور اجازه‌ی خواندن و نوشتن دارد." },
+  { icon: ShieldCheck, title: "ورود بدون ذخیره‌ی رمز شما", text: "ورود با گوگل، گیت‌هاب یا دیسکورد انجام می‌شود و رمز حساب‌های شما نزد ما نیست." },
+  { icon: Check, title: "کنترل تعداد درخواست", text: "ثبت سفارش، تیکت، پیام و ورود مدیر محدودیت تعداد دارند تا اسپم و حمله‌ی حدس رمز بی‌اثر شود." },
+  { icon: Lock, title: "اتصال امن و هدرهای امنیتی", text: "کل سایت روی HTTPS است و سیاست‌های امنیتی مرورگر (CSP، HSTS و غیره) فعال شده‌اند." },
 ];
 const steps = [
-  ["ثبت درخواست", "پلتفرم و چیزی که لازم داری رو از طریق تلگرام توضیح می‌دی."],
-  ["بررسی و اعلام هزینه", "جزئیات سفارش بررسی می‌شه و هزینه و محدوده کار مشخص می‌شه."],
-  ["اجرا و بررسی", "کار انجام می‌شه و موارد توافق‌شده بررسی می‌شن."],
-  ["تحویل سفارش", "خروجی نهایی طبق توافق بهت تحویل داده می‌شه."],
+  ["ثبت درخواست", "پلتفرم و نیازت رو از سایت یا بات تلگرام ثبت می‌کنی."],
+  ["بررسی و برآورد", "جزئیات بررسی می‌شود و هزینه و محدوده‌ی کار اعلام می‌شود."],
+  ["اجرا و بررسی", "کار انجام می‌شود و موارد توافق‌شده تست می‌شوند."],
+  ["تحویل", "خروجی نهایی طبق توافق تحویل داده می‌شود."],
 ];
-const marquee = ["Minecraft Java", "Minecraft Bedrock", "Counter-Strike 1.6", "Plugin Development", "AMX Mod X", "Server Setup", "Optimization", "Configuration", "Paper", "Velocity"];
-
-type Cube = { x: number; y: number; z: number; s: number; tone?: string; d: number };
-const cubes: Cube[] = [];
-[-1, 0, 1].forEach(i => [-1, 0, 1].forEach(j => cubes.push({ x: i * 98, y: j * 98, z: 0, s: 92, d: (i + j + 2) * 0.35 })));
-[[0, 0], [1, 0], [0, 1]].forEach(([i, j]) => cubes.push({ x: i * 98, y: j * 98, z: 92, s: 92, d: 1.2 + i * 0.3 + j * 0.2 }));
-cubes.push({ x: 0, y: 0, z: 184, s: 92, tone: "core", d: 2 });
-cubes.push({ x: -170, y: 130, z: 60, s: 34, tone: "ember", d: 0.6 }, { x: 160, y: -150, z: 120, s: 28, d: 1.4 }, { x: 190, y: 120, z: 30, s: 22, tone: "violet", d: 2.2 }, { x: -150, y: -140, z: 150, s: 24, tone: "violet", d: 1.1 });
 
 export default function Home() {
   return (
     <main className="hx">
       <HomeFx />
       <div className="hx-progress" aria-hidden="true" />
-
       <SiteHeader />
 
       <section className="hx-hero" id="top">
         <ScratchReveal />
-        <div className="hx-aurora" aria-hidden="true"><i /><i /><i /></div>
-        <HeroCanvas />
-        <div className="hx-floor" aria-hidden="true" />
         <div className="hx-veil" aria-hidden="true" />
         <div className="hx-wrap hx-hero-in">
           <div className="hx-hero-copy">
-            <div className="hx-badge"><span className="hx-live" /> استودیوی توسعه و سرورهای بازی</div>
+            <div className="hx-badge">توسعه، وب و زیرساخت سرورهای بازی</div>
             <h1>
-              <span className="hx-line"><Words text="ایده‌ات رو به" /></span>
-              <span className="hx-line hx-grad">دنیای بازی بیار.</span>
+              <span className="hx-line"><Words text="سرور و نرم‌افزاری که" /></span>
+              <span className="hx-line hx-grad">می‌شه بهش تکیه کرد.</span>
             </h1>
-            <p className="hx-lead">از ساخت پلاگین اختصاصی تا راه‌اندازی، کانفیگ و بهینه‌سازی سرور؛ خدمات فنی سرورهای بازی در یک مسیر ساده و شفاف.</p>
+            <p className="hx-lead">راه‌اندازی و کانفیگ سرور ماینکرفت، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت. قبل از شروع، محدوده‌ی کار و هزینه رو روشن می‌کنیم و تا تحویل، مسیر سفارش قابل پیگیریه.</p>
             <div className="hx-actions">
-              <a className="hx-cta" href="/request" data-magnetic>ثبت سفارش <ArrowLeft size={18} /></a>
-              <a className="hx-ghost" href="#platforms" data-magnetic>دیدن پلتفرم‌ها</a>
+              <Link className="hx-cta" href="/request">ثبت سفارش <ArrowLeft size={18} /></Link>
+              <Link className="hx-ghost" href="/pricing">دیدن تعرفه</Link>
             </div>
-            <dl className="hx-stats" data-reveal>
-              <div><dt>پلتفرم تخصصی</dt><dd data-count="3">۳</dd></div>
-              <div><dt>خدمت اصلی</dt><dd data-count="4">۴</dd></div>
-              <div><dt>مرحله تا تحویل</dt><dd data-count="4">۴</dd></div>
+            <dl className="hx-facts">
+              <div><dt>دسته‌ی خدمت</dt><dd>{(groupMeta.length).toLocaleString("fa-IR")}</dd></div>
+              <div><dt>خدمت مشخص</dt><dd>{total.toLocaleString("fa-IR")}</dd></div>
+              <div><dt>شروع تعرفه</dt><dd>{(65000).toLocaleString("fa-IR")}<small>تومان</small></dd></div>
             </dl>
           </div>
-          <div className="hx-stage" aria-hidden="true">
-            <div className="hx-world"><div className="hx-spin">
-              {cubes.map((cube, index) => (
-                <div className={`vx ${cube.tone ?? ""} ${cube.s < 40 ? "fl" : ""}`} key={index} style={{ "--x": cube.x, "--y": cube.y, "--z": cube.z, "--s": `${cube.s}px`, "--d": `${cube.d}s` } as CSSProperties}>
-                  <i className="f-t" /><i className="f-b" /><i className="f-1" /><i className="f-2" /><i className="f-3" /><i className="f-4" />
-                </div>
-              ))}
-            </div></div>
-            <div className="hx-ground" />
-            <div className="hx-float-term"><HeroTerminal /></div>
+          <div className="hx-hero-side" aria-hidden="true">
+            <div className="hx-tracker">
+              <div className="hx-tracker-head"><span>پیگیری سفارش</span><em>نمونه</em></div>
+              <h3>راه‌اندازی سرور و نصب پلاگین‌ها</h3>
+              <ol>
+                <li className="done"><i />ثبت شد</li>
+                <li className="done"><i />در حال بررسی</li>
+                <li className="active"><i />در حال انجام</li>
+                <li><i />تکمیل شد</li>
+              </ol>
+              <p>هر تغییر وضعیت در سایت و بات تلگرام به شما اطلاع داده می‌شود.</p>
+            </div>
+            <div className="hx-notice"><b>🔔 وضعیت سفارش شما تغییر کرد</b><span>وضعیت جدید: در حال انجام</span><em>نمونه‌ی پیام بات</em></div>
           </div>
         </div>
       </section>
 
-      <div className="hx-marquee" aria-hidden="true">
-        {[false, true].map(reverse => (
-          <div className={`hx-track ${reverse ? "rev" : ""}`} key={String(reverse)}>
-            {[...marquee, ...marquee].map((item, index) => <span key={index}>{item}<svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 0l5 5-5 5-5-5z" fill="currentColor" /></svg></span>)}
-          </div>
-        ))}
-      </div>
+      <section className="hx-trust">
+        <div className="hx-wrap hx-trust-grid">
+          {commitments.map((item, index) => { const Icon = item.icon; return (
+            <article key={item.title} data-reveal data-delay={index * 70}><Icon size={20} /><div><h3>{item.title}</h3><p>{item.text}</p></div></article>
+          ); })}
+        </div>
+      </section>
 
-      <section className="hx-section" id="platforms">
+      <section className="hx-section" id="services">
         <div className="hx-wrap">
           <div className="hx-head" data-reveal>
-            <h2><Words text="برای دنیای بازی تو." /></h2>
-            <p>خدمات NexvorDEV برای سه پلتفرم؛ با یک بازه تعرفه مشخص و خدمات کامل.</p>
+            <h2><Words text="خدماتی که ارائه می‌دیم" /></h2>
+            <p>پنج دسته‌ی خدمت با {total.toLocaleString("fa-IR")} خدمت مشخص. اگه چیزی دقیقاً در فهرست نبود، توی فرم سفارش می‌تونی توضیح بدی.</p>
           </div>
-          <div className="hx-bento">
-            {platforms.map((platform, index) => { const Icon = platform.icon; return (
-              <article className={`hx-card ${index === 0 ? "big" : ""}`} key={platform.mark} data-tilt data-reveal data-delay={index * 110}>
-                <span className="hx-mark" aria-hidden="true">{platform.mark}</span>
-                <div className="hx-icon"><Icon size={index === 0 ? 30 : 24} /></div>
-                <h3>{platform.title}</h3>
-                <div className="hx-latin">{platform.name}</div>
-                <p>{platform.description}</p>
-                <div className="hx-tags">{platform.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-                <a className="hx-go" href="/request" aria-label={"سفارش برای " + platform.title}><ArrowUpLeft size={18} /></a>
+          <div className="hx-svc-grid">
+            {serviceGroups.filter(group => group.label !== "سایر").map((group, index) => { const meta = groupMeta[index]; const Icon = meta.icon; return (
+              <article className="hx-svc" key={group.label} data-reveal data-delay={index * 70}>
+                <div className="hx-svc-top"><span className="hx-icon"><Icon size={22} /></span><span className="hx-svc-count">{group.options.length.toLocaleString("fa-IR")} خدمت</span></div>
+                <h3>{group.label}</h3>
+                <p>{meta.text}</p>
+                <ul>{group.options.slice(0, 4).map(option => <li key={option}><Check size={14} />{option}</li>)}</ul>
+                <Link className="hx-textlink" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></Link>
               </article>
+            ); })}
+            <article className="hx-svc hx-svc-other" data-reveal data-delay="350">
+              <h3>چیزی که دنبالشی توی فهرست نبود؟</h3>
+              <p>پروژه‌ات رو توضیح بده؛ اگه توی حوزه‌ی کار ما باشه، برآورد و مسیر اجرا رو بررسی می‌کنیم.</p>
+              <Link className="hx-cta hx-cta-sm" href="/request">ثبت درخواست <ArrowUpLeft size={15} /></Link>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="hx-section hx-alt" id="security">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal>
+            <h2><Words text="امنیت و شفافیت" /></h2>
+            <p>این موارد درباره‌ی خود سایت و سیستم سفارش NexvorDEV است؛ چیزی که بدون ادعا، قابل بررسی است.</p>
+          </div>
+          <div className="hx-sec-grid">
+            {security.map((item, index) => { const Icon = item.icon; return (
+              <article className="hx-sec" key={item.title} data-reveal data-delay={(index % 3) * 70}><Icon size={20} /><h3>{item.title}</h3><p>{item.text}</p></article>
             ); })}
           </div>
         </div>
       </section>
 
-      <section className="hx-section hx-services" id="services">
+      <section className="hx-section" id="process">
         <div className="hx-wrap">
           <div className="hx-head" data-reveal>
-            <h2><Words text="از کدنویسی تا اجرای سرور." /></h2>
-            <p>هر چیزی که برای آماده‌سازی و توسعه سرور بازی لازم داری، از همین‌جا شروع می‌شه.</p>
+            <h2><Words text="مسیر یک سفارش" /></h2>
+            <p>چهار مرحله‌ی مشخص، از اولین پیام تا تحویل نهایی.</p>
           </div>
-          <div className="hx-rows">
-            {services.map((service, index) => { const Icon = service.icon; return (
-              <a className="hx-row" href="/request" key={service.title} data-tilt="flat" data-reveal data-delay={index * 90}>
-                <span className="hx-row-icon"><Icon size={26} /></span>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <span className="hx-row-go"><ArrowUpLeft size={20} /></span>
-              </a>
-            ); })}
-          </div>
-        </div>
-      </section>
-
-      <section className="hx-section hx-process" id="process">
-        <div className="hx-wrap">
-          <div className="hx-head" data-reveal>
-            <h2><Words text="طرز کار ما، قدم‌به‌قدم." /></h2>
-            <p>از پیام اول تا تحویل نهایی، مسیر سفارش روشن و قابل پیگیریه.</p>
-          </div>
-          <div className="hx-timeline">
-            {steps.map(([title, description], index) => (
-              <article className="hx-step" key={title} data-reveal>
-                <span className="hx-node" />
-                <div className="hx-step-card"><span className="hx-step-no">{(index + 1).toLocaleString("fa-IR")}</span><h3>{title}</h3><p>{description}</p></div>
-              </article>
+          <ol className="hx-steps">
+            {steps.map(([title, text], index) => (
+              <li key={title} data-reveal data-delay={index * 80}><span>{(index + 1).toLocaleString("fa-IR")}</span><h3>{title}</h3><p>{text}</p></li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
@@ -156,11 +152,9 @@ export default function Home() {
 
       <section className="hx-section hx-contact" id="contact">
         <div className="hx-wrap">
-          <div className="hx-panel" data-reveal>
-            <span className="hx-watermark" aria-hidden="true" data-depth="0.08">NX</span>
-            <h2>آماده‌ای شروع کنیم؟<br /><span className="hx-grad">با ما در ارتباط باش.</span></h2>
-            <p>پلتفرم و توضیح کوتاهی از چیزی که لازم داری بفرست تا درباره جزئیات سفارش صحبت کنیم.</p>
-            <a className="hx-cta hx-cta-lg" href="/request" data-magnetic>ثبت سفارش <ArrowLeft size={19} /></a>
+          <div className="hx-cta-band" data-reveal>
+            <div><h2>پروژه‌ات رو توضیح بده.</h2><p>هزینه و محدوده‌ی کار رو قبل از شروع، شفاف اعلام می‌کنیم.</p></div>
+            <div className="hx-actions"><Link className="hx-cta hx-cta-lg" href="/request">ثبت سفارش <ArrowLeft size={19} /></Link><Link className="hx-ghost" href="/support">پشتیبانی</Link></div>
           </div>
         </div>
       </section>

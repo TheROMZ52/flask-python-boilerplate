@@ -1,22 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { ArrowUpLeft } from "lucide-react";
 import HomeFx from "@/components/home-fx";
 
 const links = [
-  { href: "/#platforms", label: "پلتفرم‌ها" },
   { href: "/#services", label: "خدمات" },
+  { href: "/#security", label: "امنیت" },
   { href: "/pricing", label: "تعرفه" },
   { href: "/subdomains", label: "ساب‌دامنه" },
   { href: "/#process", label: "طرز کار" },
   { href: "/support", label: "پشتیبانی" },
   { href: "/account", label: "حساب کاربری" },
-  { href: "/support/admin", label: "پنل مدیریت" },
 ];
 
 export function Words({ text }: { text: string }) {
-  return <>{text.split(" ").map((word, index) => <span className="hx-w" key={index}><span style={{ "--i": index } as CSSProperties}>{word}</span>{" "}</span>)}</>;
+  return <>{text.split(" ").map((word, index) => <Fragment key={index}><span className="hx-w"><span style={{ "--i": index } as CSSProperties}>{word}</span></span>{" "}</Fragment>)}</>;
 }
 
 export function SiteHeader({ active }: { active?: string }) {

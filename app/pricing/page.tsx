@@ -3,10 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpLeft, Blocks, Check, ClipboardCheck, Cpu, Gamepad2, Gauge, MessageCircle, Puzzle, Server, SlidersHorizontal, Sparkles } from "lucide-react";
 import { PageHero, PageShell, Words } from "@/components/site-chrome";
+import { serviceGroups } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "تعرفه خدمات",
-  description: "تعرفه خدمات توسعه، راه‌اندازی و بهینه‌سازی سرورهای ماینکرفت جاوا، بدراک و کانتر استرایک ۱.۶ در NexvorDEV.",
+  description: "تعرفه خدمات NexvorDEV؛ راه‌اندازی سرور، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت، با بازه‌ی قیمت مشخص و برآورد دقیق قبل از شروع.",
   alternates: { canonical: "/pricing" },
   openGraph: { title: "تعرفه خدمات NexvorDEV", description: "بازه قیمت و جزئیات خدمات توسعه سرورهای بازی.", url: "/pricing", images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }] },
 };
@@ -50,37 +51,23 @@ export default function PricingPage() {
             <div><strong data-count="2000000">۲٬۰۰۰٬۰۰۰</strong><span>حد بالای بازه</span></div>
           </div>
           <div className="hx-range-track"><span /></div>
-          <div className="hx-range-foot"><span>تومان</span><span>برای هر سه پلتفرم</span></div>
+          <div className="hx-range-foot"><span>تومان</span><span>برای همه‌ی خدمات</span></div>
           <p>مبلغ دقیق با توجه به جزئیات، حجم کار و امکانات درخواستی مشخص می‌شه.</p>
         </div>
       </PageHero>
 
       <section className="hx-section">
         <div className="hx-wrap">
-          <div className="hx-head" data-reveal><h2><Words text="برای کدوم پلتفرم؟" /></h2><p>بازه تعرفه برای هر سه پلتفرم یکسانه؛ نوع سفارش و جزئیات اجرایی، مبلغ نهایی رو تعیین می‌کنه.</p></div>
+          <div className="hx-head" data-reveal><h2><Words text="برای کدوم خدمت؟" /></h2><p>بازه‌ی تعرفه برای همه‌ی دسته‌ها یکسانه؛ نوع سفارش و جزئیات اجرایی، مبلغ نهایی رو تعیین می‌کنه.</p></div>
           <div className="hx-trio">
-            {platforms.map((platform, index) => { const Icon = platform.icon; return (
-              <article className="hx-card" key={platform.mark} data-tilt data-reveal data-delay={index * 100}>
-                <span className="hx-mark" aria-hidden="true">{platform.mark}</span>
-                <div className="hx-icon"><Icon size={24} /></div>
-                <h3>{platform.title}</h3><div className="hx-latin">{platform.english}</div>
-                <p>{platform.detail}</p>
-                <Link className="hx-textlink" href="/request">ثبت سفارش این پلتفرم <ArrowUpLeft size={15} /></Link>
+            {serviceGroups.filter(group => group.label !== "سایر").map((group, index) => (
+              <article className="hx-mini" key={group.label} data-tilt data-reveal data-delay={(index % 3) * 90}>
+                <span className="hx-mini-no">{group.options.length.toLocaleString("fa-IR")} خدمت</span>
+                <h3>{group.label}</h3>
+                <p>{group.options.slice(0, 3).join("، ")} و موارد دیگر</p>
+                <Link className="hx-textlink" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></Link>
               </article>
-            ); })}
-          </div>
-        </div>
-      </section>
-
-      <section className="hx-section hx-alt">
-        <div className="hx-wrap">
-          <div className="hx-head" data-reveal><h2><Words text="چه خدماتی شامل می‌شه؟" /></h2><p>می‌تونی یک خدمت مشخص سفارش بدی یا چند بخش رو در قالب یک پروژه جلو ببری.</p></div>
-          <div className="hx-quad">
-            {services.map((service, index) => { const Icon = service.icon; return (
-              <article className="hx-mini" key={service.title} data-tilt data-reveal data-delay={index * 80}>
-                <div className="hx-icon"><Icon size={22} /></div><h3>{service.title}</h3><p>{service.detail}</p>
-              </article>
-            ); })}
+            ))}
           </div>
         </div>
       </section>

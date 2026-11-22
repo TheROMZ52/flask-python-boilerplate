@@ -1,7 +1,7 @@
 import { helped } from "@/lib/helped";
 
 export default function HelpedBar() {
-  if (!helped.length) return null;
+  if (helped.length < 3) return null;
   return (
     <section className="helped" aria-label="کسانی که کمکشان کرده‌ایم">
       <div className="container helped-inner">

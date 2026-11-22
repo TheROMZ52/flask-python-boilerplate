@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { cleanText, supportDb } from "@/lib/support/server";
+import { cleanText, hashAccessToken, safeEqual, supportDb } from "@/lib/support/server";
 import { escapeTelegramHtml, sendTelegramMessage } from "@/lib/support/telegram";
 import { handlePublicCallback, handlePublicMessage, notifyCustomerAboutReply, notifyCustomerAboutRequest, type BotCallback, type BotMessage } from "@/lib/bot/public";
 
@@ -510,7 +510,7 @@ async function handleCommand(message: TelegramMessage) {
 
 export async function POST(request: Request) {
   const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
-  if (!secret || request.headers.get("x-telegram-bot-api-secret-token") !== secret) {
+  if (!secret || !safeEqual(hashAccessToken(request.headers.get("x-telegram-bot-api-secret-token") || ""), hashAccessToken(secret))) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
   try {

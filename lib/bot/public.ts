@@ -208,7 +208,7 @@ async function customerReply(chatId: string, ticketId: string, text: string) {
   await send(chatId, "✅ پیامت برای پشتیبانی ارسال شد.", { inline_keyboard: [[button("🎫 بازگشت به تیکت", `p:t:${ticketId}`)], backRow] });
 }
 
-const pricesText = () => ["💰 <b>تعرفه خدمات</b>", "", "بازه تعرفه برای هر سه پلتفرم (ماینکرفت جاوا، بدراک و کانتر ۱.۶):", "", "از <b>۶۵٬۰۰۰</b> تا <b>۲٬۰۰۰٬۰۰۰</b> تومان", "", "مبلغ دقیق بعد از بررسی جزئیات، حجم کار و امکانات درخواستی اعلام می‌شه. بدون هزینه پنهان."].join("\n");
+const pricesText = () => ["💰 <b>تعرفه خدمات</b>", "", "بازه تعرفه برای همه‌ی خدمات (سرور، پلاگین و بات، طراحی وب و زیرساخت):", "", "از <b>۶۵٬۰۰۰</b> تا <b>۲٬۰۰۰٬۰۰۰</b> تومان", "", "مبلغ دقیق بعد از بررسی جزئیات، حجم کار و امکانات درخواستی اعلام می‌شه. بدون هزینه پنهان."].join("\n");
 
 const servicesText = () => ["🛠 <b>خدمات NexvorDEV</b>", "", ...serviceGroups.map(group => `• <b>${escapeTelegramHtml(group.label)}</b> (${group.options.length.toLocaleString("fa-IR")} خدمت)`), "", "برای سفارش، دکمه زیر رو بزن."].join("\n");
 

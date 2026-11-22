@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
     template: "%s | NexvorDEV",
   },
-  description: "NexvorDEV؛ ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرور ماینکرفت جاوا و بدراک و کانتر استرایک ۱.۶.",
+  description: "NexvorDEV؛ راه‌اندازی و کانفیگ سرور ماینکرفت، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت سرور؛ با هزینه‌ی روشن قبل از شروع.",
   applicationName: "NexvorDEV",
   verification: { google: "LVRc98jd-dbb5DyF77arcvzGDLlp46q1fneg0IX3ZFc" },
   icons: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   openGraph: {
     title: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
-    description: "ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.",
+    description: "راه‌اندازی سرور، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت.",
     siteName: "NexvorDEV",
     locale: "fa_IR",
     type: "website",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "خدمات تخصصی ماینکرفت و سرور بازی | NexvorDEV",
-    description: "ساخت پلاگین اختصاصی، راه‌اندازی، کانفیگ و بهینه‌سازی سرورهای بازی.",
+    description: "راه‌اندازی سرور، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت.",
     images: [{ url: socialImage, width: 700, height: 247 }],
   },
 };

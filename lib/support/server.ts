@@ -47,7 +47,8 @@ export function newAccessToken() {
 
 function sessionSignature(payload: string) {
   requireSupportConfig();
-  return createHmac("sha256", secretKey!).update(payload).digest("hex");
+  const key = createHmac("sha256", secretKey!).update("nexvor:admin-session:v1").digest();
+  return createHmac("sha256", key).update(payload).digest("hex");
 }
 
 export function createAdminSession() {
