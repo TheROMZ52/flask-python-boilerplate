@@ -11,6 +11,11 @@ export default function HeroCanvas() {
     const canvas = ref.current;
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
+    const mobile = window.matchMedia("(max-width: 980px), (hover: none), (pointer: coarse)").matches;
+    if (mobile) {
+      canvas.hidden = true;
+      return;
+    }
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let width = 0, height = 0, frame = 0, running = true;
     let nodes: Node[] = [];
@@ -30,7 +35,13 @@ export default function HeroCanvas() {
       }));
     };
 
-    const draw = () => {
+    let lastFrame = 0;
+    const draw = (timestamp = 0) => {
+      if (timestamp - lastFrame < 32) {
+        if (running && !reduce) frame = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = timestamp;
       context.clearRect(0, 0, width, height);
       for (const node of nodes) {
         if (!reduce) {
@@ -44,8 +55,10 @@ export default function HeroCanvas() {
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 125) {
+          const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y;
+          const distanceSquared = dx * dx + dy * dy;
+          if (distanceSquared < 15625) {
+            const d = Math.sqrt(distanceSquared);
             context.strokeStyle = `hsla(${a.hue},90%,70%,${(1 - d / 125) * 0.22})`;
             context.lineWidth = 1;
             context.beginPath(); context.moveTo(a.x, a.y); context.lineTo(b.x, b.y); context.stroke();
