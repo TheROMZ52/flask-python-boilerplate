@@ -5,6 +5,7 @@ const siteUrl = "https://nexvordev.ir";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteUrl, changeFrequency: "weekly", priority: 1 },
+    { url: `${siteUrl}/services`, changeFrequency: "monthly", priority: 0.95 },
     { url: `${siteUrl}/pricing`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${siteUrl}/subdomains`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${siteUrl}/request`, changeFrequency: "monthly", priority: 0.8 },
