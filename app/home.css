@@ -229,3 +229,13 @@
   color: #07111f !important;
   stroke: #07111f !important;
 }
+
+
+/* Performance: keep decorative hero effects off touch and smaller devices */
+@media (max-width: 980px), (hover: none), (pointer: coarse) {
+  .hx-canvas { display: none !important; }
+  .hx-aurora { opacity: .48; }
+  .hx-aurora i { animation: none !important; }
+  .hx-spin, .vx.fl, .vx.core { animation: none !important; }
+  .hx-aura { display: none !important; }
+}
