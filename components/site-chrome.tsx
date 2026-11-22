@@ -7,6 +7,7 @@ import HomeFx from "@/components/home-fx";
 const links = [
   { href: "/#platforms", label: "پلتفرم‌ها" },
   { href: "/#services", label: "خدمات" },
+  { href: "/services", label: "همه خدمات" },
   { href: "/pricing", label: "تعرفه" },
   { href: "/subdomains", label: "ساب‌دامنه" },
   { href: "/#process", label: "طرز کار" },
@@ -40,7 +41,7 @@ export function SiteFooter() {
       <div className="hx-wrap hx-foot">
         <Link className="hx-brand" href="/"><Image src="/nexvordev-logo.jpg" alt="لوگوی NexvorDEV" width={36} height={36} /><span>NexvorDEV</span></Link>
         <nav>
-          <Link href="/#services">خدمات</Link><Link href="/pricing">تعرفه</Link><Link href="/subdomains">ساب‌دامنه</Link><Link href="/#process">طرز کار</Link><Link href="/support">پشتیبانی</Link><Link href="/privacy">حریم خصوصی</Link><Link href="/terms">شرایط استفاده</Link>
+          <Link href="/#services">خدمات</Link><Link href="/services">همه خدمات</Link><Link href="/pricing">تعرفه</Link><Link href="/subdomains">ساب‌دامنه</Link><Link href="/#process">طرز کار</Link><Link href="/support">پشتیبانی</Link><Link href="/privacy">حریم خصوصی</Link><Link href="/terms">شرایط استفاده</Link>
         </nav>
         <span className="hx-copy">© {new Date().getFullYear()} NexvorDEV</span>
       </div>
