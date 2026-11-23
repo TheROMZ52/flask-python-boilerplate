@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cleanText, hashAccessToken, safeEqual, supportDb } from "@/lib/support/server";
 import { escapeTelegramHtml, sendTelegramMessage } from "@/lib/support/telegram";
+import { setInvoicePayment, syncInvoiceAmount } from "@/lib/invoice";
 import { handlePublicCallback, handlePublicMessage, notifyCustomerAboutReply, notifyCustomerAboutRequest, type BotCallback, type BotMessage } from "@/lib/bot/public";
 
 export const runtime = "nodejs";
@@ -360,6 +361,7 @@ function helpText() {
     "/setstatus شناسه وضعیت — تغییر وضعیت درخواست",
     "/assign شناسه — اختصاص درخواست به خود",
     "/quote شناسه مبلغ — ثبت قیمت پیشنهادی",
+    "/paid شماره‌فاکتور — ثبت پرداخت فاکتور (/unpaid ، /cancelinvoice)",
     "/note شناسه متن — یادداشت داخلی",
     "/history شناسه — تاریخچه تغییرات درخواست",
     "/tickets — فهرست تیکت‌ها",
@@ -420,7 +422,14 @@ async function handleCommand(message: TelegramMessage) {
   if (command === "/request") { if(!/^[0-9a-f-]{36}$/i.test(argument)) { await reply(String(chatId),"فرمت: <code>/request شناسه</code>"); return; } await showServiceRequest(argument,String(chatId)); return; }
   if (command === "/setstatus") { const match=argument.match(/^([0-9a-f-]{36})\s+(new|reviewing|in_progress|completed|rejected)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/setstatus شناسه new|reviewing|in_progress|completed|rejected</code>");return;} const item=await updateServiceStatus(match[1],match[2],String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
   if (command === "/assign") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/assign شناسه</code>");return;} const item=await assignServiceRequest(argument,String(senderId)); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} await reply(String(chatId),serviceRequestText(item),serviceRequestKeyboard(item)); return; }
-  if (command === "/quote") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/quote شناسه مبلغ</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const price=cleanText(match[2],80); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({quoted_price:price,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"quote",item.quoted_price,price); await notifyCustomerAboutRequest({...item,quoted_price:price},"quote").catch(()=>null); await reply(String(chatId),`💰 قیمت پیشنهادی ثبت شد: <b>${escapeTelegramHtml(price)}</b>`,{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
+  if (command === "/paid" || command === "/unpaid" || command === "/cancelinvoice") {
+    const number = argument.trim().toUpperCase();
+    if (!/^NX-\d{4}-\d{6}$/.test(number)) { await reply(String(chatId), `فرمت: <code>${command} NX-2026-001001</code>`); return; }
+    const invoice = await setInvoicePayment(number, command === "/paid" ? "paid" : command === "/unpaid" ? "unpaid" : "cancelled");
+    await reply(String(chatId), invoice ? `✅ وضعیت پرداخت فاکتور <code>${number}</code> ثبت شد.` : "فاکتوری با این شماره پیدا نشد.");
+    return;
+  }
+  if (command === "/quote") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/quote شناسه مبلغ</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const price=cleanText(match[2],80); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({quoted_price:price,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"quote",item.quoted_price,price); await notifyCustomerAboutRequest({...item,quoted_price:price},"quote").catch(()=>null); await syncInvoiceAmount(item.id,price).catch(()=>null); await reply(String(chatId),`💰 قیمت پیشنهادی ثبت شد: <b>${escapeTelegramHtml(price)}</b>`,{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
   if (command === "/note") { const match=argument.match(/^([0-9a-f-]{36})\s+([\s\S]+)$/i); if(!match){await reply(String(chatId),"فرمت: <code>/note شناسه متن یادداشت</code>");return;} const item=await getServiceRequest(match[1]); if(!item){await reply(String(chatId),"درخواست پیدا نشد.");return;} const note=cleanText(match[2],1000); await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(item.id)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({internal_note:note,updated_at:new Date().toISOString()})}); await logServiceEvent(item.id,String(senderId),"note",null,null,note); await reply(String(chatId),"📝 یادداشت داخلی ذخیره شد.",{inline_keyboard:[[{text:"مشاهده درخواست",callback_data:`srview:${item.id}`}]]}); return; }
   if (command === "/history") { if(!/^[0-9a-f-]{36}$/i.test(argument)){await reply(String(chatId),"فرمت: <code>/history شناسه</code>");return;} await showServiceEvents(argument,String(chatId)); return; }
   if (command === "/tickets") {

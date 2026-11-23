@@ -6,7 +6,6 @@ import HomeFx from "@/components/home-fx";
 
 const links = [
   { href: "/#services", label: "خدمات" },
-  { href: "/#security", label: "امنیت" },
   { href: "/pricing", label: "تعرفه" },
   { href: "/subdomains", label: "ساب‌دامنه" },
   { href: "/#process", label: "طرز کار" },

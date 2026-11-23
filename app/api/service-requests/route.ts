@@ -1,12 +1,15 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { supportDb } from "@/lib/support/server";
 import { clientKey, DAYS, HOURS, limited } from "@/lib/rate-limit";
 import { sessionUser } from "@/lib/supabase/server";
 import { serviceOptions } from "@/lib/services";
 import { notifyAdminAboutNewServiceRequest } from "@/lib/support/telegram";
+import { verifiedAccount } from "@/lib/auth/account";
+import { createInvoiceForRequest, sendInvoiceOnce } from "@/lib/invoice";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const priorities: Record<string, string> = { normal: "عادی", urgent: "فوری", critical: "اضطراری" };
 function clean(value: unknown, max: number) { return typeof value === "string" ? value.trim().slice(0,max) : ""; }
@@ -29,6 +32,15 @@ export async function POST(request: Request) {
     const item=rows?.[0];
     if(!item?.id) throw new Error("Request record was not created");
     await notifyAdminAboutNewServiceRequest(item.id).catch(()=>null);
+    const account = user ? await verifiedAccount() : null;
+    if (account) {
+      after(async () => {
+        try {
+          const invoice = await createInvoiceForRequest({ requestId: item.id, userId: account.user.id, name, email: account.email, description: service });
+          if (invoice) await sendInvoiceOnce(invoice, "issued");
+        } catch {}
+      });
+    }
     return NextResponse.json({ok:true,requestId:item.id});
   } catch {
     return NextResponse.json({ok:false,error:"در ثبت درخواست مشکلی پیش آمد؛ لطفاً کمی بعد دوباره تلاش کن."},{status:503});

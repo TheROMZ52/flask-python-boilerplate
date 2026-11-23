@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { clientKey, DAYS, HOURS, limited } from "@/lib/rate-limit";
-import { sessionUser } from "@/lib/supabase/server";
+import { verifiedAccount } from "@/lib/auth/account";
 import { cleanText, hashAccessToken, newAccessToken, supportDb } from "@/lib/support/server";
 import { notifyAdminAboutNewTicket } from "@/lib/support/telegram";
 
@@ -8,8 +8,10 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const user = await sessionUser();
-    if (await limited(`ticket:ip:${clientKey(request)}`, 5, HOURS) || (user && await limited(`ticket:user:${user.id}`, 8, HOURS))) return NextResponse.json({ error: "درخواست‌های زیادی ثبت شد؛ کمی بعد دوباره تلاش کن." }, { status: 429 });
+    const account = await verifiedAccount();
+    if (!account) return NextResponse.json({ error: "برای ثبت تیکت باید با ایمیل تأییدشده وارد حساب کاربری شوی.", needAuth: true }, { status: 401 });
+    const user = account.user;
+    if (await limited(`ticket:ip:${clientKey(request)}`, 5, HOURS) || await limited(`ticket:user:${user.id}`, 8, HOURS)) return NextResponse.json({ error: "درخواست‌های زیادی ثبت شد؛ کمی بعد دوباره تلاش کن." }, { status: 429 });
     const body = await request.json();
     const first_name = cleanText(body.first_name, 80);
     const last_name = cleanText(body.last_name, 80);
@@ -35,7 +37,7 @@ export async function POST(request: Request) {
       headers: { Prefer: "return=representation" },
       body: JSON.stringify({
         first_name, last_name, age, telegram_username, subject,
-        access_token_hash: hashAccessToken(accessToken), user_id: user?.id ?? null,
+        access_token_hash: hashAccessToken(accessToken), user_id: user.id,
       }),
     }) as Array<{ id: string; status: string }>;
 

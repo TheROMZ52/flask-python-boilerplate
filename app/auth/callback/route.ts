@@ -16,7 +16,10 @@ export async function GET(request: Request) {
       },
     });
     const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) return NextResponse.redirect(`${origin}/account`);
+    if (!error) {
+      const next = searchParams.get("next") || "";
+      return NextResponse.redirect(`${origin}${next.startsWith("/") && !next.startsWith("//") ? next : "/account"}`);
+    }
   }
   return NextResponse.redirect(`${origin}/account?error=auth`);
 }

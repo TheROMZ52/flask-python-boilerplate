@@ -54,6 +54,7 @@ export async function GET(request: Request) {
     { command: "assign", description: "اختصاص درخواست به خود" },
     { command: "quote", description: "ثبت قیمت پیشنهادی" },
     { command: "note", description: "یادداشت داخلی درخواست" },
+    { command: "paid", description: "ثبت پرداخت فاکتور" },
     { command: "history", description: "تاریخچه درخواست" },
     { command: "tickets", description: "فهرست تیکت‌ها" },
     { command: "ticket", description: "جزئیات یک تیکت" },

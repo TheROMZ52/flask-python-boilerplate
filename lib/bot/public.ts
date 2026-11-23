@@ -3,6 +3,8 @@ import { escapeTelegramHtml, notifyAdminAboutCustomerMessage, notifyAdminAboutNe
 import { serviceGroups } from "@/lib/services";
 import { limited, MINUTES, HOURS } from "@/lib/rate-limit";
 import { siteUrl } from "@/lib/site";
+import { createNotification, displayName, getProfile } from "@/lib/auth/account";
+import { sendMail, ticketReplyMessage } from "@/lib/mail";
 
 export type BotMessage = { message_id?: number; text?: string; chat?: { id?: number; type?: string }; from?: { id?: number; is_bot?: boolean; first_name?: string; last_name?: string; username?: string } };
 export type BotCallback = { id: string; data?: string; from?: BotMessage["from"]; message?: BotMessage };
@@ -289,14 +291,22 @@ export async function handlePublicCallback(cb: BotCallback) {
 }
 
 export async function notifyCustomerAboutReply(ticketId: string) {
-  const rows = (await supportDb(`nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,subject,telegram_chat_id&limit=1`)) as Array<Row & { telegram_chat_id: string | null }>;
+  const rows = (await supportDb(`nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,subject,telegram_chat_id,user_id&limit=1`)) as Array<Row & { telegram_chat_id: string | null; user_id: string | null }>;
   const ticket = rows?.[0];
-  if (!ticket?.telegram_chat_id) return;
+  if (!ticket) return;
   const messages = (await supportDb(`nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&sender_role=eq.admin&select=body&order=created_at.desc&limit=1`)) as Array<{ body: string }>;
-  await send(ticket.telegram_chat_id, [`💬 <b>پاسخ جدید از پشتیبانی</b>`, `🎫 ${escapeTelegramHtml(ticket.subject)}`, "", escapeTelegramHtml(messages?.[0]?.body || "").slice(0, 2500)].join("\n"), { inline_keyboard: [[button("✍️ پاسخ", `p:tr:${ticketId}`), button("🎫 مشاهده", `p:t:${ticketId}`)]] }).catch(() => null);
+  const body = messages?.[0]?.body || "";
+  if (ticket.user_id) {
+    const profile = await getProfile(ticket.user_id).catch(() => null);
+    await createNotification(ticket.user_id, "ticket", "پاسخ جدید به تیکت شما", String(ticket.subject), `/support/ticket/${ticketId}`);
+    if (profile?.email && profile.email_verified_at) await sendMail({ to: profile.email, ...ticketReplyMessage(displayName(profile), String(ticket.subject), body.slice(0, 1500), `${siteUrl}/support/ticket/${ticketId}`) }).catch(() => null);
+  }
+  if (!ticket.telegram_chat_id) return;
+  await send(ticket.telegram_chat_id, [`💬 <b>پاسخ جدید از پشتیبانی</b>`, `🎫 ${escapeTelegramHtml(ticket.subject)}`, "", escapeTelegramHtml(body).slice(0, 2500)].join("\n"), { inline_keyboard: [[button("✍️ پاسخ", `p:tr:${ticketId}`), button("🎫 مشاهده", `p:t:${ticketId}`)]] }).catch(() => null);
 }
 
-export async function notifyCustomerAboutRequest(item: { id: string; service_type: string; status: string; quoted_price?: string | null; telegram_chat_id?: string | null }, kind: "status" | "quote") {
+export async function notifyCustomerAboutRequest(item: { id: string; service_type: string; status: string; quoted_price?: string | null; telegram_chat_id?: string | null; user_id?: string | null }, kind: "status" | "quote") {
+  if (item.user_id) await createNotification(item.user_id, "order", kind === "quote" ? "هزینه سفارش اعلام شد" : "وضعیت سفارش تغییر کرد", `${item.service_type} — ${kind === "quote" ? item.quoted_price || "" : requestLabels[item.status] || item.status}`, "/account");
   if (!item.telegram_chat_id) return;
   const text = kind === "quote"
     ? [`💰 <b>هزینه سفارش شما اعلام شد</b>`, `📦 ${escapeTelegramHtml(item.service_type)}`, "", `<b>مبلغ:</b> ${escapeTelegramHtml(item.quoted_price || "")}`, "", "برای هماهنگی بیشتر همین‌جا یا با تیکت پیام بده."].join("\n")

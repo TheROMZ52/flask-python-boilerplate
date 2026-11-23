@@ -19,6 +19,13 @@ const csp = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  serverExternalPackages: ["@sparticuz/chromium", "puppeteer-core"],
+  outputFileTracingIncludes: {
+    "/api/service-requests": ["./node_modules/@sparticuz/chromium/bin/**"],
+    "/api/account/invoices/[id]/pdf": ["./node_modules/@sparticuz/chromium/bin/**"],
+    "/api/account/invoices/[id]/resend": ["./node_modules/@sparticuz/chromium/bin/**"],
+    "/api/telegram/webhook": ["./node_modules/@sparticuz/chromium/bin/**"],
+  },
   images: { formats: ["image/avif", "image/webp"] },
   async headers() {
     return [

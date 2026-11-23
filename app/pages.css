@@ -207,3 +207,24 @@
 .dash-profile input{min-height:48px;padding:0 16px;border-radius:14px;border:1px solid rgba(130,200,255,.18);background:rgba(4,9,24,.7);color:var(--text);font:14px var(--font-vazirmatn),sans-serif;outline:0}.dash-profile input:focus{border-color:rgba(92,214,255,.7);box-shadow:0 0 0 4px rgba(92,214,255,.12)}.dash-profile input[readonly]{opacity:.6}
 .dash-save{display:flex;align-items:center;gap:14px}.dash-save span{display:inline-flex;align-items:center;gap:6px;color:#7be8c8;font-size:12px}.dash-profile small{color:#6f89aa;font-size:11px}
 @media(max-width:760px){.dash-stats{grid-template-columns:1fr 1fr}.dash-head{flex-wrap:wrap}.dash-who{flex:1 1 170px}.dash-out{order:3;width:100%;justify-content:center}.dash-steps{grid-template-columns:1fr 1fr}.dash-claim{flex-direction:column;align-items:flex-start}.hx-account{padding-inline:14px}}
+
+.account-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.account-hint{margin:0;color:#6f89aa;font-size:11px;text-align:right}
+.account-forgot{align-self:flex-end;background:none;border:0;color:#7bf5e6;font:600 11px var(--font-vazirmatn),sans-serif;cursor:pointer;padding:0}
+.account-mailicon{color:#7bf5e6;margin:6px 0 2px}
+.dash-verify{display:flex;align-items:center;gap:18px;padding:22px 26px;flex-wrap:wrap}.dash-verify svg{color:#ffd27a;flex:0 0 auto}.dash-verify div{flex:1;min-width:200px}.dash-verify strong{font-size:15px}.dash-verify p{margin:4px 0 0;color:var(--mute);font-size:12px;line-height:2}
+.dash-badge{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:99px;background:#ff8a5c;color:#1a0a02;font-size:11px}
+.dash-inv-actions{display:flex;gap:10px;flex-wrap:wrap}
+.dash-mini{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:99px;border:1px solid rgba(130,200,255,.25);background:rgba(8,22,52,.7);color:#c8d9f1;font:600 12px var(--font-vazirmatn),sans-serif;cursor:pointer;transition:border-color .25s,color .25s}.dash-mini:hover{border-color:var(--cyan);color:var(--cyan)}.dash-mini:disabled{opacity:.6;cursor:wait}
+.dash-readall{justify-self:start}
+.dash-notice{width:100%;text-align:start;cursor:pointer;color:inherit;font-family:inherit;transition:border-color .25s}.dash-notice:hover{border-color:rgba(92,214,255,.5)}.dash-notice p{margin:0;color:#9fb6d4;font-size:13px}.dash-notice.unread{border-color:rgba(92,214,255,.45);background:linear-gradient(155deg,rgba(28,70,130,.55),rgba(7,16,40,.9))}
+.dash-chip.pay-paid{background:rgba(93,224,184,.12);color:#7be8c8}.dash-chip.pay-unpaid{background:rgba(255,200,92,.13);color:#ffd27a}.dash-chip.pay-cancelled{background:rgba(130,150,180,.14);color:#9fb0c8}
+.dash-forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:start}.dash-forms .dash-profile{max-width:none}
+.dash-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.support-gate{display:grid;justify-items:center;gap:10px;text-align:center}.support-gate svg{color:var(--cyan)}.support-gate h2{margin:0;font-size:22px}.support-gate p{max-width:460px;margin:0 0 8px;color:var(--mute);font-size:13px;line-height:2.1}
+.support-mine{display:flex;align-items:center;gap:14px;padding:18px 22px}.support-mine svg{color:var(--cyan)}.support-mine span{display:grid;gap:2px}.support-mine small{color:var(--mute);font-size:12px}
+.inv-wrap{place-items:start center!important}.inv{width:min(640px,100%);padding:34px;display:grid;gap:20px}.inv header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.inv h1{margin:0;font-size:28px;font-weight:900}.inv header span:first-child,.inv header div span{color:var(--mute);font-size:13px}
+.inv dl{display:grid;gap:10px;margin:0}.inv dl div{display:flex;justify-content:space-between;gap:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.inv dt{color:var(--mute);font-size:13px}.inv dd{margin:0;font-weight:700;font-size:14px}
+.inv-line{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 20px;border-radius:16px;background:rgba(92,214,255,.07);border:1px solid rgba(92,214,255,.22)}.inv-line strong{font-size:18px;color:var(--cyan)}
+.inv-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.inv-actions .account-notice,.inv-actions .account-error{width:100%;margin:0}
+@media(max-width:760px){.dash-two,.account-two{grid-template-columns:1fr}}
