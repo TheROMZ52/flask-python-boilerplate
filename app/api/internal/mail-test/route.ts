@@ -1,27 +1,31 @@
+import net from "node:net";
+import dns from "node:dns/promises";
 import { NextResponse } from "next/server";
-import { invoiceDocumentHtml } from "@/lib/invoice";
-import { htmlToPdf } from "@/lib/invoice-pdf";
-import { sendMail, verifyEmailMessage } from "@/lib/mail";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  if (!process.env.TELEGRAM_SETUP_KEY || url.searchParams.get("key") !== process.env.TELEGRAM_SETUP_KEY) return NextResponse.json({ ok: false }, { status: 404 });
-  const to = "info@nexvordev.ir";
-  const steps: Record<string, unknown> = {};
-  try {
+function probe(host: string, port: number) {
+  return new Promise<string>(resolve => {
     const started = Date.now();
-    const pdf = await htmlToPdf(invoiceDocumentHtml({ id: "t", number: "NX-TEST-000000", user_id: null, request_id: null, customer_name: "تست سیستم", customer_email: to, description: "تست تولید PDF و ارسال ایمیل", amount: 100000, currency: "IRT", payment_status: "unpaid", issued_at: new Date().toISOString(), emailed_at: null, emailed_amount: null, email_count: 0 }));
-    steps.pdf = { bytes: pdf.length, ms: Date.now() - started };
-    const message = verifyEmailMessage("تست سیستم", "https://nexvordev.ir/auth/verify?token=test");
-    const mailStarted = Date.now();
-    steps.mailId = await sendMail({ to, ...message, subject: "[تست] " + message.subject, attachments: [{ filename: "test-invoice.pdf", content: pdf, contentType: "application/pdf" }] });
-    steps.mailMs = Date.now() - mailStarted;
-    return NextResponse.json({ ok: true, steps });
-  } catch (error) {
-    return NextResponse.json({ ok: false, steps, error: error instanceof Error ? error.message.slice(0, 200) : "unknown" }, { status: 500 });
-  }
+    const socket = net.connect({ host, port, timeout: 7000 });
+    socket.once("connect", () => { socket.destroy(); resolve(`open ${Date.now() - started}ms`); });
+    socket.once("timeout", () => { socket.destroy(); resolve("timeout"); });
+    socket.once("error", error => resolve(`error ${(error as NodeJS.ErrnoException).code || error.message}`));
+  });
+}
+
+export async function GET(request: Request) {
+  if (!process.env.TELEGRAM_SETUP_KEY || new URL(request.url).searchParams.get("key") !== process.env.TELEGRAM_SETUP_KEY) return NextResponse.json({ ok: false }, { status: 404 });
+  const hosts = ["ircp1.my-servers.us", "mail.nexvordev.ir", "nexvordev.ir"];
+  const ports = [465, 587, 25, 2525];
+  const result: Record<string, unknown> = {};
+  await Promise.all(hosts.map(async host => {
+    const entry: Record<string, string> = {};
+    try { entry.ips = (await dns.lookup(host, { all: true })).map(item => item.address).join(","); } catch (error) { entry.ips = `dns ${(error as NodeJS.ErrnoException).code}`; }
+    await Promise.all(ports.map(async port => { entry[String(port)] = await probe(host, port); }));
+    result[host] = entry;
+  }));
+  return NextResponse.json({ ok: true, result });
 }
