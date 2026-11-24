@@ -193,3 +193,5 @@
 .hx-hero-copy .hx-lead{margin-inline:auto}
 .hx-hero-copy .hx-actions{justify-content:center}
 .hx-facts{justify-content:center}
+
+.hx-textlink{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:22px;color:var(--cyan);font-size:13px;font-weight:700}.hx-textlink svg{transition:transform .3s}.hx-textlink:hover svg{transform:translate(-3px,-3px)}

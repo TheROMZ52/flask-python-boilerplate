@@ -89,7 +89,7 @@ export default function ScratchReveal() {
 
   return (
     <div className="scratch-reveal scratch-reveal-background">
-      <img ref={underlayRef} className="scratch-reveal-underlay" alt="تصویر کانتر استرایک" decoding="async" fetchPriority="low" />
+      <img ref={underlayRef} className="scratch-reveal-underlay" alt="" aria-hidden="true" decoding="async" fetchPriority="low" />
       <canvas
         ref={canvasRef}
         className="scratch-reveal-canvas"
