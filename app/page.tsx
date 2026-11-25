@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpLeft, Blocks, Check, Code2, Globe, LifeBuoy, Server }
 import HomeFx from "@/components/home-fx";
 import ScratchReveal from "@/components/scratch-reveal";
 import HelpedBar from "@/components/helped-bar";
+import SmpServer from "@/components/smp-server";
 import { SiteFooter, SiteHeader, Words } from "@/components/site-chrome";
 import { serviceGroups } from "@/lib/services";
 
@@ -58,6 +59,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SmpServer />
 
       <section className="hx-section" id="services">
         <div className="hx-wrap">
