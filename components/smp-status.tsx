@@ -11,7 +11,7 @@ type ServerStatus = {
 };
 
 const address = "mc.nexvordev.ir";
-const statusUrl = "https://api.mcstatus.io/v2/status/java/mc.nexvordev.ir";
+const statusUrl = "/api/minecraft-status";
 
 export default function SmpStatus() {
   const [status, setStatus] = useState<ServerStatus | null>(null);
