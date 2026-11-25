@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpLeft, Blocks, Check, Code2, Globe, LifeBuoy, Server }
 import HomeFx from "@/components/home-fx";
 import ScratchReveal from "@/components/scratch-reveal";
 import HelpedBar from "@/components/helped-bar";
+import SmpStatus from "@/components/smp-status";
 import { SiteFooter, SiteHeader, Words } from "@/components/site-chrome";
 import { serviceGroups } from "@/lib/services";
 
@@ -34,7 +35,6 @@ export default function Home() {
       <HomeFx />
       <div className="hx-progress" aria-hidden="true" />
       <SiteHeader />
-
       <section className="hx-hero" id="top">
         <ScratchReveal />
         <div className="hx-veil" aria-hidden="true" />
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <SmpStatus />
       <section className="hx-section" id="services">
         <div className="hx-wrap">
           <div className="hx-head" data-reveal>
@@ -83,7 +83,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="hx-section" id="process">
         <div className="hx-wrap">
           <div className="hx-head" data-reveal>
@@ -97,9 +96,7 @@ export default function Home() {
           </ol>
         </div>
       </section>
-
       <HelpedBar />
-
       <section className="hx-section hx-contact" id="contact">
         <div className="hx-wrap">
           <div className="hx-cta-band" data-reveal>
@@ -108,7 +105,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <SiteFooter />
     </main>
   );
