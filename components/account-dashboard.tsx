@@ -297,7 +297,7 @@ export default function AccountDashboard() {
             </> : <>
               <button className="hx-cta" type="button" onClick={createTelegramLink} disabled={linkBusy}>{linkBusy ? "در حال ساخت لینک…" : "ساخت لینک اتصال به بات"}</button>
               {linkUrl && <a className="dash-mini" href={linkUrl} target="_blank" rel="noreferrer">باز کردن بات تلگرام <ArrowUpLeft size={14} /></a>}
-              <form className="dash-profile" onSubmit={connectTelegramCode}>
+              <form className="dash-link-form" onSubmit={connectTelegramCode}>
                 <label>یا کدی که بات با دستور /link می‌دهد وارد کن<input value={linkCode} onChange={event => setLinkCode(event.target.value.toUpperCase())} maxLength={12} minLength={12} dir="ltr" placeholder="12-CHAR CODE" /></label>
                 <button className="hx-ghost" type="submit" disabled={linkBusy || linkCode.trim().length !== 12}>اتصال با کد بات</button>
               </form>
