@@ -36,8 +36,8 @@ async function telegramMethod(method: string, payload: Record<string, unknown>) 
   if (!token) throw new Error("Telegram bot is not configured");
   const response = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: Buffer.from(JSON.stringify(payload), "utf8"),
     cache: "no-store",
   });
   const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
