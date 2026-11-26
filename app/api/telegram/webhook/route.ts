@@ -181,6 +181,7 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
     inline_keyboard: [
       [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0" }],
       [{ text: "📣 ارسال پیام به مشتریان", callback_data: "broadcast:start" }],
+      [{ text: "📚 منوی کامل دستورات", callback_data: "commands" }],
       [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0" }],
       [{ text: "🔎 جست‌وجوی تیکت", callback_data: "search_help" }, { text: "🔄 بروزرسانی آمار", callback_data: "dashboard" }],
       [{ text: "📖 راهنمای دستورات", callback_data: "help" }, { text: "👤 منوی مشتری", callback_data: "p:menu" }],
@@ -190,6 +191,53 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
   else await reply(chatId, text, markup);
 }
 
+
+const adminCommandItems = [
+  { command: "/start", label: "🚀 شروع بات", description: "بازکردن پنل اصلی", args: false },
+  { command: "/order", label: "🛒 ثبت سفارش", description: "شروع ثبت سفارش مشتری", args: false },
+  { command: "/newticket", label: "🎟 تیکت جدید", description: "ایجاد تیکت پشتیبانی", args: false },
+  { command: "/my", label: "📋 سفارش‌های من", description: "نمایش سفارش‌ها و تیکت‌ها", args: false },
+  { command: "/prices", label: "💳 تعرفه‌ها", description: "نمایش تعرفه خدمات", args: false },
+  { command: "/services", label: "🧰 خدمات", description: "نمایش خدمات قابل سفارش", args: false },
+  { command: "/link", label: "🔗 اتصال حساب", description: "اتصال حساب سایت به تلگرام", args: false },
+  { command: "/panel", label: "⚡ داشبورد", description: "نمایش داشبورد", args: false },
+  { command: "/broadcast", label: "📣 پیام همگانی", description: "ارسال پیام به مشتریان", args: false },
+  { command: "/requests", label: "📦 درخواست‌ها", description: "فهرست درخواست‌های خدمات", args: false },
+  { command: "/searchrequest", label: "🔎 جست‌وجوی درخواست", description: "جست‌وجو با نام یا خدمت", args: true, usage: "/searchrequest نام یا خدمت" },
+  { command: "/request", label: "🧾 جزئیات درخواست", description: "نمایش یک درخواست", args: true, usage: "/request شناسه" },
+  { command: "/setstatus", label: "🔄 تغییر وضعیت", description: "تغییر وضعیت درخواست", args: true, usage: "/setstatus شناسه new|reviewing|in_progress|completed|rejected" },
+  { command: "/assign", label: "👤 اختصاص درخواست", description: "اختصاص درخواست به خودت", args: true, usage: "/assign شناسه" },
+  { command: "/quote", label: "💰 ثبت قیمت", description: "ثبت مبلغ پیشنهادی", args: true, usage: "/quote شناسه مبلغ" },
+  { command: "/replyorder", label: "✍️ پاسخ سفارش", description: "ارسال پاسخ به سفارش", args: true, usage: "/replyorder شناسه متن پاسخ" },
+  { command: "/replyrequest", label: "🗨 پاسخ درخواست", description: "نام جایگزین پاسخ سفارش", args: true, usage: "/replyrequest شناسه متن پاسخ" },
+  { command: "/note", label: "📝 یادداشت داخلی", description: "ثبت یادداشت برای درخواست", args: true, usage: "/note شناسه متن یادداشت" },
+  { command: "/paid", label: "✅ پرداخت‌شده", description: "ثبت پرداخت فاکتور", args: true, usage: "/paid NX-2026-001001" },
+  { command: "/unpaid", label: "🟡 پرداخت‌نشده", description: "لغو وضعیت پرداخت‌شده", args: true, usage: "/unpaid NX-2026-001001" },
+  { command: "/cancelinvoice", label: "⛔ لغو فاکتور", description: "لغو یک فاکتور", args: true, usage: "/cancelinvoice NX-2026-001001" },
+  { command: "/history", label: "🧭 تاریخچه درخواست", description: "نمایش رویدادهای درخواست", args: true, usage: "/history شناسه" },
+  { command: "/tickets", label: "🎫 تیکت‌ها", description: "فهرست تیکت‌ها", args: false },
+  { command: "/ticket", label: "📄 جزئیات تیکت", description: "نمایش یک تیکت", args: true, usage: "/ticket شناسه" },
+  { command: "/reply", label: "💬 پاسخ تیکت", description: "ارسال پاسخ به تیکت", args: true, usage: "/reply شناسه متن پاسخ" },
+  { command: "/close", label: "🔒 بستن تیکت", description: "بستن یک تیکت", args: true, usage: "/close شناسه" },
+  { command: "/open", label: "🔓 بازکردن تیکت", description: "بازکردن تیکت", args: true, usage: "/open شناسه" },
+  { command: "/search", label: "🔍 جست‌وجوی تیکت", description: "جست‌وجو در تیکت‌ها", args: true, usage: "/search عبارت" },
+  { command: "/stats", label: "📊 آمار", description: "نمایش آمار پشتیبانی", args: false },
+  { command: "/whoami", label: "🪪 شناسه من", description: "نمایش شناسه تلگرام", args: false },
+  { command: "/cancel", label: "✖️ لغو عملیات", description: "لغو مرحله جاری", args: false },
+  { command: "/help", label: "❓ راهنما", description: "راهنمای همه دستورات", args: false },
+  { command: "/menu", label: "👤 منوی مشتری", description: "نمایش منوی مشتری", args: false },
+];
+async function showCommandMenu(chatId: string, edit?: TelegramCallbackQuery) {
+  const rows = adminCommandItems.reduce<Array<Array<{text:string;callback_data:string}>>>((result, item, index) => {
+    if (index % 2 === 0) result.push([]);
+    result[result.length - 1].push({ text: item.label, callback_data: "cmd:" + item.command.slice(1) });
+    return result;
+  }, []);
+  rows.push([{ text: "⬅️ بازگشت به داشبورد", callback_data: "dashboard" }]);
+  const text = ["📚 <b>منوی کامل دستورات مدیریت</b>", "", "همه فرمان‌های مدیریتی از اینجا قابل اجرا هستند.", "برای فرمان‌های نیازمند شناسه یا متن، دکمه را بزن و اطلاعات خواسته‌شده را بفرست.", "", "🟢 عملیات مستقیم  ·  🟡 نیازمند ورودی"].join("\n");
+  if (edit) await editCallbackMessage(edit, text, { inline_keyboard: rows });
+  else await reply(chatId, text, { inline_keyboard: rows });
+}
 async function setTicketStatus(id: string, status: "waiting" | "closed") {
   const ticket = await getTicket(id);
   if (!ticket) return null;
@@ -387,10 +435,22 @@ async function handleCallback(callback: TelegramCallbackQuery) {
     else if (data.startsWith("srstatus:")) { const [,id,status]=data.split(":"); const item=await updateServiceStatus(id,status,String(senderId)); if(item) { await editCallbackMessage(callback,await serviceRequestText(item),serviceRequestKeyboard(item)); await answerCallback(callback.id,"وضعیت درخواست به‌روزرسانی شد."); return; } }
     else if (data.startsWith("srassign:")) { const item=await assignServiceRequest(data.slice(9),String(senderId)); if(item) { await editCallbackMessage(callback,await serviceRequestText(item),serviceRequestKeyboard(item)); await answerCallback(callback.id,"درخواست به شما اختصاص داده شد."); return; } }
     else if (data.startsWith("srhistory:")) { await showServiceEvents(data.slice(10),String(chatId)); }
+    else if (data === "commands") { await showCommandMenu(String(chatId), callback); }
+    else if (data.startsWith("cmd:")) {
+      const item = adminCommandItems.find(entry => entry.command === "/" + data.slice(4));
+      if (!item) { await answerCallback(callback.id, "این دستور در دسترس نیست."); return; }
+      if (item.args) {
+        await supportDb("nexvor_bot_sessions?on_conflict=chat_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify({ chat_id: String(chatId), state: "admin_command_input", data: { command: item.command }, updated_at: new Date().toISOString() }) });
+        const prompt = "🟡 <b>" + escapeTelegramHtml(item.label) + "</b>\n\n" + escapeTelegramHtml(item.description) + "\n\nاطلاعات لازم را در یک پیام بفرست.\nفرمت: <code>" + escapeTelegramHtml(item.usage || item.command) + "</code>\n\nبرای لغو /cancel را بزن.";
+        await editCallbackMessage(callback, prompt, { inline_keyboard: [[{ text: "⬅️ منوی دستورات", callback_data: "commands" }], [{ text: "📊 داشبورد", callback_data: "dashboard" }]] });
+      } else {
+        await handleCommand({ chat: { id: Number(chatId), type: "private" }, from: { id: Number(senderId) }, text: item.command });
+      }
+    }
     else if (data === "dashboard") {
       await showDashboard(String(chatId), callback);
     } else if (data === "help") {
-      await editCallbackMessage(callback, helpText(), { inline_keyboard: [[{ text: "⬅️ داشبورد", callback_data: "dashboard" }]] });
+      await editCallbackMessage(callback, helpText(), { inline_keyboard: [[{ text: "📚 منوی دستورات", callback_data: "commands" }], [{ text: "⬅️ داشبورد", callback_data: "dashboard" }]] });
     } else if (data === "search_help") {
       await editCallbackMessage(callback, "🔎 برای جست‌وجو از دستور زیر استفاده کن:\n\n<code>/search عبارت</code>\n\nمی‌تونی نام مشتری، آیدی تلگرام، موضوع یا بخشی از شناسه رو وارد کنی.", { inline_keyboard: [[{ text: "⬅️ داشبورد", callback_data: "dashboard" }]] });
     } else if (data.startsWith("tickets:")) {
@@ -437,7 +497,9 @@ function helpText() {
     "/assign شناسه — اختصاص درخواست به خود",
     "/quote شناسه مبلغ — ثبت قیمت پیشنهادی",
     "/replyorder شناسه متن — پاسخ به سفارش مشتری از سایت و بات",
-    "/paid شماره‌فاکتور — ثبت پرداخت فاکتور (/unpaid ، /cancelinvoice)",
+    "/paid شماره‌فاکتور — ثبت پرداخت فاکتور",
+    "/unpaid شماره‌فاکتور — ثبت پرداخت‌نشده",
+    "/cancelinvoice شماره‌فاکتور — لغو فاکتور",
     "/note شناسه متن — یادداشت داخلی",
     "/history شناسه — تاریخچه تغییرات درخواست",
     "/tickets — فهرست تیکت‌ها",
@@ -476,6 +538,14 @@ async function handleCommand(message: TelegramMessage) {
     return;
   }
   if (!first && admin) {
+    const commandSessions = await supportDb("nexvor_bot_sessions?chat_id=eq." + encodeURIComponent(String(chatId)) + "&select=state,data&limit=1") as Array<{ state: string; data: Record<string, unknown> }>;
+    const commandSession = commandSessions[0];
+    if (commandSession?.state === "admin_command_input" && typeof commandSession.data?.command === "string") {
+      const pendingCommand = commandSession.data.command;
+      await supportDb("nexvor_bot_sessions?chat_id=eq." + encodeURIComponent(String(chatId)), { method: "DELETE", headers: { Prefer: "return=minimal" } });
+      await handleCommand({ ...message, text: pendingCommand + " " + text });
+      return;
+    }
     const broadcastSessions = await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}&select=state,data&limit=1`) as Array<{ state: string; data: Record<string, unknown> }>;
     if (broadcastSessions[0]?.state === "admin_broadcast_compose") {
       const body = cleanText(text, 3500);
@@ -527,7 +597,7 @@ async function handleCommand(message: TelegramMessage) {
   }
   if (command === "/broadcast") { await startBroadcast(String(chatId)); return; }
   if (command === "/help") {
-    await reply(String(chatId), helpText(), { inline_keyboard: [[{ text: "⚡ داشبورد مدیریت", callback_data: "dashboard" }]] });
+    await reply(String(chatId), helpText(), { inline_keyboard: [[{ text: "📚 منوی دستورات", callback_data: "commands" }], [{ text: "⚡ داشبورد مدیریت", callback_data: "dashboard" }]] });
     return;
   }
   if (command === "/whoami") {
@@ -659,4 +729,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 }
-
