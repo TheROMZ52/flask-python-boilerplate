@@ -227,6 +227,30 @@ const adminCommandItems = [
   { command: "/help", label: "❓ راهنما", description: "راهنمای همه دستورات", args: false },
   { command: "/menu", label: "👤 منوی مشتری", description: "نمایش منوی مشتری", args: false },
 ];
+
+function adminReplyKeyboard() {
+  return {
+    keyboard: [
+      [{ text: "⚡ داشبورد" }, { text: "📦 درخواست‌ها" }],
+      [{ text: "🎫 تیکت‌ها" }, { text: "📣 پیام همگانی" }],
+      [{ text: "🔎 جست‌وجوی درخواست" }, { text: "🔍 جست‌وجوی تیکت" }],
+      [{ text: "📚 دستورات کامل" }, { text: "👤 منوی مشتری" }],
+      [{ text: "✖️ لغو عملیات" }],
+    ],
+    resize_keyboard: true,
+    is_persistent: true,
+    input_field_placeholder: "یک عملیات مدیریتی انتخاب کن…",
+  };
+}
+
+async function sendAdminKeyboard(chatId: string) {
+  await telegramMethod("sendMessage", {
+    chat_id: chatId,
+    text: "منوی مدیریت NexvorDEV فعاله. از دکمه‌های پایین استفاده کن.",
+    reply_markup: adminReplyKeyboard(),
+  });
+}
+
 async function showCommandMenu(chatId: string, edit?: TelegramCallbackQuery) {
   const rows = adminCommandItems.reduce<Array<Array<{text:string;callback_data:string;style:string}>>>((result, item, index) => {
     if (index % 2 === 0) result.push([]);
@@ -517,13 +541,33 @@ function helpText() {
 async function handleCommand(message: TelegramMessage) {
   const chatId = message.chat?.id;
   const senderId = message.from?.id;
-  const text = (message.text || "").trim();
+  let text = (message.text || "").trim();
   if (!chatId || !senderId || message.from?.is_bot || !text) return;
   if (message.chat?.type !== "private" || String(chatId) !== String(senderId)) {
     if (text.startsWith("/")) await reply(String(chatId), "برای استفاده از بات، در گفت‌وگوی خصوصی استارتش کن 🙂");
     return;
   }
   const admin = adminIds().includes(String(senderId));
+  if (admin) {
+    if (text === "📚 دستورات کامل") {
+      await showCommandMenu(String(chatId));
+      return;
+    }
+    const selectedCommand = adminCommandItems.find(item => item.label === text);
+    if (selectedCommand) {
+      if (selectedCommand.args) {
+        await supportDb("nexvor_bot_sessions?on_conflict=chat_id", {
+          method: "POST",
+          headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+          body: JSON.stringify({ chat_id: String(chatId), state: "admin_command_input", data: { command: selectedCommand.command }, updated_at: new Date().toISOString() }),
+        });
+        const prompt = "🟡 <b>" + escapeTelegramHtml(selectedCommand.label) + "</b>\n\n" + escapeTelegramHtml(selectedCommand.description) + "\n\nاطلاعات لازم را در یک پیام بفرست.\nفرمت: <code>" + escapeTelegramHtml(selectedCommand.usage || selectedCommand.command) + "</code>\n\nبرای لغو، دکمه «✖️ لغو عملیات» را بزن.";
+        await reply(String(chatId), prompt, { inline_keyboard: [[{ text: "📚 منوی کامل دستورات", callback_data: "commands" }], [{ text: "⚡ داشبورد", callback_data: "dashboard" }]] });
+        return;
+      }
+      text = selectedCommand.command;
+    }
+  }
   const tokens = text.split(/\s+/);
   const first = text.startsWith("/") ? tokens[0].split("@")[0].toLowerCase() : null;
   const startPayload = tokens.slice(1).join(" ").trim();
@@ -592,6 +636,7 @@ async function handleCommand(message: TelegramMessage) {
   const argument = parts.join(" ").trim();
 
   if (command === "/start" || command === "/panel") {
+    await sendAdminKeyboard(String(chatId));
     await showDashboard(String(chatId));
     return;
   }
