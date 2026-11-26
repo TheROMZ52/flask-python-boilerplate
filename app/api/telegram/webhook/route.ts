@@ -213,6 +213,9 @@ const adminCommandItems = [
   { command: "/whoami", label: "🪪 شناسه من", description: "نمایش شناسه تلگرام", args: false },
   { command: "/cancel", label: "✖️ لغو عملیات", description: "لغو مرحله جاری", args: false },
   { command: "/help", label: "❓ راهنما", description: "راهنمای همه دستورات", args: false },
+  { command: "/account", label: "👤 حساب کاربری", description: "ورود، ثبت‌نام و وضعیت حساب", args: false },
+  { command: "/login", label: "🔐 ورود به حساب", description: "ورود با کد یک‌بارمصرف ایمیل", args: false },
+  { command: "/register", label: "✨ ثبت‌نام", description: "ساخت حساب با تأیید ایمیل", args: false },
   { command: "/menu", label: "👤 منوی مشتری", description: "نمایش منوی مشتری", args: false },
 ];
 
@@ -569,7 +572,7 @@ async function handleCommand(message: TelegramMessage) {
     await handleTelegramLinkStart(message, startPayload.slice(5));
     return;
   }
-  const publicCommands = ["/menu", "/order", "/newticket", "/my", "/prices", "/services", "/cancel", "/link"];
+  const publicCommands = ["/menu", "/order", "/newticket", "/my", "/prices", "/services", "/cancel", "/link", "/account", "/login", "/register"];
   if (admin && first === "/cancel") {
     await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
     await reply(String(chatId), "عملیات لغو شد.", { inline_keyboard: [[{ text: "📊 داشبورد", callback_data: "dashboard" }]] });
