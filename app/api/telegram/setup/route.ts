@@ -43,6 +43,9 @@ export async function GET(request: Request) {
     { command: "services", description: "فهرست خدمات" },
     { command: "cancel", description: "لغو مرحله فعلی" },
     { command: "link", description: "اتصال حساب سایت و تلگرام" },
+    { command: "account", description: "ورود، ثبت‌نام و وضعیت حساب" },
+    { command: "login", description: "ورود با کد یک‌بارمصرف ایمیل" },
+    { command: "register", description: "ساخت حساب با تأیید ایمیل" },
     { command: "help", description: "راهنما" },
   ];
   const adminCommands = [
