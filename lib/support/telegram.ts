@@ -12,8 +12,8 @@ export async function sendTelegramMessage(chatId: string, text: string, options?
   if (!botToken) throw new Error("Telegram bot is not configured");
   const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }),
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: Buffer.from(JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }), "utf8"),
     cache: "no-store",
   });
   const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
