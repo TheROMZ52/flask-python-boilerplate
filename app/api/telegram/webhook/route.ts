@@ -40,8 +40,14 @@ async function telegramMethod(method: string, payload: Record<string, unknown>) 
     body: JSON.stringify(payload),
     cache: "no-store",
   });
-  const result = await response.json();
-  if (!response.ok || !result.ok) throw new Error("Telegram API request failed");
+  const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
+  if (!response.ok || !result?.ok) {
+    const code = result?.error_code ?? response.status;
+    const description = typeof result?.description === "string"
+      ? result.description.replace(/[\\r\\n\\t]+/g, " ").slice(0, 180)
+      : "No error description";
+    throw new Error(`Telegram API ${code}: ${description}`);
+  }
   return result;
 }
 
