@@ -13,6 +13,11 @@ export type BotCallback = { id: string; data?: string; from?: BotMessage["from"]
 type Markup = Record<string, unknown>;
 type Session = { state: string; data: Record<string, unknown> };
 type Row = Record<string, unknown> & { id: string };
+const priorityLabels: Record<string, string> = { normal: "عادی", urgent: "⚡ فوری", critical: "🚨 اضطراری" };
+const requestLabels: Record<string, string> = { new: "🆕 ثبت شد", reviewing: "🔍 در حال بررسی", in_progress: "🛠 در حال انجام", completed: "✅ تکمیل شد", rejected: "⛔ رد شد" };
+const requestSteps = ["new", "reviewing", "in_progress", "completed"];
+const ticketLabels: Record<string, string> = { waiting: "⏳ منتظر پاسخ", answered: "✅ پاسخ داده شد", closed: "🔒 بسته" };
+
 
 async function tg(method: string, payload: Record<string, unknown>) {
   return telegramApiRequest(method, payload);
