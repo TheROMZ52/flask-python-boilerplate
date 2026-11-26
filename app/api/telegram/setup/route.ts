@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { siteUrl } from "@/lib/site";
+import { telegramApiRequest } from "@/lib/support/telegram";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,24 +18,22 @@ export async function GET(request: Request) {
     return NextResponse.json({ ok: false, error: "Telegram configuration is incomplete" }, { status: 503 });
   }
 
-  const response = await fetch(`https://api.telegram.org/bot${token}/setWebhook`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
+  let result: { ok?: boolean };
+  try {
+    result = await telegramApiRequest("setWebhook", {
       url: `${siteUrl}/api/telegram/webhook`,
       secret_token: webhookSecret,
       allowed_updates: ["message", "callback_query"],
       drop_pending_updates: false,
-    }),
-    cache: "no-store",
-  });
-  const result = await response.json();
-  if (!response.ok || !result.ok) {
+    });
+  } catch {
     return NextResponse.json({ ok: false, error: "Telegram rejected webhook setup" }, { status: 502 });
   }
-  const call = (method: string, payload: Record<string, unknown>) => fetch(`https://api.telegram.org/bot${token}/${method}`, {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), cache: "no-store",
-  }).then(res => res.json()).catch(() => ({ ok: false }));
+  if (!result.ok) {
+    return NextResponse.json({ ok: false, error: "Telegram rejected webhook setup" }, { status: 502 });
+  }
+  const call = (method: string, payload: Record<string, unknown>) =>
+    telegramApiRequest(method, payload).catch(() => ({ ok: false }));
   const publicCommands = [
     { command: "start", description: "شروع و منوی اصلی" },
     { command: "order", description: "ثبت سفارش جدید" },
