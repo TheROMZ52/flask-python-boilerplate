@@ -179,10 +179,10 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
   ].join("\n");
   const markup = {
     inline_keyboard: [
-      [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0", style: "primary" }],
-      [{ text: "📣 ارسال پیام به مشتریان", callback_data: "broadcast:start", style: "success" }],
-      [{ text: "📚 منوی کامل دستورات", callback_data: "commands", style: "primary" }],
-      [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0", style: "primary" }],
+      [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0" }],
+      [{ text: "📣 ارسال پیام به مشتریان", callback_data: "broadcast:start" }],
+      [{ text: "📚 منوی کامل دستورات", callback_data: "commands" }],
+      [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0" }],
       [{ text: "🔎 جست‌وجوی تیکت", callback_data: "search_help" }, { text: "🔄 بروزرسانی آمار", callback_data: "dashboard" }],
       [{ text: "📖 راهنمای دستورات", callback_data: "help" }, { text: "👤 منوی مشتری", callback_data: "p:menu" }],
     ],
@@ -252,12 +252,12 @@ async function sendAdminKeyboard(chatId: string) {
 }
 
 async function showCommandMenu(chatId: string, edit?: TelegramCallbackQuery) {
-  const rows = adminCommandItems.reduce<Array<Array<{text:string;callback_data:string;style:string}>>>((result, item, index) => {
+  const rows = adminCommandItems.reduce<Array<Array<{text:string;callback_data:string}>>>((result, item, index) => {
     if (index % 2 === 0) result.push([]);
-    result[result.length - 1].push({ text: item.label, callback_data: "cmd:" + item.command.slice(1), style: ["/cancel", "/close", "/cancelinvoice"].includes(item.command) ? "danger" : item.command === "/paid" ? "success" : "primary" });
+    result[result.length - 1].push({ text: item.label, callback_data: "cmd:" + item.command.slice(1) });
     return result;
   }, []);
-  rows.push([{ text: "⬅️ بازگشت به داشبورد", callback_data: "dashboard", style: "primary" }]);
+  rows.push([{ text: "⬅️ بازگشت به داشبورد", callback_data: "dashboard" }]);
   const text = ["📚 <b>منوی کامل دستورات مدیریت</b>", "", "همه فرمان‌های مدیریتی از اینجا قابل اجرا هستند.", "برای فرمان‌های نیازمند شناسه یا متن، دکمه را بزن و اطلاعات خواسته‌شده را بفرست.", "", "🟢 عملیات مستقیم  ·  🟡 نیازمند ورودی"].join("\n");
   if (edit) await editCallbackMessage(edit, text, { inline_keyboard: rows });
   else await reply(chatId, text, { inline_keyboard: rows });
