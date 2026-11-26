@@ -78,3 +78,16 @@ export function ticketReplyMessage(name: string, subject: string, snippet: strin
     text: `سلام ${name}،\nبه تیکت «${subject}» پاسخ جدیدی داده شد:\n\n${snippet}\n\nمشاهده و پاسخ: ${link}`,
   };
 }
+
+export function telegramOtpMessage(name: string, code: string) {
+  return {
+    subject: "کد ورود به حساب NexvorDEV",
+    html: layout({
+      preheader: "کد یک‌بارمصرف ورود یا ثبت‌نام شما",
+      title: "کد تأیید حساب",
+      body: `<p style="margin:0">سلام ${esc(name)}،</p><p style="margin:12px 0 18px">برای تأیید هویت و اتصال حساب به تلگرام، کد زیر را در گفت‌وگوی بات وارد کنید. این کد فقط ۱۰ دقیقه اعتبار دارد و فقط یک‌بار قابل استفاده است.</p><div dir="ltr" style="padding:18px;background:#f3f8fd;border:1px solid #dbe5f0;border-radius:12px;text-align:center;font:bold 30px Arial,sans-serif;letter-spacing:8px;color:#061631">${esc(code)}</div>`,
+      footer: "اگر این درخواست را شما نداده‌اید، این ایمیل را نادیده بگیرید. رمز عبور خود را در تلگرام ارسال نکنید.",
+    }),
+    text: `سلام ${name}،\nکد تأیید NexvorDEV: ${code}\nاین کد ۱۰ دقیقه اعتبار دارد و فقط یک‌بار استفاده می‌شود.\nاگر این درخواست را شما نداده‌اید، این ایمیل را نادیده بگیرید.`,
+  };
+}
