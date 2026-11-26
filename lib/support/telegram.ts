@@ -16,9 +16,14 @@ export async function sendTelegramMessage(chatId: string, text: string, options?
     body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }),
     cache: "no-store",
   });
-  if (!response.ok) throw new Error("Telegram message delivery failed");
-  const result = await response.json();
-  if (!result.ok) throw new Error("Telegram message delivery failed");
+  const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
+  if (!response.ok || !result?.ok) {
+    const code = result?.error_code ?? response.status;
+    const description = typeof result?.description === "string"
+      ? result.description.replace(/[\\r\\n\\t]+/g, " ").slice(0, 180)
+      : "No error description";
+    throw new Error(`Telegram API ${code}: ${description}`);
+  }
   return result;
 }
 
