@@ -44,7 +44,7 @@ async function telegramMethod(method: string, payload: Record<string, unknown>) 
   if (!response.ok || !result?.ok) {
     const code = result?.error_code ?? response.status;
     const description = typeof result?.description === "string"
-      ? result.description.replace(/[\\r\\n\\t]+/g, " ").slice(0, 180)
+      ? result.description.replace(/[\r\n\t]+/g, " ").slice(0, 180)
       : "No error description";
     throw new Error(`Telegram API ${code}: ${description}`);
   }
