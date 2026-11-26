@@ -112,7 +112,7 @@ export async function telegramApiRequest(method: string, payload: Record<string,
   if (!response.ok || !result?.ok) {
     const code = result?.error_code ?? response.status;
     const description = typeof result?.description === "string"
-      ? result.description.replace(/[\\r\\n\\t]+/g, " ").slice(0, 180)
+      ? result.description.replace(/[\r\n\t]+/g, " ").slice(0, 180)
       : "No error description";
     console.error("[telegram-api] request failed", {
       method,
