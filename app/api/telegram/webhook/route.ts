@@ -763,14 +763,20 @@ async function handleCommand(message: TelegramMessage) {
 export async function POST(request: Request) {
   const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
   if (!secret || !safeEqual(hashAccessToken(request.headers.get("x-telegram-bot-api-secret-token") || ""), hashAccessToken(secret))) {
+    console.warn("[telegram-webhook] rejected request: secret validation failed");
     return NextResponse.json({ ok: false }, { status: 401 });
   }
   try {
     const update = await request.json() as TelegramUpdate;
+    console.info("[telegram-webhook] update received", {
+      type: update.callback_query ? "callback_query" : update.message ? "message" : "unknown",
+      messageTextPresent: Boolean(update.message?.text),
+    });
     if (update.callback_query) await handleCallback(update.callback_query);
     else if (update.message) await handleCommand(update.message);
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("[telegram-webhook] processing failed", error instanceof Error ? error.message : "unknown error");
+    return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
