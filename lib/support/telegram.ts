@@ -8,19 +8,51 @@ export function escapeTelegramHtml(value: unknown) {
   return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function utf8SafeString(value: string) {
+  let output = "";
+  for (let index = 0; index < value.length; index++) {
+    const code = value.charCodeAt(index);
+    if (code >= 0xd800 && code <= 0xdbff) {
+      const next = value.charCodeAt(index + 1);
+      if (next >= 0xdc00 && next <= 0xdfff) {
+        output += value[index] + value[index + 1];
+        index++;
+      } else {
+        output += "\ufffd";
+      }
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
+      output += "\ufffd";
+    } else {
+      output += value[index];
+    }
+  }
+  return output;
+}
+
+function normalizeTelegramPayload(value: unknown): unknown {
+  if (typeof value === "string") return utf8SafeString(value);
+  if (Array.isArray(value)) return value.map(normalizeTelegramPayload);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, item]) => [key, normalizeTelegramPayload(item)]),
+    );
+  }
+  return value;
+}
+
 export async function sendTelegramMessage(chatId: string, text: string, options?: Record<string, unknown>) {
   if (!botToken) throw new Error("Telegram bot is not configured");
   const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: Buffer.from(JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }), "utf8"),
+    body: JSON.stringify(normalizeTelegramPayload({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options })),
     cache: "no-store",
   });
   const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
   if (!response.ok || !result?.ok) {
     const code = result?.error_code ?? response.status;
     const description = typeof result?.description === "string"
-      ? result.description.replace(/[\\r\\n\\t]+/g, " ").slice(0, 180)
+      ? result.description.replace(/[\r\n\t]+/g, " ").slice(0, 180)
       : "No error description";
     throw new Error(`Telegram API ${code}: ${description}`);
   }
