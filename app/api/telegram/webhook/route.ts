@@ -6,6 +6,7 @@ import { handlePublicCallback, handlePublicMessage, handleTelegramLinkStart, not
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 type TelegramMessage = BotMessage;
 
@@ -179,6 +180,7 @@ async function showDashboard(chatId: string, edit?: TelegramCallbackQuery) {
   const markup = {
     inline_keyboard: [
       [{ text: "📦 درخواست‌های خدمات", callback_data: "requests:0" }],
+      [{ text: "📣 ارسال پیام به مشتریان", callback_data: "broadcast:start" }],
       [{ text: "📬 مشاهده تیکت‌ها", callback_data: "tickets:0" }],
       [{ text: "🔎 جست‌وجوی تیکت", callback_data: "search_help" }, { text: "🔄 بروزرسانی آمار", callback_data: "dashboard" }],
       [{ text: "📖 راهنمای دستورات", callback_data: "help" }, { text: "👤 منوی مشتری", callback_data: "p:menu" }],
@@ -315,6 +317,47 @@ async function showServiceEvents(id:string,chatId:string) {
   await reply(chatId,`🧾 <b>تاریخچه درخواست</b>\n<code>${escapeTelegramHtml(id)}</code>\n\n${text}`,{inline_keyboard:[[{text:"⬅️ بازگشت به درخواست",callback_data:`srview:${id}`}]]});
 }
 
+async function getBroadcastRecipients() {
+  const [requests, tickets] = await Promise.all([
+    supportDb("nexvor_service_requests?telegram_chat_id=not.is.null&select=telegram_chat_id&order=created_at.desc&limit=2000") as Promise<Array<{ telegram_chat_id: string | null }>>,
+    supportDb("nexvor_support_tickets?telegram_chat_id=not.is.null&select=telegram_chat_id&order=created_at.desc&limit=2000") as Promise<Array<{ telegram_chat_id: string | null }>>,
+  ]);
+  return [...new Set([...requests, ...tickets].map(row => String(row.telegram_chat_id || "").trim()).filter(id => /^\d+$/.test(id)))].slice(0, 1000);
+}
+
+async function startBroadcast(chatId: string) {
+  await supportDb("nexvor_bot_sessions?on_conflict=chat_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify({ chat_id: chatId, state: "admin_broadcast_compose", data: {}, updated_at: new Date().toISOString() }) });
+  await reply(chatId, "📣 <b>ارسال پیام به مشتریان</b>\n\nمتن پیام را بفرست. این پیام برای مشتریانی ارسال می‌شود که قبلاً از طریق بات سفارش یا تیکت ثبت کرده‌اند.\n\nبرای لغو /cancel را بزن.");
+}
+
+async function sendBroadcast(chatId: string) {
+  const sessions = await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(chatId)}&select=state,data&limit=1`) as Array<{ state: string; data: Record<string, unknown> }>;
+  const session = sessions[0];
+  const body = typeof session?.data?.body === "string" ? session.data.body.trim() : "";
+  if (session?.state !== "admin_broadcast_confirm" || !body) {
+    await reply(chatId, "پیش‌نویس پیام پیدا نشد؛ دوباره /broadcast را بزن.");
+    return;
+  }
+  await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(chatId)}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
+  const recipients = await getBroadcastRecipients();
+  if (!recipients.length) {
+    await reply(chatId, "هیچ مشتری دارای گفت‌وگوی تلگرامی پیدا نشد.");
+    return;
+  }
+  let sent = 0;
+  let failed = 0;
+  const message = `📢 <b>پیام از NexvorDEV</b>\n\n${escapeTelegramHtml(body).slice(0, 3500)}`;
+  for (let index = 0; index < recipients.length; index += 20) {
+    const batch = recipients.slice(index, index + 20);
+    const results = await Promise.allSettled(batch.map(id => sendTelegramMessage(id, message)));
+    for (const result of results) {
+      if (result.status === "fulfilled") sent++;
+      else failed++;
+    }
+  }
+  await reply(chatId, `📣 <b>ارسال پیام به پایان رسید</b>\n\n✅ موفق: ${sent}\n❌ ناموفق: ${failed}\n👥 کل گیرندگان: ${recipients.length}`);
+}
+
 async function handleCallback(callback: TelegramCallbackQuery) {
   if ((callback.data || "").startsWith("p:")) { await handlePublicCallback(callback); return; }
   const senderId = callback.from?.id;
@@ -325,7 +368,13 @@ async function handleCallback(callback: TelegramCallbackQuery) {
   }
   const data = callback.data || "";
   try {
-    if (data.startsWith("srview:")) { await showServiceRequest(data.slice(7),String(chatId),callback); }
+    if (data === "broadcast:start") { await startBroadcast(String(chatId)); }
+    else if (data === "broadcast:send") { await sendBroadcast(String(chatId)); }
+    else if (data === "broadcast:cancel") {
+      await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
+      await editCallbackMessage(callback, "ارسال پیام لغو شد.", { inline_keyboard: [[{ text: "📊 داشبورد", callback_data: "dashboard" }]] });
+    }
+    else if (data.startsWith("srview:")) { await showServiceRequest(data.slice(7),String(chatId),callback); }
     else if (data.startsWith("srreply:")) {
       const id = data.slice(8);
       const item = await getServiceRequest(id);
@@ -379,6 +428,7 @@ function helpText() {
     "⚡ <b>راهنمای پنل NexvorDEV</b>",
     "",
     "/panel — داشبورد مدیریتی",
+    "/broadcast — ارسال پیام گروهی به مشتریان",
     "/requests — فهرست درخواست‌های خدمات",
     "/searchrequest عبارت — جست‌وجوی درخواست‌ها",
     "/request شناسه — جزئیات درخواست خدمات",
@@ -419,6 +469,22 @@ async function handleCommand(message: TelegramMessage) {
     return;
   }
   const publicCommands = ["/menu", "/order", "/newticket", "/my", "/prices", "/services", "/cancel", "/link"];
+  if (admin && first === "/cancel") {
+    await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
+    await reply(String(chatId), "عملیات لغو شد.", { inline_keyboard: [[{ text: "📊 داشبورد", callback_data: "dashboard" }]] });
+    return;
+  }
+  if (!first && admin) {
+    const broadcastSessions = await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}&select=state,data&limit=1`) as Array<{ state: string; data: Record<string, unknown> }>;
+    if (broadcastSessions[0]?.state === "admin_broadcast_compose") {
+      const body = cleanText(text, 3500);
+      if (body.length < 2) { await reply(String(chatId), "متن پیام خیلی کوتاه است؛ دوباره بنویس یا /cancel بزن."); return; }
+      await supportDb("nexvor_bot_sessions?on_conflict=chat_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify({ chat_id: String(chatId), state: "admin_broadcast_confirm", data: { body }, updated_at: new Date().toISOString() }) });
+      const recipients = await getBroadcastRecipients();
+      await reply(String(chatId), `👀 <b>پیش‌نمایش پیام</b>\n\n${escapeTelegramHtml(body)}\n\n👥 تعداد گیرندگان فعلی: <b>${recipients.length}</b>\n\nارسال برای همه این مشتریان انجام شود؟`, { inline_keyboard: [[{ text: "✅ تأیید و ارسال", callback_data: "broadcast:send" }, { text: "❌ لغو", callback_data: "broadcast:cancel" }]] });
+      return;
+    }
+  }
   if (!first && admin) {
     const sessions = await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}&select=state,data&limit=1`) as Array<{state:string;data:Record<string,unknown>}>;
     const pending = sessions[0];
@@ -458,6 +524,7 @@ async function handleCommand(message: TelegramMessage) {
     await showDashboard(String(chatId));
     return;
   }
+  if (command === "/broadcast") { await startBroadcast(String(chatId)); return; }
   if (command === "/help") {
     await reply(String(chatId), helpText(), { inline_keyboard: [[{ text: "⚡ داشبورد مدیریت", callback_data: "dashboard" }]] });
     return;
