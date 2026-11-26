@@ -258,3 +258,13 @@
 @media(max-width:560px){.service-admin-actions{grid-template-columns:1fr}.service-admin-actions .service-admin-note{grid-column:auto}}
 .support-admin.is-orders{grid-template-columns:minmax(0,1fr)}
 .support-admin.is-orders>.support-admin-sidebar{display:none}
+
+
+/* Account profile: keep the Telegram code form inside its parent card */
+.dash-link-form{display:grid;gap:12px;min-width:0;margin-top:8px;padding-top:18px;border-top:1px solid var(--line)}
+.dash-link-form label{display:grid;gap:8px;color:#c8d9f1;font-size:13px;font-weight:600}
+.dash-link-form input{display:block;width:100%;min-width:0;min-height:48px;box-sizing:border-box;padding:0 16px;border-radius:14px;border:1px solid rgba(130,200,255,.18);background:rgba(4,9,24,.7);color:var(--text);font:14px var(--font-vazirmatn),sans-serif;outline:0}
+.dash-link-form input:focus{border-color:rgba(92,214,255,.7);box-shadow:0 0 0 4px rgba(92,214,255,.12)}
+.dash-link-form button{justify-self:start}
+.dash-profile input{display:block;width:100%;min-width:0;box-sizing:border-box}
+@media(max-width:760px){.dash-link-form button{width:100%;justify-content:center}}
