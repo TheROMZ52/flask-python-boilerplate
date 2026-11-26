@@ -48,6 +48,7 @@ export async function GET(request: Request) {
   ];
   const adminCommands = [
     { command: "panel", description: "داشبورد مدیریت پشتیبانی" },
+    { command: "broadcast", description: "ارسال پیام به مشتریان" },
     { command: "requests", description: "فهرست درخواست‌های خدمات" },
     { command: "request", description: "جزئیات درخواست خدمات" },
     { command: "searchrequest", description: "جست‌وجوی درخواست خدمات" },
