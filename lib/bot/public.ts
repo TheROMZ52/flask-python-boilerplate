@@ -50,7 +50,7 @@ const setSession = (chatId: string, state: string, data: Record<string, unknown>
   supportDb("nexvor_bot_sessions?on_conflict=chat_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify({ chat_id: chatId, state, data, updated_at: new Date().toISOString() }) });
 const clearSession = (chatId: string) => supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(chatId)}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
 
-const button = (text: string, data: string, style: "primary" | "success" | "danger" = "primary") => ({ text, callback_data: data, style });
+const button = (text: string, data: string, _style?: "primary" | "success" | "danger") => ({ text, callback_data: data });
 const cancelRow = [button("✖️ لغو", "p:cancel", "danger")];
 
 function mainMenu(): Markup {
