@@ -78,8 +78,30 @@ export async function GET(request: Request) {
   await call("setMyShortDescription", { short_description: "بات رسمی NexvorDEV: ثبت سفارش، پشتیبانی و پیگیری پروژه" });
   await call("setMyDescription", { description: "با این بات می‌تونی برای سرور بازی، پلاگین، سایت و زیرساخت سفارش بدی، تیکت پشتیبانی باز کنی، تعرفه رو ببینی و وضعیت کارهات رو پیگیری کنی." });
   await call("setChatMenuButton", { menu_button: { type: "commands" } });
+  const webhookInfoResponse = await call("getWebhookInfo", {});
+  const webhookInfo = webhookInfoResponse as {
+    ok?: boolean;
+    result?: {
+      url?: string;
+      has_custom_certificate?: boolean;
+      pending_update_count?: number;
+      ip_address?: string;
+      last_error_date?: number;
+      last_error_message?: string;
+      allowed_updates?: string[];
+    };
+  };
+  const info = webhookInfo.result;
   const commandsResult = commandsResponse as { ok?: boolean };
   return NextResponse.json({
+    webhookInfo: webhookInfo.ok && info ? {
+      url: info.url || null,
+      pendingUpdates: info.pending_update_count ?? null,
+      lastErrorDate: info.last_error_date ?? null,
+      lastError: info.last_error_message || null,
+      allowedUpdates: info.allowed_updates || [],
+      ipAddress: info.ip_address || null,
+    } : null,
     ok: true,
     webhook: "configured",
     updates: ["message", "callback_query"],
