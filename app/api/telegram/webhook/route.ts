@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { cleanText, hashAccessToken, safeEqual, supportDb } from "@/lib/support/server";
-import { escapeTelegramHtml, sendTelegramMessage } from "@/lib/support/telegram";
+import { escapeTelegramHtml, sendTelegramMessage, telegramApiRequest } from "@/lib/support/telegram";
 import { setInvoicePayment, syncInvoiceAmount } from "@/lib/invoice";
 import { handlePublicCallback, handlePublicMessage, handleTelegramLinkStart, notifyCustomerAboutOrderReply, notifyCustomerAboutReply, notifyCustomerAboutRequest, type BotCallback, type BotMessage } from "@/lib/bot/public";
 
@@ -31,57 +31,7 @@ async function reply(chatId: string, text: string, replyMarkup?: Record<string, 
   await sendTelegramMessage(chatId, text, replyMarkup ? { reply_markup: replyMarkup } : undefined);
 }
 
-function utf8SafeString(value: string) {
-  let output = "";
-  for (let index = 0; index < value.length; index++) {
-    const code = value.charCodeAt(index);
-    if (code >= 0xd800 && code <= 0xdbff) {
-      const next = value.charCodeAt(index + 1);
-      if (next >= 0xdc00 && next <= 0xdfff) {
-        output += value[index] + value[index + 1];
-        index++;
-      } else {
-        output += "\ufffd";
-      }
-    } else if (code >= 0xdc00 && code <= 0xdfff) {
-      output += "\ufffd";
-    } else {
-      output += value[index];
-    }
-  }
-  return output;
-}
-
-function normalizeTelegramPayload(value: unknown): unknown {
-  if (typeof value === "string") return utf8SafeString(value);
-  if (Array.isArray(value)) return value.map(normalizeTelegramPayload);
-  if (value && typeof value === "object") {
-    return Object.fromEntries(
-      Object.entries(value as Record<string, unknown>).map(([key, item]) => [key, normalizeTelegramPayload(item)]),
-    );
-  }
-  return value;
-}
-
-async function telegramMethod(method: string, payload: Record<string, unknown>) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  if (!token) throw new Error("Telegram bot is not configured");
-  const response = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(normalizeTelegramPayload(payload)),
-    cache: "no-store",
-  });
-  const result = await response.json().catch(() => null) as { ok?: boolean; error_code?: number; description?: string } | null;
-  if (!response.ok || !result?.ok) {
-    const code = result?.error_code ?? response.status;
-    const description = typeof result?.description === "string"
-      ? result.description.replace(/[\r\n\t]+/g, " ").slice(0, 180)
-      : "No error description";
-    throw new Error(`Telegram API ${code}: ${description}`);
-  }
-  return result;
-}
+const telegramMethod = telegramApiRequest;
 
 async function answerCallback(id: string, text?: string) {
   try {
@@ -586,6 +536,12 @@ async function handleCommand(message: TelegramMessage) {
     return;
   }
   const admin = adminIds().includes(String(senderId));
+  console.info("[telegram-webhook] command routed", {
+    command: text.startsWith("/") ? text.split(/\\s+/, 1)[0].split("@")[0].toLowerCase() : "reply-keyboard",
+    admin,
+    chatType: message.chat?.type || "unknown",
+    senderPresent: Boolean(senderId),
+  });
   if (admin) {
     if (text === "📚 دستورات کامل") {
       await showCommandMenu(String(chatId));
