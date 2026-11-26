@@ -1,1 +1,27 @@
-InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VTdGF0ZSB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgc3VwYWJhc2VCcm93c2VyIH0gZnJvbSAiQC9saWIvc3VwYWJhc2UvY2xpZW50IjsKCmV4cG9ydCB0eXBlIFByb2ZpbGUgPSB7IG5hbWU6IHN0cmluZzsgdGVsZWdyYW06IHN0cmluZyB9OwoKZXhwb3J0IGZ1bmN0aW9uIHVzZVByb2ZpbGUoKSB7CiAgY29uc3QgW3Byb2ZpbGUsIHNldFByb2ZpbGVdID0gdXNlU3RhdGU8UHJvZmlsZSB8IG51bGw+KG51bGwpOwogIHVzZUVmZmVjdCgoKSA9PiB7CiAgICBzdXBhYmFzZUJyb3dzZXIoKS5hdXRoLmdldFVzZXIoKS50aGVuKGFzeW5jICh7IGRhdGEgfSkgPT4gewogICAgICBpZiAoIWRhdGEudXNlcikgcmV0dXJuOwogICAgICBjb25zdCBtZXRhID0gZGF0YS51c2VyLnVzZXJfbWV0YWRhdGEgfHwge307CiAgICAgIGNvbnN0IGZhbGxiYWNrID0geyBuYW1lOiBTdHJpbmcobWV0YS5mdWxsX25hbWUgfHwgbWV0YS5uYW1lIHx8ICIiKSwgdGVsZWdyYW06IFN0cmluZyhtZXRhLnRlbGVncmFtIHx8ICIiKSB9OwogICAgICB0cnkgewogICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goIi9hcGkvYWNjb3VudC9vdmVydmlldyIsIHsgY2FjaGU6ICJuby1zdG9yZSIgfSk7CiAgICAgICAgY29uc3QgcmVzdWx0ID0gYXdhaXQgcmVzcG9uc2UuanNvbigpOwogICAgICAgIGlmIChyZXNwb25zZS5vayAmJiByZXN1bHQub2sgJiYgcmVzdWx0LnVzZXIpIHsKICAgICAgICAgIHNldFByb2ZpbGUoeyBuYW1lOiBTdHJpbmcocmVzdWx0LnVzZXIubmFtZSB8fCBmYWxsYmFjay5uYW1lKSwgdGVsZWdyYW06IFN0cmluZyhyZXN1bHQudXNlci50ZWxlZ3JhbSB8fCBmYWxsYmFjay50ZWxlZ3JhbSkgfSk7CiAgICAgICAgICByZXR1cm47CiAgICAgICAgfQogICAgICB9IGNhdGNoIHt9CiAgICAgIHNldFByb2ZpbGUoZmFsbGJhY2spOwogICAgfSkuY2F0Y2goKCkgPT4gdW5kZWZpbmVkKTsKICB9LCBbXSk7CiAgcmV0dXJuIHByb2ZpbGU7Cn0K
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabaseBrowser } from "@/lib/supabase/client";
+
+export type Profile = { name: string; telegram: string };
+
+export function useProfile() {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  useEffect(() => {
+    supabaseBrowser().auth.getUser().then(async ({ data }) => {
+      if (!data.user) return;
+      const meta = data.user.user_metadata || {};
+      const fallback = { name: String(meta.full_name || meta.name || ""), telegram: String(meta.telegram || "") };
+      try {
+        const response = await fetch("/api/account/overview", { cache: "no-store" });
+        const result = await response.json();
+        if (response.ok && result.ok && result.user) {
+          setProfile({ name: String(result.user.name || fallback.name), telegram: String(result.user.telegram || fallback.telegram) });
+          return;
+        }
+      } catch {}
+      setProfile(fallback);
+    }).catch(() => undefined);
+  }, []);
+  return profile;
+}

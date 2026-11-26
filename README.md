@@ -1,1 +1,61 @@
-IyBOZXh2b3JERVYKCtmI2KjigIzYs9in24zYqiDYsdiz2YXbjCBOZXh2b3JERVbYmyDYp9iz2KrZiNiv24zZiCDYqtmI2LPYudmHINmIINmF2YfZhtiv2LPbjCDYs9ix2YjYsdmH2KfbjCDYqNin2LLbjNiMINm+2YTYp9qv24zZhtiMINio2KfYqiDZiCDZiNio4oCM2LPYp9uM2KouCgojIyBTdGFjawoKLSBOZXh0LmpzIEFwcCBSb3V0ZXIg2YggUmVhY3QKLSBUeXBlU2NyaXB0INmIIFRhaWx3aW5kIENTUyA0Ci0gU3VwYWJhc2UgQXV0aCDZiCBQb3N0Z3JlU1FMCi0gVGVsZWdyYW0gQm90IEFQSSDYqNix2KfbjCDYs9mB2KfYsdi02Iwg2KrbjNqp2Kog2Ygg2KfYudmE2KfZhuKAjNmH2KcKCiMjIERldmVsb3BtZW50CgpgYGBiYXNoCm5wbSBpbnN0YWxsCm5wbSBydW4gZGV2CmBgYAoKIyMgQ2hlY2tzCgpgYGBiYXNoCm5wbSBydW4gdHlwZWNoZWNrCm5wbSBydW4gbGludApucG0gcnVuIGJ1aWxkCmBgYAoKIyMgRW52aXJvbm1lbnQKCtmF2KrYutuM2LHZh9in24wg2LLbjNixINix2Kcg2K/YsSDZhdit24zYtyDYqtmI2LPYudmHINuM2KcgVmVyY2VsINiq2YbYuNuM2YUg2qnZhtibINmF2YLYr9in2LEg2qnZhNuM2K/Zh9in24wg2YXYrdix2YXYp9mG2Ycg2LHYpyDYr9ixIEdpdCDZgtix2KfYsSDZhtiv2YcuCgp8IFZhcmlhYmxlIHwgUHVycG9zZSB8CnwgLS0tIHwgLS0tIHwKfCBgTkVYVF9QVUJMSUNfU1VQQUJBU0VfVVJMYCB8INii2K/YsdizINm+2LHZiNqY2YcgU3VwYWJhc2Ug2KjYsdin24wg2YXYsdmI2LHar9ixIHwKfCBgTkVYVF9QVUJMSUNfU1VQQUJBU0VfUFVCTElTSEFCTEVfS0VZYCB8INqp2YTbjNivINi52YXZiNmF24wgU3VwYWJhc2UgfAp8IGBTVVBBQkFTRV9VUkxgIHwg2KLYr9ix2LMgU3VwYWJhc2Ug2KjYsdin24wgQVBJ2YfYp9uMINiz2LHZiNixIHwKfCBgU1VQQUJBU0VfU0VDUkVUX0tFWWAgfCDaqdmE24zYryDZhdit2LHZhdin2YbZhyDYs9ix2YjYsSDYqNix2KfbjCDYr9iz2KrYsdiz24wg2K/bjNiq2KfYqNuM2LMg2YggQXV0aCBBZG1pbiB8CnwgYFRFTEVHUkFNX0JPVF9UT0tFTmAgfCDYqtmI2qnZhiDYqNin2Kog2KrZhNqv2LHYp9mFIHwKfCBgVEVMRUdSQU1fQk9UX1VTRVJOQU1FYCB8INmG2KfZhSDaqdin2LHYqNix24wg2KjYp9iqINio2K/ZiNmGIGBAYNibINiv2LEg2LXZiNix2Kog2YbYqNmI2K/YjCBgbmV4dm9yZGV2YCDYp9iz2KrZgdin2K/ZhyDZhduM4oCM2LTZiNivIHwKfCBgVEVMRUdSQU1fQURNSU5fSURTYCB8INi02YbYp9iz2Ycg2LnYr9iv24wg2YXYr9uM2LHYp9mGINiq2YTar9ix2KfZhdiMINis2K/Yp9i02K/ZhyDYqNinINqp2KfZhdinIHwKfCBgVEVMRUdSQU1fV0VCSE9PS19TRUNSRVRgIHwg2LHYp9iyINin2LnYqtio2KfYsdiz2YbYrNuMINiv2LHYrtmI2KfYs9iq4oCM2YfYp9uMIHdlYmhvb2sg2KrZhNqv2LHYp9mFIHwKfCBgVEVMRUdSQU1fU0VUVVBfS0VZYCB8INqp2YTbjNivINmF2K3Yp9mB2LjYqiDYp9iyINmF2LPbjNixINix2KfZh+KAjNin2YbYr9in2LLbjCB3ZWJob29rIHwKfCBgU1VQUE9SVF9BRE1JTl9QQVNTV09SRGAgfCDYsdmF2LIg2YjYsdmI2K8g2b7ZhtmEINmF2K/bjNix24zYqiDYs9in24zYqiDYr9ixIGAvc3VwcG9ydC9hZG1pbmAgfAp8IGBTTVRQX0hPU1RgLCBgU01UUF9QT1JUYCwgYFNNVFBfVVNFUmAsIGBTTVRQX1BBU1NgLCBgU01UUF9GUk9NYCB8INiq2YbYuNuM2YXYp9iqINin2LHYs9in2YQg2KfbjNmF24zZhCB8CgrYqNix2KfbjCDYq9io2Kogd2ViaG9vayDZiCDZgdix2YXYp9mG4oCM2YfYp9uMINio2KfYqtiMINm+2LMg2KfYsiDYqtmG2LjbjNmFINmF2KrYutuM2LHZh9inINin24zZhiDYotiv2LHYsyDYsdinINuM2qnigIzYqNin2LEg2KjYp9iyINqp2YY6CgpgYGB0ZXh0Cmh0dHBzOi8vbmV4dm9yZGV2LmlyL2FwaS90ZWxlZ3JhbS9zZXR1cD9rZXk9WU9VUl9URUxFR1JBTV9TRVRVUF9LRVkKYGBgCgojIyBUZWxlZ3JhbSBhbmQgd2Vic2l0ZSBsaW5raW5nCgotINqp2KfYsdio2LEg2KfYsiDYrdiz2KfYqCDYs9in24zYqtiMINio2K7YtCDCq9m+2LHZiNmB2KfbjNmEIOKGkCDYp9iq2LXYp9mEINiq2YTar9ix2KfZhcK72Iwg2YTbjNmG2qkg24zaqeKAjNio2KfYsdmF2LXYsdmBINmF24zigIzYs9in2LLYryDZiCDYqNin2Kog2LHYpyDYqNin2LIg2YXbjOKAjNqp2YbYry4KLSDbjNinINiv2LEg2KjYp9iqINiv2LPYqtmI2LEgYC9saW5rYCDYsdinINmF24zigIzZgdix2LPYqtivINmIINqp2K8g27HbsiDYsdmC2YXbjCDYsdinINiv2LEg2YfZhdin2YYg2KjYrti0INm+2LHZiNmB2KfbjNmEINiz2KfbjNiqINmI2KfYsdivINmF24zigIzaqdmG2K8uCi0g2qnYr9mH2KfbjCDYp9iq2LXYp9mEINux27Ag2K/ZgtuM2YLZhyDYp9i52KrYqNin2LEg2K/Yp9ix2YbYryDZiCDbjNqp4oCM2KjYp9ixINmF2LXYsdmB4oCM2KfZhtivLgotINm+24zYp9mF4oCM2YfYp9uMINiz2YHYp9ix2LQg2K/YsSDYrNiv2YjZhCBgbmV4dm9yX29yZGVyX21lc3NhZ2VzYCDYsNiu24zYsdmHINmF24zigIzYtNmI2YbYryDZiCDYqNuM2YYg2LPYp9uM2Kog2Ygg2KjYp9iqINmH2YXar9in2YXigIzYp9mG2K8uCgojIyBBZG1pbgoKLSDZvtmG2YQg2LPYp9uM2Ko6IGAvc3VwcG9ydC9hZG1pbmDYmyDZhdiv24zYsduM2Kog2KrbjNqp2KrigIzZh9inINmIINiz2YHYp9ix2LTigIzZh9in2Iwg2b7Yp9iz2K4g2KjZhyDZhdi02KrYsduM2Iwg2YjYtti524zYqtiMINmC24zZhdiq2Iwg2YXYs9im2YjZhCDZvtuM2q/bjNix24wg2Ygg24zYp9iv2K/Yp9i02Kog2K/Yp9iu2YTbjC4KLSDYqNin2Ko6IGAvcGFuZWxgINuM2KcgYC9oZWxwYNibINmF2K/bjNix24zYqiDYs9mB2KfYsdi04oCM2YfYpyDZiCDYqtuM2qnYquKAjNmH2KcuINio2LHYp9uMINm+2KfYs9iuINiz2LHbjNi5INio2Ycg2LPZgdin2LHYtCDZhduM4oCM2KrZiNin2YYg2KfYsiDYr9qp2YXZhyDCq9m+2KfYs9iuINio2Ycg2YXYtNiq2LHbjMK7INuM2Kcg2K/Ys9iq2YjYsSBgL3JlcGx5b3JkZXIgSUQgTUVTU0FHRWAg2KfYs9iq2YHYp9iv2Ycg2qnYsdivLgo=
+# NexvorDEV
+
+وب‌سایت رسمی NexvorDEV؛ استودیو توسعه و مهندسی سرورهای بازی، پلاگین، بات و وب‌سایت.
+
+## Stack
+
+- Next.js App Router و React
+- TypeScript و Tailwind CSS 4
+- Supabase Auth و PostgreSQL
+- Telegram Bot API برای سفارش، تیکت و اعلان‌ها
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Checks
+
+```bash
+npm run typecheck
+npm run lint
+npm run build
+```
+
+## Environment
+
+متغیرهای زیر را در محیط توسعه یا Vercel تنظیم کن؛ مقدار کلیدهای محرمانه را در Git قرار نده.
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | آدرس پروژه Supabase برای مرورگر |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | کلید عمومی Supabase |
+| `SUPABASE_URL` | آدرس Supabase برای APIهای سرور |
+| `SUPABASE_SECRET_KEY` | کلید محرمانه سرور برای دسترسی دیتابیس و Auth Admin |
+| `TELEGRAM_BOT_TOKEN` | توکن بات تلگرام |
+| `TELEGRAM_BOT_USERNAME` | نام کاربری بات بدون `@`؛ در صورت نبود، `nexvordev` استفاده می‌شود |
+| `TELEGRAM_ADMIN_IDS` | شناسه عددی مدیران تلگرام، جداشده با کاما |
+| `TELEGRAM_WEBHOOK_SECRET` | راز اعتبارسنجی درخواست‌های webhook تلگرام |
+| `TELEGRAM_SETUP_KEY` | کلید محافظت از مسیر راه‌اندازی webhook |
+| `SUPPORT_ADMIN_PASSWORD` | رمز ورود پنل مدیریت سایت در `/support/admin` |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | تنظیمات ارسال ایمیل |
+
+برای ثبت webhook و فرمان‌های بات، پس از تنظیم متغیرها این آدرس را یک‌بار باز کن:
+
+```text
+https://nexvordev.ir/api/telegram/setup?key=YOUR_TELEGRAM_SETUP_KEY
+```
+
+## Telegram and website linking
+
+- کاربر از حساب سایت، بخش «پروفایل ← اتصال تلگرام»، لینک یک‌بارمصرف می‌سازد و بات را باز می‌کند.
+- یا در بات دستور `/link` را می‌فرستد و کد ۱۲ رقمی را در همان بخش پروفایل سایت وارد می‌کند.
+- کدهای اتصال ۱۰ دقیقه اعتبار دارند و یک‌بار مصرف‌اند.
+- پیام‌های سفارش در جدول `nexvor_order_messages` ذخیره می‌شوند و بین سایت و بات همگام‌اند.
+
+## Admin
+
+- پنل سایت: `/support/admin`؛ مدیریت تیکت‌ها و سفارش‌ها، پاسخ به مشتری، وضعیت، قیمت، مسئول پیگیری و یادداشت داخلی.
+- بات: `/panel` یا `/help`؛ مدیریت سفارش‌ها و تیکت‌ها. برای پاسخ سریع به سفارش می‌توان از دکمه «پاسخ به مشتری» یا دستور `/replyorder ID MESSAGE` استفاده کرد.

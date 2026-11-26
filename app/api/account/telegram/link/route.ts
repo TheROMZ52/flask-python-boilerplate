@@ -1,1 +1,37 @@
-aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAibmV4dC9zZXJ2ZXIiOwppbXBvcnQgeyB2ZXJpZmllZEFjY291bnQgfSBmcm9tICJAL2xpYi9hdXRoL2FjY291bnQiOwppbXBvcnQgeyBjcmVhdGVTaXRlTGlua1Rva2VuLCBjb21wbGV0ZUJvdExpbmssIHVubGlua1RlbGVncmFtIH0gZnJvbSAiQC9saWIvdGVsZWdyYW0vbGluayI7CmltcG9ydCB7IGxpbWl0ZWQsIE1JTlVURVMgfSBmcm9tICJAL2xpYi9yYXRlLWxpbWl0IjsKCmV4cG9ydCBjb25zdCBydW50aW1lID0gIm5vZGVqcyI7CmV4cG9ydCBjb25zdCBkeW5hbWljID0gImZvcmNlLWR5bmFtaWMiOwoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBPU1QocmVxdWVzdDogUmVxdWVzdCkgewogIGNvbnN0IGFjY291bnQgPSBhd2FpdCB2ZXJpZmllZEFjY291bnQoKTsKICBpZiAoIWFjY291bnQpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiBmYWxzZSwgZXJyb3I6ICLYqNix2KfbjCDYp9iq2LXYp9mEINiq2YTar9ix2KfZhSDYp9io2KrYr9inINmI2KfYsdivINit2LPYp9ioINiq2KPbjNuM2K/YtNiv2Ycg2LTZiC4iIH0sIHsgc3RhdHVzOiA0MDEgfSk7CiAgaWYgKGF3YWl0IGxpbWl0ZWQoYHRlbGVncmFtLWxpbms6JHthY2NvdW50LnVzZXIuaWR9YCwgOCwgTUlOVVRFUykpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiBmYWxzZSwgZXJyb3I6ICLYr9ix2K7ZiNin2LPYquKAjNmH2KfbjCDYstuM2KfYr9uMINir2KjYqiDYtNiv2YfYmyDaqdmF24wg2KjYudivINiv2YjYqNin2LHZhyDYqtmE2KfYtCDaqdmGLiIgfSwgeyBzdGF0dXM6IDQyOSB9KTsKICB0cnkgewogICAgY29uc3QgYm9keSA9IGF3YWl0IHJlcXVlc3QuanNvbigpLmNhdGNoKCgpID0+ICh7fSkpOwogICAgaWYgKHR5cGVvZiBib2R5LmNvZGUgPT09ICJzdHJpbmciICYmIGJvZHkuY29kZS50cmltKCkpIHsKICAgICAgY29uc3QgbGlua2VkID0gYXdhaXQgY29tcGxldGVCb3RMaW5rKGFjY291bnQudXNlci5pZCwgYm9keS5jb2RlKTsKICAgICAgaWYgKCFsaW5rZWQpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiBmYWxzZSwgZXJyb3I6ICLaqdivINin2KrYtdin2YQg2YbYp9mF2LnYqtio2LHYjCDZhdmG2YLYttuMINuM2Kcg2YLYqNmE2KfZiyDYp9iz2KrZgdin2K/ZhyDYtNiv2Ycg2KfYs9iqLiIgfSwgeyBzdGF0dXM6IDQwMCB9KTsKICAgICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgb2s6IHRydWUsIGxpbmtlZDogdHJ1ZSB9KTsKICAgIH0KICAgIGNvbnN0IHRva2VuID0gYXdhaXQgY3JlYXRlU2l0ZUxpbmtUb2tlbihhY2NvdW50LnVzZXIuaWQpOwogICAgY29uc3QgdXNlcm5hbWUgPSAocHJvY2Vzcy5lbnYuVEVMRUdSQU1fQk9UX1VTRVJOQU1FIHx8ICJuZXh2b3JkZXYiKS5yZXBsYWNlKC9eQC8sICIiKTsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiB0cnVlLCBsaW5rZWQ6IGZhbHNlLCB1cmw6IGBodHRwczovL3QubWUvJHt1c2VybmFtZX0/c3RhcnQ9bGlua18ke3Rva2VufWAsIGV4cGlyZXNJbjogNjAwIH0pOwogIH0gY2F0Y2ggewogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgb2s6IGZhbHNlLCBlcnJvcjogItiz2KfYrtiqINmE24zZhtqpINin2KrYtdin2YQg2KfZhtis2KfZhSDZhti02K8uIiB9LCB7IHN0YXR1czogNTAzIH0pOwogIH0KfQoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIERFTEVURSgpIHsKICBjb25zdCBhY2NvdW50ID0gYXdhaXQgdmVyaWZpZWRBY2NvdW50KCk7CiAgaWYgKCFhY2NvdW50KSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBvazogZmFsc2UsIGVycm9yOiAi2YjYp9ix2K8g2K3Ys9in2Kgg2YbYtNiv2YfigIzYp9uMLiIgfSwgeyBzdGF0dXM6IDQwMSB9KTsKICB0cnkgewogICAgYXdhaXQgdW5saW5rVGVsZWdyYW0oYWNjb3VudC51c2VyLmlkKTsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiB0cnVlIH0pOwogIH0gY2F0Y2ggewogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgb2s6IGZhbHNlLCBlcnJvcjogItmC2LfYuSDYp9iq2LXYp9mEINiq2YTar9ix2KfZhSDYp9mG2KzYp9mFINmG2LTYry4iIH0sIHsgc3RhdHVzOiA1MDMgfSk7CiAgfQp9Cg==
+import { NextResponse } from "next/server";
+import { verifiedAccount } from "@/lib/auth/account";
+import { createSiteLinkToken, completeBotLink, unlinkTelegram } from "@/lib/telegram/link";
+import { limited, MINUTES } from "@/lib/rate-limit";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function POST(request: Request) {
+  const account = await verifiedAccount();
+  if (!account) return NextResponse.json({ ok: false, error: "برای اتصال تلگرام ابتدا وارد حساب تأییدشده شو." }, { status: 401 });
+  if (await limited(`telegram-link:${account.user.id}`, 8, MINUTES)) return NextResponse.json({ ok: false, error: "درخواست‌های زیادی ثبت شده؛ کمی بعد دوباره تلاش کن." }, { status: 429 });
+  try {
+    const body = await request.json().catch(() => ({}));
+    if (typeof body.code === "string" && body.code.trim()) {
+      const linked = await completeBotLink(account.user.id, body.code);
+      if (!linked) return NextResponse.json({ ok: false, error: "کد اتصال نامعتبر، منقضی یا قبلاً استفاده شده است." }, { status: 400 });
+      return NextResponse.json({ ok: true, linked: true });
+    }
+    const token = await createSiteLinkToken(account.user.id);
+    const username = (process.env.TELEGRAM_BOT_USERNAME || "nexvordev").replace(/^@/, "");
+    return NextResponse.json({ ok: true, linked: false, url: `https://t.me/${username}?start=link_${token}`, expiresIn: 600 });
+  } catch {
+    return NextResponse.json({ ok: false, error: "ساخت لینک اتصال انجام نشد." }, { status: 503 });
+  }
+}
+
+export async function DELETE() {
+  const account = await verifiedAccount();
+  if (!account) return NextResponse.json({ ok: false, error: "وارد حساب نشده‌ای." }, { status: 401 });
+  try {
+    await unlinkTelegram(account.user.id);
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ ok: false, error: "قطع اتصال تلگرام انجام نشد." }, { status: 503 });
+  }
+}

@@ -1,1 +1,99 @@
-aW1wb3J0IHsgY29va2llcyB9IGZyb20gIm5leHQvaGVhZGVycyI7CmltcG9ydCB7IE5leHRSZXNwb25zZSB9IGZyb20gIm5leHQvc2VydmVyIjsKaW1wb3J0IHsgQURNSU5fQ09PS0lFLCBjbGVhblRleHQsIGlzQWRtaW5TZXNzaW9uVmFsaWQsIHN1cHBvcnREYiB9IGZyb20gIkAvbGliL3N1cHBvcnQvc2VydmVyIjsKaW1wb3J0IHsgbm90aWZ5Q3VzdG9tZXJBYm91dE9yZGVyUmVwbHksIG5vdGlmeUN1c3RvbWVyQWJvdXRSZXF1ZXN0IH0gZnJvbSAiQC9saWIvYm90L3B1YmxpYyI7CmltcG9ydCB7IHN5bmNJbnZvaWNlQW1vdW50IH0gZnJvbSAiQC9saWIvaW52b2ljZSI7CgpleHBvcnQgY29uc3QgcnVudGltZSA9ICJub2RlanMiOwp0eXBlIENvbnRleHQgPSB7IHBhcmFtczogUHJvbWlzZTx7IGlkOiBzdHJpbmcgfT4gfTsKY29uc3Qgc3RhdHVzZXMgPSBbIm5ldyIsICJyZXZpZXdpbmciLCAiaW5fcHJvZ3Jlc3MiLCAiY29tcGxldGVkIiwgInJlamVjdGVkIl07Cgphc3luYyBmdW5jdGlvbiBhdXRob3JpemVkKCkgewogIGNvbnN0IHN0b3JlID0gYXdhaXQgY29va2llcygpOwogIHJldHVybiBpc0FkbWluU2Vzc2lvblZhbGlkKHN0b3JlLmdldChBRE1JTl9DT09LSUUpPy52YWx1ZSk7Cn0KYXN5bmMgZnVuY3Rpb24gZ2V0UmVxdWVzdChpZDogc3RyaW5nKSB7CiAgaWYgKCEvXlswLTlhLWYtXXszNn0kL2kudGVzdChpZCkpIHJldHVybiBudWxsOwogIGNvbnN0IHJvd3MgPSBhd2FpdCBzdXBwb3J0RGIoYG5leHZvcl9zZXJ2aWNlX3JlcXVlc3RzP2lkPWVxLiR7ZW5jb2RlVVJJQ29tcG9uZW50KGlkKX0mc2VsZWN0PSombGltaXQ9MWApIGFzIEFycmF5PFJlY29yZDxzdHJpbmcsIHVua25vd24+PjsKICByZXR1cm4gcm93c1swXSB8fCBudWxsOwp9CmFzeW5jIGZ1bmN0aW9uIGxvZ0V2ZW50KGlkOiBzdHJpbmcsIHR5cGU6IHN0cmluZywgb2xkVmFsdWU/OiB1bmtub3duLCBuZXdWYWx1ZT86IHVua25vd24sIG5vdGU/OiBzdHJpbmcpIHsKICBhd2FpdCBzdXBwb3J0RGIoIm5leHZvcl9zZXJ2aWNlX3JlcXVlc3RfZXZlbnRzIiwgeyBtZXRob2Q6ICJQT1NUIiwgaGVhZGVyczogeyBQcmVmZXI6ICJyZXR1cm49bWluaW1hbCIgfSwgYm9keTogSlNPTi5zdHJpbmdpZnkoeyByZXF1ZXN0X2lkOiBpZCwgYWN0b3JfdGVsZWdyYW1faWQ6ICJ3ZWJzaXRlLWFkbWluIiwgZXZlbnRfdHlwZTogdHlwZSwgb2xkX3ZhbHVlOiBvbGRWYWx1ZSA9PSBudWxsID8gbnVsbCA6IFN0cmluZyhvbGRWYWx1ZSksIG5ld192YWx1ZTogbmV3VmFsdWUgPT0gbnVsbCA/IG51bGwgOiBTdHJpbmcobmV3VmFsdWUpLCBub3RlOiBub3RlIHx8IG51bGwgfSkgfSk7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBHRVQoX3JlcXVlc3Q6IFJlcXVlc3QsIGNvbnRleHQ6IENvbnRleHQpIHsKICBpZiAoIWF3YWl0IGF1dGhvcml6ZWQoKSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICLYp9io2KrYr9inINmI2KfYsdivINm+2YbZhCDZhdiv24zYsduM2Kog2LTZiC4iIH0sIHsgc3RhdHVzOiA0MDEgfSk7CiAgdHJ5IHsKICAgIGNvbnN0IHsgaWQgfSA9IGF3YWl0IGNvbnRleHQucGFyYW1zOwogICAgY29uc3QgaXRlbSA9IGF3YWl0IGdldFJlcXVlc3QoaWQpOwogICAgaWYgKCFpdGVtKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItiz2YHYp9ix2LQg2b7bjNiv2Kcg2YbYtNivLiIgfSwgeyBzdGF0dXM6IDQwNCB9KTsKICAgIGNvbnN0IFttZXNzYWdlcywgZXZlbnRzXSA9IGF3YWl0IFByb21pc2UuYWxsKFsKICAgICAgc3VwcG9ydERiKGBuZXh2b3Jfb3JkZXJfbWVzc2FnZXM/cmVxdWVzdF9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudChpZCl9JnNlbGVjdD1pZCxzZW5kZXJfcm9sZSxib2R5LGNyZWF0ZWRfYXQmb3JkZXI9Y3JlYXRlZF9hdC5hc2NgKSwKICAgICAgc3VwcG9ydERiKGBuZXh2b3Jfc2VydmljZV9yZXF1ZXN0X2V2ZW50cz9yZXF1ZXN0X2lkPWVxLiR7ZW5jb2RlVVJJQ29tcG9uZW50KGlkKX0mc2VsZWN0PWFjdG9yX3RlbGVncmFtX2lkLGV2ZW50X3R5cGUsb2xkX3ZhbHVlLG5ld192YWx1ZSxub3RlLGNyZWF0ZWRfYXQmb3JkZXI9Y3JlYXRlZF9hdC5kZXNjJmxpbWl0PTMwYCksCiAgICBdKTsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IHJlcXVlc3Q6IGl0ZW0sIG1lc3NhZ2VzLCBldmVudHMgfSk7CiAgfSBjYXRjaCB7CiAgICByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItiv2LHbjNin2YHYqiDYrNiy2KbbjNin2Kog2LPZgdin2LHYtCDZhdmF2qnZhiDZhti02K8uIiB9LCB7IHN0YXR1czogNTAzIH0pOwogIH0KfQoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIFBPU1QocmVxdWVzdDogUmVxdWVzdCwgY29udGV4dDogQ29udGV4dCkgewogIGlmICghYXdhaXQgYXV0aG9yaXplZCgpKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItin2KjYqtiv2Kcg2YjYp9ix2K8g2b7ZhtmEINmF2K/bjNix24zYqiDYtNmILiIgfSwgeyBzdGF0dXM6IDQwMSB9KTsKICB0cnkgewogICAgY29uc3QgeyBpZCB9ID0gYXdhaXQgY29udGV4dC5wYXJhbXM7CiAgICBjb25zdCBpdGVtID0gYXdhaXQgZ2V0UmVxdWVzdChpZCk7CiAgICBpZiAoIWl0ZW0pIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAi2LPZgdin2LHYtCDZvtuM2K/YpyDZhti02K8uIiB9LCB7IHN0YXR1czogNDA0IH0pOwogICAgY29uc3QgYm9keSA9IGNsZWFuVGV4dCgoYXdhaXQgcmVxdWVzdC5qc29uKCkpLmJvZHksIDQwMDApOwogICAgaWYgKCFib2R5KSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItmF2KrZhiDZvtin2LPYriDYrtin2YTbjCDYp9iz2KouIiB9LCB7IHN0YXR1czogNDAwIH0pOwogICAgYXdhaXQgc3VwcG9ydERiKCJuZXh2b3Jfb3JkZXJfbWVzc2FnZXMiLCB7IG1ldGhvZDogIlBPU1QiLCBoZWFkZXJzOiB7IFByZWZlcjogInJldHVybj1taW5pbWFsIiB9LCBib2R5OiBKU09OLnN0cmluZ2lmeSh7IHJlcXVlc3RfaWQ6IGlkLCBzZW5kZXJfcm9sZTogImFkbWluIiwgYm9keSB9KSB9KTsKICAgIGF3YWl0IHN1cHBvcnREYihgbmV4dm9yX3NlcnZpY2VfcmVxdWVzdHM/aWQ9ZXEuJHtlbmNvZGVVUklDb21wb25lbnQoaWQpfWAsIHsgbWV0aG9kOiAiUEFUQ0giLCBoZWFkZXJzOiB7IFByZWZlcjogInJldHVybj1taW5pbWFsIiB9LCBib2R5OiBKU09OLnN0cmluZ2lmeSh7IGF3YWl0aW5nX3JlcGx5OiBmYWxzZSwgbGFzdF9tZXNzYWdlX2F0OiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCksIHVwZGF0ZWRfYXQ6IG5ldyBEYXRlKCkudG9JU09TdHJpbmcoKSB9KSB9KTsKICAgIGF3YWl0IGxvZ0V2ZW50KGlkLCAibWVzc2FnZSIsIG51bGwsIG51bGwsIGJvZHkuc2xpY2UoMCwgMTAwMCkpOwogICAgYXdhaXQgbm90aWZ5Q3VzdG9tZXJBYm91dE9yZGVyUmVwbHkoaWQsIGJvZHkpLmNhdGNoKCgpID0+IG51bGwpOwogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgc3VjY2VzczogdHJ1ZSB9KTsKICB9IGNhdGNoIHsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAi2KfYsdiz2KfZhCDZvtin2LPYriDYp9mG2KzYp9mFINmG2LTYry4iIH0sIHsgc3RhdHVzOiA1MDMgfSk7CiAgfQp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gUEFUQ0gocmVxdWVzdDogUmVxdWVzdCwgY29udGV4dDogQ29udGV4dCkgewogIGlmICghYXdhaXQgYXV0aG9yaXplZCgpKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItin2KjYqtiv2Kcg2YjYp9ix2K8g2b7ZhtmEINmF2K/bjNix24zYqiDYtNmILiIgfSwgeyBzdGF0dXM6IDQwMSB9KTsKICB0cnkgewogICAgY29uc3QgeyBpZCB9ID0gYXdhaXQgY29udGV4dC5wYXJhbXM7CiAgICBjb25zdCBjdXJyZW50ID0gYXdhaXQgZ2V0UmVxdWVzdChpZCk7CiAgICBpZiAoIWN1cnJlbnQpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAi2LPZgdin2LHYtCDZvtuM2K/YpyDZhti02K8uIiB9LCB7IHN0YXR1czogNDA0IH0pOwogICAgY29uc3QgYm9keSA9IGF3YWl0IHJlcXVlc3QuanNvbigpOwogICAgY29uc3QgcGF0Y2g6IFJlY29yZDxzdHJpbmcsIHVua25vd24+ID0geyB1cGRhdGVkX2F0OiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCkgfTsKICAgIGlmIChib2R5LnN0YXR1cyAhPT0gdW5kZWZpbmVkKSB7CiAgICAgIGlmICghc3RhdHVzZXMuaW5jbHVkZXMoYm9keS5zdGF0dXMpKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBlcnJvcjogItmI2LbYuduM2Kog2KfZhtiq2K7Yp9io4oCM2LTYr9mHINmF2LnYqtio2LEg2YbbjNiz2KouIiB9LCB7IHN0YXR1czogNDAwIH0pOwogICAgICBwYXRjaC5zdGF0dXMgPSBib2R5LnN0YXR1czsKICAgICAgcGF0Y2guY29tcGxldGVkX2F0ID0gYm9keS5zdGF0dXMgPT09ICJjb21wbGV0ZWQiID8gbmV3IERhdGUoKS50b0lTT1N0cmluZygpIDogbnVsbDsKICAgICAgYXdhaXQgbG9nRXZlbnQoaWQsICJzdGF0dXMiLCBjdXJyZW50LnN0YXR1cywgYm9keS5zdGF0dXMpOwogICAgfQogICAgaWYgKGJvZHkucXVvdGVkX3ByaWNlICE9PSB1bmRlZmluZWQpIHsKICAgICAgY29uc3QgcHJpY2UgPSBjbGVhblRleHQoYm9keS5xdW90ZWRfcHJpY2UsIDgwKTsKICAgICAgaWYgKCFwcmljZSkgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgZXJyb3I6ICLZhdio2YTYuiDZvtuM2LTZhtmH2KfYr9uMINiu2KfZhNuMINin2LPYqi4iIH0sIHsgc3RhdHVzOiA0MDAgfSk7CiAgICAgIHBhdGNoLnF1b3RlZF9wcmljZSA9IHByaWNlOwogICAgICBhd2FpdCBsb2dFdmVudChpZCwgInF1b3RlIiwgY3VycmVudC5xdW90ZWRfcHJpY2UsIHByaWNlKTsKICAgIH0KICAgIGlmIChib2R5LmludGVybmFsX25vdGUgIT09IHVuZGVmaW5lZCkgewogICAgICBjb25zdCBub3RlID0gY2xlYW5UZXh0KGJvZHkuaW50ZXJuYWxfbm90ZSwgMTAwMCk7CiAgICAgIHBhdGNoLmludGVybmFsX25vdGUgPSBub3RlIHx8IG51bGw7CiAgICAgIGF3YWl0IGxvZ0V2ZW50KGlkLCAibm90ZSIsIGN1cnJlbnQuaW50ZXJuYWxfbm90ZSwgbnVsbCwgbm90ZSk7CiAgICB9CiAgICBpZiAoYm9keS5hc3NpZ25lZF90byAhPT0gdW5kZWZpbmVkKSB7CiAgICAgIGNvbnN0IGFzc2lnbmVkID0gY2xlYW5UZXh0KGJvZHkuYXNzaWduZWRfdG8sIDgwKTsKICAgICAgcGF0Y2guYXNzaWduZWRfdG8gPSBhc3NpZ25lZCB8fCBudWxsOwogICAgICBhd2FpdCBsb2dFdmVudChpZCwgImFzc2lnbmVkIiwgY3VycmVudC5hc3NpZ25lZF90bywgYXNzaWduZWQgfHwgbnVsbCk7CiAgICB9CiAgICBhd2FpdCBzdXBwb3J0RGIoYG5leHZvcl9zZXJ2aWNlX3JlcXVlc3RzP2lkPWVxLiR7ZW5jb2RlVVJJQ29tcG9uZW50KGlkKX1gLCB7IG1ldGhvZDogIlBBVENIIiwgaGVhZGVyczogeyBQcmVmZXI6ICJyZXR1cm49bWluaW1hbCIgfSwgYm9keTogSlNPTi5zdHJpbmdpZnkocGF0Y2gpIH0pOwogICAgY29uc3QgdXBkYXRlZCA9IGF3YWl0IGdldFJlcXVlc3QoaWQpOwogICAgaWYgKHVwZGF0ZWQgJiYgYm9keS5zdGF0dXMgIT09IHVuZGVmaW5lZCkgYXdhaXQgbm90aWZ5Q3VzdG9tZXJBYm91dFJlcXVlc3QodXBkYXRlZCBhcyBuZXZlciwgInN0YXR1cyIpLmNhdGNoKCgpID0+IG51bGwpOwogICAgaWYgKHVwZGF0ZWQgJiYgYm9keS5xdW90ZWRfcHJpY2UgIT09IHVuZGVmaW5lZCkgewogICAgICBhd2FpdCBub3RpZnlDdXN0b21lckFib3V0UmVxdWVzdCh1cGRhdGVkIGFzIG5ldmVyLCAicXVvdGUiKS5jYXRjaCgoKSA9PiBudWxsKTsKICAgICAgYXdhaXQgc3luY0ludm9pY2VBbW91bnQoaWQsIFN0cmluZyh1cGRhdGVkLnF1b3RlZF9wcmljZSB8fCAiIikpLmNhdGNoKCgpID0+IG51bGwpOwogICAgfQogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgc3VjY2VzczogdHJ1ZSwgcmVxdWVzdDogdXBkYXRlZCB9KTsKICB9IGNhdGNoIHsKICAgIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IGVycm9yOiAi2LDYrtuM2LHZhyDYqti624zbjNix2KfYqiDYs9mB2KfYsdi0INin2YbYrNin2YUg2YbYtNivLiIgfSwgeyBzdGF0dXM6IDUwMyB9KTsKICB9Cn0K
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+import { ADMIN_COOKIE, cleanText, isAdminSessionValid, supportDb } from "@/lib/support/server";
+import { notifyCustomerAboutOrderReply, notifyCustomerAboutRequest } from "@/lib/bot/public";
+import { syncInvoiceAmount } from "@/lib/invoice";
+
+export const runtime = "nodejs";
+type Context = { params: Promise<{ id: string }> };
+const statuses = ["new", "reviewing", "in_progress", "completed", "rejected"];
+
+async function authorized() {
+  const store = await cookies();
+  return isAdminSessionValid(store.get(ADMIN_COOKIE)?.value);
+}
+async function getRequest(id: string) {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const rows = await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}&select=*&limit=1`) as Array<Record<string, unknown>>;
+  return rows[0] || null;
+}
+async function logEvent(id: string, type: string, oldValue?: unknown, newValue?: unknown, note?: string) {
+  await supportDb("nexvor_service_request_events", { method: "POST", headers: { Prefer: "return=minimal" }, body: JSON.stringify({ request_id: id, actor_telegram_id: "website-admin", event_type: type, old_value: oldValue == null ? null : String(oldValue), new_value: newValue == null ? null : String(newValue), note: note || null }) });
+}
+
+export async function GET(_request: Request, context: Context) {
+  if (!await authorized()) return NextResponse.json({ error: "ابتدا وارد پنل مدیریت شو." }, { status: 401 });
+  try {
+    const { id } = await context.params;
+    const item = await getRequest(id);
+    if (!item) return NextResponse.json({ error: "سفارش پیدا نشد." }, { status: 404 });
+    const [messages, events] = await Promise.all([
+      supportDb(`nexvor_order_messages?request_id=eq.${encodeURIComponent(id)}&select=id,sender_role,body,created_at&order=created_at.asc`),
+      supportDb(`nexvor_service_request_events?request_id=eq.${encodeURIComponent(id)}&select=actor_telegram_id,event_type,old_value,new_value,note,created_at&order=created_at.desc&limit=30`),
+    ]);
+    return NextResponse.json({ request: item, messages, events });
+  } catch {
+    return NextResponse.json({ error: "دریافت جزئیات سفارش ممکن نشد." }, { status: 503 });
+  }
+}
+
+export async function POST(request: Request, context: Context) {
+  if (!await authorized()) return NextResponse.json({ error: "ابتدا وارد پنل مدیریت شو." }, { status: 401 });
+  try {
+    const { id } = await context.params;
+    const item = await getRequest(id);
+    if (!item) return NextResponse.json({ error: "سفارش پیدا نشد." }, { status: 404 });
+    const body = cleanText((await request.json()).body, 4000);
+    if (!body) return NextResponse.json({ error: "متن پاسخ خالی است." }, { status: 400 });
+    await supportDb("nexvor_order_messages", { method: "POST", headers: { Prefer: "return=minimal" }, body: JSON.stringify({ request_id: id, sender_role: "admin", body }) });
+    await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}`, { method: "PATCH", headers: { Prefer: "return=minimal" }, body: JSON.stringify({ awaiting_reply: false, last_message_at: new Date().toISOString(), updated_at: new Date().toISOString() }) });
+    await logEvent(id, "message", null, null, body.slice(0, 1000));
+    await notifyCustomerAboutOrderReply(id, body).catch(() => null);
+    return NextResponse.json({ success: true });
+  } catch {
+    return NextResponse.json({ error: "ارسال پاسخ انجام نشد." }, { status: 503 });
+  }
+}
+
+export async function PATCH(request: Request, context: Context) {
+  if (!await authorized()) return NextResponse.json({ error: "ابتدا وارد پنل مدیریت شو." }, { status: 401 });
+  try {
+    const { id } = await context.params;
+    const current = await getRequest(id);
+    if (!current) return NextResponse.json({ error: "سفارش پیدا نشد." }, { status: 404 });
+    const body = await request.json();
+    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    if (body.status !== undefined) {
+      if (!statuses.includes(body.status)) return NextResponse.json({ error: "وضعیت انتخاب‌شده معتبر نیست." }, { status: 400 });
+      patch.status = body.status;
+      patch.completed_at = body.status === "completed" ? new Date().toISOString() : null;
+      await logEvent(id, "status", current.status, body.status);
+    }
+    if (body.quoted_price !== undefined) {
+      const price = cleanText(body.quoted_price, 80);
+      if (!price) return NextResponse.json({ error: "مبلغ پیشنهادی خالی است." }, { status: 400 });
+      patch.quoted_price = price;
+      await logEvent(id, "quote", current.quoted_price, price);
+    }
+    if (body.internal_note !== undefined) {
+      const note = cleanText(body.internal_note, 1000);
+      patch.internal_note = note || null;
+      await logEvent(id, "note", current.internal_note, null, note);
+    }
+    if (body.assigned_to !== undefined) {
+      const assigned = cleanText(body.assigned_to, 80);
+      patch.assigned_to = assigned || null;
+      await logEvent(id, "assigned", current.assigned_to, assigned || null);
+    }
+    await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(id)}`, { method: "PATCH", headers: { Prefer: "return=minimal" }, body: JSON.stringify(patch) });
+    const updated = await getRequest(id);
+    if (updated && body.status !== undefined) await notifyCustomerAboutRequest(updated as never, "status").catch(() => null);
+    if (updated && body.quoted_price !== undefined) {
+      await notifyCustomerAboutRequest(updated as never, "quote").catch(() => null);
+      await syncInvoiceAmount(id, String(updated.quoted_price || "")).catch(() => null);
+    }
+    return NextResponse.json({ success: true, request: updated });
+  } catch {
+    return NextResponse.json({ error: "ذخیره تغییرات سفارش انجام نشد." }, { status: 503 });
+  }
+}

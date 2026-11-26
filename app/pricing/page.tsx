@@ -1,1 +1,107 @@
-aW1wb3J0ICIuLi9wYWdlcy5jc3MiOwppbXBvcnQgdHlwZSB7IE1ldGFkYXRhIH0gZnJvbSAibmV4dCI7CmltcG9ydCBMaW5rIGZyb20gIm5leHQvbGluayI7CmltcG9ydCB7IEFycm93TGVmdCwgQXJyb3dVcExlZnQsIENoZWNrLCBDbGlwYm9hcmRDaGVjaywgTWVzc2FnZUNpcmNsZSwgU3BhcmtsZXMgfSBmcm9tICJsdWNpZGUtcmVhY3QiOwppbXBvcnQgeyBQYWdlSGVybywgUGFnZVNoZWxsLCBXb3JkcyB9IGZyb20gIkAvY29tcG9uZW50cy9zaXRlLWNocm9tZSI7CmltcG9ydCB7IHNlcnZpY2VHcm91cHMgfSBmcm9tICJAL2xpYi9zZXJ2aWNlcyI7CgpleHBvcnQgY29uc3QgbWV0YWRhdGE6IE1ldGFkYXRhID0gewogIHRpdGxlOiAi2KrYudix2YHZhyDYrtiv2YXYp9iqIiwKICBkZXNjcmlwdGlvbjogItiq2LnYsdmB2Ycg2K7Yr9mF2KfYqiBOZXh2b3JERVbYmyDYsdin2YfigIzYp9mG2K/Yp9iy24wg2LPYsdmI2LHYjCDZvtmE2Kfar9uM2YYg2Ygg2KjYp9iqINin2K7Yqti12KfYtduM2Iwg2LfYsdin2K3bjCDZiNio4oCM2LPYp9uM2Kog2Ygg2LLbjNix2LPYp9iu2KrYjCDYqNinINio2KfYstmH4oCM24wg2YLbjNmF2Kog2YXYtNiu2LUg2Ygg2KjYsdii2YjYsdivINiv2YLbjNmCINmC2KjZhCDYp9iyINi02LHZiNi5LiIsCiAgYWx0ZXJuYXRlczogeyBjYW5vbmljYWw6ICIvcHJpY2luZyIgfSwKICBvcGVuR3JhcGg6IHsgdGl0bGU6ICLYqti52LHZgdmHINiu2K/Zhdin2KogTmV4dm9yREVWIiwgZGVzY3JpcHRpb246ICLYqNin2LLZhyDZgtuM2YXYqiDZiCDYrNiy2KbbjNin2Kog2K7Yr9mF2KfYqiDYqtmI2LPYudmHINiz2LHZiNix2YfYp9uMINio2KfYstuMLiIsIHVybDogIi9wcmljaW5nIiwgaW1hZ2VzOiBbeyB1cmw6ICIvbmV4dm9yZGV2LWxvZ28uanBnIiwgd2lkdGg6IDE4MCwgaGVpZ2h0OiAxODAsIGFsdDogItmE2Yjar9mI24wgTmV4dm9yREVWIiB9XSB9LAp9OwoKY29uc3QgZmFjdG9ycyA9IFsKICB7IHRpdGxlOiAi2KzYstim24zYp9iqINmIINm+24zahtuM2K/ar9uMINm+2LHZiNqY2YciLCBkZXRhaWw6ICLZh9ix2obZhyDZgtin2KjZhNuM2KrigIzZh9inINmIINmF2YbYt9mCINin2KzYsdin24zbjCDYp9iu2KrYtdin2LXbjOKAjNiq2LEg2KjYp9i02YbYr9iMINiy2YXYp9mGINmIINmH2LLbjNmG2Ycg2KjYsdix2LPbjOKAjNi02K/ZhyDZhdiq2YHYp9mI2Kog2K7ZiNin2YfYryDYqNmI2K8uIiB9LAogIHsgdGl0bGU6ICLZhdit2K/ZiNiv2Ycg2K7Yr9mF2KfYqiIsIGRldGFpbDogItin24zZhtqp2Ycg2YHZgti3INqp2KfZhtmB24zaryDZhtuM2KfYsiDYr9in2LHbjCDbjNinINiq2YjYs9i52Ycg2Ygg2LHYp9mH4oCM2KfZhtiv2KfYstuMINqp2KfZhdmEINmH2YUg2YXbjOKAjNiu2YjYp9mH24zYjCDYsdmI24wg2KjYsdii2YjYsdivINin2KvYsSDZhduM4oCM2q/YsNin2LHYry4iIH0sCiAgeyB0aXRsZTogItmI2LbYuduM2Kog2YHYudmE24wg2LPYsdmI2LEiLCBkZXRhaWw6ICLYs9ix2YjYsSDYotmF2KfYr9mH2Iwg2b7YsdmI2pjZhyDZhtuM2YXZh+KAjNqp2KfYsdmHINuM2Kcg2LHYp9mH4oCM2KfZhtiv2KfYstuMINin2LIg2LXZgdix2Iwg2YfYsdqp2K/Yp9mFINio2LHYsdiz24wg2YXYqtmB2KfZiNiq24wg2YTYp9iy2YUg2K/Yp9ix2YbYry4iIH0sCl07CmNvbnN0IHN0ZXBzID0gWwogIHsgaWNvbjogTWVzc2FnZUNpcmNsZSwgdGl0bGU6ICLYp9ix2LPYp9mEINiv2LHYrtmI2KfYs9iqIiwgZGV0YWlsOiAi2b7ZhNiq2YHYsdmFINmIINqG24zYstuMINqp2Ycg2YTYp9iy2YUg2K/Yp9ix24wg2LHZiCDYqtmI2LbbjNitINio2K/Zhy4iIH0sCiAgeyBpY29uOiBDbGlwYm9hcmRDaGVjaywgdGl0bGU6ICLYqNix2LHYs9uMINmIINio2LHYotmI2LHYryIsIGRldGFpbDogItis2LLYptuM2KfYqiDZvtix2YjamNmHINio2LHYsdiz24wg2Ygg2YfYstuM2YbZhyDYp9i52YTYp9mFINmF24zigIzYtNmHLiIgfSwKICB7IGljb246IFNwYXJrbGVzLCB0aXRsZTogItin2KzYsdinINmIINiq2K3ZiNuM2YQiLCBkZXRhaWw6ICLZvtizINin2LIg2KrZiNin2YHZgtiMINqp2KfYsSDYp9mG2KzYp9mFINmIINmG2KrbjNis2Ycg2KrYrdmI24zZhCDYr9in2K/ZhyDZhduM4oCM2LTZhy4iIH0sCl07CgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBQcmljaW5nUGFnZSgpIHsKICByZXR1cm4gKAogICAgPFBhZ2VTaGVsbCBhY3RpdmU9Ii9wcmljaW5nIj4KICAgICAgPHNjcmlwdCB0eXBlPSJhcHBsaWNhdGlvbi9sZCtqc29uIiBkYW5nZXJvdXNseVNldElubmVySFRNTD17eyBfX2h0bWw6IEpTT04uc3RyaW5naWZ5KHsgIkBjb250ZXh0IjogImh0dHBzOi8vc2NoZW1hLm9yZyIsICJAdHlwZSI6ICJCcmVhZGNydW1iTGlzdCIsIGl0ZW1MaXN0RWxlbWVudDogW3sgIkB0eXBlIjogIkxpc3RJdGVtIiwgcG9zaXRpb246IDEsIG5hbWU6ICLYtdmB2K3ZhyDYp9i12YTbjCIsIGl0ZW06ICJodHRwczovL25leHZvcmRldi5pci8iIH0sIHsgIkB0eXBlIjogIkxpc3RJdGVtIiwgcG9zaXRpb246IDIsIG5hbWU6ICLYqti52LHZgdmHINiu2K/Zhdin2KoiLCBpdGVtOiAiaHR0cHM6Ly9uZXh2b3JkZXYuaXIvcHJpY2luZyIgfV0gfSkgfX0gLz4KICAgICAgPFBhZ2VIZXJvIGJhZGdlPXs8PjxzcGFuIGNsYXNzTmFtZT0iaHgtbGl2ZSIgLz4g2KrYudix2YHZhyDYrtiv2YXYp9iqIE5leHZvckRFVjwvPn0gdGl0bGU9ItmC24zZhdiqINix2YjYtNmG2JsiIGFjY2VudD0i2YXYqtmG2KfYs9ioINio2Kcg2b7YsdmI2pjZh+KAjNin2KouIiBsZWFkPSLYp9iyINuM2qkg2KrZhti424zZhSDYs9in2K/ZhyDYqtinINiq2YjYs9i52Ycg2KfYrtiq2LXYp9i124zYmyDYp9mI2YQg2YbbjNin2LIg2b7YsdmI2pjZhyDYsdmIINio2LHYsdiz24wg2YXbjOKAjNqp2YbbjNmFINmIINio2LnYryDZh9iy24zZhtmHINmG2YfYp9uM24wg2LHZiCDYtNmB2KfZgSDYqNmH2Kog2YXbjOKAjNqv24zZhS4iPgogICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoeC1hY3Rpb25zIj4KICAgICAgICAgIDxMaW5rIGNsYXNzTmFtZT0iaHgtY3RhIiBocmVmPSIvcmVxdWVzdCIgZGF0YS1tYWduZXRpYz7Yr9ix24zYp9mB2Kog2KjYsdii2YjYsdivINmH2LLbjNmG2YcgPEFycm93TGVmdCBzaXplPXsxOH0gLz48L0xpbms+CiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9Imh4LW5vdGUiPjxDaGVjayBzaXplPXsxNX0gLz4g2KjYr9mI2YYg2YLbjNmF2KrigIzYs9in2LLbjCDZiCDZh9iy24zZhtmHINm+2YbZh9in2YY8L3NwYW4+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXJhbmdlIiBkYXRhLXJldmVhbD4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoeC1yYW5nZS10b3AiPjxzcGFuPtio2KfYstmHINiq2LnYsdmB2Ycg2K7Yr9mF2KfYqjwvc3Bhbj48c3BhbiBjbGFzc05hbWU9Imh4LWNoaXAiPjxpIC8+INmC2KfYqNmEINin2LPYqti52YTYp9mFPC9zcGFuPjwvZGl2PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXJhbmdlLW51bXMiPgogICAgICAgICAgICA8ZGl2PjxzdHJvbmcgZGF0YS1jb3VudD0iNjUwMDAiPtu227XZrNuw27DbsDwvc3Ryb25nPjxzcGFuPtit2K/Yp9mC2YQg2LTYsdmI2Lk8L3NwYW4+PC9kaXY+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0iaHgtcmFuZ2UtdG8iPtiq2Kc8L3NwYW4+CiAgICAgICAgICAgIDxkaXY+PHN0cm9uZyBkYXRhLWNvdW50PSIyMDAwMDAwIj7bstms27DbsNuw2azbsNuw27A8L3N0cm9uZz48c3Bhbj7YrdivINio2KfZhNin24wg2KjYp9iy2Yc8L3NwYW4+PC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoeC1yYW5nZS10cmFjayI+PHNwYW4gLz48L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJoeC1yYW5nZS1mb290Ij48c3Bhbj7YqtmI2YXYp9mGPC9zcGFuPjxzcGFuPtio2LHYp9uMINmH2YXZh+KAjNuMINiu2K/Zhdin2Ko8L3NwYW4+PC9kaXY+CiAgICAgICAgICA8cD7Zhdio2YTYuiDYr9mC24zZgiDYqNinINiq2YjYrNmHINio2Ycg2KzYstim24zYp9iq2Iwg2K3YrNmFINqp2KfYsSDZiCDYp9mF2qnYp9mG2KfYqiDYr9ix2K7ZiNin2LPYqtuMINmF2LTYrti1INmF24zigIzYtNmHLjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgPC9QYWdlSGVybz4KCiAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT0iaHgtc2VjdGlvbiI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXdyYXAiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LWhlYWQiIGRhdGEtcmV2ZWFsPjxoMj48V29yZHMgdGV4dD0i2KjYsdin24wg2qnYr9mI2YUg2K7Yr9mF2KrYnyIgLz48L2gyPjxwPtio2KfYstmH4oCM24wg2KrYudix2YHZhyDYqNix2KfbjCDZh9mF2YfigIzbjCDYr9iz2KrZh+KAjNmH2Kcg24zaqdiz2KfZhtmH2Jsg2YbZiNi5INiz2YHYp9ix2LQg2Ygg2KzYstim24zYp9iqINin2KzYsdin24zbjNiMINmF2KjZhNi6INmG2YfYp9uM24wg2LHZiCDYqti524zbjNmGINmF24zigIzaqdmG2YcuPC9wPjwvZGl2PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXRyaW8iPgogICAgICAgICAgICB7c2VydmljZUdyb3Vwcy5maWx0ZXIoZ3JvdXAgPT4gZ3JvdXAubGFiZWwgIT09ICLYs9in24zYsSIpLm1hcCgoZ3JvdXAsIGluZGV4KSA9PiAoCiAgICAgICAgICAgICAgPGFydGljbGUgY2xhc3NOYW1lPSJoeC1taW5pIiBrZXk9e2dyb3VwLmxhYmVsfSBkYXRhLXRpbHQgZGF0YS1yZXZlYWwgZGF0YS1kZWxheT17KGluZGV4ICUgMykgKiA5MH0+CiAgICAgICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9Imh4LW1pbmktbm8iPntncm91cC5vcHRpb25zLmxlbmd0aC50b0xvY2FsZVN0cmluZygiZmEtSVIiKX0g2K7Yr9mF2Ko8L3NwYW4+CiAgICAgICAgICAgICAgICA8aDM+e2dyb3VwLmxhYmVsfTwvaDM+CiAgICAgICAgICAgICAgICA8cD57Z3JvdXAub3B0aW9ucy5zbGljZSgwLCAzKS5qb2luKCLYjCAiKX0g2Ygg2YXZiNin2LHYryDYr9uM2q/YsTwvcD4KICAgICAgICAgICAgICAgIDxMaW5rIGNsYXNzTmFtZT0iaHgtdGV4dGxpbmsiIGhyZWY9Ii9yZXF1ZXN0Ij7Yq9io2Kog2LPZgdin2LHYtCA8QXJyb3dVcExlZnQgc2l6ZT17MTV9IC8+PC9MaW5rPgogICAgICAgICAgICAgIDwvYXJ0aWNsZT4KICAgICAgICAgICAgKSl9CiAgICAgICAgICA8L2Rpdj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9zZWN0aW9uPgoKICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPSJoeC1zZWN0aW9uIj4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaHgtd3JhcCBoeC1zcGxpdCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaHgtc3BsaXQtaW50cm8iIGRhdGEtcmV2ZWFsPgogICAgICAgICAgICA8aDI+2obbjCDZgtuM2YXYqiDZhtmH2KfbjNuMINix2Yg8YnIgLz48c3BhbiBjbGFzc05hbWU9Imh4LWdyYWQiPtmF2LTYrti1INmF24zigIzaqdmG2YfYnzwvc3Bhbj48L2gyPgogICAgICAgICAgICA8cD7ahtmI2YYg2LPZgdin2LHYtOKAjNmH2Kcg2KjYpyDZh9mFINmB2LHZgiDYr9in2LHZhtiMINmC2KjZhCDYp9iyINin2LnZhNin2YUg2YXYqNmE2Log2KfbjNmGINmF2YjYp9ix2K8g2LHZiCDYqNix2LHYs9uMINmF24zigIzaqdmG24zZhS48L3A+CiAgICAgICAgICAgIDxMaW5rIGNsYXNzTmFtZT0iaHgtdGV4dGxpbmsiIGhyZWY9Ii9yZXF1ZXN0Ij7Zvtix2YjamNmH4oCM2KfYqiDYsdmIINmF2LfYsditINqp2YYgPEFycm93VXBMZWZ0IHNpemU9ezE2fSAvPjwvTGluaz4KICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LWZhY3RvcnMiPgogICAgICAgICAgICB7ZmFjdG9ycy5tYXAoKGZhY3RvciwgaW5kZXgpID0+ICgKICAgICAgICAgICAgICA8YXJ0aWNsZSBjbGFzc05hbWU9Imh4LWZhY3RvciIga2V5PXtmYWN0b3IudGl0bGV9IGRhdGEtcmV2ZWFsIGRhdGEtZGVsYXk9e2luZGV4ICogMTAwfT48c3Bhbj57KGluZGV4ICsgMSkudG9Mb2NhbGVTdHJpbmcoImZhLUlSIil9PC9zcGFuPjxkaXY+PGgzPntmYWN0b3IudGl0bGV9PC9oMz48cD57ZmFjdG9yLmRldGFpbH08L3A+PC9kaXY+PC9hcnRpY2xlPgogICAgICAgICAgICApKX0KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L3NlY3Rpb24+CgogICAgICA8c2VjdGlvbiBjbGFzc05hbWU9Imh4LXNlY3Rpb24gaHgtYWx0Ij4KICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaHgtd3JhcCI+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iaHgtaGVhZCIgZGF0YS1yZXZlYWw+PGgyPjxXb3JkcyB0ZXh0PSLYp9iyINiv2LHYrtmI2KfYs9iqINiq2Kcg2KrYrdmI24zZhCIgLz48L2gyPjxwPtmF2LPbjNixINiz2YHYp9ix2LQg2qnZiNiq2KfZhyDZiCDZhdi02K7YtdmH2Jsg2YLYqNmEINin2LIg2LTYsdmI2LnYjCDYr9ix2KjYp9ix2Ycg2YXYrdiv2YjYr9mHINqp2KfYsSDZiCDZh9iy24zZhtmHINmH2YXYp9mH2YbaryDZhduM4oCM2qnZhtuM2YUuPC9wPjwvZGl2PgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXRyaW8iPgogICAgICAgICAgICB7c3RlcHMubWFwKChzdGVwLCBpbmRleCkgPT4geyBjb25zdCBJY29uID0gc3RlcC5pY29uOyByZXR1cm4gKAogICAgICAgICAgICAgIDxhcnRpY2xlIGNsYXNzTmFtZT0iaHgtbWluaSIga2V5PXtzdGVwLnRpdGxlfSBkYXRhLXRpbHQgZGF0YS1yZXZlYWwgZGF0YS1kZWxheT17aW5kZXggKiAxMDB9PgogICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LWljb24iPjxJY29uIHNpemU9ezIyfSAvPjwvZGl2PjxzcGFuIGNsYXNzTmFtZT0iaHgtbWluaS1ubyI+2YXYsdit2YTZhyB7KGluZGV4ICsgMSkudG9Mb2NhbGVTdHJpbmcoImZhLUlSIil9PC9zcGFuPjxoMz57c3RlcC50aXRsZX08L2gzPjxwPntzdGVwLmRldGFpbH08L3A+CiAgICAgICAgICAgICAgPC9hcnRpY2xlPgogICAgICAgICAgICApOyB9KX0KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L3NlY3Rpb24+CgogICAgICA8c2VjdGlvbiBjbGFzc05hbWU9Imh4LXNlY3Rpb24gaHgtY29udGFjdCI+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXdyYXAiPgogICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LXBhbmVsIiBkYXRhLXJldmVhbD4KICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPSJoeC13YXRlcm1hcmsiIGFyaWEtaGlkZGVuPSJ0cnVlIiBkYXRhLWRlcHRoPSIwLjA4Ij5OWDwvc3Bhbj4KICAgICAgICAgICAgPGgyPtm+2LHZiNqY2YfigIzYp9iqINix2YggPHNwYW4gY2xhc3NOYW1lPSJoeC1ncmFkIj7YtNix2YjYuSDaqdmG24zZhdifPC9zcGFuPjwvaDI+CiAgICAgICAgICAgIDxwPtmB2YLYtyDaqdin2YHbjNmHINio2q/bjCDahtmHINqG24zYstuMINmE2KfYstmFINiv2KfYsduM2Jsg2KjYsdin24wg2KjYsdix2LPbjCDZiCDYp9i52YTYp9mFINmH2LLbjNmG2Ycg2K/YsSDYqtmE2q/Ysdin2YUg2b7bjNin2YUg2KjYr9mHLjwvcD4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Imh4LWFjdGlvbnMgaHgtY2VudGVyIj4KICAgICAgICAgICAgICA8YSBjbGFzc05hbWU9Imh4LWN0YSBoeC1jdGEtbGciIGhyZWY9Imh0dHBzOi8vdC5tZS9UaGVST01aREVWIiB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub3JlZmVycmVyIiBkYXRhLW1hZ25ldGljPtin2LPYqti52YTYp9mFINmC24zZhdiqINiv2LEg2KrZhNqv2LHYp9mFIDxBcnJvd1VwTGVmdCBzaXplPXsxOX0gLz48L2E+CiAgICAgICAgICAgICAgPExpbmsgY2xhc3NOYW1lPSJoeC1naG9zdCIgaHJlZj0iL3JlcXVlc3QiPtir2KjYqiDYs9mB2KfYsdi0INiv2LEg2LPYp9uM2Ko8L0xpbms+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvc2VjdGlvbj4KICAgIDwvUGFnZVNoZWxsPgogICk7Cn0K
+import "../pages.css";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpLeft, Check, ClipboardCheck, MessageCircle, Sparkles } from "lucide-react";
+import { PageHero, PageShell, Words } from "@/components/site-chrome";
+import { serviceGroups } from "@/lib/services";
+
+export const metadata: Metadata = {
+  title: "تعرفه خدمات",
+  description: "تعرفه خدمات NexvorDEV؛ راه‌اندازی سرور، پلاگین و بات اختصاصی، طراحی وب‌سایت و زیرساخت، با بازه‌ی قیمت مشخص و برآورد دقیق قبل از شروع.",
+  alternates: { canonical: "/pricing" },
+  openGraph: { title: "تعرفه خدمات NexvorDEV", description: "بازه قیمت و جزئیات خدمات توسعه سرورهای بازی.", url: "/pricing", images: [{ url: "/nexvordev-logo.jpg", width: 180, height: 180, alt: "لوگوی NexvorDEV" }] },
+};
+
+const factors = [
+  { title: "جزئیات و پیچیدگی پروژه", detail: "هرچه قابلیت‌ها و منطق اجرایی اختصاصی‌تر باشند، زمان و هزینه بررسی‌شده متفاوت خواهد بود." },
+  { title: "محدوده خدمات", detail: "اینکه فقط کانفیگ نیاز داری یا توسعه و راه‌اندازی کامل هم می‌خواهی، روی برآورد اثر می‌گذارد." },
+  { title: "وضعیت فعلی سرور", detail: "سرور آماده، پروژه نیمه‌کاره یا راه‌اندازی از صفر، هرکدام بررسی متفاوتی لازم دارند." },
+];
+const steps = [
+  { icon: MessageCircle, title: "ارسال درخواست", detail: "پلتفرم و چیزی که لازم داری رو توضیح بده." },
+  { icon: ClipboardCheck, title: "بررسی و برآورد", detail: "جزئیات پروژه بررسی و هزینه اعلام می‌شه." },
+  { icon: Sparkles, title: "اجرا و تحویل", detail: "پس از توافق، کار انجام و نتیجه تحویل داده می‌شه." },
+];
+
+export default function PricingPage() {
+  return (
+    <PageShell active="/pricing">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "صفحه اصلی", item: "https://nexvordev.ir/" }, { "@type": "ListItem", position: 2, name: "تعرفه خدمات", item: "https://nexvordev.ir/pricing" }] }) }} />
+      <PageHero badge={<><span className="hx-live" /> تعرفه خدمات NexvorDEV</>} title="قیمت روشن؛" accent="متناسب با پروژه‌ات." lead="از یک تنظیم ساده تا توسعه اختصاصی؛ اول نیاز پروژه رو بررسی می‌کنیم و بعد هزینه نهایی رو شفاف بهت می‌گیم.">
+        <div className="hx-actions">
+          <Link className="hx-cta" href="/request" data-magnetic>دریافت برآورد هزینه <ArrowLeft size={18} /></Link>
+          <span className="hx-note"><Check size={15} /> بدون قیمت‌سازی و هزینه پنهان</span>
+        </div>
+        <div className="hx-range" data-reveal>
+          <div className="hx-range-top"><span>بازه تعرفه خدمات</span><span className="hx-chip"><i /> قابل استعلام</span></div>
+          <div className="hx-range-nums">
+            <div><strong data-count="65000">۶۵٬۰۰۰</strong><span>حداقل شروع</span></div>
+            <span className="hx-range-to">تا</span>
+            <div><strong data-count="2000000">۲٬۰۰۰٬۰۰۰</strong><span>حد بالای بازه</span></div>
+          </div>
+          <div className="hx-range-track"><span /></div>
+          <div className="hx-range-foot"><span>تومان</span><span>برای همه‌ی خدمات</span></div>
+          <p>مبلغ دقیق با توجه به جزئیات، حجم کار و امکانات درخواستی مشخص می‌شه.</p>
+        </div>
+      </PageHero>
+
+      <section className="hx-section">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal><h2><Words text="برای کدوم خدمت؟" /></h2><p>بازه‌ی تعرفه برای همه‌ی دسته‌ها یکسانه؛ نوع سفارش و جزئیات اجرایی، مبلغ نهایی رو تعیین می‌کنه.</p></div>
+          <div className="hx-trio">
+            {serviceGroups.filter(group => group.label !== "سایر").map((group, index) => (
+              <article className="hx-mini" key={group.label} data-tilt data-reveal data-delay={(index % 3) * 90}>
+                <span className="hx-mini-no">{group.options.length.toLocaleString("fa-IR")} خدمت</span>
+                <h3>{group.label}</h3>
+                <p>{group.options.slice(0, 3).join("، ")} و موارد دیگر</p>
+                <Link className="hx-textlink" href="/request">ثبت سفارش <ArrowUpLeft size={15} /></Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="hx-section">
+        <div className="hx-wrap hx-split">
+          <div className="hx-split-intro" data-reveal>
+            <h2>چی قیمت نهایی رو<br /><span className="hx-grad">مشخص می‌کنه؟</span></h2>
+            <p>چون سفارش‌ها با هم فرق دارن، قبل از اعلام مبلغ این موارد رو بررسی می‌کنیم.</p>
+            <Link className="hx-textlink" href="/request">پروژه‌ات رو مطرح کن <ArrowUpLeft size={16} /></Link>
+          </div>
+          <div className="hx-factors">
+            {factors.map((factor, index) => (
+              <article className="hx-factor" key={factor.title} data-reveal data-delay={index * 100}><span>{(index + 1).toLocaleString("fa-IR")}</span><div><h3>{factor.title}</h3><p>{factor.detail}</p></div></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="hx-section hx-alt">
+        <div className="hx-wrap">
+          <div className="hx-head" data-reveal><h2><Words text="از درخواست تا تحویل" /></h2><p>مسیر سفارش کوتاه و مشخصه؛ قبل از شروع، درباره محدوده کار و هزینه هماهنگ می‌کنیم.</p></div>
+          <div className="hx-trio">
+            {steps.map((step, index) => { const Icon = step.icon; return (
+              <article className="hx-mini" key={step.title} data-tilt data-reveal data-delay={index * 100}>
+                <div className="hx-icon"><Icon size={22} /></div><span className="hx-mini-no">مرحله {(index + 1).toLocaleString("fa-IR")}</span><h3>{step.title}</h3><p>{step.detail}</p>
+              </article>
+            ); })}
+          </div>
+        </div>
+      </section>
+
+      <section className="hx-section hx-contact">
+        <div className="hx-wrap">
+          <div className="hx-panel" data-reveal>
+            <span className="hx-watermark" aria-hidden="true" data-depth="0.08">NX</span>
+            <h2>پروژه‌ات رو <span className="hx-grad">شروع کنیم؟</span></h2>
+            <p>فقط کافیه بگی چه چیزی لازم داری؛ برای بررسی و اعلام هزینه در تلگرام پیام بده.</p>
+            <div className="hx-actions hx-center">
+              <a className="hx-cta hx-cta-lg" href="https://t.me/TheROMZDEV" target="_blank" rel="noreferrer" data-magnetic>استعلام قیمت در تلگرام <ArrowUpLeft size={19} /></a>
+              <Link className="hx-ghost" href="/request">ثبت سفارش در سایت</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}

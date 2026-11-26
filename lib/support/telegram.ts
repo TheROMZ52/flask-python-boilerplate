@@ -1,1 +1,109 @@
-aW1wb3J0ICJzZXJ2ZXItb25seSI7CmltcG9ydCB7IHN1cHBvcnREYiB9IGZyb20gIkAvbGliL3N1cHBvcnQvc2VydmVyIjsKCmNvbnN0IGJvdFRva2VuID0gcHJvY2Vzcy5lbnYuVEVMRUdSQU1fQk9UX1RPS0VOOwpjb25zdCBhZG1pbkNoYXRJZHMgPSAocHJvY2Vzcy5lbnYuVEVMRUdSQU1fQURNSU5fSURTIHx8ICIiKS5zcGxpdCgiLCIpLm1hcCh2YWx1ZSA9PiB2YWx1ZS50cmltKCkpLmZpbHRlcihCb29sZWFuKTsKCmV4cG9ydCBmdW5jdGlvbiBlc2NhcGVUZWxlZ3JhbUh0bWwodmFsdWU6IHVua25vd24pIHsKICByZXR1cm4gU3RyaW5nKHZhbHVlID8/ICIiKS5yZXBsYWNlKC8mL2csICImYW1wOyIpLnJlcGxhY2UoLzwvZywgIiZsdDsiKS5yZXBsYWNlKC8+L2csICImZ3Q7Iik7Cn0KCmV4cG9ydCBhc3luYyBmdW5jdGlvbiBzZW5kVGVsZWdyYW1NZXNzYWdlKGNoYXRJZDogc3RyaW5nLCB0ZXh0OiBzdHJpbmcsIG9wdGlvbnM/OiBSZWNvcmQ8c3RyaW5nLCB1bmtub3duPikgewogIGlmICghYm90VG9rZW4pIHRocm93IG5ldyBFcnJvcigiVGVsZWdyYW0gYm90IGlzIG5vdCBjb25maWd1cmVkIik7CiAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChgaHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdCR7Ym90VG9rZW59L3NlbmRNZXNzYWdlYCwgewogICAgbWV0aG9kOiAiUE9TVCIsCiAgICBoZWFkZXJzOiB7ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiIgfSwKICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsgY2hhdF9pZDogY2hhdElkLCB0ZXh0LCBwYXJzZV9tb2RlOiAiSFRNTCIsIGRpc2FibGVfd2ViX3BhZ2VfcHJldmlldzogdHJ1ZSwgLi4ub3B0aW9ucyB9KSwKICAgIGNhY2hlOiAibm8tc3RvcmUiLAogIH0pOwogIGlmICghcmVzcG9uc2Uub2spIHRocm93IG5ldyBFcnJvcigiVGVsZWdyYW0gbWVzc2FnZSBkZWxpdmVyeSBmYWlsZWQiKTsKICBjb25zdCByZXN1bHQgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7CiAgaWYgKCFyZXN1bHQub2spIHRocm93IG5ldyBFcnJvcigiVGVsZWdyYW0gbWVzc2FnZSBkZWxpdmVyeSBmYWlsZWQiKTsKICByZXR1cm4gcmVzdWx0Owp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gbm90aWZ5QWRtaW5BYm91dE5ld1RpY2tldCh0aWNrZXRJZDogc3RyaW5nKSB7CiAgaWYgKCFib3RUb2tlbiB8fCAhYWRtaW5DaGF0SWRzLmxlbmd0aCkgcmV0dXJuOwogIGNvbnN0IHJvd3MgPSBhd2FpdCBzdXBwb3J0RGIoCiAgICBgbmV4dm9yX3N1cHBvcnRfdGlja2V0cz9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudCh0aWNrZXRJZCl9JnNlbGVjdD1pZCxmaXJzdF9uYW1lLGxhc3RfbmFtZSxhZ2UsdGVsZWdyYW1fdXNlcm5hbWUsc3ViamVjdCxjcmVhdGVkX2F0JmxpbWl0PTFgLAogICkgYXMgQXJyYXk8UmVjb3JkPHN0cmluZywgdW5rbm93bj4+OwogIGNvbnN0IHRpY2tldCA9IHJvd3M/LlswXTsKICBpZiAoIXRpY2tldCkgcmV0dXJuOwogIGNvbnN0IG1lc3NhZ2VzID0gYXdhaXQgc3VwcG9ydERiKAogICAgYG5leHZvcl9zdXBwb3J0X21lc3NhZ2VzP3RpY2tldF9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudCh0aWNrZXRJZCl9JnNlbGVjdD1ib2R5Jm9yZGVyPWNyZWF0ZWRfYXQuYXNjJmxpbWl0PTFgLAogICkgYXMgQXJyYXk8eyBib2R5OiBzdHJpbmcgfT47CiAgY29uc3QgdGV4dCA9IFsKICAgICLwn5qoIDxiPtiq24zaqdiqINis2K/bjNivIE5leHZvckRFVjwvYj4iLAogICAgIiIsCiAgICBgPGI+2LTZhtin2LPZhzo8L2I+IDxjb2RlPiR7ZXNjYXBlVGVsZWdyYW1IdG1sKHRpY2tldC5pZCl9PC9jb2RlPmAsCiAgICBgPGI+2YbYp9mFINmF2LTYqtix24w6PC9iPiAke2VzY2FwZVRlbGVncmFtSHRtbCh0aWNrZXQuZmlyc3RfbmFtZSl9ICR7ZXNjYXBlVGVsZWdyYW1IdG1sKHRpY2tldC5sYXN0X25hbWUpfWAsCiAgICBgPGI+2LPZhjo8L2I+ICR7ZXNjYXBlVGVsZWdyYW1IdG1sKHRpY2tldC5hZ2UpfWAsCiAgICBgPGI+2KrZhNqv2LHYp9mFOjwvYj4gQCR7ZXNjYXBlVGVsZWdyYW1IdG1sKHRpY2tldC50ZWxlZ3JhbV91c2VybmFtZSl9YCwKICAgIGA8Yj7ZhdmI2LbZiNi5OjwvYj4gJHtlc2NhcGVUZWxlZ3JhbUh0bWwodGlja2V0LnN1YmplY3QpfWAsCiAgICAiIiwKICAgIGA8Yj7ZvtuM2KfZhSDYp9mI2YTbjNmHOjwvYj5cbiR7ZXNjYXBlVGVsZWdyYW1IdG1sKG1lc3NhZ2VzPy5bMF0/LmJvZHkgfHwgIuKAlCIpLnNsaWNlKDAsIDI1MDApfWAsCiAgICAiIiwKICAgICLYqNix2KfbjCDZhdi02KfZh9iv2Ycg2Ygg2YXYr9uM2LHbjNiq2Iwg2K/aqdmF2Ycg2LLbjNixINix2Kcg2KjYstmGLiIsCiAgXS5qb2luKCJcbiIpOwogIGF3YWl0IFByb21pc2UuYWxsU2V0dGxlZChhZG1pbkNoYXRJZHMubWFwKGNoYXRJZCA9PiBzZW5kVGVsZWdyYW1NZXNzYWdlKGNoYXRJZCwgdGV4dCwgewogICAgcmVwbHlfbWFya3VwOiB7CiAgICAgIGlubGluZV9rZXlib2FyZDogW1sKICAgICAgICB7IHRleHQ6ICLwn46rINmF2LTYp9mH2K/ZhyDZiCDZhdiv24zYsduM2Kog2KrbjNqp2KoiLCBjYWxsYmFja19kYXRhOiBgdGlja2V0OiR7dGlja2V0SWR9YCB9LAogICAgICAgIHsgdGV4dDogIvCfk6wg2YfZhdmHINiq24zaqdiq4oCM2YfYpyIsIGNhbGxiYWNrX2RhdGE6ICJ0aWNrZXRzOjAiIH0sCiAgICAgIF1dLAogICAgfSwKICB9KSkpOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gbm90aWZ5QWRtaW5BYm91dE5ld1NlcnZpY2VSZXF1ZXN0KHJlcXVlc3RJZDogc3RyaW5nKSB7CiAgaWYgKCFib3RUb2tlbiB8fCAhYWRtaW5DaGF0SWRzLmxlbmd0aCkgcmV0dXJuOwogIGNvbnN0IHJvd3M9YXdhaXQgc3VwcG9ydERiKGBuZXh2b3Jfc2VydmljZV9yZXF1ZXN0cz9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudChyZXF1ZXN0SWQpfSZzZWxlY3Q9KiZsaW1pdD0xYCkgYXMgQXJyYXk8UmVjb3JkPHN0cmluZyx1bmtub3duPj47CiAgY29uc3QgaXRlbT1yb3dzPy5bMF07IGlmKCFpdGVtKSByZXR1cm47CiAgY29uc3QgcHJpb3JpdHk9U3RyaW5nKGl0ZW0ucHJpb3JpdHkpPT09ImNyaXRpY2FsIj8i8J+aqCDYp9i22LfYsdin2LHbjCI6U3RyaW5nKGl0ZW0ucHJpb3JpdHkpPT09InVyZ2VudCI/IuKaoSDZgdmI2LHbjCI6Iti52KfYr9uMIjsKICBjb25zdCB0ZXh0PVsKICAgICLwn4aVIDxiPtiv2LHYrtmI2KfYs9iqINiu2K/Zhdin2Kog2KzYr9uM2K8gTmV4dm9yREVWPC9iPiIsCiAgICAiIiwKICAgIGA8Yj7YtNmG2KfYs9mHOjwvYj4gPGNvZGU+JHtlc2NhcGVUZWxlZ3JhbUh0bWwoaXRlbS5pZCl9PC9jb2RlPmAsCiAgICBgPGI+2YXYtNiq2LHbjDo8L2I+ICR7ZXNjYXBlVGVsZWdyYW1IdG1sKGl0ZW0uY3VzdG9tZXJfbmFtZSl9YCwKICAgIGA8Yj7Ysdin2Ycg2KfYsdiq2KjYp9i324w6PC9iPiAke2VzY2FwZVRlbGVncmFtSHRtbChpdGVtLnRlbGVncmFtX2NvbnRhY3QpfWAsCiAgICBgPGI+2K7Yr9mF2Ko6PC9iPiAke2VzY2FwZVRlbGVncmFtSHRtbChpdGVtLnNlcnZpY2VfdHlwZSl9YCwKICAgIGA8Yj7Yp9mI2YTZiNuM2Ko6PC9iPiAke3ByaW9yaXR5fWAsCiAgICAiIiwKICAgICI8Yj7YqtmI2LbbjNit2KfYqjo8L2I+IiwKICAgIGVzY2FwZVRlbGVncmFtSHRtbChpdGVtLmRldGFpbHMpLnNsaWNlKDAsMjMwMCkKICBdLmpvaW4oIlxuIik7CiAgYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKGFkbWluQ2hhdElkcy5tYXAoY2hhdElkPT5zZW5kVGVsZWdyYW1NZXNzYWdlKGNoYXRJZCx0ZXh0LHsKICAgIHJlcGx5X21hcmt1cDp7aW5saW5lX2tleWJvYXJkOltbCiAgICAgIHt0ZXh0OiLwn5OmINmF2LTYp9mH2K/ZhyDZiCDZhdiv24zYsduM2KoiLGNhbGxiYWNrX2RhdGE6YHNydmlldzoke3JlcXVlc3RJZH1gfSwKICAgICAge3RleHQ6IvCfk4sg2YfZhdmHINiv2LHYrtmI2KfYs9iq4oCM2YfYpyIsY2FsbGJhY2tfZGF0YToicmVxdWVzdHM6MCJ9CiAgICBdXX0KICB9KSkpOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gbm90aWZ5QWRtaW5BYm91dEN1c3RvbWVyTWVzc2FnZSh0aWNrZXRJZDogc3RyaW5nKSB7CiAgaWYgKCFib3RUb2tlbiB8fCAhYWRtaW5DaGF0SWRzLmxlbmd0aCkgcmV0dXJuOwogIGNvbnN0IHJvd3MgPSBhd2FpdCBzdXBwb3J0RGIoYG5leHZvcl9zdXBwb3J0X3RpY2tldHM/aWQ9ZXEuJHtlbmNvZGVVUklDb21wb25lbnQodGlja2V0SWQpfSZzZWxlY3Q9aWQsZmlyc3RfbmFtZSxsYXN0X25hbWUsc3ViamVjdCZsaW1pdD0xYCkgYXMgQXJyYXk8UmVjb3JkPHN0cmluZywgdW5rbm93bj4+OwogIGNvbnN0IHRpY2tldCA9IHJvd3M/LlswXTsKICBpZiAoIXRpY2tldCkgcmV0dXJuOwogIGNvbnN0IG1lc3NhZ2VzID0gYXdhaXQgc3VwcG9ydERiKGBuZXh2b3Jfc3VwcG9ydF9tZXNzYWdlcz90aWNrZXRfaWQ9ZXEuJHtlbmNvZGVVUklDb21wb25lbnQodGlja2V0SWQpfSZzZW5kZXJfcm9sZT1lcS5jdXN0b21lciZzZWxlY3Q9Ym9keSZvcmRlcj1jcmVhdGVkX2F0LmRlc2MmbGltaXQ9MWApIGFzIEFycmF5PHsgYm9keTogc3RyaW5nIH0+OwogIGNvbnN0IHRleHQgPSBbCiAgICAi8J+SrCA8Yj7ZvtuM2KfZhSDYrNiv24zYryDYp9iyINmF2LTYqtix24w8L2I+IiwKICAgIGA8Yj7Zhdi02KrYsduMOjwvYj4gJHtlc2NhcGVUZWxlZ3JhbUh0bWwodGlja2V0LmZpcnN0X25hbWUpfSAke2VzY2FwZVRlbGVncmFtSHRtbCh0aWNrZXQubGFzdF9uYW1lKX1gLAogICAgYDxiPtmF2YjYttmI2Lk6PC9iPiAke2VzY2FwZVRlbGVncmFtSHRtbCh0aWNrZXQuc3ViamVjdCl9YCwKICAgICIiLAogICAgZXNjYXBlVGVsZWdyYW1IdG1sKG1lc3NhZ2VzPy5bMF0/LmJvZHkgfHwgIiIpLnNsaWNlKDAsIDI1MDApLAogIF0uam9pbigiXG4iKTsKICBhd2FpdCBQcm9taXNlLmFsbFNldHRsZWQoYWRtaW5DaGF0SWRzLm1hcChjaGF0SWQgPT4gc2VuZFRlbGVncmFtTWVzc2FnZShjaGF0SWQsIHRleHQsIHsKICAgIHJlcGx5X21hcmt1cDogeyBpbmxpbmVfa2V5Ym9hcmQ6IFtbeyB0ZXh0OiAi8J+OqyDZhdi02KfZh9iv2Ycg2Ygg2b7Yp9iz2K4iLCBjYWxsYmFja19kYXRhOiBgdGlja2V0OiR7dGlja2V0SWR9YCB9XV0gfSwKICB9KSkpOwp9CgpleHBvcnQgYXN5bmMgZnVuY3Rpb24gbm90aWZ5QWRtaW5BYm91dE9yZGVyTWVzc2FnZShyZXF1ZXN0SWQ6IHN0cmluZykgewogIGlmICghYm90VG9rZW4gfHwgIWFkbWluQ2hhdElkcy5sZW5ndGgpIHJldHVybjsKICBjb25zdCByb3dzID0gYXdhaXQgc3VwcG9ydERiKGBuZXh2b3Jfc2VydmljZV9yZXF1ZXN0cz9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudChyZXF1ZXN0SWQpfSZzZWxlY3Q9aWQsY3VzdG9tZXJfbmFtZSxzZXJ2aWNlX3R5cGUscHJpb3JpdHksdGVsZWdyYW1fY29udGFjdCZsaW1pdD0xYCkgYXMgQXJyYXk8UmVjb3JkPHN0cmluZywgdW5rbm93bj4+OwogIGNvbnN0IGl0ZW0gPSByb3dzWzBdOwogIGlmICghaXRlbSkgcmV0dXJuOwogIGNvbnN0IG1lc3NhZ2VzID0gYXdhaXQgc3VwcG9ydERiKGBuZXh2b3Jfb3JkZXJfbWVzc2FnZXM/cmVxdWVzdF9pZD1lcS4ke2VuY29kZVVSSUNvbXBvbmVudChyZXF1ZXN0SWQpfSZzZW5kZXJfcm9sZT1lcS5jdXN0b21lciZzZWxlY3Q9Ym9keSZvcmRlcj1jcmVhdGVkX2F0LmRlc2MmbGltaXQ9MWApIGFzIEFycmF5PHsgYm9keTogc3RyaW5nIH0+OwogIGNvbnN0IHRleHQgPSBbIvCfkqwgPGI+2b7bjNin2YUg2KzYr9uM2K8g2K/Ysdio2KfYsdmHINiz2YHYp9ix2LQ8L2I+IiwgIiIsIGA8Yj7YtNmG2KfYs9mHOjwvYj4gPGNvZGU+JHtlc2NhcGVUZWxlZ3JhbUh0bWwoaXRlbS5pZCl9PC9jb2RlPmAsIGA8Yj7Zhdi02KrYsduMOjwvYj4gJHtlc2NhcGVUZWxlZ3JhbUh0bWwoaXRlbS5jdXN0b21lcl9uYW1lKX1gLCBgPGI+2K7Yr9mF2Ko6PC9iPiAke2VzY2FwZVRlbGVncmFtSHRtbChpdGVtLnNlcnZpY2VfdHlwZSl9YCwgYDxiPtix2KfZhyDYp9ix2KrYqNin2LfbjDo8L2I+ICR7ZXNjYXBlVGVsZWdyYW1IdG1sKGl0ZW0udGVsZWdyYW1fY29udGFjdCl9YCwgIiIsIGVzY2FwZVRlbGVncmFtSHRtbChtZXNzYWdlc1swXT8uYm9keSB8fCAiIikuc2xpY2UoMCwgMjUwMCldLmpvaW4oIlxuIik7CiAgYXdhaXQgUHJvbWlzZS5hbGxTZXR0bGVkKGFkbWluQ2hhdElkcy5tYXAoY2hhdElkID0+IHNlbmRUZWxlZ3JhbU1lc3NhZ2UoY2hhdElkLCB0ZXh0LCB7IHJlcGx5X21hcmt1cDogeyBpbmxpbmVfa2V5Ym9hcmQ6IFtbeyB0ZXh0OiAi8J+TpiDZhdi02KfZh9iv2Ycg2Ygg2b7Yp9iz2K4iLCBjYWxsYmFja19kYXRhOiBgc3J2aWV3OiR7cmVxdWVzdElkfWAgfV1dIH0gfSkpKTsKfQo=
+import "server-only";
+import { supportDb } from "@/lib/support/server";
+
+const botToken = process.env.TELEGRAM_BOT_TOKEN;
+const adminChatIds = (process.env.TELEGRAM_ADMIN_IDS || "").split(",").map(value => value.trim()).filter(Boolean);
+
+export function escapeTelegramHtml(value: unknown) {
+  return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+export async function sendTelegramMessage(chatId: string, text: string, options?: Record<string, unknown>) {
+  if (!botToken) throw new Error("Telegram bot is not configured");
+  const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true, ...options }),
+    cache: "no-store",
+  });
+  if (!response.ok) throw new Error("Telegram message delivery failed");
+  const result = await response.json();
+  if (!result.ok) throw new Error("Telegram message delivery failed");
+  return result;
+}
+
+export async function notifyAdminAboutNewTicket(ticketId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows = await supportDb(
+    `nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,first_name,last_name,age,telegram_username,subject,created_at&limit=1`,
+  ) as Array<Record<string, unknown>>;
+  const ticket = rows?.[0];
+  if (!ticket) return;
+  const messages = await supportDb(
+    `nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&select=body&order=created_at.asc&limit=1`,
+  ) as Array<{ body: string }>;
+  const text = [
+    "🚨 <b>تیکت جدید NexvorDEV</b>",
+    "",
+    `<b>شناسه:</b> <code>${escapeTelegramHtml(ticket.id)}</code>`,
+    `<b>نام مشتری:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
+    `<b>سن:</b> ${escapeTelegramHtml(ticket.age)}`,
+    `<b>تلگرام:</b> @${escapeTelegramHtml(ticket.telegram_username)}`,
+    `<b>موضوع:</b> ${escapeTelegramHtml(ticket.subject)}`,
+    "",
+    `<b>پیام اولیه:</b>\n${escapeTelegramHtml(messages?.[0]?.body || "—").slice(0, 2500)}`,
+    "",
+    "برای مشاهده و مدیریت، دکمه زیر را بزن.",
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, {
+    reply_markup: {
+      inline_keyboard: [[
+        { text: "🎫 مشاهده و مدیریت تیکت", callback_data: `ticket:${ticketId}` },
+        { text: "📬 همه تیکت‌ها", callback_data: "tickets:0" },
+      ]],
+    },
+  })));
+}
+
+export async function notifyAdminAboutNewServiceRequest(requestId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows=await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(requestId)}&select=*&limit=1`) as Array<Record<string,unknown>>;
+  const item=rows?.[0]; if(!item) return;
+  const priority=String(item.priority)==="critical"?"🚨 اضطراری":String(item.priority)==="urgent"?"⚡ فوری":"عادی";
+  const text=[
+    "🆕 <b>درخواست خدمات جدید NexvorDEV</b>",
+    "",
+    `<b>شناسه:</b> <code>${escapeTelegramHtml(item.id)}</code>`,
+    `<b>مشتری:</b> ${escapeTelegramHtml(item.customer_name)}`,
+    `<b>راه ارتباطی:</b> ${escapeTelegramHtml(item.telegram_contact)}`,
+    `<b>خدمت:</b> ${escapeTelegramHtml(item.service_type)}`,
+    `<b>اولویت:</b> ${priority}`,
+    "",
+    "<b>توضیحات:</b>",
+    escapeTelegramHtml(item.details).slice(0,2300)
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId=>sendTelegramMessage(chatId,text,{
+    reply_markup:{inline_keyboard:[[
+      {text:"📦 مشاهده و مدیریت",callback_data:`srview:${requestId}`},
+      {text:"📋 همه درخواست‌ها",callback_data:"requests:0"}
+    ]]}
+  })));
+}
+
+export async function notifyAdminAboutCustomerMessage(ticketId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows = await supportDb(`nexvor_support_tickets?id=eq.${encodeURIComponent(ticketId)}&select=id,first_name,last_name,subject&limit=1`) as Array<Record<string, unknown>>;
+  const ticket = rows?.[0];
+  if (!ticket) return;
+  const messages = await supportDb(`nexvor_support_messages?ticket_id=eq.${encodeURIComponent(ticketId)}&sender_role=eq.customer&select=body&order=created_at.desc&limit=1`) as Array<{ body: string }>;
+  const text = [
+    "💬 <b>پیام جدید از مشتری</b>",
+    `<b>مشتری:</b> ${escapeTelegramHtml(ticket.first_name)} ${escapeTelegramHtml(ticket.last_name)}`,
+    `<b>موضوع:</b> ${escapeTelegramHtml(ticket.subject)}`,
+    "",
+    escapeTelegramHtml(messages?.[0]?.body || "").slice(0, 2500),
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, {
+    reply_markup: { inline_keyboard: [[{ text: "🎫 مشاهده و پاسخ", callback_data: `ticket:${ticketId}` }]] },
+  })));
+}
+
+export async function notifyAdminAboutOrderMessage(requestId: string) {
+  if (!botToken || !adminChatIds.length) return;
+  const rows = await supportDb(`nexvor_service_requests?id=eq.${encodeURIComponent(requestId)}&select=id,customer_name,service_type,priority,telegram_contact&limit=1`) as Array<Record<string, unknown>>;
+  const item = rows[0];
+  if (!item) return;
+  const messages = await supportDb(`nexvor_order_messages?request_id=eq.${encodeURIComponent(requestId)}&sender_role=eq.customer&select=body&order=created_at.desc&limit=1`) as Array<{ body: string }>;
+  const text = ["💬 <b>پیام جدید درباره سفارش</b>", "", `<b>شناسه:</b> <code>${escapeTelegramHtml(item.id)}</code>`, `<b>مشتری:</b> ${escapeTelegramHtml(item.customer_name)}`, `<b>خدمت:</b> ${escapeTelegramHtml(item.service_type)}`, `<b>راه ارتباطی:</b> ${escapeTelegramHtml(item.telegram_contact)}`, "", escapeTelegramHtml(messages[0]?.body || "").slice(0, 2500)].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, { reply_markup: { inline_keyboard: [[{ text: "📦 مشاهده و پاسخ", callback_data: `srview:${requestId}` }]] } })));
+}

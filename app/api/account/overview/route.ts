@@ -1,1 +1,42 @@
-aW1wb3J0IHsgTmV4dFJlc3BvbnNlIH0gZnJvbSAibmV4dC9zZXJ2ZXIiOwppbXBvcnQgeyBzdXBwb3J0RGIgfSBmcm9tICJAL2xpYi9zdXBwb3J0L3NlcnZlciI7CmltcG9ydCB7IGN1cnJlbnRBY2NvdW50IH0gZnJvbSAiQC9saWIvYXV0aC9hY2NvdW50IjsKCmV4cG9ydCBjb25zdCBydW50aW1lID0gIm5vZGVqcyI7CmV4cG9ydCBjb25zdCBkeW5hbWljID0gImZvcmNlLWR5bmFtaWMiOwoKZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIEdFVCgpIHsKICBjb25zdCBhY2NvdW50ID0gYXdhaXQgY3VycmVudEFjY291bnQoKTsKICBpZiAoIWFjY291bnQpIHJldHVybiBOZXh0UmVzcG9uc2UuanNvbih7IG9rOiBmYWxzZSwgZXJyb3I6ICLZiNin2LHYryDYrdiz2KfYqCDZhti02K/Zh+KAjNin24wuIiB9LCB7IHN0YXR1czogNDAxIH0pOwogIGNvbnN0IHsgdXNlciwgcHJvZmlsZSwgdmVyaWZpZWQgfSA9IGFjY291bnQ7CiAgY29uc3QgbWV0YSA9IHVzZXIudXNlcl9tZXRhZGF0YSB8fCB7fTsKICBjb25zdCBwcm92aWRlcnMgPSBBcnJheS5pc0FycmF5KHVzZXIuYXBwX21ldGFkYXRhPy5wcm92aWRlcnMpID8gKHVzZXIuYXBwX21ldGFkYXRhLnByb3ZpZGVycyBhcyBzdHJpbmdbXSkgOiBbXTsKICBjb25zdCBiYXNlID0gewogICAgaWQ6IHVzZXIuaWQsCiAgICBlbWFpbDogdXNlci5lbWFpbCA/PyBudWxsLAogICAgbmFtZTogYWNjb3VudC5uYW1lLAogICAgZmlyc3ROYW1lOiBwcm9maWxlPy5maXJzdF9uYW1lIHx8ICIiLAogICAgbGFzdE5hbWU6IHByb2ZpbGU/Lmxhc3RfbmFtZSB8fCAiIiwKICAgIGF2YXRhcjogdHlwZW9mIG1ldGEuYXZhdGFyX3VybCA9PT0gInN0cmluZyIgPyBtZXRhLmF2YXRhcl91cmwgOiBudWxsLAogICAgdGVsZWdyYW06IFN0cmluZyhwcm9maWxlPy50ZWxlZ3JhbV91c2VybmFtZSB8fCBtZXRhLnRlbGVncmFtIHx8ICIiKSwKICAgIHRlbGVncmFtTGlua2VkOiBCb29sZWFuKHByb2ZpbGU/LnRlbGVncmFtX2NoYXRfaWQpLAogICAgdGVsZWdyYW1Vc2VybmFtZTogcHJvZmlsZT8udGVsZWdyYW1fdXNlcm5hbWUgfHwgbnVsbCwKICAgIHByb3ZpZGVycywKICAgIGNyZWF0ZWRBdDogdXNlci5jcmVhdGVkX2F0LAogICAgdmVyaWZpZWQsCiAgfTsKICBpZiAoIXZlcmlmaWVkKSByZXR1cm4gTmV4dFJlc3BvbnNlLmpzb24oeyBvazogdHJ1ZSwgdXNlcjogYmFzZSwgdGlja2V0czogW10sIHJlcXVlc3RzOiBbXSwgaW52b2ljZXM6IFtdLCBub3RpZmljYXRpb25zOiBbXSwgdW5yZWFkOiAwIH0pOwogIHRyeSB7CiAgICBjb25zdCBpZCA9IGVuY29kZVVSSUNvbXBvbmVudCh1c2VyLmlkKTsKICAgIGNvbnN0IFt0aWNrZXRzLCByZXF1ZXN0cywgaW52b2ljZXMsIG5vdGlmaWNhdGlvbnNdID0gYXdhaXQgUHJvbWlzZS5hbGwoWwogICAgICBzdXBwb3J0RGIoYG5leHZvcl9zdXBwb3J0X3RpY2tldHM/dXNlcl9pZD1lcS4ke2lkfSZzZWxlY3Q9aWQsc3ViamVjdCxzdGF0dXMsY3JlYXRlZF9hdCxsYXN0X21lc3NhZ2VfYXQmb3JkZXI9bGFzdF9tZXNzYWdlX2F0LmRlc2MmbGltaXQ9MTAwYCksCiAgICAgIHN1cHBvcnREYihgbmV4dm9yX3NlcnZpY2VfcmVxdWVzdHM/dXNlcl9pZD1lcS4ke2lkfSZzZWxlY3Q9aWQsc2VydmljZV90eXBlLHByaW9yaXR5LHN0YXR1cyxxdW90ZWRfcHJpY2UsY3JlYXRlZF9hdCx1cGRhdGVkX2F0Jm9yZGVyPWNyZWF0ZWRfYXQuZGVzYyZsaW1pdD0xMDBgKSwKICAgICAgc3VwcG9ydERiKGBuZXh2b3JfaW52b2ljZXM/dXNlcl9pZD1lcS4ke2lkfSZzZWxlY3Q9aWQsbnVtYmVyLGRlc2NyaXB0aW9uLGFtb3VudCxjdXJyZW5jeSxwYXltZW50X3N0YXR1cyxpc3N1ZWRfYXQscmVxdWVzdF9pZCZvcmRlcj1pc3N1ZWRfYXQuZGVzYyZsaW1pdD0xMDBgKSwKICAgICAgc3VwcG9ydERiKGBuZXh2b3Jfbm90aWZpY2F0aW9ucz91c2VyX2lkPWVxLiR7aWR9JnNlbGVjdD1pZCxraW5kLHRpdGxlLGJvZHksaHJlZixyZWFkX2F0LGNyZWF0ZWRfYXQmb3JkZXI9Y3JlYXRlZF9hdC5kZXNjJmxpbWl0PTUwYCksCiAgICBdKTsKICAgIGNvbnN0IGxpc3QgPSAobm90aWZpY2F0aW9ucyB8fCBbXSkgYXMgQXJyYXk8eyByZWFkX2F0OiBzdHJpbmcgfCBudWxsIH0+OwogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgb2s6IHRydWUsIHVzZXI6IGJhc2UsIHRpY2tldHM6IHRpY2tldHMgfHwgW10sIHJlcXVlc3RzOiByZXF1ZXN0cyB8fCBbXSwgaW52b2ljZXM6IGludm9pY2VzIHx8IFtdLCBub3RpZmljYXRpb25zOiBsaXN0LCB1bnJlYWQ6IGxpc3QuZmlsdGVyKGl0ZW0gPT4gIWl0ZW0ucmVhZF9hdCkubGVuZ3RoIH0pOwogIH0gY2F0Y2ggewogICAgcmV0dXJuIE5leHRSZXNwb25zZS5qc29uKHsgb2s6IGZhbHNlLCBlcnJvcjogItiv2LHbjNin2YHYqiDYp9i32YTYp9i52KfYqiDYrdiz2KfYqCDZhdmF2qnZhiDZhti02K8uIiB9LCB7IHN0YXR1czogNTAzIH0pOwogIH0KfQo=
+import { NextResponse } from "next/server";
+import { supportDb } from "@/lib/support/server";
+import { currentAccount } from "@/lib/auth/account";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function GET() {
+  const account = await currentAccount();
+  if (!account) return NextResponse.json({ ok: false, error: "وارد حساب نشده‌ای." }, { status: 401 });
+  const { user, profile, verified } = account;
+  const meta = user.user_metadata || {};
+  const providers = Array.isArray(user.app_metadata?.providers) ? (user.app_metadata.providers as string[]) : [];
+  const base = {
+    id: user.id,
+    email: user.email ?? null,
+    name: account.name,
+    firstName: profile?.first_name || "",
+    lastName: profile?.last_name || "",
+    avatar: typeof meta.avatar_url === "string" ? meta.avatar_url : null,
+    telegram: String(profile?.telegram_username || meta.telegram || ""),
+    telegramLinked: Boolean(profile?.telegram_chat_id),
+    telegramUsername: profile?.telegram_username || null,
+    providers,
+    createdAt: user.created_at,
+    verified,
+  };
+  if (!verified) return NextResponse.json({ ok: true, user: base, tickets: [], requests: [], invoices: [], notifications: [], unread: 0 });
+  try {
+    const id = encodeURIComponent(user.id);
+    const [tickets, requests, invoices, notifications] = await Promise.all([
+      supportDb(`nexvor_support_tickets?user_id=eq.${id}&select=id,subject,status,created_at,last_message_at&order=last_message_at.desc&limit=100`),
+      supportDb(`nexvor_service_requests?user_id=eq.${id}&select=id,service_type,priority,status,quoted_price,created_at,updated_at&order=created_at.desc&limit=100`),
+      supportDb(`nexvor_invoices?user_id=eq.${id}&select=id,number,description,amount,currency,payment_status,issued_at,request_id&order=issued_at.desc&limit=100`),
+      supportDb(`nexvor_notifications?user_id=eq.${id}&select=id,kind,title,body,href,read_at,created_at&order=created_at.desc&limit=50`),
+    ]);
+    const list = (notifications || []) as Array<{ read_at: string | null }>;
+    return NextResponse.json({ ok: true, user: base, tickets: tickets || [], requests: requests || [], invoices: invoices || [], notifications: list, unread: list.filter(item => !item.read_at).length });
+  } catch {
+    return NextResponse.json({ ok: false, error: "دریافت اطلاعات حساب ممکن نشد." }, { status: 503 });
+  }
+}

@@ -1,1 +1,114 @@
-InVzZSBjbGllbnQiOwoKaW1wb3J0IHsgRm9ybUV2ZW50LCBLZXlib2FyZEV2ZW50LCB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSAicmVhY3QiOwppbXBvcnQgeyB1c2VQcm9maWxlIH0gZnJvbSAiQC9saWIvdXNlLXByb2ZpbGUiOwppbXBvcnQgeyBzZXJ2aWNlR3JvdXBzLCBzZXJ2aWNlT3B0aW9ucyB9IGZyb20gIkAvbGliL3NlcnZpY2VzIjsKaW1wb3J0IHsgQWxlcnRDaXJjbGUsIENoZWNrQ2lyY2xlMiwgTG9hZGVyQ2lyY2xlLCBTZW5kIH0gZnJvbSAibHVjaWRlLXJlYWN0IjsKCgpleHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBTZXJ2aWNlUmVxdWVzdEZvcm0oKSB7CiAgY29uc3QgW25hbWUsIHNldE5hbWVdID0gdXNlU3RhdGUoIiIpOwogIGNvbnN0IFt0ZWxlZ3JhbSwgc2V0VGVsZWdyYW1dID0gdXNlU3RhdGUoIiIpOwogIGNvbnN0IFtzZXJ2aWNlLCBzZXRTZXJ2aWNlXSA9IHVzZVN0YXRlKHNlcnZpY2VPcHRpb25zWzBdKTsKICBjb25zdCBbcHJpb3JpdHksIHNldFByaW9yaXR5XSA9IHVzZVN0YXRlKCJub3JtYWwiKTsKICBjb25zdCBbZGV0YWlscywgc2V0RGV0YWlsc10gPSB1c2VTdGF0ZSgiIik7CiAgY29uc3QgW3N0YXR1cywgc2V0U3RhdHVzXSA9IHVzZVN0YXRlPCJpZGxlIiB8ICJzZW5kaW5nIiB8ICJzdWNjZXNzIiB8ICJlcnJvciI+KCJpZGxlIik7CiAgY29uc3QgW2Vycm9yLCBzZXRFcnJvcl0gPSB1c2VTdGF0ZSgiIik7CiAgY29uc3QgcHJvZmlsZSA9IHVzZVByb2ZpbGUoKTsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGlmICghcHJvZmlsZSkgcmV0dXJuOwogICAgUHJvbWlzZS5yZXNvbHZlKCkudGhlbigoKSA9PiB7CiAgICAgIHNldE5hbWUoY3VycmVudCA9PiBjdXJyZW50IHx8IHByb2ZpbGUubmFtZSk7CiAgICAgIHNldFRlbGVncmFtKGN1cnJlbnQgPT4gY3VycmVudCB8fCAocHJvZmlsZS50ZWxlZ3JhbSA/IGBAJHtwcm9maWxlLnRlbGVncmFtfWAgOiAiIikpOwogICAgfSk7CiAgfSwgW3Byb2ZpbGVdKTsKCiAgYXN5bmMgZnVuY3Rpb24gc3VibWl0UmVxdWVzdChldmVudDogRm9ybUV2ZW50PEhUTUxGb3JtRWxlbWVudD4pIHsKICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KCk7CiAgICBpZiAoc3RhdHVzID09PSAic2VuZGluZyIpIHJldHVybjsKICAgIHNldFN0YXR1cygic2VuZGluZyIpOwogICAgc2V0RXJyb3IoIiIpOwogICAgdHJ5IHsKICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaCgiL2FwaS9zZXJ2aWNlLXJlcXVlc3RzIiwgewogICAgICAgIG1ldGhvZDogIlBPU1QiLAogICAgICAgIGhlYWRlcnM6IHsgIkNvbnRlbnQtVHlwZSI6ICJhcHBsaWNhdGlvbi9qc29uIiB9LAogICAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsgbmFtZSwgdGVsZWdyYW0sIHNlcnZpY2UsIHByaW9yaXR5LCBkZXRhaWxzIH0pLAogICAgICB9KTsKICAgICAgY29uc3QgcmVzdWx0ID0gYXdhaXQgcmVzcG9uc2UuanNvbigpOwogICAgICBpZiAoIXJlc3BvbnNlLm9rIHx8ICFyZXN1bHQub2spIHRocm93IG5ldyBFcnJvcihyZXN1bHQuZXJyb3IgfHwgItin2LHYs9in2YQg2K/Ysdiu2YjYp9iz2Kog2KfZhtis2KfZhSDZhti02K8uIik7CiAgICAgIHNldFN0YXR1cygic3VjY2VzcyIpOwogICAgICBzZXROYW1lKCIiKTsKICAgICAgc2V0VGVsZWdyYW0oIiIpOwogICAgICBzZXRTZXJ2aWNlKHNlcnZpY2VPcHRpb25zWzBdKTsKICAgICAgc2V0UHJpb3JpdHkoIm5vcm1hbCIpOwogICAgICBzZXREZXRhaWxzKCIiKTsKICAgIH0gY2F0Y2ggKGNhdWdodCkgewogICAgICBzZXRFcnJvcihjYXVnaHQgaW5zdGFuY2VvZiBFcnJvciA/IGNhdWdodC5tZXNzYWdlIDogItiu2LfYp9uM24wg2K/YsSDYp9ix2LPYp9mEINiv2LHYrtmI2KfYs9iqINix2K4g2K/Yp9ivLiIpOwogICAgICBzZXRTdGF0dXMoImVycm9yIik7CiAgICB9CiAgfQoKICBmdW5jdGlvbiBoYW5kbGVEZXRhaWxzS2V5RG93bihldmVudDogS2V5Ym9hcmRFdmVudDxIVE1MVGV4dEFyZWFFbGVtZW50PikgewogICAgaWYgKGV2ZW50LmtleSA9PT0gIkVudGVyIiAmJiAhZXZlbnQuc2hpZnRLZXkgJiYgIWV2ZW50Lm5hdGl2ZUV2ZW50LmlzQ29tcG9zaW5nKSB7CiAgICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KCk7CiAgICAgIGV2ZW50LmN1cnJlbnRUYXJnZXQuZm9ybT8ucmVxdWVzdFN1Ym1pdCgpOwogICAgfQogIH0KCiAgcmV0dXJuICgKICAgIDxmb3JtIGNsYXNzTmFtZT0ic2VydmljZS1yZXF1ZXN0LWZvcm0iIG9uU3VibWl0PXtzdWJtaXRSZXF1ZXN0fT4KICAgICAgPGRpdiBjbGFzc05hbWU9InNlcnZpY2UtcmVxdWVzdC1maWVsZHMiPgogICAgICAgIDxsYWJlbD4KICAgICAgICAgINmG2KfZhSDZiCDZhtin2YUg2K7Yp9mG2YjYp9iv2q/bjAogICAgICAgICAgPGlucHV0IHZhbHVlPXtuYW1lfSBvbkNoYW5nZT17ZXZlbnQgPT4gc2V0TmFtZShldmVudC50YXJnZXQudmFsdWUpfSBwbGFjZWhvbGRlcj0i2YXYq9mE2KfZiyDZhdmH2KjYryDYsdi22KfbjNuMIiBtYXhMZW5ndGg9ezEwMH0gcmVxdWlyZWQgLz4KICAgICAgICA8L2xhYmVsPgogICAgICAgIDxsYWJlbD4KICAgICAgICAgINii24zYr9uMINiq2YTar9ix2KfZhSDbjNinINix2KfZhyDYp9ix2KrYqNin2LfbjAogICAgICAgICAgPGlucHV0IHZhbHVlPXt0ZWxlZ3JhbX0gb25DaGFuZ2U9e2V2ZW50ID0+IHNldFRlbGVncmFtKGV2ZW50LnRhcmdldC52YWx1ZSl9IHBsYWNlaG9sZGVyPSJAdXNlcm5hbWUiIG1heExlbmd0aD17MTAwfSByZXF1aXJlZCBkaXI9Imx0ciIgLz4KICAgICAgICA8L2xhYmVsPgogICAgICAgIDxsYWJlbCBjbGFzc05hbWU9InNlcnZpY2UtcmVxdWVzdC1mdWxsIj4KICAgICAgICAgINmG2YjYuSDYrtiv2YXYp9iqCiAgICAgICAgICA8c2VsZWN0IHZhbHVlPXtzZXJ2aWNlfSBvbkNoYW5nZT17ZXZlbnQgPT4gc2V0U2VydmljZShldmVudC50YXJnZXQudmFsdWUpfSByZXF1aXJlZD4KICAgICAgICAgICAge3NlcnZpY2VHcm91cHMubWFwKGdyb3VwID0+ICgKICAgICAgICAgICAgICA8b3B0Z3JvdXAga2V5PXtncm91cC5sYWJlbH0gbGFiZWw9e2dyb3VwLmxhYmVsfT4KICAgICAgICAgICAgICAgIHtncm91cC5vcHRpb25zLm1hcChvcHRpb24gPT4gPG9wdGlvbiBrZXk9e29wdGlvbn0gdmFsdWU9e29wdGlvbn0+e29wdGlvbn08L29wdGlvbj4pfQogICAgICAgICAgICAgIDwvb3B0Z3JvdXA+CiAgICAgICAgICAgICkpfQogICAgICAgICAgPC9zZWxlY3Q+CiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9InNlcnZpY2UtcmVxdWVzdC1oaW50Ij7Yrtiv2YXYqiDYr9mC24zZgiDZhdmI2LHYr9mG2LjYsdiqINix2Ygg2KfYsiDYr9iz2KrZh+KAjNio2YbYr9uMINmF2LHYqNmI2Lcg2KfZhtiq2K7Yp9ioINqp2YYuPC9zcGFuPgogICAgICAgIDwvbGFiZWw+CiAgICAgICAgPGZpZWxkc2V0IGNsYXNzTmFtZT0ic2VydmljZS1yZXF1ZXN0LXByaW9yaXR5Ij4KICAgICAgICAgIDxsZWdlbmQ+2KfZiNmE2YjbjNiqINiv2LHYrtmI2KfYs9iqPC9sZWdlbmQ+CiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0ic2VydmljZS1wcmlvcml0eS1vcHRpb25zIj4KICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT17cHJpb3JpdHkgPT09ICJub3JtYWwiID8gInNlbGVjdGVkIiA6ICIifT48aW5wdXQgdHlwZT0icmFkaW8iIG5hbWU9InByaW9yaXR5IiB2YWx1ZT0ibm9ybWFsIiBjaGVja2VkPXtwcmlvcml0eSA9PT0gIm5vcm1hbCJ9IG9uQ2hhbmdlPXsoKSA9PiBzZXRQcmlvcml0eSgibm9ybWFsIil9IC8+PHNwYW4+2LnYp9iv24w8L3NwYW4+PC9sYWJlbD4KICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT17cHJpb3JpdHkgPT09ICJ1cmdlbnQiID8gInNlbGVjdGVkIiA6ICIifT48aW5wdXQgdHlwZT0icmFkaW8iIG5hbWU9InByaW9yaXR5IiB2YWx1ZT0idXJnZW50IiBjaGVja2VkPXtwcmlvcml0eSA9PT0gInVyZ2VudCJ9IG9uQ2hhbmdlPXsoKSA9PiBzZXRQcmlvcml0eSgidXJnZW50Iil9IC8+PHNwYW4+2YHZiNix24w8L3NwYW4+PC9sYWJlbD4KICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT17cHJpb3JpdHkgPT09ICJjcml0aWNhbCIgPyAic2VsZWN0ZWQiIDogIiJ9PjxpbnB1dCB0eXBlPSJyYWRpbyIgbmFtZT0icHJpb3JpdHkiIHZhbHVlPSJjcml0aWNhbCIgY2hlY2tlZD17cHJpb3JpdHkgPT09ICJjcml0aWNhbCJ9IG9uQ2hhbmdlPXsoKSA9PiBzZXRQcmlvcml0eSgiY3JpdGljYWwiKX0gLz48c3Bhbj7Yp9i22LfYsdin2LHbjDwvc3Bhbj48L2xhYmVsPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9maWVsZHNldD4KICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPSJzZXJ2aWNlLXJlcXVlc3QtZnVsbCI+CiAgICAgICAgICDYqtmI2LbbjNit2KfYqiDaqdin2YXZhCDZvtix2YjamNmHCiAgICAgICAgICA8dGV4dGFyZWEKICAgICAgICAgICAgdmFsdWU9e2RldGFpbHN9CiAgICAgICAgICAgIG9uQ2hhbmdlPXtldmVudCA9PiBzZXREZXRhaWxzKGV2ZW50LnRhcmdldC52YWx1ZSl9CiAgICAgICAgICAgIG9uS2V5RG93bj17aGFuZGxlRGV0YWlsc0tleURvd259CiAgICAgICAgICAgIHBsYWNlaG9sZGVyPXsi2K/ZgtuM2YIg2KrZiNi224zYrSDYqNiv2Ycg2obZhyDahtuM2LLbjCDZhtuM2KfYsiDYr9in2LHbjC4uLlxuXG7Zhtiz2K7ZhyDYs9ix2YjYsdiMINm+2YTYp9qv24zZhuKAjNmH2KfbjCDZgdi52YTbjNiMINin2YXaqdin2YbYp9iqINmF2YjYsdiv2YbYuNix2Iwg2KjZiNiv2KzZhyDZiCDYstmF2KfZhuKAjNio2YbYr9uMINmF2K/Zhti42LHYqiDYsdmIINio2YbZiNuM2LMuXG5cbkVudGVyINio2LHYp9uMINin2LHYs9in2YQgwrcgU2hpZnQgKyBFbnRlciDYqNix2KfbjCDYsdmB2KrZhiDYqNmHINiu2Lcg2KjYudivIn0KICAgICAgICAgICAgcm93cz17N30KICAgICAgICAgICAgbWF4TGVuZ3RoPXszMDAwfQogICAgICAgICAgICByZXF1aXJlZAogICAgICAgICAgLz4KICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0ic2VydmljZS1yZXF1ZXN0LWhpbnQiPjxzcGFuPkVudGVyOiDYp9ix2LPYp9mEIMK3IFNoaWZ0ICsgRW50ZXI6INiu2Lcg2KzYr9uM2K88L3NwYW4+PHNwYW4+e2RldGFpbHMubGVuZ3RofS8zMDAwPC9zcGFuPjwvc3Bhbj4KICAgICAgICA8L2xhYmVsPgogICAgICA8L2Rpdj4KCiAgICAgIHtzdGF0dXMgPT09ICJzdWNjZXNzIiAmJiA8ZGl2IGNsYXNzTmFtZT0ic2VydmljZS1yZXF1ZXN0LWZlZWRiYWNrIHN1Y2Nlc3MiPjxDaGVja0NpcmNsZTIgc2l6ZT17MTh9IC8+INiv2LHYrtmI2KfYs9iq2Kog2KjYpyDZhdmI2YHZgtuM2Kog2KjYsdin24wg2KrbjNmFIE5leHZvckRFViDYp9ix2LPYp9mEINi02K8uPC9kaXY+fQogICAgICB7c3RhdHVzID09PSAiZXJyb3IiICYmIDxkaXYgY2xhc3NOYW1lPSJzZXJ2aWNlLXJlcXVlc3QtZmVlZGJhY2sgZXJyb3IiPjxBbGVydENpcmNsZSBzaXplPXsxOH0gLz4ge2Vycm9yfTwvZGl2Pn0KCiAgICAgIDxidXR0b24gY2xhc3NOYW1lPSJzZXJ2aWNlLXJlcXVlc3Qtc3VibWl0IiB0eXBlPSJzdWJtaXQiIGRpc2FibGVkPXtzdGF0dXMgPT09ICJzZW5kaW5nIn0+CiAgICAgICAge3N0YXR1cyA9PT0gInNlbmRpbmciID8gPExvYWRlckNpcmNsZSBjbGFzc05hbWU9InNlcnZpY2UtcmVxdWVzdC1zcGlubmVyIiBzaXplPXsxOH0gLz4gOiA8U2VuZCBzaXplPXsxN30gLz59CiAgICAgICAge3N0YXR1cyA9PT0gInNlbmRpbmciID8gItiv2LEg2K3Yp9mEINin2LHYs9in2YQuLi4iIDogItin2LHYs9in2YQg2K/Ysdiu2YjYp9iz2KoifQogICAgICA8L2J1dHRvbj4KICAgICAgPHAgY2xhc3NOYW1lPSJzZXJ2aWNlLXJlcXVlc3QtZm9vdG5vdGUiPtio2LnYryDYp9iyINio2LHYsdiz24wg2K/Ysdiu2YjYp9iz2KrYjCDYqNix2KfbjCDYp9iv2KfZhdmHINmH2YXYp9mH2Ybar9uMINio2Kcg2LTZhdinINin2LHYqtio2KfYtyDZhduM4oCM2q/bjNix24zZhS48L3A+CiAgICA8L2Zvcm0+CiAgKTsKfQo=
+"use client";
+
+import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
+import { useProfile } from "@/lib/use-profile";
+import { serviceGroups, serviceOptions } from "@/lib/services";
+import { AlertCircle, CheckCircle2, LoaderCircle, Send } from "lucide-react";
+
+
+export default function ServiceRequestForm() {
+  const [name, setName] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [service, setService] = useState(serviceOptions[0]);
+  const [priority, setPriority] = useState("normal");
+  const [details, setDetails] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [error, setError] = useState("");
+  const profile = useProfile();
+
+  useEffect(() => {
+    if (!profile) return;
+    Promise.resolve().then(() => {
+      setName(current => current || profile.name);
+      setTelegram(current => current || (profile.telegram ? `@${profile.telegram}` : ""));
+    });
+  }, [profile]);
+
+  async function submitRequest(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    setError("");
+    try {
+      const response = await fetch("/api/service-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, telegram, service, priority, details }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || "ارسال درخواست انجام نشد.");
+      setStatus("success");
+      setName("");
+      setTelegram("");
+      setService(serviceOptions[0]);
+      setPriority("normal");
+      setDetails("");
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "خطایی در ارسال درخواست رخ داد.");
+      setStatus("error");
+    }
+  }
+
+  function handleDetailsKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault();
+      event.currentTarget.form?.requestSubmit();
+    }
+  }
+
+  return (
+    <form className="service-request-form" onSubmit={submitRequest}>
+      <div className="service-request-fields">
+        <label>
+          نام و نام خانوادگی
+          <input value={name} onChange={event => setName(event.target.value)} placeholder="مثلاً مهبد رضایی" maxLength={100} required />
+        </label>
+        <label>
+          آیدی تلگرام یا راه ارتباطی
+          <input value={telegram} onChange={event => setTelegram(event.target.value)} placeholder="@username" maxLength={100} required dir="ltr" />
+        </label>
+        <label className="service-request-full">
+          نوع خدمات
+          <select value={service} onChange={event => setService(event.target.value)} required>
+            {serviceGroups.map(group => (
+              <optgroup key={group.label} label={group.label}>
+                {group.options.map(option => <option key={option} value={option}>{option}</option>)}
+              </optgroup>
+            ))}
+          </select>
+          <span className="service-request-hint">خدمت دقیق موردنظرت رو از دسته‌بندی مربوط انتخاب کن.</span>
+        </label>
+        <fieldset className="service-request-priority">
+          <legend>اولویت درخواست</legend>
+          <div className="service-priority-options">
+            <label className={priority === "normal" ? "selected" : ""}><input type="radio" name="priority" value="normal" checked={priority === "normal"} onChange={() => setPriority("normal")} /><span>عادی</span></label>
+            <label className={priority === "urgent" ? "selected" : ""}><input type="radio" name="priority" value="urgent" checked={priority === "urgent"} onChange={() => setPriority("urgent")} /><span>فوری</span></label>
+            <label className={priority === "critical" ? "selected" : ""}><input type="radio" name="priority" value="critical" checked={priority === "critical"} onChange={() => setPriority("critical")} /><span>اضطراری</span></label>
+          </div>
+        </fieldset>
+        <label className="service-request-full">
+          توضیحات کامل پروژه
+          <textarea
+            value={details}
+            onChange={event => setDetails(event.target.value)}
+            onKeyDown={handleDetailsKeyDown}
+            placeholder={"دقیق توضیح بده چه چیزی نیاز داری...\n\nنسخه سرور، پلاگین‌های فعلی، امکانات موردنظر، بودجه و زمان‌بندی مدنظرت رو بنویس.\n\nEnter برای ارسال · Shift + Enter برای رفتن به خط بعد"}
+            rows={7}
+            maxLength={3000}
+            required
+          />
+          <span className="service-request-hint"><span>Enter: ارسال · Shift + Enter: خط جدید</span><span>{details.length}/3000</span></span>
+        </label>
+      </div>
+
+      {status === "success" && <div className="service-request-feedback success"><CheckCircle2 size={18} /> درخواستت با موفقیت برای تیم NexvorDEV ارسال شد.</div>}
+      {status === "error" && <div className="service-request-feedback error"><AlertCircle size={18} /> {error}</div>}
+
+      <button className="service-request-submit" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? <LoaderCircle className="service-request-spinner" size={18} /> : <Send size={17} />}
+        {status === "sending" ? "در حال ارسال..." : "ارسال درخواست"}
+      </button>
+      <p className="service-request-footnote">بعد از بررسی درخواست، برای ادامه هماهنگی با شما ارتباط می‌گیریم.</p>
+    </form>
+  );
+}

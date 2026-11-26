@@ -1,1 +1,104 @@
-InVzZSBjbGllbnQiOwppbXBvcnQgeyB1c2VDYWxsYmFjaywgdXNlRWZmZWN0LCB1c2VTdGF0ZSwgdHlwZSBGb3JtRXZlbnQgfSBmcm9tICJyZWFjdCI7CmltcG9ydCB7IEFycm93TGVmdCwgTG9hZGVyQ2lyY2xlLCBMb2dPdXQsIFNlbmQgfSBmcm9tICJsdWNpZGUtcmVhY3QiOwppbXBvcnQgU2VydmljZVJlcXVlc3RzQWRtaW4gZnJvbSAiQC9jb21wb25lbnRzL3NlcnZpY2UtcmVxdWVzdHMtYWRtaW4iOwoKdHlwZSBUaWNrZXQgPSB7IGlkOiBzdHJpbmc7IGZpcnN0X25hbWU6IHN0cmluZzsgbGFzdF9uYW1lOiBzdHJpbmc7IGFnZTogbnVtYmVyOyB0ZWxlZ3JhbV91c2VybmFtZTogc3RyaW5nOyBzdWJqZWN0OiBzdHJpbmc7IHN0YXR1czogc3RyaW5nOyBsYXN0X21lc3NhZ2VfYXQ6IHN0cmluZyB9Owp0eXBlIE1lc3NhZ2UgPSB7IGlkOiBzdHJpbmc7IHNlbmRlcl9yb2xlOiAiY3VzdG9tZXIiIHwgImFkbWluIjsgYm9keTogc3RyaW5nOyBjcmVhdGVkX2F0OiBzdHJpbmcgfTsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFN1cHBvcnRBZG1pbigpIHsKICBjb25zdCBbcGFzc3dvcmQsIHNldFBhc3N3b3JkXSA9IHVzZVN0YXRlKCIiKTsKICBjb25zdCBbbG9nZ2VkSW4sIHNldExvZ2dlZEluXSA9IHVzZVN0YXRlKGZhbHNlKTsKICBjb25zdCBbdmlldywgc2V0Vmlld10gPSB1c2VTdGF0ZTwidGlja2V0cyIgfCAib3JkZXJzIj4oInRpY2tldHMiKTsKICBjb25zdCBbdGlja2V0cywgc2V0VGlja2V0c10gPSB1c2VTdGF0ZTxUaWNrZXRbXT4oW10pOwogIGNvbnN0IFtzZWxlY3RlZCwgc2V0U2VsZWN0ZWRdID0gdXNlU3RhdGU8VGlja2V0IHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW21lc3NhZ2VzLCBzZXRNZXNzYWdlc10gPSB1c2VTdGF0ZTxNZXNzYWdlW10+KFtdKTsKICBjb25zdCBbcmVwbHksIHNldFJlcGx5XSA9IHVzZVN0YXRlKCIiKTsKICBjb25zdCBbZXJyb3IsIHNldEVycm9yXSA9IHVzZVN0YXRlKCIiKTsKICBjb25zdCBbYnVzeSwgc2V0QnVzeV0gPSB1c2VTdGF0ZShmYWxzZSk7CgogIGNvbnN0IGxvYWRUaWNrZXRzID0gdXNlQ2FsbGJhY2soYXN5bmMgKCkgPT4gewogICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaCgiL2FwaS9zdXBwb3J0L2FkbWluL3RpY2tldHMiLCB7IGNhY2hlOiAibm8tc3RvcmUiIH0pOwogICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmpzb24oKTsKICAgIGlmICghcmVzcG9uc2Uub2spIHRocm93IG5ldyBFcnJvcihkYXRhLmVycm9yIHx8ICLYr9ix24zYp9mB2Kog2KrbjNqp2KrigIzZh9inINmG2KfZhdmI2YHZgiDYqNmI2K8uIik7CiAgICBzZXRUaWNrZXRzKGRhdGEudGlja2V0cyB8fCBbXSk7CiAgfSwgW10pOwoKICBjb25zdCBsb2FkRGV0YWlsID0gdXNlQ2FsbGJhY2soYXN5bmMgKGlkOiBzdHJpbmcpID0+IHsKICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYC9hcGkvc3VwcG9ydC9hZG1pbi90aWNrZXRzLyR7aWR9YCwgeyBjYWNoZTogIm5vLXN0b3JlIiB9KTsKICAgIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7CiAgICBpZiAoIXJlc3BvbnNlLm9rKSB0aHJvdyBuZXcgRXJyb3IoZGF0YS5lcnJvciB8fCAi2K/YsduM2KfZgdiqINqv2YHYqtqv2Ygg2YbYp9mF2YjZgdmCINio2YjYry4iKTsKICAgIHNldFNlbGVjdGVkKGRhdGEudGlja2V0KTsKICAgIHNldE1lc3NhZ2VzKGRhdGEubWVzc2FnZXMgfHwgW10pOwogIH0sIFtdKTsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGZldGNoKCIvYXBpL3N1cHBvcnQvYWRtaW4vdGlja2V0cyIsIHsgY2FjaGU6ICJuby1zdG9yZSIgfSkudGhlbihyZXNwb25zZSA9PiB7IGlmIChyZXNwb25zZS5vaykgc2V0TG9nZ2VkSW4odHJ1ZSk7IH0pLmNhdGNoKCgpID0+IHVuZGVmaW5lZCk7CiAgfSwgW10pOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKCFsb2dnZWRJbiB8fCB2aWV3ICE9PSAidGlja2V0cyIpIHJldHVybjsKICAgIGNvbnN0IHJlZnJlc2ggPSBhc3luYyAoKSA9PiB7IHRyeSB7IGF3YWl0IGxvYWRUaWNrZXRzKCk7IH0gY2F0Y2ggKGUpIHsgc2V0RXJyb3IoZSBpbnN0YW5jZW9mIEVycm9yID8gZS5tZXNzYWdlIDogItiv2LHbjNin2YHYqiDYqtuM2qnYquKAjNmH2Kcg2YbYp9mF2YjZgdmCINio2YjYry4iKTsgfSB9OwogICAgdm9pZCByZWZyZXNoKCk7CiAgICBjb25zdCB0aW1lciA9IHdpbmRvdy5zZXRJbnRlcnZhbCgoKSA9PiB7IHZvaWQgcmVmcmVzaCgpOyB9LCA1MDAwKTsKICAgIHJldHVybiAoKSA9PiB3aW5kb3cuY2xlYXJJbnRlcnZhbCh0aW1lcik7CiAgfSwgW2xvZ2dlZEluLCB2aWV3LCBsb2FkVGlja2V0c10pOwoKICB1c2VFZmZlY3QoKCkgPT4gewogICAgaWYgKCFsb2dnZWRJbiB8fCB2aWV3ICE9PSAidGlja2V0cyIgfHwgIXNlbGVjdGVkPy5pZCkgcmV0dXJuOwogICAgY29uc3QgdGltZXIgPSB3aW5kb3cuc2V0SW50ZXJ2YWwoKCkgPT4gbG9hZERldGFpbChzZWxlY3RlZC5pZCkuY2F0Y2goKCkgPT4gdW5kZWZpbmVkKSwgNTAwMCk7CiAgICByZXR1cm4gKCkgPT4gd2luZG93LmNsZWFySW50ZXJ2YWwodGltZXIpOwogIH0sIFtsb2dnZWRJbiwgdmlldywgc2VsZWN0ZWQ/LmlkLCBsb2FkRGV0YWlsXSk7CgogIGFzeW5jIGZ1bmN0aW9uIGxvZ2luKGV2ZW50OiBGb3JtRXZlbnQ8SFRNTEZvcm1FbGVtZW50PikgewogICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsKICAgIHNldEJ1c3kodHJ1ZSk7IHNldEVycm9yKCIiKTsKICAgIHRyeSB7CiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goIi9hcGkvc3VwcG9ydC9hZG1pbi9zZXNzaW9uIiwgeyBtZXRob2Q6ICJQT1NUIiwgaGVhZGVyczogeyAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24iIH0sIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsgcGFzc3dvcmQgfSkgfSk7CiAgICAgIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7CiAgICAgIGlmICghcmVzcG9uc2Uub2spIHRocm93IG5ldyBFcnJvcihkYXRhLmVycm9yIHx8ICLZiNix2YjYryDZhtin2YXZiNmB2YIg2KjZiNivLiIpOwogICAgICBzZXRMb2dnZWRJbih0cnVlKTsgc2V0UGFzc3dvcmQoIiIpOwogICAgfSBjYXRjaCAoZSkgeyBzZXRFcnJvcihlIGluc3RhbmNlb2YgRXJyb3IgPyBlLm1lc3NhZ2UgOiAi2YjYsdmI2K8g2YbYp9mF2YjZgdmCINio2YjYry4iKTsgfQogICAgZmluYWxseSB7IHNldEJ1c3koZmFsc2UpOyB9CiAgfQoKICBhc3luYyBmdW5jdGlvbiBzZW5kUmVwbHkoZXZlbnQ6IEZvcm1FdmVudDxIVE1MRm9ybUVsZW1lbnQ+KSB7CiAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOwogICAgaWYgKCFzZWxlY3RlZCB8fCAhcmVwbHkudHJpbSgpKSByZXR1cm47CiAgICBzZXRCdXN5KHRydWUpOyBzZXRFcnJvcigiIik7CiAgICB0cnkgewogICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGAvYXBpL3N1cHBvcnQvYWRtaW4vdGlja2V0cy8ke3NlbGVjdGVkLmlkfWAsIHsgbWV0aG9kOiAiUE9TVCIsIGhlYWRlcnM6IHsgIkNvbnRlbnQtVHlwZSI6ICJhcHBsaWNhdGlvbi9qc29uIiB9LCBib2R5OiBKU09OLnN0cmluZ2lmeSh7IGJvZHk6IHJlcGx5IH0pIH0pOwogICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuanNvbigpOwogICAgICBpZiAoIXJlc3BvbnNlLm9rKSB0aHJvdyBuZXcgRXJyb3IoZGF0YS5lcnJvciB8fCAi2KfYsdiz2KfZhCDZvtin2LPYriDZhtin2YXZiNmB2YIg2KjZiNivLiIpOwogICAgICBzZXRSZXBseSgiIik7IGF3YWl0IGxvYWREZXRhaWwoc2VsZWN0ZWQuaWQpOyBhd2FpdCBsb2FkVGlja2V0cygpOwogICAgfSBjYXRjaCAoZSkgeyBzZXRFcnJvcihlIGluc3RhbmNlb2YgRXJyb3IgPyBlLm1lc3NhZ2UgOiAi2KfYsdiz2KfZhCDZvtin2LPYriDZhtin2YXZiNmB2YIg2KjZiNivLiIpOyB9CiAgICBmaW5hbGx5IHsgc2V0QnVzeShmYWxzZSk7IH0KICB9CgogIGFzeW5jIGZ1bmN0aW9uIGNoYW5nZVN0YXR1cyhzdGF0dXM6IHN0cmluZykgewogICAgaWYgKCFzZWxlY3RlZCkgcmV0dXJuOwogICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChgL2FwaS9zdXBwb3J0L2FkbWluL3RpY2tldHMvJHtzZWxlY3RlZC5pZH1gLCB7IG1ldGhvZDogIlBBVENIIiwgaGVhZGVyczogeyAiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24iIH0sIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsgc3RhdHVzIH0pIH0pOwogICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmpzb24oKTsKICAgIGlmICghcmVzcG9uc2Uub2spIHsgc2V0RXJyb3IoZGF0YS5lcnJvciB8fCAi2KrYutuM24zYsSDZiNi22LnbjNiqINmG2KfZhdmI2YHZgiDYqNmI2K8uIik7IHJldHVybjsgfQogICAgYXdhaXQgbG9hZERldGFpbChzZWxlY3RlZC5pZCk7IGF3YWl0IGxvYWRUaWNrZXRzKCk7CiAgfQoKICBhc3luYyBmdW5jdGlvbiBsb2dvdXQoKSB7CiAgICBhd2FpdCBmZXRjaCgiL2FwaS9zdXBwb3J0L2FkbWluL3Nlc3Npb24iLCB7IG1ldGhvZDogIkRFTEVURSIgfSk7CiAgICBzZXRMb2dnZWRJbihmYWxzZSk7IHNldFNlbGVjdGVkKG51bGwpOyBzZXRUaWNrZXRzKFtdKTsgc2V0TWVzc2FnZXMoW10pOwogIH0KCiAgaWYgKCFsb2dnZWRJbikgcmV0dXJuIDxmb3JtIGNsYXNzTmFtZT0ic3VwcG9ydC1hZG1pbi1sb2dpbiIgb25TdWJtaXQ9e2xvZ2lufT48c3BhbiBjbGFzc05hbWU9InN1cHBvcnQta2lja2VyIj5ORVhWT1JERVYgLyBQUklWQVRFIEFSRUE8L3NwYW4+PGgxPtmI2LHZiNivINmF2K/bjNix24zYqiDZvti02KrbjNio2KfZhtuMPC9oMT48cD7Yp9uM2YYg2KjYrti0INmB2YLYtyDYqNix2KfbjCDZhdiv24zYsdin2YYg2YXYrNin2LIg2KfYs9iqLjwvcD48bGFiZWw+2LHZhdiyINi52KjZiNixINmF2K/bjNix24zYqjxpbnB1dCB0eXBlPSJwYXNzd29yZCIgdmFsdWU9e3Bhc3N3b3JkfSBvbkNoYW5nZT17ZSA9PiBzZXRQYXNzd29yZChlLnRhcmdldC52YWx1ZSl9IHJlcXVpcmVkIGF1dG9Db21wbGV0ZT0iY3VycmVudC1wYXNzd29yZCIgLz48L2xhYmVsPntlcnJvciAmJiA8cCBjbGFzc05hbWU9InN1cHBvcnQtZXJyb3IiPntlcnJvcn08L3A+fTxidXR0b24gY2xhc3NOYW1lPSJidXR0b24gYnV0dG9uLXByaW1hcnkiIGRpc2FibGVkPXtidXN5fT57YnVzeSA/IDxMb2FkZXJDaXJjbGUgY2xhc3NOYW1lPSJzdXBwb3J0LXNwaW4iIC8+IDogPEFycm93TGVmdCBzaXplPXsxN30gLz59INmI2LHZiNivINio2Ycg2b7ZhtmEPC9idXR0b24+PC9mb3JtPjsKCiAgcmV0dXJuIDxkaXYgY2xhc3NOYW1lPXtgc3VwcG9ydC1hZG1pbiAke3ZpZXcgPT09ICJvcmRlcnMiID8gImlzLW9yZGVycyIgOiAiIn1gfT4KICAgIDxhc2lkZSBjbGFzc05hbWU9InN1cHBvcnQtYWRtaW4tc2lkZWJhciI+PGRpdiBjbGFzc05hbWU9InN1cHBvcnQtYWRtaW4tdGl0bGUiPjxkaXY+PHNwYW4gY2xhc3NOYW1lPSJzdXBwb3J0LWtpY2tlciI+TkVYVk9SREVWPC9zcGFuPjxoMT7Zhdix2qnYsiDZhdiv24zYsduM2Ko8L2gxPjwvZGl2PjxidXR0b24gY2xhc3NOYW1lPSJzdXBwb3J0LWljb24tYnV0dG9uIiBvbkNsaWNrPXtsb2dvdXR9IGFyaWEtbGFiZWw9Itiu2LHZiNisIj48TG9nT3V0IHNpemU9ezE4fSAvPjwvYnV0dG9uPjwvZGl2PjxkaXYgY2xhc3NOYW1lPSJzdXBwb3J0LWFkbWluLW5hdiI+PGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzTmFtZT17dmlldyA9PT0gInRpY2tldHMiID8gImFjdGl2ZSIgOiAiIn0gb25DbGljaz17KCkgPT4gc2V0VmlldygidGlja2V0cyIpfT7YqtuM2qnYquKAjNmH2Kc8L2J1dHRvbj48YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3NOYW1lPXt2aWV3ID09PSAib3JkZXJzIiA/ICJhY3RpdmUiIDogIiJ9IG9uQ2xpY2s9eygpID0+IHNldFZpZXcoIm9yZGVycyIpfT7Ys9mB2KfYsdi04oCM2YfYpzwvYnV0dG9uPjwvZGl2PjxkaXYgY2xhc3NOYW1lPSJzdXBwb3J0LXRpY2tldC1saXN0IiBoaWRkZW49e3ZpZXcgIT09ICJ0aWNrZXRzIn0+CiAgICAgIHt0aWNrZXRzLm1hcCh0aWNrZXQgPT4gPGJ1dHRvbiBrZXk9e3RpY2tldC5pZH0gY2xhc3NOYW1lPXtgc3VwcG9ydC10aWNrZXQtaXRlbSAke3NlbGVjdGVkPy5pZCA9PT0gdGlja2V0LmlkID8gImFjdGl2ZSIgOiAiIn1gfSBvbkNsaWNrPXsoKSA9PiB7IHNldEVycm9yKCIiKTsgbG9hZERldGFpbCh0aWNrZXQuaWQpLmNhdGNoKGUgPT4gc2V0RXJyb3IoZS5tZXNzYWdlKSk7IH19PjxzcGFuIGNsYXNzTmFtZT0ic3VwcG9ydC10aWNrZXQtaXRlbS10b3AiPjxiPnt0aWNrZXQuZmlyc3RfbmFtZX0ge3RpY2tldC5sYXN0X25hbWV9PC9iPjxzbWFsbD57dGlja2V0LnN0YXR1cyA9PT0gImFuc3dlcmVkIiA/ICLZvtin2LPYriDYr9in2K/ZhyDYtNiv2YciIDogdGlja2V0LnN0YXR1cyA9PT0gImNsb3NlZCIgPyAi2KjYs9iq2YciIDogItis2K/bjNivIn08L3NtYWxsPjwvc3Bhbj48c3Ryb25nPnt0aWNrZXQuc3ViamVjdH08L3N0cm9uZz48c3BhbiBjbGFzc05hbWU9InN1cHBvcnQtdGlja2V0LWRhdGUiPntuZXcgRGF0ZSh0aWNrZXQubGFzdF9tZXNzYWdlX2F0KS50b0xvY2FsZVN0cmluZygiZmEtSVIiKX08L3NwYW4+PC9idXR0b24+KX0KICAgICAge3RpY2tldHMubGVuZ3RoID09PSAwICYmIDxwIGNsYXNzTmFtZT0ic3VwcG9ydC1lbXB0eSI+2YfZhtmI2LIg2KrbjNqp2KrbjCDYq9io2Kog2YbYtNiv2Ycg2KfYs9iqLjwvcD59CiAgICA8L2Rpdj57dmlldyA9PT0gIm9yZGVycyIgJiYgPHAgY2xhc3NOYW1lPSJzdXBwb3J0LWVtcHR5Ij7ZgdmH2LHYs9iqINiz2YHYp9ix2LTigIzZh9inINiv2LEg2b7ZhtmEINiz2YXYqiDYsdin2LPYqiDZhtmF2KfbjNi0INiv2KfYr9mHINmF24zigIzYtNmI2K8uPC9wPn08L2FzaWRlPgogICAgPHNlY3Rpb24gY2xhc3NOYW1lPSJzdXBwb3J0LWFkbWluLW1haW4iPnt2aWV3ID09PSAib3JkZXJzIiA/IDxTZXJ2aWNlUmVxdWVzdHNBZG1pbiAvPiA6IHNlbGVjdGVkID8gPD4KICAgICAgPGhlYWRlciBjbGFzc05hbWU9InN1cHBvcnQtYWRtaW4tZGV0YWlsLWhlYWQiPjxkaXY+PHNwYW4gY2xhc3NOYW1lPSJzdXBwb3J0LWtpY2tlciI+VElDS0VUIC8ge3NlbGVjdGVkLmlkLnNsaWNlKDAsIDgpfTwvc3Bhbj48aDI+e3NlbGVjdGVkLnN1YmplY3R9PC9oMj48cD57c2VsZWN0ZWQuZmlyc3RfbmFtZX0ge3NlbGVjdGVkLmxhc3RfbmFtZX0gwrcge3NlbGVjdGVkLmFnZX0g2LPYp9mEIMK3IEB7c2VsZWN0ZWQudGVsZWdyYW1fdXNlcm5hbWV9PC9wPjwvZGl2PjxzZWxlY3QgdmFsdWU9e3NlbGVjdGVkLnN0YXR1c30gb25DaGFuZ2U9e2UgPT4gY2hhbmdlU3RhdHVzKGUudGFyZ2V0LnZhbHVlKX0+PG9wdGlvbiB2YWx1ZT0id2FpdGluZyI+2K/YsSDYp9mG2KrYuNin2LEg2b7Yp9iz2K48L29wdGlvbj48b3B0aW9uIHZhbHVlPSJhbnN3ZXJlZCI+2b7Yp9iz2K4g2K/Yp9iv2Ycg2LTYr9mHPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iY2xvc2VkIj7YqNiz2KrZhyDYtNiv2Yc8L29wdGlvbj48L3NlbGVjdD48L2hlYWRlcj4KICAgICAgPGRpdiBjbGFzc05hbWU9InN1cHBvcnQtYWRtaW4tbWVzc2FnZXMiPnttZXNzYWdlcy5tYXAobWVzc2FnZSA9PiA8YXJ0aWNsZSBrZXk9e21lc3NhZ2UuaWR9IGNsYXNzTmFtZT17YHN1cHBvcnQtbWVzc2FnZSAke21lc3NhZ2Uuc2VuZGVyX3JvbGUgPT09ICJhZG1pbiIgPyAiZnJvbS1hZG1pbiIgOiAiZnJvbS1jdXN0b21lciJ9YH0+PGRpdiBjbGFzc05hbWU9InN1cHBvcnQtbWVzc2FnZS1tZXRhIj57bWVzc2FnZS5zZW5kZXJfcm9sZSA9PT0gImFkbWluIiA/ICLZhdiv24zYsduM2KoiIDogItmF2LTYqtix24wifTx0aW1lPntuZXcgRGF0ZShtZXNzYWdlLmNyZWF0ZWRfYXQpLnRvTG9jYWxlU3RyaW5nKCJmYS1JUiIpfTwvdGltZT48L2Rpdj48cD57bWVzc2FnZS5ib2R5fTwvcD48L2FydGljbGU+KX08L2Rpdj4KICAgICAge3NlbGVjdGVkLnN0YXR1cyAhPT0gImNsb3NlZCIgJiYgPGZvcm0gY2xhc3NOYW1lPSJzdXBwb3J0LXJlcGx5LWZvcm0iIG9uU3VibWl0PXtzZW5kUmVwbHl9Pjx0ZXh0YXJlYSB2YWx1ZT17cmVwbHl9IG9uQ2hhbmdlPXtlID0+IHNldFJlcGx5KGUudGFyZ2V0LnZhbHVlKX0gcm93cz17Mn0gcGxhY2Vob2xkZXI9Itm+2KfYs9iuINio2Ycg2YXYtNiq2LHbjC4uLiIgLz48YnV0dG9uIGNsYXNzTmFtZT0iYnV0dG9uIGJ1dHRvbi1wcmltYXJ5IiBkaXNhYmxlZD17YnVzeSB8fCAhcmVwbHkudHJpbSgpfT57YnVzeSA/IDxMb2FkZXJDaXJjbGUgc2l6ZT17MTd9IC8+IDogPFNlbmQgc2l6ZT17MTd9IC8+fSDYp9ix2LPYp9mEINm+2KfYs9iuPC9idXR0b24+PC9mb3JtPn0KICAgIDwvPiA6IDxkaXYgY2xhc3NOYW1lPSJzdXBwb3J0LWFkbWluLXBsYWNlaG9sZGVyIj7bjNqpINiv2LHYrtmI2KfYs9iqINix2Kcg2KfYsiDZgdmH2LHYs9iqINin2YbYqtiu2KfYqCDaqdmGLjwvZGl2Pn17ZXJyb3IgJiYgPHAgY2xhc3NOYW1lPSJzdXBwb3J0LWVycm9yIj57ZXJyb3J9PC9wPn08L3NlY3Rpb24+CiAgPC9kaXY+Owp9Cg==
+"use client";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { ArrowLeft, LoaderCircle, LogOut, Send } from "lucide-react";
+import ServiceRequestsAdmin from "@/components/service-requests-admin";
+
+type Ticket = { id: string; first_name: string; last_name: string; age: number; telegram_username: string; subject: string; status: string; last_message_at: string };
+type Message = { id: string; sender_role: "customer" | "admin"; body: string; created_at: string };
+
+export default function SupportAdmin() {
+  const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [view, setView] = useState<"tickets" | "orders">("tickets");
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [selected, setSelected] = useState<Ticket | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [reply, setReply] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const loadTickets = useCallback(async () => {
+    const response = await fetch("/api/support/admin/tickets", { cache: "no-store" });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "دریافت تیکت‌ها ناموفق بود.");
+    setTickets(data.tickets || []);
+  }, []);
+
+  const loadDetail = useCallback(async (id: string) => {
+    const response = await fetch(`/api/support/admin/tickets/${id}`, { cache: "no-store" });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "دریافت گفتگو ناموفق بود.");
+    setSelected(data.ticket);
+    setMessages(data.messages || []);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/support/admin/tickets", { cache: "no-store" }).then(response => { if (response.ok) setLoggedIn(true); }).catch(() => undefined);
+  }, []);
+
+  useEffect(() => {
+    if (!loggedIn || view !== "tickets") return;
+    const refresh = async () => { try { await loadTickets(); } catch (e) { setError(e instanceof Error ? e.message : "دریافت تیکت‌ها ناموفق بود."); } };
+    void refresh();
+    const timer = window.setInterval(() => { void refresh(); }, 5000);
+    return () => window.clearInterval(timer);
+  }, [loggedIn, view, loadTickets]);
+
+  useEffect(() => {
+    if (!loggedIn || view !== "tickets" || !selected?.id) return;
+    const timer = window.setInterval(() => loadDetail(selected.id).catch(() => undefined), 5000);
+    return () => window.clearInterval(timer);
+  }, [loggedIn, view, selected?.id, loadDetail]);
+
+  async function login(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true); setError("");
+    try {
+      const response = await fetch("/api/support/admin/session", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "ورود ناموفق بود.");
+      setLoggedIn(true); setPassword("");
+    } catch (e) { setError(e instanceof Error ? e.message : "ورود ناموفق بود."); }
+    finally { setBusy(false); }
+  }
+
+  async function sendReply(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selected || !reply.trim()) return;
+    setBusy(true); setError("");
+    try {
+      const response = await fetch(`/api/support/admin/tickets/${selected.id}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ body: reply }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "ارسال پاسخ ناموفق بود.");
+      setReply(""); await loadDetail(selected.id); await loadTickets();
+    } catch (e) { setError(e instanceof Error ? e.message : "ارسال پاسخ ناموفق بود."); }
+    finally { setBusy(false); }
+  }
+
+  async function changeStatus(status: string) {
+    if (!selected) return;
+    const response = await fetch(`/api/support/admin/tickets/${selected.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status }) });
+    const data = await response.json();
+    if (!response.ok) { setError(data.error || "تغییر وضعیت ناموفق بود."); return; }
+    await loadDetail(selected.id); await loadTickets();
+  }
+
+  async function logout() {
+    await fetch("/api/support/admin/session", { method: "DELETE" });
+    setLoggedIn(false); setSelected(null); setTickets([]); setMessages([]);
+  }
+
+  if (!loggedIn) return <form className="support-admin-login" onSubmit={login}><span className="support-kicker">NEXVORDEV / PRIVATE AREA</span><h1>ورود مدیریت پشتیبانی</h1><p>این بخش فقط برای مدیران مجاز است.</p><label>رمز عبور مدیریت<input type="password" value={password} onChange={e => setPassword(e.target.value)} required autoComplete="current-password" /></label>{error && <p className="support-error">{error}</p>}<button className="button button-primary" disabled={busy}>{busy ? <LoaderCircle className="support-spin" /> : <ArrowLeft size={17} />} ورود به پنل</button></form>;
+
+  return <div className={`support-admin ${view === "orders" ? "is-orders" : ""}`}>
+    <aside className="support-admin-sidebar"><div className="support-admin-title"><div><span className="support-kicker">NEXVORDEV</span><h1>مرکز مدیریت</h1></div><button className="support-icon-button" onClick={logout} aria-label="خروج"><LogOut size={18} /></button></div><div className="support-admin-nav"><button type="button" className={view === "tickets" ? "active" : ""} onClick={() => setView("tickets")}>تیکت‌ها</button><button type="button" className={view === "orders" ? "active" : ""} onClick={() => setView("orders")}>سفارش‌ها</button></div><div className="support-ticket-list" hidden={view !== "tickets"}>
+      {tickets.map(ticket => <button key={ticket.id} className={`support-ticket-item ${selected?.id === ticket.id ? "active" : ""}`} onClick={() => { setError(""); loadDetail(ticket.id).catch(e => setError(e.message)); }}><span className="support-ticket-item-top"><b>{ticket.first_name} {ticket.last_name}</b><small>{ticket.status === "answered" ? "پاسخ داده شده" : ticket.status === "closed" ? "بسته" : "جدید"}</small></span><strong>{ticket.subject}</strong><span className="support-ticket-date">{new Date(ticket.last_message_at).toLocaleString("fa-IR")}</span></button>)}
+      {tickets.length === 0 && <p className="support-empty">هنوز تیکتی ثبت نشده است.</p>}
+    </div>{view === "orders" && <p className="support-empty">فهرست سفارش‌ها در پنل سمت راست نمایش داده می‌شود.</p>}</aside>
+    <section className="support-admin-main">{view === "orders" ? <ServiceRequestsAdmin /> : selected ? <>
+      <header className="support-admin-detail-head"><div><span className="support-kicker">TICKET / {selected.id.slice(0, 8)}</span><h2>{selected.subject}</h2><p>{selected.first_name} {selected.last_name} · {selected.age} سال · @{selected.telegram_username}</p></div><select value={selected.status} onChange={e => changeStatus(e.target.value)}><option value="waiting">در انتظار پاسخ</option><option value="answered">پاسخ داده شده</option><option value="closed">بسته شده</option></select></header>
+      <div className="support-admin-messages">{messages.map(message => <article key={message.id} className={`support-message ${message.sender_role === "admin" ? "from-admin" : "from-customer"}`}><div className="support-message-meta">{message.sender_role === "admin" ? "مدیریت" : "مشتری"}<time>{new Date(message.created_at).toLocaleString("fa-IR")}</time></div><p>{message.body}</p></article>)}</div>
+      {selected.status !== "closed" && <form className="support-reply-form" onSubmit={sendReply}><textarea value={reply} onChange={e => setReply(e.target.value)} rows={2} placeholder="پاسخ به مشتری..." /><button className="button button-primary" disabled={busy || !reply.trim()}>{busy ? <LoaderCircle size={17} /> : <Send size={17} />} ارسال پاسخ</button></form>}
+    </> : <div className="support-admin-placeholder">یک درخواست را از فهرست انتخاب کن.</div>}{error && <p className="support-error">{error}</p>}</section>
+  </div>;
+}

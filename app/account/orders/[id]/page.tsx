@@ -1,1 +1,15 @@
-aW1wb3J0ICIuLi8uLi8uLi9wYWdlcy5jc3MiOwppbXBvcnQgeyBQYWdlU2hlbGwgfSBmcm9tICJAL2NvbXBvbmVudHMvc2l0ZS1jaHJvbWUiOwppbXBvcnQgT3JkZXJDaGF0IGZyb20gIkAvY29tcG9uZW50cy9vcmRlci1jaGF0IjsKaW1wb3J0IHsgY3VycmVudEFjY291bnQgfSBmcm9tICJAL2xpYi9hdXRoL2FjY291bnQiOwppbXBvcnQgeyByZWRpcmVjdCB9IGZyb20gIm5leHQvbmF2aWdhdGlvbiI7Cgp0eXBlIFByb3BzID0geyBwYXJhbXM6IFByb21pc2U8eyBpZDogc3RyaW5nIH0+IH07CmV4cG9ydCBjb25zdCBtZXRhZGF0YSA9IHsgdGl0bGU6ICLar9mB2KrigIzZiNqv2YjbjCDYs9mB2KfYsdi0Iiwgcm9ib3RzOiB7IGluZGV4OiBmYWxzZSwgZm9sbG93OiBmYWxzZSB9IH07CgpleHBvcnQgZGVmYXVsdCBhc3luYyBmdW5jdGlvbiBPcmRlclBhZ2UoeyBwYXJhbXMgfTogUHJvcHMpIHsKICBjb25zdCBhY2NvdW50ID0gYXdhaXQgY3VycmVudEFjY291bnQoKTsKICBpZiAoIWFjY291bnQ/LnZlcmlmaWVkKSByZWRpcmVjdCgiL2FjY291bnQiKTsKICBjb25zdCB7IGlkIH0gPSBhd2FpdCBwYXJhbXM7CiAgcmV0dXJuIDxQYWdlU2hlbGwgYWN0aXZlPSIvYWNjb3VudCIgYmFyZT48c2VjdGlvbiBjbGFzc05hbWU9Imh4LXNlY3Rpb24gaHgtY2hhdC1zZWN0aW9uIj48ZGl2IGNsYXNzTmFtZT0iaHgtd3JhcCI+PE9yZGVyQ2hhdCBvcmRlcklkPXtpZH0gLz48L2Rpdj48L3NlY3Rpb24+PC9QYWdlU2hlbGw+Owp9Cg==
+import "../../../pages.css";
+import { PageShell } from "@/components/site-chrome";
+import OrderChat from "@/components/order-chat";
+import { currentAccount } from "@/lib/auth/account";
+import { redirect } from "next/navigation";
+
+type Props = { params: Promise<{ id: string }> };
+export const metadata = { title: "گفت‌وگوی سفارش", robots: { index: false, follow: false } };
+
+export default async function OrderPage({ params }: Props) {
+  const account = await currentAccount();
+  if (!account?.verified) redirect("/account");
+  const { id } = await params;
+  return <PageShell active="/account" bare><section className="hx-section hx-chat-section"><div className="hx-wrap"><OrderChat orderId={id} /></div></section></PageShell>;
+}

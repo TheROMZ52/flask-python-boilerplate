@@ -1,1 +1,83 @@
-InVzZSBjbGllbnQiOwppbXBvcnQgeyB1c2VDYWxsYmFjaywgdXNlRWZmZWN0LCB1c2VTdGF0ZSwgdHlwZSBGb3JtRXZlbnQsIHR5cGUgS2V5Ym9hcmRFdmVudCB9IGZyb20gInJlYWN0IjsKaW1wb3J0IHsgTG9hZGVyQ2lyY2xlLCBTZW5kLCBTaGllbGRDaGVjayB9IGZyb20gImx1Y2lkZS1yZWFjdCI7CmltcG9ydCB7IHJlYWRTdG9yYWdlLCB3cml0ZVN0b3JhZ2UgfSBmcm9tICJAL2xpYi9zYWZlLXN0b3JhZ2UiOwoKdHlwZSBUaWNrZXQgPSB7IGlkOiBzdHJpbmc7IGZpcnN0X25hbWU6IHN0cmluZzsgbGFzdF9uYW1lOiBzdHJpbmc7IHN1YmplY3Q6IHN0cmluZzsgc3RhdHVzOiBzdHJpbmc7IGNyZWF0ZWRfYXQ6IHN0cmluZyB9Owp0eXBlIE1lc3NhZ2UgPSB7IGlkOiBzdHJpbmc7IHNlbmRlcl9yb2xlOiAiY3VzdG9tZXIiIHwgImFkbWluIjsgYm9keTogc3RyaW5nOyBjcmVhdGVkX2F0OiBzdHJpbmcgfTsKCmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFN1cHBvcnRDaGF0KHsgdGlja2V0SWQgfTogeyB0aWNrZXRJZDogc3RyaW5nIH0pIHsKICBjb25zdCBbdG9rZW4sIHNldFRva2VuXSA9IHVzZVN0YXRlKCIiKTsKICBjb25zdCBbdGlja2V0LCBzZXRUaWNrZXRdID0gdXNlU3RhdGU8VGlja2V0IHwgbnVsbD4obnVsbCk7CiAgY29uc3QgW21lc3NhZ2VzLCBzZXRNZXNzYWdlc10gPSB1c2VTdGF0ZTxNZXNzYWdlW10+KFtdKTsKICBjb25zdCBbYm9keSwgc2V0Qm9keV0gPSB1c2VTdGF0ZSgiIik7CiAgY29uc3QgW2Vycm9yLCBzZXRFcnJvcl0gPSB1c2VTdGF0ZSgiIik7CiAgY29uc3QgW2J1c3ksIHNldEJ1c3ldID0gdXNlU3RhdGUoZmFsc2UpOwoKICBjb25zdCByZWZyZXNoID0gdXNlQ2FsbGJhY2soYXN5bmMgKGFjY2Vzc1Rva2VuOiBzdHJpbmcpID0+IHsKICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYC9hcGkvc3VwcG9ydC90aWNrZXRzLyR7dGlja2V0SWR9YCwgeyBoZWFkZXJzOiB7ICJ4LXRpY2tldC10b2tlbiI6IGFjY2Vzc1Rva2VuIH0sIGNhY2hlOiAibm8tc3RvcmUiIH0pOwogICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmpzb24oKTsKICAgIGlmICghcmVzcG9uc2Uub2spIHRocm93IG5ldyBFcnJvcihkYXRhLmVycm9yIHx8ICLar9mB2Krar9mIINiv2LEg2K/Ys9iq2LHYsyDZhtuM2LPYqi4iKTsKICAgIHNldFRpY2tldChkYXRhLnRpY2tldCk7CiAgICBzZXRNZXNzYWdlcyhkYXRhLm1lc3NhZ2VzIHx8IFtdKTsKICB9LCBbdGlja2V0SWRdKTsKCiAgdXNlRWZmZWN0KCgpID0+IHsKICAgIGNvbnN0IHBhcmFtcyA9IG5ldyBVUkxTZWFyY2hQYXJhbXMod2luZG93LmxvY2F0aW9uLnNlYXJjaCk7CiAgICBjb25zdCBxdWVyeVRva2VuID0gcGFyYW1zLmdldCgidG9rZW4iKTsKICAgIGNvbnN0IHN0b3JlZFRva2VuID0gcXVlcnlUb2tlbiB8fCByZWFkU3RvcmFnZShgbmV4dm9yLXN1cHBvcnQtJHt0aWNrZXRJZH1gKSB8fCAiIjsKICAgIGlmIChxdWVyeVRva2VuKSB7CiAgICAgIHdyaXRlU3RvcmFnZShgbmV4dm9yLXN1cHBvcnQtJHt0aWNrZXRJZH1gLCBxdWVyeVRva2VuKTsKICAgICAgd2luZG93Lmhpc3RvcnkucmVwbGFjZVN0YXRlKHt9LCAiIiwgd2luZG93LmxvY2F0aW9uLnBhdGhuYW1lKTsKICAgIH0KICAgIFByb21pc2UucmVzb2x2ZSgpLnRoZW4oKCkgPT4gc2V0VG9rZW4oc3RvcmVkVG9rZW4pKTsKICAgIGNvbnN0IGluaXRpYWxpemUgPSBhc3luYyAoKSA9PiB7IHRyeSB7IGF3YWl0IHJlZnJlc2goc3RvcmVkVG9rZW4pOyB9IGNhdGNoIChlKSB7IHNldEVycm9yKGUgaW5zdGFuY2VvZiBFcnJvciA/IGUubWVzc2FnZSA6ICLYrti32Kcg2K/YsSDYr9ix24zYp9mB2Kog2q/Zgdiq2q/ZiCIpOyB9IH07CiAgICB2b2lkIGluaXRpYWxpemUoKTsKICAgIGNvbnN0IHRpbWVyID0gd2luZG93LnNldEludGVydmFsKCgpID0+IHJlZnJlc2goc3RvcmVkVG9rZW4pLmNhdGNoKCgpID0+IHVuZGVmaW5lZCksIDUwMDApOwogICAgcmV0dXJuICgpID0+IHdpbmRvdy5jbGVhckludGVydmFsKHRpbWVyKTsKICB9LCBbdGlja2V0SWQsIHJlZnJlc2hdKTsKCiAgZnVuY3Rpb24gaGFuZGxlUmVwbHlLZXlEb3duKGV2ZW50OiBLZXlib2FyZEV2ZW50PEhUTUxUZXh0QXJlYUVsZW1lbnQ+KSB7CiAgICBpZiAoZXZlbnQua2V5ID09PSAiRW50ZXIiICYmICFldmVudC5zaGlmdEtleSAmJiAhZXZlbnQubmF0aXZlRXZlbnQuaXNDb21wb3NpbmcpIHsKICAgICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsKICAgICAgZXZlbnQuY3VycmVudFRhcmdldC5mb3JtPy5yZXF1ZXN0U3VibWl0KCk7CiAgICB9CiAgfQoKICBhc3luYyBmdW5jdGlvbiBzZW5kKGV2ZW50OiBGb3JtRXZlbnQ8SFRNTEZvcm1FbGVtZW50PikgewogICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsKICAgIGlmICghYm9keS50cmltKCkgfHwgYnVzeSkgcmV0dXJuOwogICAgc2V0QnVzeSh0cnVlKTsKICAgIHNldEVycm9yKCIiKTsKICAgIHRyeSB7CiAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYC9hcGkvc3VwcG9ydC90aWNrZXRzLyR7dGlja2V0SWR9L21lc3NhZ2VzYCwgewogICAgICAgIG1ldGhvZDogIlBPU1QiLCBoZWFkZXJzOiB7ICJDb250ZW50LVR5cGUiOiAiYXBwbGljYXRpb24vanNvbiIsICJ4LXRpY2tldC10b2tlbiI6IHRva2VuIH0sCiAgICAgICAgYm9keTogSlNPTi5zdHJpbmdpZnkoeyBib2R5IH0pLAogICAgICB9KTsKICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmpzb24oKTsKICAgICAgaWYgKCFyZXNwb25zZS5vaykgdGhyb3cgbmV3IEVycm9yKGRhdGEuZXJyb3IgfHwgItin2LHYs9in2YQg2b7bjNin2YUg2KfZhtis2KfZhSDZhti02K8uIik7CiAgICAgIHNldEJvZHkoIiIpOwogICAgICBhd2FpdCByZWZyZXNoKHRva2VuKTsKICAgIH0gY2F0Y2ggKGUpIHsKICAgICAgc2V0RXJyb3IoZSBpbnN0YW5jZW9mIEVycm9yID8gZS5tZXNzYWdlIDogItin2LHYs9in2YQg2b7bjNin2YUg2KfZhtis2KfZhSDZhti02K8uIik7CiAgICB9IGZpbmFsbHkgewogICAgICBzZXRCdXN5KGZhbHNlKTsKICAgIH0KICB9CgogIGlmICghdGlja2V0ICYmICFlcnJvcikgcmV0dXJuIDxkaXYgY2xhc3NOYW1lPSJzdXBwb3J0LWxvYWRpbmciPjxMb2FkZXJDaXJjbGUgY2xhc3NOYW1lPSJzdXBwb3J0LXNwaW4iIC8+INiv2LEg2K3Yp9mEINiv2LHbjNin2YHYqiDar9mB2Krar9mILi4uPC9kaXY+OwoKICByZXR1cm4gPHNlY3Rpb24gY2xhc3NOYW1lPSJzdXBwb3J0LWNoYXQtcGFuZWwiPgogICAgPGRpdiBjbGFzc05hbWU9InN1cHBvcnQtY2hhdC1oZWFkIj48ZGl2PjxzcGFuIGNsYXNzTmFtZT0ic3VwcG9ydC1raWNrZXIiPk5FWFZPUkRFViAvIFNVUFBPUlQ8L3NwYW4+PGgxPnt0aWNrZXQ/LnN1YmplY3QgfHwgItqv2YHYqtqv2YjbjCDZvti02KrbjNio2KfZhtuMIn08L2gxPjxwPtiv2LHYrtmI2KfYs9iqINi02YXYpyDCtyB7dGlja2V0SWQuc2xpY2UoMCwgOCl9PC9wPjwvZGl2PjxzcGFuIGNsYXNzTmFtZT17YHN1cHBvcnQtc3RhdHVzIHN0YXR1cy0ke3RpY2tldD8uc3RhdHVzIHx8ICJ3YWl0aW5nIn1gfT57dGlja2V0Py5zdGF0dXMgPT09ICJhbnN3ZXJlZCIgPyAi2b7Yp9iz2K4g2K/Yp9iv2Ycg2LTYr9mHIiA6IHRpY2tldD8uc3RhdHVzID09PSAiY2xvc2VkIiA/ICLYqNiz2KrZhyDYtNiv2YciIDogItiv2LEg2KfZhtiq2LjYp9ixINm+2KfYs9iuIn08L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzTmFtZT0ic3VwcG9ydC1tZXNzYWdlcyI+CiAgICAgIHttZXNzYWdlcy5tYXAobWVzc2FnZSA9PiA8YXJ0aWNsZSBrZXk9e21lc3NhZ2UuaWR9IGNsYXNzTmFtZT17YHN1cHBvcnQtbWVzc2FnZSAke21lc3NhZ2Uuc2VuZGVyX3JvbGUgPT09ICJhZG1pbiIgPyAiZnJvbS1hZG1pbiIgOiAiZnJvbS1jdXN0b21lciJ9YH0+CiAgICAgICAgPGRpdiBjbGFzc05hbWU9InN1cHBvcnQtbWVzc2FnZS1tZXRhIj57bWVzc2FnZS5zZW5kZXJfcm9sZSA9PT0gImFkbWluIiA/ICLZvti02KrbjNio2KfZhtuMIE5leHZvckRFViIgOiAi2LTZhdinIn08dGltZT57bmV3IERhdGUobWVzc2FnZS5jcmVhdGVkX2F0KS50b0xvY2FsZVN0cmluZygiZmEtSVIiLCB7IGRhdGVTdHlsZTogInNob3J0IiwgdGltZVN0eWxlOiAic2hvcnQiIH0pfTwvdGltZT48L2Rpdj4KICAgICAgICA8cD57bWVzc2FnZS5ib2R5fTwvcD4KICAgICAgPC9hcnRpY2xlPil9CiAgICAgIHttZXNzYWdlcy5sZW5ndGggPT09IDAgJiYgPHAgY2xhc3NOYW1lPSJzdXBwb3J0LWVtcHR5Ij7Zh9mG2YjYsiDZvtuM2KfZhduMINir2KjYqiDZhti02K/ZhyDYp9iz2KouPC9wPn0KICAgIDwvZGl2PgogICAge2Vycm9yICYmIDxwIGNsYXNzTmFtZT0ic3VwcG9ydC1lcnJvciI+e2Vycm9yfTwvcD59CiAgICB7dGlja2V0Py5zdGF0dXMgPT09ICJjbG9zZWQiID8gPGRpdiBjbGFzc05hbWU9InN1cHBvcnQtY2xvc2VkIj7Yp9uM2YYg2K/Ysdiu2YjYp9iz2Kog2KjYs9iq2Ycg2LTYr9mHINin2LPYqiDZiCDYp9mF2qnYp9mGINin2LHYs9in2YQg2b7bjNin2YUg2KzYr9uM2K8g2YjYrNmI2K8g2YbYr9in2LHYry48L2Rpdj4gOiA8Zm9ybSBjbGFzc05hbWU9InN1cHBvcnQtcmVwbHktZm9ybSIgb25TdWJtaXQ9e3NlbmR9PjxkaXYgY2xhc3NOYW1lPSJzdXBwb3J0LXJlcGx5LWZpZWxkIj48dGV4dGFyZWEgdmFsdWU9e2JvZHl9IG9uQ2hhbmdlPXtlID0+IHNldEJvZHkoZS50YXJnZXQudmFsdWUpfSBvbktleURvd249e2hhbmRsZVJlcGx5S2V5RG93bn0gcm93cz17M30gbWF4TGVuZ3RoPXs0MDAwfSBwbGFjZWhvbGRlcj17Itm+24zYp9mF2Kog2LHZiCDYqNmG2YjbjNizLi4uXG5cbkVudGVyINio2LHYp9uMINin2LHYs9in2YQgwrcgU2hpZnQgKyBFbnRlciDYqNix2KfbjCDYrti3INis2K/bjNivIn0gLz48c3BhbiBjbGFzc05hbWU9InN1cHBvcnQtZmllbGQtaGludCI+PHNwYW4+RW50ZXI6INin2LHYs9in2YQgwrcgU2hpZnQgKyBFbnRlcjog2K7YtyDYrNiv24zYrzwvc3Bhbj48c3Bhbj57Ym9keS5sZW5ndGh9LzQwMDA8L3NwYW4+PC9zcGFuPjwvZGl2PjxidXR0b24gY2xhc3NOYW1lPSJidXR0b24gYnV0dG9uLXByaW1hcnkiIGRpc2FibGVkPXtidXN5IHx8ICFib2R5LnRyaW0oKX0+e2J1c3kgPyA8TG9hZGVyQ2lyY2xlIGNsYXNzTmFtZT0ic3VwcG9ydC1zcGluIiBzaXplPXsxN30gLz4gOiA8U2VuZCBzaXplPXsxN30gLz59INin2LHYs9in2YQ8L2J1dHRvbj48L2Zvcm0+fQogICAgPGRpdiBjbGFzc05hbWU9InN1cHBvcnQtY2hhdC1mb290Ij48U2hpZWxkQ2hlY2sgc2l6ZT17MTR9IC8+INm+24zYp9mF4oCM2YfYpyDYqNmH4oCM2LXZiNix2Kog2K7ZiNiv2qnYp9ixINio2YfigIzYsdmI2LLYsdiz2KfZhtuMINmF24zigIzYtNmI2YbYr9ibINmG24zYp9iy24wg2KjZhyDYsdmB2LHYtCDZhtuM2LPYqi48L2Rpdj4KICA8L3NlY3Rpb24+Owp9Cg==
+"use client";
+import { useCallback, useEffect, useState, type FormEvent, type KeyboardEvent } from "react";
+import { LoaderCircle, Send, ShieldCheck } from "lucide-react";
+import { readStorage, writeStorage } from "@/lib/safe-storage";
+
+type Ticket = { id: string; first_name: string; last_name: string; subject: string; status: string; created_at: string };
+type Message = { id: string; sender_role: "customer" | "admin"; body: string; created_at: string };
+
+export default function SupportChat({ ticketId }: { ticketId: string }) {
+  const [token, setToken] = useState("");
+  const [ticket, setTicket] = useState<Ticket | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [body, setBody] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const refresh = useCallback(async (accessToken: string) => {
+    const response = await fetch(`/api/support/tickets/${ticketId}`, { headers: { "x-ticket-token": accessToken }, cache: "no-store" });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "گفتگو در دسترس نیست.");
+    setTicket(data.ticket);
+    setMessages(data.messages || []);
+  }, [ticketId]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryToken = params.get("token");
+    const storedToken = queryToken || readStorage(`nexvor-support-${ticketId}`) || "";
+    if (queryToken) {
+      writeStorage(`nexvor-support-${ticketId}`, queryToken);
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+    Promise.resolve().then(() => setToken(storedToken));
+    const initialize = async () => { try { await refresh(storedToken); } catch (e) { setError(e instanceof Error ? e.message : "خطا در دریافت گفتگو"); } };
+    void initialize();
+    const timer = window.setInterval(() => refresh(storedToken).catch(() => undefined), 5000);
+    return () => window.clearInterval(timer);
+  }, [ticketId, refresh]);
+
+  function handleReplyKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
+      event.preventDefault();
+      event.currentTarget.form?.requestSubmit();
+    }
+  }
+
+  async function send(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!body.trim() || busy) return;
+    setBusy(true);
+    setError("");
+    try {
+      const response = await fetch(`/api/support/tickets/${ticketId}/messages`, {
+        method: "POST", headers: { "Content-Type": "application/json", "x-ticket-token": token },
+        body: JSON.stringify({ body }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "ارسال پیام انجام نشد.");
+      setBody("");
+      await refresh(token);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "ارسال پیام انجام نشد.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (!ticket && !error) return <div className="support-loading"><LoaderCircle className="support-spin" /> در حال دریافت گفتگو...</div>;
+
+  return <section className="support-chat-panel">
+    <div className="support-chat-head"><div><span className="support-kicker">NEXVORDEV / SUPPORT</span><h1>{ticket?.subject || "گفتگوی پشتیبانی"}</h1><p>درخواست شما · {ticketId.slice(0, 8)}</p></div><span className={`support-status status-${ticket?.status || "waiting"}`}>{ticket?.status === "answered" ? "پاسخ داده شده" : ticket?.status === "closed" ? "بسته شده" : "در انتظار پاسخ"}</span></div>
+    <div className="support-messages">
+      {messages.map(message => <article key={message.id} className={`support-message ${message.sender_role === "admin" ? "from-admin" : "from-customer"}`}>
+        <div className="support-message-meta">{message.sender_role === "admin" ? "پشتیبانی NexvorDEV" : "شما"}<time>{new Date(message.created_at).toLocaleString("fa-IR", { dateStyle: "short", timeStyle: "short" })}</time></div>
+        <p>{message.body}</p>
+      </article>)}
+      {messages.length === 0 && <p className="support-empty">هنوز پیامی ثبت نشده است.</p>}
+    </div>
+    {error && <p className="support-error">{error}</p>}
+    {ticket?.status === "closed" ? <div className="support-closed">این درخواست بسته شده است و امکان ارسال پیام جدید وجود ندارد.</div> : <form className="support-reply-form" onSubmit={send}><div className="support-reply-field"><textarea value={body} onChange={e => setBody(e.target.value)} onKeyDown={handleReplyKeyDown} rows={3} maxLength={4000} placeholder={"پیامت رو بنویس...\n\nEnter برای ارسال · Shift + Enter برای خط جدید"} /><span className="support-field-hint"><span>Enter: ارسال · Shift + Enter: خط جدید</span><span>{body.length}/4000</span></span></div><button className="button button-primary" disabled={busy || !body.trim()}>{busy ? <LoaderCircle className="support-spin" size={17} /> : <Send size={17} />} ارسال</button></form>}
+    <div className="support-chat-foot"><ShieldCheck size={14} /> پیام‌ها به‌صورت خودکار به‌روزرسانی می‌شوند؛ نیازی به رفرش نیست.</div>
+  </section>;
+}
