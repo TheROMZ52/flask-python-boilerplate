@@ -50,13 +50,13 @@ const setSession = (chatId: string, state: string, data: Record<string, unknown>
   supportDb("nexvor_bot_sessions?on_conflict=chat_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify({ chat_id: chatId, state, data, updated_at: new Date().toISOString() }) });
 const clearSession = (chatId: string) => supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(chatId)}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
 
-const button = (text: string, data: string) => ({ text, callback_data: data });
-const cancelRow = [button("✖️ لغو", "p:cancel")];
+const button = (text: string, data: string, style: "primary" | "success" | "danger" = "primary") => ({ text, callback_data: data, style });
+const cancelRow = [button("✖️ لغو", "p:cancel", "danger")];
 
 function mainMenu(): Markup {
   return { inline_keyboard: [
-    [button("📦 ثبت سفارش", "p:order"), button("🎫 تیکت پشتیبانی", "p:ticket")],
-    [button("📋 پیگیری من", "p:my"), button("💰 تعرفه", "p:prices")],
+    [button("📦 ثبت سفارش", "p:order", "success"), button("🎫 تیکت پشتیبانی", "p:ticket")],
+    [button("📋 پیگیری من", "p:my"), button("💰 تعرفه", "p:prices", "success")],
     [button("🛠 خدمات", "p:services"), { text: "🌐 وب‌سایت", url: siteUrl }],
     [button("🔗 اتصال حساب سایت", "p:link"), button("❓ راهنما", "p:help")],
   ] };
@@ -97,7 +97,7 @@ async function askDetails(cb: BotCallback, chatId: string, session: Session | nu
 async function confirmOrder(chatId: string, session: Session, details: string) {
   const data = { service: session.data.service, priority: session.data.priority, details };
   await setSession(chatId, "order_confirm", data);
-  await send(chatId, ["🧾 <b>خلاصه سفارش</b>", "", `<b>خدمت:</b> ${escapeTelegramHtml(data.service)}`, `<b>اولویت:</b> ${priorityLabels[String(data.priority)]}`, "", "<b>توضیحات:</b>", escapeTelegramHtml(details).slice(0, 1500), "", "ثبت بشه؟"].join("\n"), { inline_keyboard: [[button("✅ ثبت سفارش", "p:ok"), button("✖️ لغو", "p:cancel")]] });
+  await send(chatId, ["🧾 <b>خلاصه سفارش</b>", "", `<b>خدمت:</b> ${escapeTelegramHtml(data.service)}`, `<b>اولویت:</b> ${priorityLabels[String(data.priority)]}`, "", "<b>توضیحات:</b>", escapeTelegramHtml(details).slice(0, 1500), "", "ثبت بشه؟"].join("\n"), { inline_keyboard: [[button("✅ ثبت سفارش", "p:ok", "success"), button("✖️ لغو", "p:cancel", "danger")]] });
 }
 
 async function submitOrder(cb: BotCallback, chatId: string, session: Session | null, from?: BotMessage["from"]) {
