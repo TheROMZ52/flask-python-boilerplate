@@ -213,15 +213,42 @@ const pricesText = () => ["💰 <b>تعرفه خدمات</b>", "", "بازه ت�
 
 const servicesText = () => ["🛠 <b>خدمات NexvorDEV</b>", "", ...serviceGroups.map(group => `• <b>${escapeTelegramHtml(group.label)}</b> (${group.options.length.toLocaleString("fa-IR")} خدمت)`), "", "برای سفارش، دکمه زیر رو بزن."].join("\n");
 
+function customerReplyKeyboard(): Markup {
+  return {
+    keyboard: [
+      [{ text: "📦 ثبت سفارش" }, { text: "🎫 تیکت پشتیبانی" }],
+      [{ text: "📋 پیگیری من" }, { text: "💰 تعرفه" }],
+      [{ text: "🛠 خدمات" }, { text: "🔗 اتصال حساب" }],
+      [{ text: "❓ راهنما" }, { text: "✖️ لغو" }],
+    ],
+    resize_keyboard: true,
+    is_persistent: true,
+    input_field_placeholder: "از منوی NexvorDEV انتخاب کن…",
+  };
+}
+
 export async function sendMenu(chatId: string, from?: BotMessage["from"]) {
   await clearSession(chatId).catch(() => null);
-  await send(chatId, welcome(from?.first_name || from?.username || "دوست عزیز"), mainMenu());
+  await send(chatId, welcome(from?.first_name || from?.username || "دوست عزیز"), customerReplyKeyboard());
 }
 
 export async function handlePublicMessage(message: BotMessage, command: string | null, admin: boolean) {
   const chatId = String(message.chat?.id);
   const from = message.from;
   const text = (message.text || "").trim();
+  if (!command) {
+    const keyboardCommands: Record<string, string> = {
+      "📦 ثبت سفارش": "/order",
+      "🎫 تیکت پشتیبانی": "/newticket",
+      "📋 پیگیری من": "/my",
+      "💰 تعرفه": "/prices",
+      "🛠 خدمات": "/services",
+      "🔗 اتصال حساب": "/link",
+      "❓ راهنما": "/help",
+      "✖️ لغو": "/cancel",
+    };
+    command = keyboardCommands[text] || null;
+  }
   if (await limited(`bot:chat:${chatId}`, 40, MINUTES)) return;
 
   if (command === "/start" || command === "/menu") return sendMenu(chatId, from);
