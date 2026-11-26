@@ -1,5 +1,5 @@
 import { cleanText, hashAccessToken, newAccessToken, supportDb } from "@/lib/support/server";
-import { escapeTelegramHtml, notifyAdminAboutCustomerMessage, notifyAdminAboutNewServiceRequest, notifyAdminAboutNewTicket, notifyAdminAboutOrderMessage, sendTelegramMessage } from "@/lib/support/telegram";
+import { escapeTelegramHtml, notifyAdminAboutCustomerMessage, notifyAdminAboutNewServiceRequest, notifyAdminAboutNewTicket, notifyAdminAboutOrderMessage, sendTelegramMessage, telegramApiRequest } from "@/lib/support/telegram";
 import { serviceGroups } from "@/lib/services";
 import { limited, MINUTES, HOURS } from "@/lib/rate-limit";
 import { siteUrl } from "@/lib/site";
@@ -14,19 +14,8 @@ type Markup = Record<string, unknown>;
 type Session = { state: string; data: Record<string, unknown> };
 type Row = Record<string, unknown> & { id: string };
 
-const token = () => process.env.TELEGRAM_BOT_TOKEN;
-const priorityLabels: Record<string, string> = { normal: "عادی", urgent: "⚡ فوری", critical: "🚨 اضطراری" };
-const requestLabels: Record<string, string> = { new: "🆕 ثبت شد", reviewing: "🔍 در حال بررسی", in_progress: "🛠 در حال انجام", completed: "✅ تکمیل شد", rejected: "⛔ رد شد" };
-const requestSteps = ["new", "reviewing", "in_progress", "completed"];
-const ticketLabels: Record<string, string> = { waiting: "⏳ منتظر پاسخ", answered: "✅ پاسخ داده شد", closed: "🔒 بسته" };
-
 async function tg(method: string, payload: Record<string, unknown>) {
-  const key = token();
-  if (!key) throw new Error("not configured");
-  const response = await fetch(`https://api.telegram.org/bot${key}/${method}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), cache: "no-store" });
-  const result = await response.json();
-  if (!response.ok || !result.ok) throw new Error("telegram failed");
-  return result;
+  return telegramApiRequest(method, payload);
 }
 
 const send = (chatId: string, text: string, markup?: Markup) => sendTelegramMessage(chatId, text, markup ? { reply_markup: markup } : undefined);
