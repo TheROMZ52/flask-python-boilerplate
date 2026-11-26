@@ -226,7 +226,7 @@ function adminReplyKeyboard() {
       [{ text: "🎫 تیکت‌ها" }, { text: "📣 پیام همگانی" }],
       [{ text: "🔎 جست‌وجوی درخواست" }, { text: "🔍 جست‌وجوی تیکت" }],
       [{ text: "📚 دستورات کامل" }, { text: "👤 منوی مشتری" }],
-      [{ text: "✖️ لغو عملیات" }],
+      [{ text: "👤 حساب کاربری" }, { text: "✖️ لغو عملیات" }],
     ],
     resize_keyboard: true,
     is_persistent: true,
