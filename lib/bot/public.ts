@@ -1,11 +1,13 @@
-import { cleanText, hashAccessToken, newAccessToken, supportDb } from "@/lib/support/server";
+import { createHmac, randomInt } from "node:crypto";
+import { cleanText, hashAccessToken, newAccessToken, safeEqual, supportDb } from "@/lib/support/server";
 import { escapeTelegramHtml, notifyAdminAboutCustomerMessage, notifyAdminAboutNewServiceRequest, notifyAdminAboutNewTicket, notifyAdminAboutOrderMessage, sendTelegramMessage, telegramApiRequest } from "@/lib/support/telegram";
 import { serviceGroups } from "@/lib/services";
 import { limited, MINUTES, HOURS } from "@/lib/rate-limit";
 import { siteUrl } from "@/lib/site";
-import { createNotification, displayName, getProfile } from "@/lib/auth/account";
-import { sendMail, ticketReplyMessage } from "@/lib/mail";
-import { createBotLinkCode, completeSiteLink } from "@/lib/telegram/link";
+import { createEmailToken, createNotification, displayName, getProfile, getProfileByEmail, normalizeEmail, upsertProfile, validEmail } from "@/lib/auth/account";
+import { resetEmailMessage, sendMail, telegramOtpMessage, ticketReplyMessage } from "@/lib/mail";
+import { createBotLinkCode, completeSiteLink, linkTelegramAccount, unlinkTelegram } from "@/lib/telegram/link";
+import { createAuthUser, updateAuthUser } from "@/lib/supabase/admin";
 
 export type BotMessage = { message_id?: number; text?: string; chat?: { id?: number; type?: string }; from?: { id?: number; is_bot?: boolean; first_name?: string; last_name?: string; username?: string } };
 export type BotCallback = { id: string; data?: string; from?: BotMessage["from"]; message?: BotMessage };
@@ -47,19 +49,318 @@ const clearSession = (chatId: string) => supportDb(`nexvor_bot_sessions?chat_id=
 const button = (text: string, data: string, _style?: "primary" | "success" | "danger") => ({ text, callback_data: data });
 const cancelRow = [button("✖️ لغو", "p:cancel", "danger")];
 
+type TelegramAuthFlow = "login" | "register";
+type TelegramAuthChallenge = {
+  flow: TelegramAuthFlow;
+  email: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  codeHash: string;
+  expiresAt: number;
+  attempts: number;
+};
+
+function telegramOtpHash(chatId: string, email: string, code: string) {
+  const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
+  if (!secret) throw new Error("Telegram authentication is not configured");
+  return createHmac("sha256", secret).update(`${chatId}:${email}:${code}`).digest("hex");
+}
+
+async function showAccountMenu(cb: BotCallback | null, chatId: string) {
+  const profiles = await supportDb(
+    `nexvor_profiles?telegram_chat_id=eq.${encodeURIComponent(chatId)}&select=user_id,email,first_name,last_name,email_verified_at&limit=1`,
+  ) as Array<{user_id:string;email:string|null;first_name:string;last_name:string;email_verified_at:string|null}>;
+  const profile = profiles[0];
+  const description = profile
+    ? `✅ <b>حساب متصل است</b>\nنام: ${escapeTelegramHtml([profile.first_name, profile.last_name].filter(Boolean).join(" ") || "کاربر")}\nایمیل: <code>${escapeTelegramHtml(profile.email || "ثبت نشده")}</code>\nوضعیت ایمیل: ${profile.email_verified_at ? "تأییدشده" : "تأییدنشده"}`
+    : "برای اتصال حساب سایت به تلگرام، وارد شو یا یک حساب جدید بساز.\n\nورود و ثبت‌نام با کد یک‌بارمصرف ایمیل انجام می‌شود؛ رمز عبورت را در چت نمی‌فرستی.";
+  const keyboard = [
+    [button("🔐 ورود به حساب", "p:auth:login"), button("✨ ثبت‌نام", "p:auth:register")],
+    [button("📊 وضعیت حساب", "p:auth:status"), ...(profile ? [button("🚪 خروج از حساب", "p:auth:logout", "danger")] : [])],
+    backRow,
+  ];
+  return show(cb, chatId, `👤 <b>حساب کاربری NexvorDEV</b>\n\n${description}`, { inline_keyboard: keyboard });
+}
+
+async function startTelegramLogin(cb: BotCallback | null, chatId: string) {
+  await setSession(chatId, "auth_login_email");
+  return show(cb, chatId, "🔐 <b>ورود به حساب</b>\n\nایمیلی را بفرست که با آن در سایت NexvorDEV ثبت‌نام کرده‌ای. یک کد یک‌بارمصرف به همان ایمیل ارسال می‌شود.", { inline_keyboard: [cancelRow] });
+}
+
+async function startTelegramRegister(cb: BotCallback | null, chatId: string) {
+  await setSession(chatId, "auth_register_first");
+  return show(cb, chatId, "✨ <b>ساخت حساب جدید</b>\n\nنام خودت را وارد کن:", { inline_keyboard: [cancelRow] });
+}
+
+async function issueTelegramOtp(
+  chatId: string,
+  flow: TelegramAuthFlow,
+  profile: { user_id: string; email: string; first_name?: string | null; last_name?: string | null },
+  cb: BotCallback | null = null,
+) {
+  const email = normalizeEmail(profile.email);
+  if (
+    await limited(`bot:auth:otp:chat:${chatId}`, 3, 10 * MINUTES) ||
+    await limited(`bot:auth:otp:email:${email}`, 5, HOURS)
+  ) {
+    await clearSession(chatId);
+    await show(cb, chatId, "⏳ درخواست کد زیادی ثبت شده؛ کمی بعد دوباره تلاش کن.", { inline_keyboard: [backRow] });
+    return false;
+  }
+
+  const code = String(randomInt(0, 1_000_000)).padStart(6, "0");
+  const challenge: TelegramAuthChallenge = {
+    flow,
+    email,
+    userId: profile.user_id,
+    firstName: String(profile.first_name || ""),
+    lastName: String(profile.last_name || ""),
+    codeHash: telegramOtpHash(chatId, email, code),
+    expiresAt: Date.now() + 10 * MINUTES,
+    attempts: 0,
+  };
+
+  await setSession(chatId, "auth_otp", challenge as unknown as Record<string, unknown>);
+  try {
+    const display = [challenge.firstName, challenge.lastName].filter(Boolean).join(" ") || "کاربر";
+    await sendMail({ to: email, ...telegramOtpMessage(display, code) });
+  } catch {
+    await clearSession(chatId);
+    await show(cb, chatId, "ارسال کد به ایمیل انجام نشد. تنظیمات ایمیل را بررسی کن یا کمی بعد دوباره تلاش کن.", { inline_keyboard: [backRow] });
+    return false;
+  }
+
+  await show(
+    cb,
+    chatId,
+    `📨 کد شش‌رقمی به <code>${escapeTelegramHtml(email)}</code> ارسال شد.\n\nکد را همین‌جا بفرست. کد ۱۰ دقیقه اعتبار دارد و فقط یک‌بار استفاده می‌شود.\n\nرمز عبور خودت را در تلگرام ارسال نکن.`,
+    { inline_keyboard: [[button("♻️ ارسال مجدد کد", "p:auth:resend")], cancelRow] },
+  );
+  return true;
+}
+
+async function accountStatus(cb: BotCallback | null, chatId: string) {
+  const rows = await supportDb(
+    `nexvor_profiles?telegram_chat_id=eq.${encodeURIComponent(chatId)}&select=user_id,email,first_name,last_name,email_verified_at,telegram_linked_at&limit=1`,
+  ) as Array<{user_id:string;email:string|null;first_name:string;last_name:string;email_verified_at:string|null;telegram_linked_at:string|null}>;
+  const profile = rows[0];
+  if (!profile) {
+    return show(cb, chatId, "هنوز حسابی به تلگرامت متصل نیست. از منوی حساب کاربری وارد شو یا ثبت‌نام کن.", {
+      inline_keyboard: [[button("🔐 ورود", "p:auth:login"), button("✨ ثبت‌نام", "p:auth:register")], backRow],
+    });
+  }
+  return show(cb, chatId, [
+    "📊 <b>وضعیت حساب</b>",
+    "",
+    `نام: ${escapeTelegramHtml([profile.first_name, profile.last_name].filter(Boolean).join(" ") || "کاربر")}`,
+    `ایمیل: <code>${escapeTelegramHtml(profile.email || "ثبت نشده")}</code>`,
+    `تأیید ایمیل: ${profile.email_verified_at ? "✅ انجام شده" : "⚠️ انجام نشده"}`,
+    `اتصال تلگرام: ${profile.telegram_linked_at ? "✅ فعال" : "—"}`,
+  ].join("\n"), { inline_keyboard: [[button("🚪 خروج از حساب", "p:auth:logout", "danger")], backRow] });
+}
+
+async function logoutTelegramAccount(cb: BotCallback | null, chatId: string) {
+  const rows = await supportDb(
+    `nexvor_profiles?telegram_chat_id=eq.${encodeURIComponent(chatId)}&select=user_id&limit=1`,
+  ) as Array<{user_id:string}>;
+  if (!rows[0]) return show(cb, chatId, "حسابی به این تلگرام متصل نیست.", { inline_keyboard: [backRow] });
+  await unlinkTelegram(rows[0].user_id);
+  await clearSession(chatId);
+  return show(cb, chatId, "✅ از حساب خارج شدی. حساب سایت حذف نمی‌شود و هر زمان خواستی دوباره می‌توانی وارد شوی.", {
+    inline_keyboard: [[button("🔐 ورود", "p:auth:login"), button("✨ ثبت‌نام", "p:auth:register")], backRow],
+  });
+}
+
+async function completeTelegramAuth(chatId: string, message: BotMessage, session: Session) {
+  const data = session.data as unknown as TelegramAuthChallenge;
+  const code = String(message.text || "").trim();
+  if (message.message_id) {
+    await tg("deleteMessage", { chat_id: chatId, message_id: message.message_id }).catch(() => null);
+  }
+  if (!data.email || !data.userId || !data.codeHash || Date.now() > Number(data.expiresAt)) {
+    await clearSession(chatId);
+    return send(chatId, "⌛ کد منقضی شده است. دوباره از منوی حساب کاربری درخواست کد بده.", { inline_keyboard: [backRow] });
+  }
+  if (!/^\d{6}$/.test(code)) return send(chatId, "کد باید دقیقاً ۶ رقم باشد. دوباره واردش کن.", { inline_keyboard: [[button("♻️ ارسال مجدد کد", "p:auth:resend")], cancelRow] });
+  if (await limited(`bot:auth:verify:${chatId}`, 5, 10 * MINUTES)) {
+    await clearSession(chatId);
+    return send(chatId, "تعداد تلاش‌های واردکردن کد به سقف رسید. دوباره کد بگیر.", { inline_keyboard: [backRow] });
+  }
+  if (!safeEqual(data.codeHash, telegramOtpHash(chatId, data.email, code))) {
+    const attempts = Number(data.attempts || 0) + 1;
+    if (attempts >= 5) {
+      await clearSession(chatId);
+      return send(chatId, "کد درست نبود و فرصت تلاش تمام شد. دوباره درخواست کد بده.", { inline_keyboard: [backRow] });
+    }
+    await setSession(chatId, "auth_otp", { ...data, attempts });
+    return send(chatId, `کد درست نیست. ${5 - attempts} فرصت دیگر داری.`, { inline_keyboard: [[button("♻️ ارسال مجدد کد", "p:auth:resend")], cancelRow] });
+  }
+
+  const linkedProfiles = await supportDb(
+    `nexvor_profiles?telegram_chat_id=eq.${encodeURIComponent(chatId)}&select=user_id&limit=1`,
+  ) as Array<{user_id:string}>;
+  if (linkedProfiles[0] && linkedProfiles[0].user_id !== data.userId) {
+    await clearSession(chatId);
+    return send(chatId, "این تلگرام به حساب دیگری متصل است. ابتدا از منوی حساب کاربری از آن حساب خارج شو، سپس دوباره وارد شو.", { inline_keyboard: [backRow] });
+  }
+
+  const updated = await updateAuthUser(data.userId, { email_confirm: true });
+  if (!updated.ok) {
+    await clearSession(chatId);
+    return send(chatId, "تأیید حساب انجام نشد. دوباره تلاش کن یا با پشتیبانی تماس بگیر.", { inline_keyboard: [backRow] });
+  }
+
+  const verifiedAt = new Date().toISOString();
+  await upsertProfile({
+    user_id: data.userId,
+    email: data.email,
+    first_name: data.firstName,
+    last_name: data.lastName,
+    email_verified_at: verifiedAt,
+  });
+  const linked = await linkTelegramAccount(data.userId, chatId, message.from?.username);
+  if (!linked) {
+    await clearSession(chatId);
+    return send(chatId, "اتصال این حساب به تلگرام انجام نشد. از منوی حساب کاربری وضعیت اتصال را بررسی کن.", { inline_keyboard: [backRow] });
+  }
+
+  await clearSession(chatId);
+  await createNotification(
+    data.userId,
+    "account",
+    data.flow === "register" ? "حساب از طریق تلگرام ساخته شد" : "ورود از طریق تلگرام",
+    "حساب شما با کد یک‌بارمصرف ایمیل تأیید و به تلگرام متصل شد.",
+    "/account",
+  ).catch(() => null);
+
+  let passwordSetupSent = false;
+  if (data.flow === "register") {
+    try {
+      const token = await createEmailToken(data.userId, "reset", HOURS);
+      const name = [data.firstName, data.lastName].filter(Boolean).join(" ") || "کاربر";
+      await sendMail({
+        to: data.email,
+        ...resetEmailMessage(name, `${siteUrl}/auth/reset?token=${token}`),
+      });
+      passwordSetupSent = true;
+    } catch {}
+  }
+
+  const success = data.flow === "register"
+    ? `🎉 <b>حساب کاربری ساخته شد!</b>\nایمیل تأیید شد و تلگرامت به حساب NexvorDEV متصل شد.${passwordSetupSent ? "\n\nبرای تعیین رمز ورود به سایت، لینک جداگانه‌ای به ایمیلت فرستادیم." : "\n\nبرای ورود به سایت می‌توانی از گزینه «فراموشی رمز» استفاده کنی."}`
+    : "✅ <b>با موفقیت وارد شدی!</b> حساب سایت و تلگرامت به هم متصل شدند.";
+  return send(chatId, success, customerReplyKeyboard());
+}
+
+async function handleTelegramAuthMessage(chatId: string, message: BotMessage, session: Session) {
+  const text = String(message.text || "").trim();
+
+  if (session.state === "auth_login_email") {
+    const email = normalizeEmail(text);
+    if (!validEmail(email)) return send(chatId, "یک ایمیل معتبر وارد کن.", { inline_keyboard: [cancelRow] });
+    const profile = await getProfileByEmail(email);
+    if (!profile?.user_id) {
+      await clearSession(chatId);
+      return send(chatId, "اگر این ایمیل حساب فعالی داشته باشد، کد ورود برایش ارسال می‌شود. اگر حساب نداری، از گزینه ثبت‌نام استفاده کن.", {
+        inline_keyboard: [[button("✨ ثبت‌نام", "p:auth:register")], backRow],
+      });
+    }
+    return issueTelegramOtp(chatId, "login", {
+      user_id: profile.user_id,
+      email,
+      first_name: profile.first_name,
+      last_name: profile.last_name,
+    });
+  }
+
+  if (session.state === "auth_register_first") {
+    const firstName = cleanText(text, 40);
+    if (firstName.length < 2) return send(chatId, "نام باید حداقل ۲ حرف داشته باشد.", { inline_keyboard: [cancelRow] });
+    await setSession(chatId, "auth_register_last", { firstName });
+    return send(chatId, "نام خانوادگی را وارد کن:", { inline_keyboard: [cancelRow] });
+  }
+
+  if (session.state === "auth_register_last") {
+    const lastName = cleanText(text, 40);
+    if (lastName.length < 2) return send(chatId, "نام خانوادگی باید حداقل ۲ حرف داشته باشد.", { inline_keyboard: [cancelRow] });
+    await setSession(chatId, "auth_register_email", { ...session.data, lastName });
+    return send(chatId, "ایمیل معتبرت را بفرست. کد تأیید به همین ایمیل ارسال می‌شود:", { inline_keyboard: [cancelRow] });
+  }
+
+  if (session.state === "auth_register_email") {
+    const email = normalizeEmail(text);
+    if (!validEmail(email)) return send(chatId, "یک ایمیل معتبر وارد کن.", { inline_keyboard: [cancelRow] });
+    if (
+      await limited(`bot:auth:register:chat:${chatId}`, 3, HOURS) ||
+      await limited(`bot:auth:register:email:${email}`, 3, HOURS)
+    ) {
+      await clearSession(chatId);
+      return send(chatId, "⏳ تعداد درخواست‌های ثبت‌نام زیاد شده؛ کمی بعد دوباره تلاش کن.", { inline_keyboard: [backRow] });
+    }
+
+    const firstName = String(session.data.firstName || "");
+    const lastName = String(session.data.lastName || "");
+    let profile = await getProfileByEmail(email);
+    if (profile?.email_verified_at) {
+      await clearSession(chatId);
+      return send(chatId, "با این ایمیل حساب تأییدشده وجود دارد. از گزینه ورود استفاده کن.", {
+        inline_keyboard: [[button("🔐 ورود به حساب", "p:auth:login")], backRow],
+      });
+    }
+
+    let userId = profile?.user_id;
+    if (!userId) {
+      const created = await createAuthUser({
+        email,
+        password: newAccessToken() + "Aa1!",
+        firstName,
+        lastName,
+      });
+      if (!created.ok || typeof created.data.id !== "string") {
+        await clearSession(chatId);
+        return send(chatId, "ساخت حساب با این ایمیل انجام نشد. اگر قبلاً حساب ساخته‌ای، وارد شو؛ در غیر این صورت کمی بعد دوباره تلاش کن.", {
+          inline_keyboard: [[button("🔐 ورود به حساب", "p:auth:login")], backRow],
+        });
+      }
+      userId = created.data.id;
+    }
+
+    await upsertProfile({
+      user_id: userId,
+      email,
+      first_name: firstName,
+      last_name: lastName,
+      email_verified_at: null,
+    });
+    profile = { user_id: userId, email, first_name: firstName, last_name: lastName, email_verified_at: null } as Awaited<ReturnType<typeof getProfileByEmail>>;
+    return issueTelegramOtp(chatId, "register", {
+      user_id: userId,
+      email,
+      first_name: firstName,
+      last_name: lastName,
+    });
+  }
+
+  if (session.state === "auth_otp") return completeTelegramAuth(chatId, message, session);
+  return false;
+}
+
+
 function mainMenu(): Markup {
   return { inline_keyboard: [
     [button("📦 ثبت سفارش", "p:order", "success"), button("🎫 تیکت پشتیبانی", "p:ticket")],
     [button("📋 پیگیری من", "p:my"), button("💰 تعرفه", "p:prices", "success")],
     [button("🛠 خدمات", "p:services"), { text: "🌐 وب‌سایت", url: siteUrl }],
-    [button("🔗 اتصال حساب سایت", "p:link"), button("❓ راهنما", "p:help")],
+    [button("👤 حساب کاربری", "p:account"), button("🔗 اتصال حساب سایت", "p:link")],
+    [button("❓ راهنما", "p:help")],
   ] };
 }
 const backRow = [button("⬅️ منوی اصلی", "p:menu")];
 
 const welcome = (name: string) => [`سلام ${escapeTelegramHtml(name)} 👋`, "به بات <b>NexvorDEV</b> خوش اومدی.", "", "اینجا می‌تونی سفارش بدی، تیکت پشتیبانی باز کنی، وضعیت کارهات رو ببینی و تعرفه رو بدونی؛ همه‌چیز بدون نیاز به سایت.", "", "از منوی زیر شروع کن 👇"].join("\n");
 
-const helpText = () => ["❓ <b>راهنمای بات</b>", "", "/menu — منوی اصلی", "/order — ثبت سفارش جدید", "/newticket — باز کردن تیکت پشتیبانی", "/my — سفارش‌ها و تیکت‌های من", "/prices — تعرفه", "/services — فهرست خدمات", "/cancel — لغو مرحله فعلی", "/link — اتصال حساب سایت به تلگرام", "", `🌐 ${siteUrl}`].join("\n");
+const helpText = () => ["❓ <b>راهنمای بات</b>", "", "/menu — منوی اصلی", "/order — ثبت سفارش جدید", "/newticket — باز کردن تیکت پشتیبانی", "/my — سفارش‌ها و تیکت‌های من", "/prices — تعرفه", "/services — فهرست خدمات", "/cancel — لغو مرحله فعلی", "/account — ورود و ثبت‌نام و وضعیت حساب", "/login — ورود با کد ایمیل", "/register — ساخت حساب جدید", "/link — اتصال حساب سایت به تلگرام", "", `🌐 ${siteUrl}`].join("\n");
 
 const fullName = (from?: BotMessage["from"]) => cleanText([from?.first_name, from?.last_name].filter(Boolean).join(" ") || from?.username || "کاربر تلگرام", 80);
 
@@ -213,7 +514,8 @@ function customerReplyKeyboard(): Markup {
       [{ text: "📦 ثبت سفارش" }, { text: "🎫 تیکت پشتیبانی" }],
       [{ text: "📋 پیگیری من" }, { text: "💰 تعرفه" }],
       [{ text: "🛠 خدمات" }, { text: "🔗 اتصال حساب" }],
-      [{ text: "❓ راهنما" }, { text: "✖️ لغو" }],
+      [{ text: "👤 حساب کاربری" }, { text: "❓ راهنما" }],
+      [{ text: "✖️ لغو" }],
     ],
     resize_keyboard: true,
     is_persistent: true,
@@ -240,6 +542,7 @@ export async function handlePublicMessage(message: BotMessage, command: string |
       "🔗 اتصال حساب": "/link",
       "❓ راهنما": "/help",
       "✖️ لغو": "/cancel",
+      "👤 حساب کاربری": "/account",
     };
     command = keyboardCommands[text] || null;
   }
@@ -252,6 +555,9 @@ export async function handlePublicMessage(message: BotMessage, command: string |
     const code = await createBotLinkCode(chatId, from?.username);
     return send(chatId, ["🔗 <b>اتصال حساب تلگرام به سایت</b>", "", "این کد را در حساب کاربری سایت، بخش پروفایل وارد کن:", "", `<code>${code}</code>`, "", "کد تا ۱۰ دقیقه معتبر است و فقط یک‌بار استفاده می‌شود.", `${siteUrl}/account?tab=profile`].join("\n"), { inline_keyboard: [[{ text: "🌐 باز کردن حساب کاربری", url: `${siteUrl}/account?tab=profile` }], backRow] });
   }
+  if (command === "/account") return showAccountMenu(null, chatId);
+  if (command === "/login") return startTelegramLogin(null, chatId);
+  if (command === "/register") return startTelegramRegister(null, chatId);
   if (command === "/cancel") { await clearSession(chatId); return send(chatId, "لغو شد.", mainMenu()); }
   if (command === "/order") return showGroups(null, chatId);
   if (command === "/newticket") return startTicket(null, chatId);
@@ -263,6 +569,7 @@ export async function handlePublicMessage(message: BotMessage, command: string |
   const session = await getSession(chatId);
   if (!session) { if (!admin) await send(chatId, "برای شروع از منوی زیر استفاده کن 👇", mainMenu()); return; }
 
+  if (session.state.startsWith("auth_")) return handleTelegramAuthMessage(chatId, message, session);
   if (session.state === "order_reply") return customerOrderReply(chatId, String(session.data.id), cleanText(text, 4000));
   if (session.state === "order_details") {
     if (text.length < 10) return send(chatId, "توضیحات کوتاهه؛ حداقل ۱۰ کاراکتر بنویس.", { inline_keyboard: [cancelRow] });
@@ -301,6 +608,17 @@ export async function handlePublicCallback(cb: BotCallback) {
   if (action === "menu") { await clearSession(chatId); return show(cb, chatId, welcome(cb.from?.first_name || cb.from?.username || "دوست عزیز"), mainMenu()); }
   if (action === "cancel") { await clearSession(chatId); return show(cb, chatId, "لغو شد. هر وقت خواستی از منو ادامه بده.", mainMenu()); }
   if (action === "help") return show(cb, chatId, helpText(), { inline_keyboard: [backRow] });
+  if (action === "account") return showAccountMenu(cb, chatId);
+  if (action === "auth" && a === "login") return startTelegramLogin(cb, chatId);
+  if (action === "auth" && a === "register") return startTelegramRegister(cb, chatId);
+  if (action === "auth" && a === "status") return accountStatus(cb, chatId);
+  if (action === "auth" && a === "logout") return logoutTelegramAccount(cb, chatId);
+  if (action === "auth" && a === "resend") {
+    const pending = await getSession(chatId);
+    if (!pending || pending.state !== "auth_otp") return show(cb, chatId, "درخواست کد فعالی وجود ندارد. دوباره ورود یا ثبت‌نام را شروع کن.", { inline_keyboard: [backRow] });
+    const data = pending.data as unknown as TelegramAuthChallenge;
+    return issueTelegramOtp(chatId, data.flow, { user_id: data.userId, email: data.email, first_name: data.firstName, last_name: data.lastName }, cb);
+  }
   if (action === "link") {
     if (await limited(`bot:link:${chatId}`, 3, 10 * MINUTES)) return show(cb, chatId, "⏳ برای ساخت کد اتصال کمی صبر کن.", { inline_keyboard: [backRow] });
     const code = await createBotLinkCode(chatId, cb.from?.username);
