@@ -354,6 +354,7 @@ async function sendBroadcast(chatId: string) {
       if (result.status === "fulfilled") sent++;
       else failed++;
     }
+    if (index + 20 < recipients.length) await new Promise(resolve => setTimeout(resolve, 750));
   }
   await reply(chatId, `📣 <b>ارسال پیام به پایان رسید</b>\n\n✅ موفق: ${sent}\n❌ ناموفق: ${failed}\n👥 کل گیرندگان: ${recipients.length}`);
 }
@@ -369,7 +370,7 @@ async function handleCallback(callback: TelegramCallbackQuery) {
   const data = callback.data || "";
   try {
     if (data === "broadcast:start") { await startBroadcast(String(chatId)); }
-    else if (data === "broadcast:send") { await sendBroadcast(String(chatId)); }
+    else if (data === "broadcast:send") { await answerCallback(callback.id, "ارسال پیام شروع شد؛ کمی صبر کن."); await sendBroadcast(String(chatId)); }
     else if (data === "broadcast:cancel") {
       await supportDb(`nexvor_bot_sessions?chat_id=eq.${encodeURIComponent(String(chatId))}`, { method: "DELETE", headers: { Prefer: "return=minimal" } });
       await editCallbackMessage(callback, "ارسال پیام لغو شد.", { inline_keyboard: [[{ text: "📊 داشبورد", callback_data: "dashboard" }]] });
@@ -658,3 +659,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 }
+
