@@ -35,6 +35,15 @@ async function attachExistingRecords(userId: string, chatId: string, username?: 
   ]);
 }
 
+export async function linkTelegramAccount(userId: string, chatId: string, username?: string) {
+  const existing = await supportDb(`nexvor_profiles?telegram_chat_id=eq.${encodeURIComponent(chatId)}&select=user_id&limit=1`) as Array<{ user_id: string }>;
+  if (existing[0] && existing[0].user_id !== userId) return false;
+  const profile = await supportDb(`nexvor_profiles?user_id=eq.${encodeURIComponent(userId)}&select=user_id&limit=1`) as Array<{ user_id: string }>;
+  if (!profile[0]) return false;
+  await attachExistingRecords(userId, chatId, username);
+  return true;
+}
+
 export async function completeSiteLink(token: string, chatId: string, username?: string) {
   if (!/^[a-f0-9]{48}$/i.test(token)) return false;
   const now = new Date().toISOString();
