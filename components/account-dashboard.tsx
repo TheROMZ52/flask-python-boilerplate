@@ -32,6 +32,7 @@ async function api(url: string, method: string, body?: Record<string, unknown>) 
 
 export default function AccountDashboard() {
   const supabase = useMemo(() => supabaseBrowser(), []);
+  const [avatarBroken, setAvatarBroken] = useState(false);
   const [info, setInfo] = useState<Info | null>(null);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [requests, setRequests] = useState<Req[]>([]);
@@ -164,7 +165,7 @@ export default function AccountDashboard() {
   const display = info?.name || info?.email?.split("@")[0] || "کاربر";
   const header = (
     <header className="dash-head hx-glass">
-      <div className="dash-avatar">{info?.avatar ? <img src={info.avatar} alt="" referrerPolicy="no-referrer" /> : <span>{display.slice(0, 1).toUpperCase()}</span>}</div>
+      <div className="dash-avatar">{info?.avatar && !avatarBroken ? <img src={info.avatar} alt="" referrerPolicy="no-referrer" onError={() => setAvatarBroken(true)} /> : <span>{display.slice(0, 1).toUpperCase()}</span>}</div>
       <div className="dash-who">
         <h1>سلام، {display} 👋</h1>
         <p dir="ltr">{info?.email}</p>
