@@ -268,3 +268,11 @@
 .dash-link-form button{justify-self:start}
 .dash-profile input{display:block;width:100%;min-width:0;box-sizing:border-box}
 @media(max-width:760px){.dash-link-form button{width:100%;justify-content:center}}
+
+/* mobile: keep the dashboard inside the viewport (a wide tab bar used to stretch the grid) */
+.dash{grid-template-columns:minmax(0,1fr)}
+.dash>*{min-width:0}
+.dash-tabs{width:100%;scrollbar-width:none}
+.dash-tabs::-webkit-scrollbar{display:none}
+.dash-actions>*{flex:1 1 auto;justify-content:center}
+.dash-stats>*{min-width:0}
