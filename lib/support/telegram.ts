@@ -229,3 +229,20 @@ export async function notifyAdminAboutOrderMessage(requestId: string) {
   const text = ["💬 <b>پیام جدید درباره سفارش</b>", "", `<b>شناسه:</b> <code>${escapeTelegramHtml(item.id)}</code>`, `<b>مشتری:</b> ${escapeTelegramHtml(item.customer_name)}`, `<b>خدمت:</b> ${escapeTelegramHtml(item.service_type)}`, `<b>راه ارتباطی:</b> ${escapeTelegramHtml(item.telegram_contact)}`, "", escapeTelegramHtml(messages[0]?.body || "").slice(0, 2500)].join("\n");
   await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, { reply_markup: { inline_keyboard: [[{ text: "📦 مشاهده و پاسخ", callback_data: `srview:${requestId}` }]] } })));
 }
+
+export async function notifyAdminAboutMinecraftTicket(input: { event: "created" | "reply"; ticketId: string | number; username: string; subject: string; message: string; adminUrl: string }) {
+  if (!botToken || !adminChatIds.length) return;
+  const title = input.event === "created" ? "🎮 <b>تیکت جدید از سایت ماینکرفت</b>" : "💬 <b>پیام جدید در تیکت ماینکرفت</b>";
+  const text = [
+    title,
+    "",
+    `<b>شناسه:</b> <code>${escapeTelegramHtml(input.ticketId)}</code>`,
+    `<b>بازیکن:</b> ${escapeTelegramHtml(input.username)}`,
+    `<b>موضوع:</b> ${escapeTelegramHtml(input.subject).slice(0, 200)}`,
+    "",
+    `<b>پیام:</b>\n${escapeTelegramHtml(input.message).slice(0, 2500)}`,
+  ].join("\n");
+  await Promise.allSettled(adminChatIds.map(chatId => sendTelegramMessage(chatId, text, {
+    reply_markup: { inline_keyboard: [[{ text: "🛠 پنل تیکت‌های ماینکرفت", url: input.adminUrl }]] },
+  })));
+}
